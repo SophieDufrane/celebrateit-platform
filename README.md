@@ -4,6 +4,14 @@ CelebrateIt is a mock social media platform inspired by the solutions offered by
 
 Built using **React** and the **Django Rest Framework**, this project serves as a learning and portfolio exercise, demonstrating advanced front-end capabilities and API integration, showcasing full-stack development skills in designing a functional and user-friendly web application.
 
+  <details>
+
+    <summary>ERD</summary>
+
+    <img src="documentation/ERD_CelebrateIt.png">
+
+  </details>
+
 ## 2. **User Experience - UX**
 
 ### **2.1. Scope and Structure**
