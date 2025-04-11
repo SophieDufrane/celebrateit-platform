@@ -1,0 +1,17 @@
+# Virtual environment
+venv/
+.venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# SQLite database (optional if using Postgres later)
+db.sqlite3
+
+# Environment variables
+.env
+env.py
+
+# VS Code settings
+.vscode/
