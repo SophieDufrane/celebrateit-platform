@@ -4,13 +4,25 @@ from django.contrib.auth.models import User
 
 
 class UserProfile(models.Model):
+    DEPARTMENT_CHOICES = [
+    ('HR', 'Human Resources'),
+    ('ENG', 'Engineering'),
+    ('SALES', 'Sales'),
+    ('OPS', 'Operations'),
+    ('MARKT', 'Marketing'),
+    ]
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    department = models.CharField(
+        max_length=50,
+        choices=DEPARTMENT_CHOICES,
+        blank=True
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    description = models.CharField(max_length=200)
-    role = models.CharField(max_length=20)
+    presentation = models.CharField(max_length=300, blank=True)
     image = models.ImageField(
-        upload_to='images/', default='../default_profile_j4wwml'
+        upload_to='images/', default='celebrateit_assets/default_profile_pic'
     )
 
     class Meta:
