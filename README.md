@@ -4,13 +4,12 @@ CelebrateIt is a mock social media platform inspired by the solutions offered by
 
 Built using **React** and the **Django Rest Framework**, this project serves as a learning and portfolio exercise, demonstrating advanced front-end capabilities and API integration, showcasing full-stack development skills in designing a functional and user-friendly web application.
 
-  <details>
+<details>
+  <summary>ERD</summary>
 
-    <summary>ERD</summary>
+![ERD Diagram](documentation/ERD_CelebrateIt.png)
 
-    <img src="documentation/ERD_CelebrateIt.png">
-
-  </details>
+</details>
 
 ## 2. **User Experience - UX**
 
@@ -48,21 +47,18 @@ CelebrateIt is designed to make it easy and meaningful for employees to share an
 1. **Discover the Latest Stories** _(must have)_  
    Users can browse the feed to see the most recent stories shared by others across the platform.
 
-2. **Search Stories and People** _(must have)_  
+2. **Search Stories and People** _(should have)_  
    A search tool allows users to find specific stories, colleagues, or teams by keyword.
 
-3. **Follow People or Teams** _(should have)_  
-   Users can follow specific individuals or teams to tailor their feed to what matters most.
-
-4. **Browse Teams and Departments** _(could have)_  
-   Users can explore stories and profiles grouped by teams, departments, or roles within the company to find stories from colleagues they work closely with or want to learn more about.
+3. **Browse Teams or Departments** _(should have)_  
+   Users can explore stories and profiles grouped by teams or departments.
 
 ---
 
 #### **EPIC - Sharing & Celebrating Stories**
 
 1. **Create a Recognition Story** _(must have)_  
-   Users can share a story that highlights a colleague, team, or moment worth celebrating, optionally including an image.
+   Users can share a story that highlights a colleague, team, or moment worth celebrating, optionally including an image and tags.
 
 2. **View My Own Stories** _(should have)_  
    Users can see a list of the stories they’ve written from their own profile.
@@ -78,21 +74,18 @@ CelebrateIt is designed to make it easy and meaningful for employees to share an
 #### **EPIC - Engaging with Stories**
 
 1. **View Story Details** _(must have)_  
-   Any user can click into a story to view it fully, including all associated recognition details and comments.
+   Any user can click into a story to view it fully, including all recognition details.
 
-2. **Like a Story** _(must have)_  
+2. **Like a Story** _(could have)_  
    Logged-in users can show support by liking a story they connect with.
 
-3. **Comment on a Story** _(must have)_  
+3. **Comment on a Story** _(could have)_  
    Users can join the conversation by commenting on recognition stories shared by others.
 
-4. **Edit or Delete My Comments** _(should have)_  
+4. **Edit or Delete My Comments** _(could have)_  
    Users can update or remove comments they've written.
 
-5. **View Liked Stories** _(should have)_  
-   Users can revisit stories they’ve previously liked via their own profile or a dedicated view.
-
-6. **Stories from Followed Profiles** _(should have)_  
+5. **Stories from Followed Profiles** _(could have)_  
    The feed can be filtered to show only stories shared by users or teams the person follows.
 
 ---
@@ -100,15 +93,12 @@ CelebrateIt is designed to make it easy and meaningful for employees to share an
 #### **EPIC - Managing My Profile & Network**
 
 1. **View Public Profiles** _(must have)_  
-   Users can view the public-facing profiles of other employees, including their bio and shared stories.
+   Users can view the public-facing profiles of other employees, including their presentation, department, and shared stories.
 
-2. **Edit My Profile** _(should have)_  
-   Logged-in users can edit their avatar and bio to personalize their presence on the platform.
+2. **Edit My Profile** _(must have)_  
+   Logged-in users can edit their avatar, presentation, and department to personalize their presence on the platform.
 
-3. **View Profile Stats** _(could have)_  
-   Each profile includes stats like number of stories shared, followers, and followed users.
-
-4. **Update My Credentials** _(could have)_  
+3. **Update My Credentials** _(should have)_  
    Users can change their username and password to stay secure and in control of their account.
 
 ---
@@ -121,7 +111,7 @@ CelebrateIt is designed to make it easy and meaningful for employees to share an
 2. **Smooth Page Navigation** _(should have)_  
    Users can move between pages without full reloads, for a fast and fluid experience.
 
-3. **Endless Story Scrolling** _(should have)_  
+3. **Endless Story Scrolling** _(could have)_  
    Stories load automatically as users scroll, removing the need for pagination and keeping engagement flowing.
 
 ---
