@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from .models import UserProfile
 from .serializers import UserProfileSerializer
 from django.http import Http404
+from rest_framework import status
 
 
 class UserProfileList(APIView):
@@ -24,3 +25,11 @@ class UserProfileDetail(APIView):
         user_profile = self.get_object(pk)
         serializer = UserProfileSerializer(user_profile)
         return Response(serializer.data)
+    
+    def put(self, request, pk):
+        user_profile = self.get_object(pk)
+        serializer = UserProfileSerializer(user_profile, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

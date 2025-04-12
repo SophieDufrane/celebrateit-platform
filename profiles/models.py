@@ -22,7 +22,7 @@ class UserProfile(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     presentation = models.CharField(max_length=300, blank=True)
     image = models.ImageField(
-        upload_to='images/', default='https://res.cloudinary.com/dupxlk3kb/image/upload/v1/media/../default_profile_j4wwml'
+        upload_to='images/', default='../default_profile_vjekwr'
     )
 
     class Meta:
