@@ -1,0 +1,47 @@
+[
+  {
+    "model": "department.department",
+    "pk": 1,
+    "fields": {
+      "code": "HR",
+      "name": "Human Resources",
+      "icon": "department_icons/hr.jpg"
+    }
+  },
+  {
+    "model": "department.department",
+    "pk": 2,
+    "fields": {
+      "code": "ENG",
+      "name": "Engineering",
+      "icon": "department_icons/eng.jpg"
+    }
+  },
+  {
+    "model": "department.department",
+    "pk": 3,
+    "fields": {
+      "code": "SALES",
+      "name": "Sales",
+      "icon": "department_icons/sales.jpg"
+    }
+  },
+  {
+    "model": "department.department",
+    "pk": 4,
+    "fields": {
+      "code": "OPS",
+      "name": "Operations",
+      "icon": "department_icons/ops.jpg"
+    }
+  },
+  {
+    "model": "department.department",
+    "pk": 5,
+    "fields": {
+      "code": "MARKT",
+      "name": "Marketing",
+      "icon": "department_icons/markt.jpg"
+    }
+  }
+]
