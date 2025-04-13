@@ -1,13 +1,12 @@
 from rest_framework import generics, filters
 from .models import UserProfile
 from .serializers import UserProfileSerializer
-from celebrateit_api.permissions import IsUserProfileOrReadOnly
+from celebrateit_api.permissions import IsObjectOwnerOrReadOnly
 
 
 class UserProfileList(generics.ListAPIView):
     """
     List all user profiles with ordering support.
-    Default: alphabetical by user last name.
     
     """
     queryset = UserProfile.objects.all()
@@ -23,4 +22,4 @@ class UserProfileDetail(generics.RetrieveUpdateAPIView):
     """
     queryset = UserProfile.objects.all()
     serializer_class = UserProfileSerializer
-    permission_classes = [IsUserProfileOrReadOnly]
+    permission_classes = [IsObjectOwnerOrReadOnly]
