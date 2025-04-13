@@ -10,12 +10,3 @@ class DepartmentList(generics.ListAPIView):
     queryset = Department.objects.all()
     serializer_class = DepartmentSerializer
 
-
-# class DepartmentDetail(generics.RetrieveUpdateAPIView):
-#     """
-#     Retrieve a department detail and update only if admin.
-#     """
-#     queryset = Department.objects.all()
-#     serializer_class = DepartmentSerializer
-#     permission_classes = [IsAdminReadOnly]
-
