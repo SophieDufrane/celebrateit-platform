@@ -1,4 +1,4 @@
-from rest_framework import generics
+from rest_framework import generics, filters
 from .models import UserProfile
 from .serializers import UserProfileSerializer
 from celebrateit_api.permissions import IsUserProfileOrReadOnly
@@ -6,11 +6,15 @@ from celebrateit_api.permissions import IsUserProfileOrReadOnly
 
 class UserProfileList(generics.ListAPIView):
     """
-    List all user profiles.
+    List all user profiles with ordering support.
+    Default: alphabetical by user last name.
     
     """
     queryset = UserProfile.objects.all()
     serializer_class = UserProfileSerializer
+    filter_backends = [filters.OrderingFilter]
+    ordering_fields = ['user__last_name', 'created_at', 'department__name']
+    ordering = ['-created_at'] # Default ordering
 
 
 class UserProfileDetail(generics.RetrieveUpdateAPIView):
