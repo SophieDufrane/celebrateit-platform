@@ -1,7 +1,7 @@
 from rest_framework import generics
 from .models import Nomination
 from .serializers import NominationSerializer
-from celebrateit_api.permissions import IsObjectOwnerOrReadOnly
+from celebrateit_api.permissions import IsNominatorOrReadOnly
 
 
 class NominationList(generics.ListCreateAPIView):
@@ -21,4 +21,4 @@ class NominationDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     queryset = Nomination.objects.all()
     serializer_class = NominationSerializer
-    permission_classes = [IsObjectOwnerOrReadOnly]
+    permission_classes = [IsNominatorOrReadOnly]
