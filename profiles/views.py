@@ -1,7 +1,8 @@
 from rest_framework import generics, filters
 from .models import UserProfile
-from .serializers import UserProfileSerializer
+from .serializers import UserProfileSerializer, SimpleUserSerializer
 from celebrateit_api.permissions import IsObjectOwnerOrReadOnly
+from django.contrib.auth.models import User
 
 
 class UserProfileList(generics.ListAPIView):
@@ -23,3 +24,13 @@ class UserProfileDetail(generics.RetrieveUpdateAPIView):
     queryset = UserProfile.objects.all()
     serializer_class = UserProfileSerializer
     permission_classes = [IsObjectOwnerOrReadOnly]
+
+
+class UserList(generics.ListAPIView):
+    """
+    Searchable list of users for selecting a nominee.
+    """
+    queryset = User.objects.all().order_by('last_name')
+    serializer_class = SimpleUserSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['username', 'first_name', 'last_name']
