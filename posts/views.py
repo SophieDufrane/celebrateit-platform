@@ -17,7 +17,7 @@ class PostList(generics.ListCreateAPIView):
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     """
-    Retrieve, update, or delete a post if the user is the owner of the post.
+    Retrieve, update, or delete a post if the user is the author.
     """
     queryset = Post.objects.all()
     serializer_class = PostSerializer
