@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'department',
     'posts',
     'tags',
+    'nominations',
 ]
 
 MIDDLEWARE = [
