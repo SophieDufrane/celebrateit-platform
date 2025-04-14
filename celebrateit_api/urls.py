@@ -8,4 +8,5 @@ urlpatterns = [
     path('', include('department.urls')),
     path('', include('posts.urls')),
     path('', include('tags.urls')),
+    path('', include('nominations.urls')),
 ]
