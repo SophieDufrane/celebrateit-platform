@@ -17,7 +17,6 @@ class Nomination(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     title = models.CharField(max_length=255)
     content = models.TextField(blank=True)
-    category = models.CharField(max_length=100)
     tags = models.ManyToManyField('tags.Tag', blank=True)
 
     class Meta:

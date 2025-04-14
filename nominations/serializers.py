@@ -14,7 +14,7 @@ class NominationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Nomination
         fields = [
-            'id', 'nominator', 'nominee', 'title', 'content', 'category',
+            'id', 'nominator', 'nominee', 'title', 'content',
             'created_at', 'updated_at', 'tags',
         ]
 

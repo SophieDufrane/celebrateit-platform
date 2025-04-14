@@ -1,0 +1,66 @@
+[
+  {
+    "model": "tags.tag",
+    "pk": 1,
+    "fields": {
+      "name": "Leadership",
+      "slug": "leadership"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 2,
+    "fields": {
+      "name": "Teamwork",
+      "slug": "teamwork"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 3,
+    "fields": {
+      "name": "Innovation",
+      "slug": "innovation"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 4,
+    "fields": {
+      "name": "Customer Success",
+      "slug": "customer-success"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 5,
+    "fields": {
+      "name": "Wellbeing",
+      "slug": "wellbeing"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 6,
+    "fields": {
+      "name": "Collaboration",
+      "slug": "collaboration"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 7,
+    "fields": {
+      "name": "Growth",
+      "slug": "growth"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 8,
+    "fields": {
+      "name": "Mentorship",
+      "slug": "mentorship"
+    }
+  }
+]
