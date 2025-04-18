@@ -6,12 +6,11 @@ from nominations.models import Nomination
 
 class Comment(models.Model):
     """
-    A comment made by a user on either a post or a nomination
-    and includes a text body and timestamps.
+    A comment made by a user on either a post or a nomination,
+    includes message content and timestamps.
+    Only one of post or nomination should be set.
     """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    # Each comment is linked to either a post OR a nomination.
-    # Both fields are optional, but one must be filled during usage.
     post = models.ForeignKey(
         Post,
         on_delete=models.CASCADE,
@@ -37,4 +36,3 @@ class Comment(models.Model):
         elif self.nomination:
             return f'{self.user} commented on nomination: {self.nomination.id}'
         return f"{self.user} commented"
-
