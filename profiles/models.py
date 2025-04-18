@@ -4,12 +4,16 @@ from django.contrib.auth.models import User
 
 
 class UserProfile(models.Model):
+    """
+    User profile model linked to the built-in User model.
+    Includes department info, profile picture, presentation, and timestamps.
+    """
     DEPARTMENT_CHOICES = [
-    ('HR', 'Human Resources'),
-    ('ENG', 'Engineering'),
-    ('SALES', 'Sales'),
-    ('OPS', 'Operations'),
-    ('MARKT', 'Marketing'),
+        ('HR', 'Human Resources'),
+        ('ENG', 'Engineering'),
+        ('SALES', 'Sales'),
+        ('OPS', 'Operations'),
+        ('MARKT', 'Marketing'),
     ]
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -33,9 +37,11 @@ class UserProfile(models.Model):
 
 
 def create_user_profile(sender, instance, created, **kwargs):
+    """
+    Creates a UserProfile whenever a new User instance is created.
+    """
     if created:
         UserProfile.objects.create(user=instance)
 
 
 post_save.connect(create_user_profile, sender=User)
-
