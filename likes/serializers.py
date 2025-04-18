@@ -1,14 +1,23 @@
 from django.db import IntegrityError
 from rest_framework import serializers
-from likes.models import Like
+from .models import Like
 
 
 class LikeSerializer(serializers.ModelSerializer):
+    """
+    Serializer for the Like model.
+    Adds user info and ownership check for frontend rendering,
+    validates that a like can only apply to either a post or a nomination.
+    """
     user = serializers.ReadOnlyField(source='user.username')
+    is_user = serializers.SerializerMethodField()
 
     class Meta:
         model = Like
         fields = ['id', 'created_at', 'user', 'post', 'nomination']
+    
+    def get_is_user(self, obj):
+        return self.context['request'].user == obj.user
 
     def validate(self, data):
         post = data.get('post')
