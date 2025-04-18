@@ -4,6 +4,11 @@ from django.contrib.auth.models import User
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
+    """
+    Serializer for the UserProfile model.
+    Includes user info, presentation, department, and image.
+    Adds an ownership flag for frontend controls.
+    """
     user = serializers.ReadOnlyField(source='user.username')
     first_name = serializers.ReadOnlyField(source='user.first_name')
     last_name = serializers.ReadOnlyField(source='user.last_name')
@@ -16,14 +21,17 @@ class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
         fields = [
-            'id', 'user', 'first_name', 'last_name', 'created_at', 
-            'updated_at', 'presentation', 'department', 'image', 
+            'id', 'user', 'first_name', 'last_name', 'created_at',
+            'updated_at', 'presentation', 'department', 'image',
             'is_user_profile',
         ]
 
 
 class SimpleUserSerializer(serializers.ModelSerializer):
+    """
+    Lightweight serializer for basic user info display.
+    Useful for foreign key relations and user listings.
+    """
     class Meta:
         model = User
         fields = ['id', 'username', 'first_name', 'last_name']
-
