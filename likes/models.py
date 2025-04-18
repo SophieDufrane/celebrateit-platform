@@ -5,16 +5,22 @@ from nominations.models import Nomination
 
 
 class Like(models.Model):
+    """
+    A like made by a user on either a post or a nomination.
+    Each like is tied to only one type of content, never both.
+    """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(
         Post,
         on_delete=models.CASCADE,
+        related_name='likes',
         null=True,
         blank=True
     )
     nomination = models.ForeignKey(
         Nomination,
         on_delete=models.CASCADE,
+        related_name='likes',
         null=True,
         blank=True
     )
