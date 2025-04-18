@@ -15,7 +15,7 @@ class LikeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Like
         fields = ['id', 'created_at', 'user', 'post', 'nomination']
-    
+
     def get_is_user(self, obj):
         return self.context['request'].user == obj.user
 
