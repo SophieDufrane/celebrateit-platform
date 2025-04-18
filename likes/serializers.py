@@ -23,8 +23,7 @@ class LikeSerializer(serializers.ModelSerializer):
                 "You can only like a post or a nomination, not both."
             )
         return data
-    
-    
+
     def create(self, validated_data):
         try:
             return super().create(validated_data)

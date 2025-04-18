@@ -13,9 +13,22 @@ class CommentSerializer(serializers.ModelSerializer):
     profile_image = serializers.ReadOnlyField(source='user.profile.image.url')
 
     def get_is_user(self, obj):
-        request = self.context['request']
-        return request.user == obj.user 
-    
+        return self.context['request'].user == obj.user 
+
+    def validate(self, data):
+        post = data.get('post')
+        nomination = data.get('nomination')
+
+        if not post and not nomination:
+            raise serializers.ValidationError(
+                "Comment must be linked to either a post or a nomination."
+            )
+        if post and nomination:
+            raise serializers.ValidationError(
+                "Comment cannot be linked to both a post and a nomination."
+            )
+        return data
+
     class Meta:
         model = Comment
         fields = [

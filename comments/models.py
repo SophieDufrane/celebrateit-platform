@@ -32,4 +32,9 @@ class Comment(models.Model):
         ordering = ['-created_at']
 
     def __str__(self):
-        return self.content
+        if self.post:
+            return f'{self.user} commented on post: {self.post.id}'
+        elif self.nomination:
+            return f'{self.user} commented on nomination: {self.nomination.id}'
+        return f"{self.user} commented"
+
