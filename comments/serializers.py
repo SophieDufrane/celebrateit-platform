@@ -6,8 +6,7 @@ class CommentSerializer(serializers.ModelSerializer):
     """
     Serializer for the Comment model.
     Adds user info and ownership check for frontend rendering,
-    validates that a like can only apply to either a post or a nomination.
-
+    validates that a comment can only apply to either a post or a nomination.
     """
     user = serializers.ReadOnlyField(source='user.username')
     is_user = serializers.SerializerMethodField()
