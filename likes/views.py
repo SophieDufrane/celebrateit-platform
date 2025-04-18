@@ -1,9 +1,7 @@
 from rest_framework import generics, permissions
 from .models import Like
-from likes.serializers import LikeSerializer
-from celebrateit_api.permissions import IsObjectOwnerOrReadOnly
-
 from .serializers import LikeSerializer
+from celebrateit_api.permissions import IsObjectOwnerOrReadOnly
 
 
 class LikeList(generics.ListCreateAPIView):
@@ -13,12 +11,12 @@ class LikeList(generics.ListCreateAPIView):
     """
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = LikeSerializer
-    
+
     def get_queryset(self):
         queryset = Like.objects.all()
         post_id = self.request.query_params.get('post')
         nomination_id = self.request.query_params.get('nomination')
-        
+
         if post_id:
             queryset = queryset.filter(post__id=post_id)
         if nomination_id:
