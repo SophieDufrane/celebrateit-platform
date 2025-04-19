@@ -7,13 +7,9 @@
 2. [User Experience (UX)](#2-user-experience-ux)
 
    - 2.1 [Strategy](#21-strategy)
-
    - 2.2 [Scope](#22-scope)
-
-   - 2.3 [Structure](#23-structure)
-
+   - 2.3 [System Architecture](#23-system-architecture)
    - 2.4 [Skeleton](#24-skeleton)
-
    - 2.5 [Surface](#25-surface)
 
 3. [Features](#3-features)
@@ -23,26 +19,20 @@
 5. [Development](#5-development)
 
    - 5.1 [Project Planning](#51-project-planning)
-
-   - 5.2 [Architecture](#52-architecture)
-
-   - 5.3 [Code Structure](#53-code-structure)
+   - 5.2 [Code Structure](#53-code-structure)
 
 6. [Testing](#6-testing)
 
-   - 6.1 [Automated Tests](#61-automated-tests)
-
-   - 6.2 [Manual Testing](#62-manual-testing)
-
+   - 6.1 [Back-End Application Testing](#61-back-end-application-testing)
+   - 6.2 [Front-End Application Testing](#62-front-end-application-testing)
    - 6.3 [Bugs and Fixes](#63-bugs-and-fixes)
 
-7. [Deployment](#7-deployment)
+7. [Deployment & Setup](#7-deployment-and-setup)
 
-8. [Future Enhancements](#8-future-enhancements)
+   - 7.1 [Backend Deployment](#71-backend-deployment)
+   - 7.2 [Local Setup](#72-local-setup)
 
-9. [Credits](#9-credits)
-
-10. [License](#10-license)
+8. [Credits](#8-credits)
 
 ---
 
@@ -50,23 +40,9 @@
 
 ### Brief Description
 
-CelebrateIt is a mock employee recognition platform inspired by the solutions offered by Workhuman. It allows employees to share recognition stories, nominate colleagues for their achievements, and engage with content through likes and comments. By fostering a sense of appreciation and collaboration, CelebrateIt mirrors the functionality and purpose of modern social recognition platforms.
+CelebrateIt is a mock employee recognition platform inspired by the solutions offered by [Workhuman](https://www.workhuman.com). It allows employees to share recognition stories, nominate colleagues for their achievements, and engage with content through likes and comments. By fostering a sense of appreciation and collaboration, CelebrateIt mirrors the functionality and purpose of modern social recognition platforms.
 
 Built using Django REST for the backend and React for the frontend, this project serves as a learning and portfolio exercise, demonstrating full-stack development skills in designing a scalable, functional, and user-friendly web application.
-
-### Purpose and Goals
-
-The purpose of CelebrateIt is to create a platform that promotes a positive and engaging work culture. By enabling peer-to-peer recognition and celebrating achievements, the platform aims to:
-
-- Build a culture of appreciation within organizations.
-
-- Encourage collaboration and cross-departmental interactions through shared recognition.
-
-- Provide a place for employees to share their stories and celebrate milestones, ensuring their contributions are visible and valued by their peers and leaders.
-
-- Deliver actionable insights for HR teams to track recognition trends and identify outstanding contributions within teams.
-
-- Ensure scalability and ease of use to accommodate growing organizational needs.
 
 ### Target Audience
 
@@ -86,6 +62,8 @@ CelebrateIt is designed for:
 
 ### 2.1 Strategy
 
+To plan the project development, I adopted an Agile methodology centered on user experience. By using user stories grouped into EPICs, the project is broken down into smaller, manageable pieces, ensuring a structured and user-focused approach.
+
 #### **EPIC - Getting Started & Joining the Platform**
 
 | **ID**                                                         | **Theme**                | **User Story**                                                                                                                  | **Prioritization** |
@@ -98,21 +76,21 @@ CelebrateIt is designed for:
 
 #### **EPIC - Exploring the Community**
 
-| **ID**                                                          | **Theme**                                 | **User Story**                                                                                                 | **Prioritization** |
-| --------------------------------------------------------------- | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------ |
-| [1](https://github.com/SophieDufrane/PP5-celebrateit/issues/7)  | Discover the Latest Stories & Nominations | Users can browse the feed to see the most recent stories and nominations shared by others across the platform. | _must have_        |
-| [2](https://github.com/SophieDufrane/PP5-celebrateit/issues/8)  | Search Stories, Nominations & People      | A search tool allows users to find specific stories, nominations and colleagues by keyword.                    | _should have_      |
-| [3](https://github.com/SophieDufrane/PP5-celebrateit/issues/10) | Browse Departments                        | Users can explore stories, nominations and profiles grouped by departments.                                    | _should have_      |
+| **ID**                                                          | **Theme**                                 | **User Story**                                                                                                   | **Prioritization** |
+| --------------------------------------------------------------- | ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ------------------ |
+| [1](https://github.com/SophieDufrane/PP5-celebrateit/issues/7)  | Discover the Latest Stories & Nominations | Users can browse the feed to see the most recent recognition stories and nominations shared across the platform. | _must have_        |
+| [2](https://github.com/SophieDufrane/PP5-celebrateit/issues/8)  | Find People                               | Users can search for colleagues by name and filter them by department.                                           | _should have_      |
+| [3](https://github.com/SophieDufrane/PP5-celebrateit/issues/10) | Filter Nominations                        | Users can filter nominations by tag to focus on specific values or behaviours being celebrated.                  | _should have_      |
 
 #### **EPIC - Sharing Stories and Nominations.**
 
-| **ID**                                                          | **Theme**                         | **User Story**                                                                                                                                                | **Prioritization** |
-| --------------------------------------------------------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
-| [1](https://github.com/SophieDufrane/PP5-celebrateit/issues/11) | Create a Recognition Story        | Users can share a story that highlights a colleague, team, or moment worth celebrating, optionally including an image and tags.                               | _must have_        |
-| [2](https://github.com/SophieDufrane/PP5-celebrateit/issues/27) | Create a Nomination               | Users can create a nomination to recognize a colleague for their achievements.                                                                                | _must have_        |
-| [3](https://github.com/SophieDufrane/PP5-celebrateit/issues/12) | View My Own Stories & Nominations | Users can view all their content, including stories and nominations, with the ability to filter by type (stories, nominations sent, or nominations received). | _should have_      |
-| [4](https://github.com/SophieDufrane/PP5-celebrateit/issues/13) | Edit My Story & Nomination        | Users can return to a story or a nomination they’ve written and update or refine it as needed.                                                                | _should have_      |
-| [5](https://github.com/SophieDufrane/PP5-celebrateit/issues/14) | Delete My Story                   | Users can delete a story they previously shared if they no longer want it to be visible on the platform.                                                      | _should have_      |
+| **ID**                                                          | **Theme**                         | **User Story**                                                                                           | **Prioritization** |
+| --------------------------------------------------------------- | --------------------------------- | -------------------------------------------------------------------------------------------------------- | ------------------ |
+| [1](https://github.com/SophieDufrane/PP5-celebrateit/issues/11) | Create a Recognition Story        | Enable users to share inspiring stories about colleagues, teams, or moments worth celebrating.           | _must have_        |
+| [2](https://github.com/SophieDufrane/PP5-celebrateit/issues/27) | Nominate a colleague              | Allow users to nominate colleagues or teams for their outstanding work and achievements.                 | _must have_        |
+| [3](https://github.com/SophieDufrane/PP5-celebrateit/issues/12) | View My Own Stories & Nominations | Users can view all their content, including stories and nominations                                      | _should have_      |
+| [4](https://github.com/SophieDufrane/PP5-celebrateit/issues/13) | Edit My Recognition Story         | Users can return to a story they’ve written and update or refine it as needed.                           | _should have_      |
+| [5](https://github.com/SophieDufrane/PP5-celebrateit/issues/14) | Delete My Recognition Story       | Users can delete a story they previously shared if they no longer want it to be visible on the platform. | _should have_      |
 
 #### **EPIC - Engaging with Stories & Nominations**
 
@@ -141,67 +119,15 @@ CelebrateIt is designed for:
 
 ---
 
-#### Business goals
-
-1. **Promote a Positive Work Culture:**
-
-   - Foster a culture of recognition and appreciation within the organization.
-
-   - Encourage employees to share positive stories and celebrate their colleagues' achievements.
-
-2. **Boost Employee Engagement:**
-
-   - Provide a platform where employees feel valued and connected.
-
-   - Increase participation and interaction through features like stories, comments, and nominations.
-
-3. **Support Peer-to-Peer Recognition:**
-
-   - Enable employees to nominate colleagues for recognition.
-
-   - Empower teams to celebrate each other's contributions.
-
-4. **Enhance Team Collaboration:**
-
-   - Strengthen team dynamics by creating a space for meaningful interactions.
-
-   - Encourage cross-departmental acknowledgment and collaboration.
-
-5. **Data-Driven Insights for HR:**
-
-   - Collect and analyze recognition data to understand employee engagement trends.
-
-   - Provide HR with actionable insights to reward top-performing employees.
-
-6. **Retention and Morale:**
-
-   - Improve employee retention rates by creating a supportive and rewarding environment.
-
-   - Boost morale by recognizing and celebrating achievements.
-
-7. **Ease of Use and Scalability:**
-
-   - Ensure the platform is user-friendly and intuitive to maximize adoption.
-
-   - Build a scalable architecture using Django REST and React to support organizational growth.
-
-8. **Alignment with Organizational Values:**
-
-   - Reflect and reinforce the company's core values through recognition stories.
-
-   - Build a tool that integrates seamlessly with the existing culture and values.
-
----
-
 ### 2.2 Scope
 
 This section outlines the features and functionalities planned for CelebrateIt, categorized using the **MoSCoW Prioritization Framework**. This framework identifies features as:
 
-- **Must Have**: Essential features that are critical for the platform's core functionality.
+- **Must Have**: Essential features that are critical for the platform's core functionality > 56%
 
-- **Should Have**: High-priority features that enhance the user experience but are not essential for the platform's operation.
+- **Should Have**: High-priority features that enhance the user experience but are not essential for the platform's operation. > 26%
 
-- **Could Have**: Nice-to-have features that provide additional value but are not critical to the platform's success.
+- **Could Have**: Nice-to-have features that provide additional value but are not critical to the platform's success. > 17%
 
 - **Won't Have**: Features explicitly excluded from the current scope.
 
@@ -233,77 +159,26 @@ This section outlines the features and functionalities planned for CelebrateIt, 
 | Smooth Page Navigation                        | Should Have               |
 | Endless Story Scrolling                       | Could Have                |
 
-#### Key Considerations:
-
-1. **Must Have Features**: These features form the foundation of the platform. For example:
-
-   - **Account Registration** and **Login to Account** ensure users can securely access the platform.
-
-   - **Create a Recognition Story** and **Create a Nomination** deliver the core functionality of sharing achievements and recognizing colleagues.
-
-   - **Discover the Latest Stories & Nominations** and **View Story & Nominations Details** ensure users can engage with content.
-
-2. **Should Have Features**: These features improve usability and engagement. For example:
-
-   - **Search Stories, Nominations & People** allows users to easily find relevant content.
-
-   - **Smooth Page Navigation** provides a seamless experience when browsing the platform.
-
-   - **Like a Story or Nomination** and **Comment on a Story or Nomination** add social engagement elements.
-
-3. **Could Have Features**: These features provide additional value but are not essential for the platform's initial release. For example:
-
-   - **Browse Departments** allows users to explore stories and nominations grouped by departments.
-
-   - **Stories or Nominations from Followed Profiles** enables personalized content based on user preferences.
-
-   - **Endless Story Scrolling** enhances usability for users who want to consume large amounts of content.
-
-4. **Won't Have Features**: Features that are explicitly excluded from the current scope will be documented in the "Future Enhancements" section if considered for later development.
-
-By focusing on these prioritized features, CelebrateIt ensures that core functionality is delivered while leaving room for future improvements in subsequent releases.
-
 ---
 
-### 2.3 Structure
+### 2.3 System Architecture
 
-#### Information Architecture
+CelebrateIt is structured with a focus on separation of concerns. While the frontend handles presentation and user interactions, the backend provides a modular, scalable API to support those features.
 
-The information architecture of CelebrateIt is organized into the following sections:
+- Built with Django REST Framework
+- Divided into apps per domain: posts, nominations, profiles, etc.
+- Modular, permission-based views and serializers
+- Shared models like comments and likes allow interactions across apps
 
-1. **Homepage/Dashboard**: Displays the latest recognition stories and nominations, offering users easy access to trending and recent content.
+### Entity Relationship Diagram (ERD)
 
-2. **User Profile**: Allows users to:
-
-   - View their own recognition stories and nominations.
-
-   - Edit or delete their stories.
-
-   - Update profile details.
-
-3. **Create Story/Nomination**: Dedicated forms for users to:
-
-   - Share a recognition story.
-
-   - Nominate a colleague for recognition.
-
-4. **Search & Discover**: Provides search functionality to find stories, nominations, or user profiles.
-
-5. **Admin Panel (Optional)**: A section for administrators to manage users, stories, or nominations.
-
-The relationships between the main data entities are as follows:
-
-- **Users** can create multiple **Stories** and **Nominations**.
-
-- **Stories** and **Nominations** can have multiple **Comments** and **Likes**, which are tied to specific users.
-
-ERD
+![ERD](documentation/ERD_CelebrateIt.png)
 
 #### Flowchart for User Navigation
 
 This section provides a visual representation of the user navigation flow within CelebrateIt. The flowchart captures how users interact with the platform, including key actions such as logging in, browsing stories, creating recognition posts, and navigating between profile pages.
 
-Flowchart
+![Flowchart](documentation/Flowchart_CelebrateIt.png)
 
 ---
 
@@ -313,91 +188,64 @@ Flowchart
 
 The following wireframes outline the structure and layout of the main screens in CelebrateIt:
 
-Wireframes
+- **Secure Authentication**
+
+  - Employees register, sign in and out securely using **Django Allauth**.
+
+    <details>
+      <summary>Landing Page</summary>
+      <img src="images-documentation/readme_images/features/landing_page.png">
+    </details>
+
+- **Secure Authentication**
+- **Secure Authentication**
+- **Secure Authentication**
+- **Secure Authentication**
 
 ---
 
 ### 2.5 Surface
 
-#### Color Scheme
+#### Typography & Colour Scheme
 
-The visual design of CelebrateIt uses a clean and modern color palette:
+CelebrateIt builds on the visual identity of the previous Rewards Platform (PP4 - RedeemIt), maintaining a clean, user-friendly interface with a more social and collaborative tone.
 
-- **Primary Colors**:
+The colour palette echoes tech industry trends while adding warmth to reflect human connection in the workplace. Fonts were chosen for readability and a modern feel.
 
-  - **Blue (#1E90FF):** Represents trust, professionalism, and positivity.
+#### Colour Palette
 
-  - **White (#FFFFFF):** Used as the background color for clean and modern aesthetics.
+| **Colour** | **Name**         |
+| ---------- | ---------------- |
+| `#300E82`  | Persian Indigo   |
+| `#586BBE`  | Savoy Blue       |
+| `#9B6B82`  | Mountbatten Pink |
+| `#DECD62`  | Citron           |
+| `#484848`  | Davy's Grey      |
 
-- **Accent Colors**:
+![Colour Inspiration](images-documentation/readme_images/color_scheme.png)
 
-  - **Green (#28A745):** Denotes success, recognition, and positive actions like "Create" or "Submit."
+<details>
+  <summary>Click to view inspiration from Workhuman</summary>
+  <img src="images-documentation/readme_images/colours_inspiration_from_workhuman.png">
+</details>
 
-  - **Yellow (#FFC107):** Highlights important messages or sections.
+<details>
+  <summary>Click to view trend reference</summary>
+  <img src="images-documentation/readme_images/trends.webp">
+</details>
 
-- **Text Colors**:
+### Typography
 
-  - **Dark Gray (#333333):** Used for primary text for readability.
-
-  - **Light Gray (#888888):** Used for secondary text or placeholders.
-
-#### Typography
-
-CelebrateIt uses the following typography for consistency and readability:
-
-- **Font Family**: "Roboto," sans-serif.
-
-- **Font Weights**:
-
-  - **Bold (700):** Used for headings and titles.
-
-  - **Regular (400):** Used for body text.
-
-  - **Light (300):** Used for secondary information or fine print.
-
-- **Font Sizes**:
-
-  - Headings: H1 (32px), H2 (24px), H3 (20px)
-
-  - Body Text: 16px
-
-  - Secondary Text: 14px
-
-#### Design Elements
-
-CelebrateIt features a modern and user-friendly design:
-
-- **Buttons**: Rounded corners with hover, active, and disabled states for better interactivity.
-
-- **Cards**: Recognition stories and nominations are displayed in card-style containers with spacing and shadows for separation.
-
-- **Icons**: Minimalist icons are used for navigation and actions like "Like," "Comment," or "Edit."
-
-- **Spacing**: Consistent padding and margins ensure clean and readable layouts.
-
-#### Mockups or High-Fidelity Designs
-
-The following mockups showcase the key screens of CelebrateIt:
-
-1. **Homepage/Dashboard**: Displays the feed of recognition stories and nominations.
-
-2. **Create Story/Nomination Page**: A form design with input fields and buttons.
-
-3. **User Profile Page**: Displays user details and a list of their stories/nominations.
-
-4. **Story/Nomination Details Page**: A detailed view of a specific story or nomination with options to like, comment, or share.
+- **Primary Font**: _Poppins_ – main body text
+- **Secondary Font**: _Quicksand_ – used for highlights and UI accents
 
 ---
 
 ## 3. Features
 
-This section is meant to highlight the implemented features and focus on execution. It should:
+- List of features available in the app
 
-Showcase the actual features that are part of the final product.
-Highlight unique or innovative aspects of the application.
-Include screenshots, GIFs, or visuals to demonstrate the features (if applicable).
-Provide brief descriptions of how each feature works.
-This section is backward-looking, documenting what was delivered in the final product.
+- List of features lest to implement
 
 ---
 
@@ -417,46 +265,130 @@ This section is backward-looking, documenting what was delivered in the final pr
 
 - Tools (e.g., Trello, Jira, GitHub Projects)
 
-### 5.2 Architecture
+### 5.2 Code Structure
 
-- Overview of the application architecture
+The project is divided into feature-based Django apps:
 
-- Diagram of the system (if applicable)
+- `posts/` – Recognition stories and related logic
+- `nominations/` – Peer nominations with required tag selection
+- `profiles/` – User profile extensions with department links
+- `likes/` and `comments/` – Shared interactions for both posts and nominations
+- `tags/` – Used to categorize recognitions and nominations
+- `department/` – Departments available for user filtering and classification
 
-### 5.3 Code Structure
-
-- Folder and file organization
-
-- Explanation of the main components
+Each app follows the same structure: `models.py`, `serializers.py`, `views.py`, and `urls.py`. Common permissions are stored in the main `celebrateit_api/permissions.py`.
 
 ---
 
 ## 6. Testing
 
-### 6.1 Automated Tests
+### 6.1 Back-End Application Testing
 
-- Unit tests, integration tests, or end-to-end tests
+The following tests were conducted manually to verify the functionality, permissions, and expected behavior of the back-end API endpoints. All tests were performed using the Django REST Framework browsable API interface through the browser.
 
-- Tools used (e.g., Jest, Selenium, etc.)
+Each section below corresponds to a model and includes the tested endpoint, HTTP method, required authentication, expected behavior, actual results, and screenshots where relevant.
 
-### 6.2 Manual Testing
+| Endpoint                           | Action                     | Method | Auth | Expected                                     | Actual | Screenshot |
+| ---------------------------------- | -------------------------- | ------ | ---- | -------------------------------------------- | ------ | ---------- |
+| `/user-profiles/`                  | List all user profiles     | GET    | ❌   | HTTP 200 OK                                  | ✅     | 1          |
+| `/user-profiles/10/`               | View profile detail        | GET    | ❌   | HTTP 200 OK                                  | ✅     | 2          |
+| `/user-profiles/9/`                | Update profile (owner)     | PUT    | ✅   | Profile updated                              | ✅     | 3          |
+| `/user-profiles/10/`               | Update profile (not owner) | PUT    | ✅   | Fields should be disabled / no edit possible | ✅     | 4          |
+| `/user-profiles/?department=SALES` | Filter by department       | GET    | ❌   | Only SALES users                             | ✅     | 5          |
+| `/user-profiles/?search=raymond`   | Search by name             | GET    | ❌   | Only Profiles with \"raymond\"               | ✅     | 6          |
 
-- Test cases executed
+<details>
+<summary> 1/ List all user profiles </summary>
 
-- Devices and browsers tested
+![1](documentation/API/UserProfileList.png)
+
+</details>
+
+<details>
+<summary> 2/ View profile detail </summary>
+
+![2](documentation/API/UserProfile_NOT_auth.png)
+
+</details>
+
+<details>
+<summary> 3/ Update profile (owner) </summary>
+
+![3](documentation/API/UserProfile_update_owner.png)
+
+</details>
+
+<details>
+<summary> 4/ Update profile (not owner) </summary>
+
+![4](documentation/API/UserProfile_update_NOT_owner.png)
+
+</details>
+
+<details>
+<summary> 5/ Filter by department </summary>
+
+![5](documentation/API/UserProfileList_filter_department.png)
+
+</details>
+
+<details>
+<summary> 6/ Search by name </summary>
+
+![6](documentation/API/UserProfileList_search_name.png)
+
+</details>
+
+### 6.2 Front-End Application Testing
+
+- Manual testing
+
+- Automated testing
+
+### 6.3 Validators
+
+- **CSS - HTML**
+
+- **JavaScript**
+
+- **Python**
+
+- **Lighthouse Performance & Best Practices Testing**
 
 ### 6.3 Bugs and Fixes
 
-- List known bugs and how they were resolved
+- List known bugs
 
-- Unresolved issues (if any)
+- Unresolved issues
 
 ---
 
 ## 7. Deployment
 
-- Deployment steps or pipeline (e.g., CI/CD)
+### 7.1 Heroku
 
-- Hosting platform (e.g., GitHub Pages, AWS, Heroku)
+### 7.1 Forking and Cloning
 
-- Links to the live application
+Forking the repository creates a copy of this project, allowing modifications without affecting the original code. Once the repository is forked, it can be cloned to a local machine for development.</br>
+Follow these steps to fork, clone, and work on the project:
+
+- **Fork the repository**
+
+  - Go to the repository you want to fork on [GitHub](https://github.com/).
+  - In the top-right corner of the page, click `Fork`.
+  - Name the new forked repository, then click `Create Fork`.
+  - This creates a copy of the repository under your own GitHub account.
+
+- **Clone the forked repository**
+  - In the forked repository on GitHub, above the list of files, click `Code`.
+  - Copy the URL for the repository (either HTTPS or SSH).
+  - Open a terminal (or Git Bash).
+  - Type `git clone`, then paste the copied URL.
+  - Press `Enter`.
+  - Navigate to the newly cloned repository directory: `cd` and the repository name.
+
+## 8. Credit
+
+### **Content & Resources**
+
+### **Acknowledgements**
