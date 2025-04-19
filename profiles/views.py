@@ -1,4 +1,5 @@
 from rest_framework import generics, filters, permissions
+from django_filters.rest_framework import DjangoFilterBackend
 from .models import UserProfile
 from .serializers import UserProfileSerializer, SimpleUserSerializer
 from celebrateit_api.permissions import IsObjectOwnerOrReadOnly
@@ -16,7 +17,9 @@ class UserProfileList(generics.ListAPIView):
     filter_backends = [
         filters.OrderingFilter,
         filters.SearchFilter,
+        DjangoFilterBackend,
     ]
+    filterset_fields = ['department']
     search_fields = ['user__first_name', 'user__last_name']
     ordering_fields = ['user__last_name']
     ordering = ['user__last_name']
