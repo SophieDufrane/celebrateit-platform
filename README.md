@@ -391,14 +391,14 @@ Each section below corresponds to a model and includes the tested endpoint, HTTP
 </details>
 
 <details>
-<summary> 6/ Delete date a post (owner) </summary>
+<summary> 6/ Delete a post (owner) </summary>
 
 ![6](documentation/API/posts/Posts_delete.png)
 
 </details>
 
 <details>
-<summary> 7/ Delete date a post (not owner) </summary>
+<summary> 7/ Delete a post (not owner) </summary>
 
 ![7](documentation/API/posts/Posts_delete_NOT_owner.png)
 

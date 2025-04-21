@@ -16,16 +16,17 @@ class NominationSerializer(serializers.ModelSerializer):
         queryset=User.objects.all()
     )
     nominee_username = serializers.ReadOnlyField(source='nominee.username')
-    tag = serializers.PrimaryKeyRelatedField(
+    tag = serializers.SlugRelatedField(
+        slug_field='name',
         queryset=Tag.objects.all()
     )
-    tag_name = serializers.ReadOnlyField(source='tag.name')
+    tag_id = serializers.ReadOnlyField(source='tag.id')
 
     class Meta:
         model = Nomination
         fields = [
             'id', 'is_user', 'nominator', 'nominee', 'nominee_username',
-            'title', 'content', 'tag', 'tag_name', 'created_at', 'updated_at',
+            'title', 'content', 'tag', 'tag_id', 'created_at', 'updated_at',
         ]
 
     def get_is_user(self, obj):
