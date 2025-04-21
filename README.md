@@ -294,66 +294,127 @@ Each section below corresponds to a model and includes the tested endpoint, HTTP
 | ---------------------------------- | -------------------------- | ------ | ---- | -------------------------------------------- | ------ | ---------- |
 | `/user-profiles/`                  | List all user profiles     | GET    | ❌   | HTTP 200 OK                                  | ✅     | 1          |
 | `/user-profiles/10/`               | View profile detail        | GET    | ❌   | HTTP 200 OK                                  | ✅     | 2          |
-| `/user-profiles/9/`                | Update profile (owner)     | PUT    | ✅   | Profile updated                              | ✅     | 3          |
-| `/user-profiles/10/`               | Update profile (not owner) | PUT    | ✅   | Fields should be disabled / no edit possible | ✅     | 4          |
-| `/user-profiles/?department=SALES` | Filter by department       | GET    | ❌   | Only SALES users                             | ✅     | 5          |
-| `/user-profiles/?search=raymond`   | Search by name             | GET    | ❌   | Only Profiles with \"raymond\"               | ✅     | 6          |
+| `/user-profiles/9/`                | Update profile (owner)     | PUT    | ✅   | HTTP 200 OK / Profile updated                | ✅     | 3          |
+| `/user-profiles/10/`               | Update profile (not owner) | PUT    | ✅   | HTTP 200 OK / Fields should be read-only     | ✅     | 4          |
+| `/user-profiles/?department=SALES` | Filter by department       | GET    | ❌   | HTTP 200 OK / Only SALES users               | ✅     | 5          |
+| `/user-profiles/?search=raymond`   | Search by name             | GET    | ❌   | HTTP 200 OK / Only Profiles with \"raymond\" | ✅     | 6          |
 
 <details>
 <summary> 1/ List all user profiles </summary>
 
-![1](documentation/API/UserProfileList.png)
+![1](documentation/API/profiles/UserProfileList.png)
 
 </details>
 
 <details>
 <summary> 2/ View profile detail </summary>
 
-![2](documentation/API/UserProfile_NOT_auth.png)
+![2](documentation/API/profiles/UserProfile_NOT_auth.png)
 
 </details>
 
 <details>
 <summary> 3/ Update profile (owner) </summary>
 
-![3](documentation/API/UserProfile_update_owner.png)
+![3](documentation/API/profiles/UserProfile_update_owner.png)
 
 </details>
 
 <details>
 <summary> 4/ Update profile (not owner) </summary>
 
-![4](documentation/API/UserProfile_update_NOT_owner.png)
+![4](documentation/API/profiles/UserProfile_update_NOT_owner.png)
 
 </details>
 
 <details>
 <summary> 5/ Filter by department </summary>
 
-![5](documentation/API/UserProfileList_filter_department.png)
+![5](documentation/API/profiles/UserProfileList_filter_department.png)
 
 </details>
 
 <details>
 <summary> 6/ Search by name </summary>
 
-![6](documentation/API/UserProfileList_search_name.png)
+![6](documentation/API/profiles/UserProfileList_search_name.png)
 
 </details>
 
 #### **Posts**
 
-| Endpoint     | Action                    | Method | Auth | Expected                                     | Actual | Screenshot |
-| ------------ | ------------------------- | ------ | ---- | -------------------------------------------- | ------ | ---------- |
-| `/posts/`    | List all the posts        | GET    | ❌   | HTTP 200 OK                                  | ✅     | 1          |
-| `/posts/10/` | View a post detail        | GET    | ❌   | HTTP 200 OK                                  | ✅     | 2          |
-| `/posts/9/`  | Update a post (owner)     | PUT    | ✅   | Profile updated                              | ✅     | 3          |
-| `/posts/10/` | Update a post (not owner) | PUT    | ✅   | Fields should be disabled / no edit possible | ✅     | 4          |
+| Endpoint                   | Action                    | Method | Auth | Expected                                                  | Actual | Screenshot |
+| -------------------------- | ------------------------- | ------ | ---- | --------------------------------------------------------- | ------ | ---------- |
+| `/posts/`                  | List all the posts        | GET    | ❌   | HTTP 200 OK                                               | ✅     | 1          |
+| `/posts/2/`                | View a post detail        | GET    | ❌   | HTTP 200 OK                                               | ✅     | 2          |
+| `/posts/`                  | Create a post             | POST   | ✅   | HTTP 201 Created                                          | ✅     | 3          |
+| `/posts/2/`                | Update a post (owner)     | PUT    | ✅   | HTTP 200 OK / Post updated successfully                   | ✅     | 4          |
+| `/posts/1/`                | Update a post (not owner) | PUT    | ✅   | HTTP 200 OK / Post should be read-only                    | ✅     | 5          |
+| `/posts/2/`                | Delete a post (owner)     | DELETE | ✅   | HTTP 204 No Content                                       | ✅     | 6          |
+| `/posts/1/`                | Delete a post (not owner) | DELETE | ✅   | HTTP 200 OK / Post should be read-only                    | ✅     | 7          |
+| `/posts/?search=raymond`   | Search by name            | GET    | ❌   | HTTP 200 OK / Only posts with \"raymond\"                 | ✅     | 8          |
+| `/posts/?department=SALES` | Search by department      | GET    | ❌   | HTTP 200 OK / Only posts from users in department "SALES" | ✅     | 9          |
 
 <details>
 <summary> 1/ List all the posts </summary>
 
-![1](documentation/API/UserProfileList.png)
+![1](documentation/API/posts/PostsList.png)
+
+</details>
+
+<details>
+<summary> 2/ View a post detail </summary>
+
+![2](documentation/API/posts/PostsDetail_NOT_auth.png)
+
+</details>
+
+<details>
+<summary> 3/ Create a post </summary>
+
+![3](documentation/API/posts/Posts_Create.png)
+
+</details>
+
+<details>
+<summary> 4/ Update a post (owner) </summary>
+
+![4](documentation/API/posts/Posts_update_owner.png)
+
+</details>
+
+<details>
+<summary> 5/ Update a post (not owner) </summary>
+
+![5](documentation/API/posts/Posts_update_NOT_owner.png)
+
+</details>
+
+<details>
+<summary> 6/ Delete date a post (owner) </summary>
+
+![6](documentation/API/posts/Posts_delete.png)
+
+</details>
+
+<details>
+<summary> 7/ Delete date a post (not owner) </summary>
+
+![7](documentation/API/posts/Posts_update_NOT_owner.png)
+
+</details>
+
+<details>
+<summary> 8/ Search by name </summary>
+
+![8](documentation/API/posts/Posts_search_name.png)
+
+</details>
+
+<details>
+<summary> 9/ Search by department </summary>
+
+![9](documentation/API/posts/Posts_search_department.png)
 
 </details>
 
