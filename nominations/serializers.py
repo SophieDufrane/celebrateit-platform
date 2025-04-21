@@ -11,10 +11,11 @@ class NominationSerializer(serializers.ModelSerializer):
     Includes frontend user ownership check.
     """
     nominator = serializers.ReadOnlyField(source='nominator.username')
-    is_user = serializers.SerializerMethodField()
     nominee = serializers.PrimaryKeyRelatedField(
         queryset=User.objects.all()
     )
+    nominee_username = serializers.ReadOnlyField(source='nominee.username')
+    is_user = serializers.SerializerMethodField()
     tag = serializers.PrimaryKeyRelatedField(
         queryset=Tag.objects.all()
     )
@@ -22,8 +23,8 @@ class NominationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Nomination
         fields = [
-            'id', 'nominator', 'is_user', 'nominee', 'title', 'content',
-            'created_at', 'updated_at', 'tag',
+            'id', 'nominator', 'is_user', 'nominee', 'nominee_username', 
+            'title', 'content', 'created_at', 'updated_at', 'tag',
         ]
 
     def get_is_user(self, obj):
