@@ -21,7 +21,7 @@ class Nomination(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     title = models.CharField(max_length=255)
     content = models.TextField()
-    tags = models.ManyToManyField('tags.Tag')
+    tag = models.ForeignKey('tags.Tag', on_delete=models.CASCADE)
 
     class Meta:
         ordering = ['-created_at']

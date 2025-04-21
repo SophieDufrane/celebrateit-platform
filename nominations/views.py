@@ -20,7 +20,7 @@ class NominationList(generics.ListCreateAPIView):
     serializer_class = NominationSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     filter_backends = [filters.SearchFilter, DjangoFilterBackend,]
-    filterset_fields = ['nominator__profile__department', 'tags', 'nominee']
+    filterset_fields = ['nominator__profile__department', 'tag', 'nominee']
     search_fields = [
     'nominator__first_name',
     'nominator__last_name',
