@@ -288,6 +288,8 @@ The following tests were conducted manually to verify the functionality, permiss
 
 Each section below corresponds to a model and includes the tested endpoint, HTTP method, required authentication, expected behavior, actual results, and screenshots where relevant.
 
+#### **User Profiles**
+
 | Endpoint                           | Action                     | Method | Auth | Expected                                     | Actual | Screenshot |
 | ---------------------------------- | -------------------------- | ------ | ---- | -------------------------------------------- | ------ | ---------- |
 | `/user-profiles/`                  | List all user profiles     | GET    | ❌   | HTTP 200 OK                                  | ✅     | 1          |
@@ -339,6 +341,22 @@ Each section below corresponds to a model and includes the tested endpoint, HTTP
 
 </details>
 
+#### **Posts**
+
+| Endpoint     | Action                    | Method | Auth | Expected                                     | Actual | Screenshot |
+| ------------ | ------------------------- | ------ | ---- | -------------------------------------------- | ------ | ---------- |
+| `/posts/`    | List all the posts        | GET    | ❌   | HTTP 200 OK                                  | ✅     | 1          |
+| `/posts/10/` | View a post detail        | GET    | ❌   | HTTP 200 OK                                  | ✅     | 2          |
+| `/posts/9/`  | Update a post (owner)     | PUT    | ✅   | Profile updated                              | ✅     | 3          |
+| `/posts/10/` | Update a post (not owner) | PUT    | ✅   | Fields should be disabled / no edit possible | ✅     | 4          |
+
+<details>
+<summary> 1/ List all the posts </summary>
+
+![1](documentation/API/UserProfileList.png)
+
+</details>
+
 ### 6.2 Front-End Application Testing
 
 - Manual testing
@@ -366,6 +384,31 @@ Each section below corresponds to a model and includes the tested endpoint, HTTP
 ## 7. Deployment
 
 ### 7.1 Heroku
+
+The site was deployed successfully to [Heroku]() following the steps below:
+
+1. In _Gitpod_, create a list of dependencies in `requirements.txt` file:
+   - Run `pip3 freeze > requirements.txt` in the terminal.
+   - Create _Procfile_
+2. In _Heroku_ account, create the new App:
+   - Select `New` and `Create a new app`.
+   - Name the App (name must be unique) and choose a region: `Europe`
+   - Click `Create App`.
+3. In the new App page, access to the `Settings` section.
+4. In `Config Var` add :
+   - `DATABASE_URL` and its value.
+   - `SECRET_KEY` and its value.
+   - `CLOUDINARY_URL` and its value.
+   - Click `Add`.
+5. Access to the `Deploy` section.
+6. Select the deployment method:
+   - Select `GitHub`
+   - Search for the repository by taping the name in the search barre.
+   - Click on `Connect`
+7. Click `Deploy Branch`.
+8. Once App deployed, the message _Your app was successfully deployed._
+
+The live link can be found here: [CelebrateIt]()
 
 ### 7.1 Forking and Cloning
 

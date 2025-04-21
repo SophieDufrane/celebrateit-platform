@@ -16,7 +16,11 @@ class UserProfile(models.Model):
         ('MARKT', 'Marketing'),
     ]
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        related_name='profile'
+    )
     department = models.CharField(
         max_length=50,
         choices=DEPARTMENT_CHOICES,
