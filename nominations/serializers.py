@@ -24,10 +24,9 @@ class NominationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Nomination
         fields = [
-            'id', 'is_user', 'nominator', 'nominee', 'nominee_username', 
+            'id', 'is_user', 'nominator', 'nominee', 'nominee_username',
             'title', 'content', 'tag', 'tag_name', 'created_at', 'updated_at',
         ]
 
     def get_is_user(self, obj):
         return self.context['request'].user == obj.nominator
-

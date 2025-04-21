@@ -22,10 +22,10 @@ class NominationList(generics.ListCreateAPIView):
     filter_backends = [filters.SearchFilter, DjangoFilterBackend,]
     filterset_fields = ['nominator__profile__department', 'tag', 'nominee']
     search_fields = [
-    'nominator__first_name',
-    'nominator__last_name',
-    'nominee__first_name',
-    'nominee__last_name',
+        'nominator__first_name',
+        'nominator__last_name',
+        'nominee__first_name',
+        'nominee__last_name',
     ]
 
     def perform_create(self, serializer):

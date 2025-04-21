@@ -349,11 +349,11 @@ Each section below corresponds to a model and includes the tested endpoint, HTTP
 | `/posts/2/`                | View a post detail        | GET    | ❌   | HTTP 200 OK                                               | ✅     | 2          |
 | `/posts/`                  | Create a post             | POST   | ✅   | HTTP 201 Created                                          | ✅     | 3          |
 | `/posts/2/`                | Update a post (owner)     | PUT    | ✅   | HTTP 200 OK / Post updated successfully                   | ✅     | 4          |
-| `/posts/1/`                | Update a post (not owner) | PUT    | ✅   | HTTP 200 OK / Post should be read-only                    | ✅     | 5          |
+| `/posts/1/`                | Update a post (not owner) | GET    | ✅   | HTTP 200 OK / Post should be read-only                    | ✅     | 5          |
 | `/posts/2/`                | Delete a post (owner)     | DELETE | ✅   | HTTP 204 No Content                                       | ✅     | 6          |
-| `/posts/1/`                | Delete a post (not owner) | DELETE | ✅   | HTTP 200 OK / Post should be read-only                    | ✅     | 7          |
+| `/posts/1/`                | Delete a post (not owner) | DELETE | ✅   | HTTP 403 Forbidden                                        | ✅     | 7          |
 | `/posts/?search=raymond`   | Search by name            | GET    | ❌   | HTTP 200 OK / Only posts with \"raymond\"                 | ✅     | 8          |
-| `/posts/?department=SALES` | Search by department      | GET    | ❌   | HTTP 200 OK / Only posts from users in department "SALES" | ✅     | 9          |
+| `/posts/?department=SALES` | Filter by department      | GET    | ❌   | HTTP 200 OK / Only posts from users in department "SALES" | ✅     | 9          |
 
 <details>
 <summary> 1/ List all the posts </summary>
@@ -400,7 +400,7 @@ Each section below corresponds to a model and includes the tested endpoint, HTTP
 <details>
 <summary> 7/ Delete date a post (not owner) </summary>
 
-![7](documentation/API/posts/Posts_update_NOT_owner.png)
+![7](documentation/API/posts/Posts_delete_NOT_owner.png)
 
 </details>
 
@@ -415,6 +415,99 @@ Each section below corresponds to a model and includes the tested endpoint, HTTP
 <summary> 9/ Search by department </summary>
 
 ![9](documentation/API/posts/Posts_search_department.png)
+
+</details>
+
+#### **Nominations**
+
+| Endpoint                                             | Action                           | Method | Auth | Expected                                                       | Actual | Screenshot |
+| ---------------------------------------------------- | -------------------------------- | ------ | ---- | -------------------------------------------------------------- | ------ | ---------- |
+| `/nominations/`                                      | List all the nominations         | GET    | ❌   | HTTP 200 OK                                                    | ✅     | 1          |
+| `/nominations/1/`                                    | View a nomination detail         | GET    | ❌   | HTTP 200 OK                                                    | ✅     | 2          |
+| `/nominations/`                                      | Create a nomination              | POST   | ✅   | HTTP 201 Created                                               | ✅     | 3          |
+| `/nominations/4/`                                    | Update a nomination (owner)      | PUT    | ✅   | HTTP 200 OK / Nomination updated successfully                  | ✅     | 4          |
+| `/nominations/1/`                                    | Update a nomination (not owner)  | GET    | ✅   | HTTP 200 OK / Nomination should be read-only                   | ✅     | 5          |
+| `/nominations/2/`                                    | Delete a nomination (owner)      | DELETE | ✅   | HTTP 204 No Content                                            | ✅     | 6          |
+| `/nominations/1/`                                    | Delete a nomination (not owner)  | DELETE | ✅   | HTTP 403 Forbidden                                             | ✅     | 7          |
+| `/nominations/?search=raymond`                       | Search by nominee/nominator      | GET    | ❌   | HTTP 200 OK / Only nominations involving "raymond"             | ✅     | 8          |
+| `/nominations/?nominator__profile__department=SALES` | Filter by department (nominator) | GET    | ❌   | HTTP 200 OK / Only nominations from "SALES" nominator profiles | ✅     | 9          |
+| `/nominations/?tag=1`                                | Filter by tag                    | GET    | ❌   | HTTP 200 OK / Only nominations with "Leadership" tag (ID=1)    | ✅     | 10         |
+| `/nominations/?nominee=3`                            | Filter by nominee                | GET    | ❌   | HTTP 200 OK / Only nominee "raymond"                           | ✅     | 11         |
+
+<details>
+<summary> 1/ List all the nominations </summary>
+
+![1](documentation/API/nominations/NominationsList.png)
+
+</details>
+
+<details>
+<summary> 2/ View a nomination detail </summary>
+
+![2](documentation/API/nominations/NominationsDetail_NOT_auth.png)
+
+</details>
+
+<details>
+<summary> 3/ Create a nomination </summary>
+
+![3](documentation/API/nominations/Nominations_create.png)
+
+</details>
+
+<details>
+<summary> 4/ Update a nomination (owner) </summary>
+
+![4](documentation/API/nominations/Nominations_update_owner.png)
+
+</details>
+
+<details>
+<summary> 5/ Update a nomination (not owner) </summary>
+
+![5](documentation/API/nominations/Nominations_update_NOT_owner.png)
+
+</details>
+
+<details>
+<summary> 6/ Delete a nomination (owner) </summary>
+
+![6](documentation/API/nominations/Nominations_delete_owner.png)
+
+</details>
+
+<details>
+<summary> 7/ Delete a nomination (not owner) </summary>
+
+![7](documentation/API/nominations/Nominations_delete_NOT_owner.png)
+
+</details>
+
+<details>
+<summary> 8/ Search by nominee/nominator </summary>
+
+![8](documentation/API/nominations/Nominations_search_name.png)
+
+</details>
+
+<details>
+<summary> 9/ Filter by department (nominator) </summary>
+
+![9](documentation/API/nominations/Nominations_nominator_department.png)
+
+</details>
+
+<details>
+<summary> 10/ Filter by tag </summary>
+
+![10](documentation/API/nominations/Nominations_tag.png)
+
+</details>
+
+<details>
+<summary> 11/ Filter by nominee </summary>
+
+![11](documentation/API/nominations/Nominations_nominee.png)
 
 </details>
 
