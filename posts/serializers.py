@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from posts.models import Post
-from tags.models import Tag
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -10,17 +9,12 @@ class PostSerializer(serializers.ModelSerializer):
     """
     user = serializers.ReadOnlyField(source='user.username')
     is_user = serializers.SerializerMethodField()
-    tags = serializers.SlugRelatedField(
-        many=True,
-        slug_field='name',
-        queryset=Tag.objects.all()
-    )
 
     class Meta:
         model = Post
         fields = [
             'id', 'user', 'is_user', 'title', 'content', 'image',
-            'created_at', 'updated_at', 'tags',
+            'created_at', 'updated_at',
         ]
 
     def get_is_user(self, obj):

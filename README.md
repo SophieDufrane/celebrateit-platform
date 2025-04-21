@@ -349,9 +349,9 @@ Each section below corresponds to a model and includes the tested endpoint, HTTP
 | `/posts/2/`                | View a post detail        | GET    | ❌   | HTTP 200 OK                                               | ✅     | 2          |
 | `/posts/`                  | Create a post             | POST   | ✅   | HTTP 201 Created                                          | ✅     | 3          |
 | `/posts/2/`                | Update a post (owner)     | PUT    | ✅   | HTTP 200 OK / Post updated successfully                   | ✅     | 4          |
-| `/posts/1/`                | Update a post (not owner) | GET    | ✅   | HTTP 200 OK / Post should be read-only                    | ✅     | 5          |
+| `/posts/1/`                | Update a post (not owner) | GET    | ✅   | HTTP 403 Forbidden / Post should be read-only             | ✅     | 5          |
 | `/posts/2/`                | Delete a post (owner)     | DELETE | ✅   | HTTP 204 No Content                                       | ✅     | 6          |
-| `/posts/1/`                | Delete a post (not owner) | DELETE | ✅   | HTTP 403 Forbidden                                        | ✅     | 7          |
+| `/posts/1/`                | Delete a post (not owner) | DELETE | ✅   | HTTP 403 Forbidden / Post should be read-only             | ✅     | 7          |
 | `/posts/?search=raymond`   | Search by name            | GET    | ❌   | HTTP 200 OK / Only posts with \"raymond\"                 | ✅     | 8          |
 | `/posts/?department=SALES` | Filter by department      | GET    | ❌   | HTTP 200 OK / Only posts from users in department "SALES" | ✅     | 9          |
 
@@ -425,14 +425,14 @@ Each section below corresponds to a model and includes the tested endpoint, HTTP
 | `/nominations/`                                      | List all the nominations         | GET    | ❌   | HTTP 200 OK                                                    | ✅     | 1          |
 | `/nominations/1/`                                    | View a nomination detail         | GET    | ❌   | HTTP 200 OK                                                    | ✅     | 2          |
 | `/nominations/`                                      | Create a nomination              | POST   | ✅   | HTTP 201 Created                                               | ✅     | 3          |
-| `/nominations/4/`                                    | Update a nomination (owner)      | PUT    | ✅   | HTTP 200 OK / Nomination updated successfully                  | ✅     | 4          |
-| `/nominations/1/`                                    | Update a nomination (not owner)  | GET    | ✅   | HTTP 200 OK / Nomination should be read-only                   | ✅     | 5          |
+| `/nominations/3/`                                    | Update a nomination (owner)      | PUT    | ✅   | HTTP 200 OK / Nomination updated successfully                  | ✅     | 4          |
+| `/nominations/1/`                                    | Update a nomination (not owner)  | GET    | ✅   | HTTP 403 Forbidden / Nomination should be read-only            | ✅     | 5          |
 | `/nominations/2/`                                    | Delete a nomination (owner)      | DELETE | ✅   | HTTP 204 No Content                                            | ✅     | 6          |
-| `/nominations/1/`                                    | Delete a nomination (not owner)  | DELETE | ✅   | HTTP 403 Forbidden                                             | ✅     | 7          |
+| `/nominations/1/`                                    | Delete a nomination (not owner)  | DELETE | ✅   | HTTP 403 Forbidden / Nomination should be read-only            | ✅     | 7          |
 | `/nominations/?search=raymond`                       | Search by nominee/nominator      | GET    | ❌   | HTTP 200 OK / Only nominations involving "raymond"             | ✅     | 8          |
 | `/nominations/?nominator__profile__department=SALES` | Filter by department (nominator) | GET    | ❌   | HTTP 200 OK / Only nominations from "SALES" nominator profiles | ✅     | 9          |
-| `/nominations/?tag=1`                                | Filter by tag                    | GET    | ❌   | HTTP 200 OK / Only nominations with "Leadership" tag (ID=1)    | ✅     | 10         |
-| `/nominations/?nominee=3`                            | Filter by nominee                | GET    | ❌   | HTTP 200 OK / Only nominee "raymond"                           | ✅     | 11         |
+| `/nominations/?tag=8`                                | Filter by tag                    | GET    | ❌   | HTTP 200 OK / Only nominations with "MentorShip" tag (ID=8)    | ✅     | 10         |
+| `/nominations/?nominee=2`                            | Filter by nominee                | GET    | ❌   | HTTP 200 OK / Only nominee "steph" (ID=2)                      | ✅     | 11         |
 
 <details>
 <summary> 1/ List all the nominations </summary>
