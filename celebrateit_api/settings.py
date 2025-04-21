@@ -25,9 +25,9 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
+REST_FRAMEWORK = {
+    'DATETIME_FORMAT': '%d %b %Y',
+}
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-eh5ake$n#uqr24nc52ozol#9d&0t-^s94v00cb24b$w3&h+d%#'
