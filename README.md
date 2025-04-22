@@ -513,17 +513,14 @@ Each section below corresponds to a model and includes the tested endpoint, HTTP
 
 #### **Comments**
 
-| Endpoint                  | Action                       | Method | Auth | Expected                                         | Actual | Screenshot |
-| ------------------------- | ---------------------------- | ------ | ---- | ------------------------------------------------ | ------ | ---------- |
-| `/comments/`              | List all the comments        | GET    | ❌   | HTTP 200 OK                                      | ✅     | 1          |
-| `/comments/5/`            | View a comment detail        | GET    | ❌   | HTTP 200 OK                                      | ✅     | 2          |
-| `/comments/`              | Create a comment             | POST   | ✅   | HTTP 201 Created                                 | ✅     | 3          |
-| `/comments/4/`            | Update a comment (owner)     | PUT    | ✅   | HTTP 200 OK / Comment updated successfully       | ✅     | 4          |
-| `/comments/3/`            | Update a comment (not owner) | GET    | ✅   | HTTP 403 Forbidden / Comment should be read-only | ✅     | 5          |
-| `/comments/4/`            | Delete a comment (owner)     | DELETE | ✅   | HTTP 204 No Content                              | ✅     | 6          |
-| `/comments/3/`            | Delete a comment (not owner) | DELETE | ✅   | HTTP 403 Forbidden / Comment should be read-only | ✅     | 7          |
-| `/comments/?post=4`       | Filter by post               | GET    | ❌   | HTTP 200 OK / Only comments on post 4            | ✅     | 8          |
-| `/comments/?nomination=3` | Filter by nomination         | GET    | ❌   | HTTP 200 OK / Only comments on nomination 3      | ✅     | 9          |
+| Endpoint                  | Action                              | Method | Auth | Expected                                    | Actual | Screenshot |
+| ------------------------- | ----------------------------------- | ------ | ---- | ------------------------------------------- | ------ | ---------- |
+| `/comments/`              | List all the comments               | GET    | ❌   | HTTP 200 OK                                 | ✅     | 1          |
+| `/comments/`              | Create a comment on post/nomination | POST   | ✅   | HTTP 201 Created                            | ✅     | 2          |
+| `/comments/4/`            | Update a comment (owner)            | PUT    | ✅   | HTTP 200 OK / Comment updated successfully  | ✅     | 3          |
+| `/comments/4/`            | Delete a comment (owner)            | DELETE | ✅   | HTTP 204 No Content                         | ✅     | 4          |
+| `/comments/?post=4`       | Filter by post                      | GET    | ❌   | HTTP 200 OK / Only comments on post 4       | ✅     | 5          |
+| `/comments/?nomination=3` | Filter by nomination                | GET    | ❌   | HTTP 200 OK / Only comments on nomination 3 | ✅     | 6          |
 
 <details>
 <summary> 1/ List all the comments </summary>
@@ -533,58 +530,74 @@ Each section below corresponds to a model and includes the tested endpoint, HTTP
 </details>
 
 <details>
-<summary> 2/ View a comment detail </summary>
+<summary> 2/ Create a comment </summary>
 
 ![2](documentation/API/comments/CommentsDetail.png)
 
 </details>
 
 <details>
-<summary> 3/ Create a comment </summary>
+<summary> 3/ Update a comment (owner) </summary>
 
-![3](documentation/API/comments/CommentsDetail.png)
-
-</details>
-
-<details>
-<summary> 4/ Update a comment (owner) </summary>
-
-![4](documentation/API/comments/Comments_update_owner.png)
+![3](documentation/API/comments/Comments_update_owner.png)
 
 </details>
 
 <details>
-<summary> 5/ Update a comment (not owner) </summary>
+<summary> 4/ Delete a comment (owner) </summary>
 
-![5](documentation/API/comments/Comments_update_NOT_owner.png)
-
-</details>
-
-<details>
-<summary> 6/ Delete a comment (owner) </summary>
-
-![6](documentation/API/comments/Comments_delete_owner.png)
+![4](documentation/API/comments/Comments_delete_owner.png)
 
 </details>
 
 <details>
-<summary> 7/ Delete a comment (not owner) </summary>
+<summary> 5/ Filter by post </summary>
 
-![7](documentation/API/comments/Comments_delete_NOT_owner.png)
-
-</details>
-
-<details>
-<summary> 8/ Filter by post </summary>
-
-![8](documentation/API/comments/Comments_filter_posts.png)
+![5](documentation/API/comments/Comments_filter_posts.png)
 
 </details>
 
 <details>
-<summary> 9/ Filter by nomination </summary>
+<summary> 6/ Filter by nomination </summary>
 
-![9](documentation/API/comments/Comments_filter_nominations.png)
+![6](documentation/API/comments/Comments_filter_nominations.png)
+
+</details>
+
+#### **Likes**
+
+| Endpoint    | Action                               | Method | Auth | Expected                               | Actual | Screenshot |
+| ----------- | ------------------------------------ | ------ | ---- | -------------------------------------- | ------ | ---------- |
+| `/likes/`   | Create a like on post/nomination     | POST   | ✅   | HTTP 201 Created                       | ✅     | 1          |
+| `/likes/`   | Invalid: like both post & nomination | POST   | ✅   | HTTP 400 Bad Request / Can’t like both | ✅     | 2          |
+| `/likes/`   | Invalid: like same thing twice       | POST   | ✅   | HTTP 400 Bad Request / Already liked   | ✅     | 3          |
+| `/likes/5/` | Delete a like (owner)                | DELETE | ✅   | HTTP 204 No Content                    | ✅     | 4          |
+
+<details>
+<summary> 1/ Create a like on post/nomination </summary>
+
+![1](documentation/API/likes/Likes_create.png)
+
+</details>
+
+<details>
+<summary> 2/ Invalid: like both post & nomination </summary>
+
+![2](documentation/API/likes/Likes_post_OR_nomination_validation.png)
+
+</details>
+
+<details>
+<summary> 3/ Invalid: like same thing twice </summary>
+
+![3](documentation/API/likes/Likes_same_twice_validation.png)
+
+</details>
+
+<details>
+<summary> 4/ Delete a like (owner) </summary>
+
+![4](documentation/API/likes/Likes_delete_owner.png)
 
 </details>
 
