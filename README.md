@@ -638,6 +638,35 @@ Each section below corresponds to a model and includes the tested endpoint, HTTP
 
 </details>
 
+#### **Tags**
+
+| Endpoint               | Action                     | Method | Auth | Expected                                                  | Actual | Screenshot |
+| ---------------------- | -------------------------- | ------ | ---- | --------------------------------------------------------- | ------ | ---------- |
+| `/tags/`               | List all tags              | GET    | ❌   | HTTP 200 OK / All available tags listed                   | ✅     | 1          |
+| `/nominations/`        | Create nomination with tag | POST   | ✅   | HTTP 201 Created / Nomination includes correct tag        | ✅     | 2          |
+| `//nominations/?tag=3` | Filter nominations by tag  | GET    | ❌   | HTTP 200 OK / Only nominations with tag Innovation (ID=3) | ✅     | 3          |
+
+<details>
+<summary> 1/ List all tags </summary>
+
+![1](documentation/API/tags/TagsList.png)
+
+</details>
+
+<details>
+<summary> 2/ Create nomination with tag </summary>
+
+![2](documentation/API/tags/Tags_nomination_create.png)
+
+</details>
+
+<details>
+<summary> 3/ Filter nominations by tag </summary>
+
+![3](documentation/API/tags/Tags_nomination_filter.png)
+
+</details>
+
 ### 6.2 Front-End Application Testing
 
 - Manual testing
