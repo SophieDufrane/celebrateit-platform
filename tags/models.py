@@ -5,10 +5,15 @@ from django.utils.text import slugify
 class Tag(models.Model):
     """
     Tag model used for categorizing recognition stories and nominations.
-    Each tag has a name and a unique slug.
+    Each tag has a name, a unique slug and a color.
     """
     name = models.CharField(max_length=50, unique=True)
     slug = models.SlugField(max_length=60, unique=True, blank=True)
+    color = models.CharField(
+        max_length=7,
+        default='#cccccc',
+        help_text='Hex code (e.g. #FF5733)'
+    )
 
     def save(self, *args, **kwargs):
         if not self.slug:
