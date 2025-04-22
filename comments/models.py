@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from posts.models import Post
 from nominations.models import Nomination
@@ -36,3 +37,16 @@ class Comment(models.Model):
         elif self.nomination:
             return f'{self.user} commented on nomination: {self.nomination.id}'
         return f"{self.user} commented"
+
+    def clean(self):
+        """
+        Enforces that comment must be linked to either a post or a nomination.
+        """
+        if not self.post and not self.nomination:
+            raise ValidationError(
+                "A comment must be linked to either a post or a nomination."
+            )
+        if self.post and self.nomination:
+            raise ValidationError(
+                "A comment cannot be linked to both a post and a nomination."
+            )

@@ -6,8 +6,8 @@ from django.contrib.auth.models import User
 class UserProfileSerializer(serializers.ModelSerializer):
     """
     Serializer for the UserProfile model.
-    Includes user info, presentation, department, and image.
-    Adds an ownership flag for frontend controls.
+    Includes user infofrom related User,
+    and ownership check for frontend controls.
     """
     user = serializers.ReadOnlyField(source='user.username')
     first_name = serializers.ReadOnlyField(source='user.first_name')
