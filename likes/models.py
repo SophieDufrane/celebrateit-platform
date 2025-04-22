@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from posts.models import Post
 from nominations.models import Nomination
@@ -38,3 +39,16 @@ class Like(models.Model):
         elif self.nomination:
             return f'{self.user} liked nomination: {self.nomination.id}'
         return f"{self.user} liked something"
+
+    def clean(self):
+        """
+        Enforces that like must be linked to either a post or a nomination.
+        """
+        if not self.post and not self.nomination:
+            raise ValidationError(
+                "A like must be linked to either a post or a nomination."
+            )
+        if self.post and self.nomination:
+            raise ValidationError(
+                "A like cannot be linked to both a post and a nomination."
+            )
