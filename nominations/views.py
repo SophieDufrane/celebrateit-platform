@@ -11,7 +11,7 @@ class NominationList(generics.ListCreateAPIView):
     List all nominations or create a new one if authenticated.
     Each nomination includes a nominee, title, message, and a required tag.
     Adds likes and comments count annotations.
-    Allows searching by nominator's name, and filtering by tag or department.
+    Allows searching by name, and filtering by tag or nominator's department.
     """
     queryset = Nomination.objects.annotate(
         likes_count=Count('likes', distinct=True),

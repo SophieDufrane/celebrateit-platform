@@ -290,14 +290,14 @@ Each section below corresponds to a model and includes the tested endpoint, HTTP
 
 #### **User Profiles**
 
-| Endpoint                           | Action                     | Method | Auth | Expected                                     | Actual | Screenshot |
-| ---------------------------------- | -------------------------- | ------ | ---- | -------------------------------------------- | ------ | ---------- |
-| `/user-profiles/`                  | List all user profiles     | GET    | ❌   | HTTP 200 OK                                  | ✅     | 1          |
-| `/user-profiles/10/`               | View profile detail        | GET    | ❌   | HTTP 200 OK                                  | ✅     | 2          |
-| `/user-profiles/9/`                | Update profile (owner)     | PUT    | ✅   | HTTP 200 OK / Profile updated                | ✅     | 3          |
-| `/user-profiles/10/`               | Update profile (not owner) | PUT    | ✅   | HTTP 200 OK / Fields should be read-only     | ✅     | 4          |
-| `/user-profiles/?department=SALES` | Filter by department       | GET    | ❌   | HTTP 200 OK / Only SALES users               | ✅     | 5          |
-| `/user-profiles/?search=raymond`   | Search by name             | GET    | ❌   | HTTP 200 OK / Only Profiles with \"raymond\" | ✅     | 6          |
+| Endpoint                           | Action                     | Method | Auth | Expected                                         | Actual | Screenshot |
+| ---------------------------------- | -------------------------- | ------ | ---- | ------------------------------------------------ | ------ | ---------- |
+| `/user-profiles/`                  | List all user profiles     | GET    | ❌   | HTTP 200 OK                                      | ✅     | 1          |
+| `/user-profiles/10/`               | View profile detail        | GET    | ❌   | HTTP 200 OK                                      | ✅     | 2          |
+| `/user-profiles/9/`                | Update profile (owner)     | PUT    | ✅   | HTTP 200 OK / Profile updated                    | ✅     | 3          |
+| `/user-profiles/10/`               | Update profile (not owner) | PUT    | ✅   | HTTP 403 Forbidden / Profile should be read-only | ✅     | 4          |
+| `/user-profiles/?department=SALES` | Filter by department       | GET    | ❌   | HTTP 200 OK / Only SALES users                   | ✅     | 5          |
+| `/user-profiles/?search=raymond`   | Search by name             | GET    | ❌   | HTTP 200 OK / Only Profiles with \"raymond\"     | ✅     | 6          |
 
 <details>
 <summary> 1/ List all user profiles </summary>
@@ -346,9 +346,9 @@ Each section below corresponds to a model and includes the tested endpoint, HTTP
 | Endpoint                   | Action                    | Method | Auth | Expected                                                  | Actual | Screenshot |
 | -------------------------- | ------------------------- | ------ | ---- | --------------------------------------------------------- | ------ | ---------- |
 | `/posts/`                  | List all the posts        | GET    | ❌   | HTTP 200 OK                                               | ✅     | 1          |
-| `/posts/2/`                | View a post detail        | GET    | ❌   | HTTP 200 OK                                               | ✅     | 2          |
+| `/posts/4/`                | View a post detail        | GET    | ❌   | HTTP 200 OK                                               | ✅     | 2          |
 | `/posts/`                  | Create a post             | POST   | ✅   | HTTP 201 Created                                          | ✅     | 3          |
-| `/posts/2/`                | Update a post (owner)     | PUT    | ✅   | HTTP 200 OK / Post updated successfully                   | ✅     | 4          |
+| `/posts/5/`                | Update a post (owner)     | PUT    | ✅   | HTTP 200 OK / Post updated successfully                   | ✅     | 4          |
 | `/posts/1/`                | Update a post (not owner) | GET    | ✅   | HTTP 403 Forbidden / Post should be read-only             | ✅     | 5          |
 | `/posts/2/`                | Delete a post (owner)     | DELETE | ✅   | HTTP 204 No Content                                       | ✅     | 6          |
 | `/posts/1/`                | Delete a post (not owner) | DELETE | ✅   | HTTP 403 Forbidden / Post should be read-only             | ✅     | 7          |
@@ -425,13 +425,13 @@ Each section below corresponds to a model and includes the tested endpoint, HTTP
 | `/nominations/`                                      | List all the nominations         | GET    | ❌   | HTTP 200 OK                                                    | ✅     | 1          |
 | `/nominations/1/`                                    | View a nomination detail         | GET    | ❌   | HTTP 200 OK                                                    | ✅     | 2          |
 | `/nominations/`                                      | Create a nomination              | POST   | ✅   | HTTP 201 Created                                               | ✅     | 3          |
-| `/nominations/3/`                                    | Update a nomination (owner)      | PUT    | ✅   | HTTP 200 OK / Nomination updated successfully                  | ✅     | 4          |
+| `/nominations/7/`                                    | Update a nomination (owner)      | PUT    | ✅   | HTTP 200 OK / Nomination updated successfully                  | ✅     | 4          |
 | `/nominations/1/`                                    | Update a nomination (not owner)  | GET    | ✅   | HTTP 403 Forbidden / Nomination should be read-only            | ✅     | 5          |
-| `/nominations/2/`                                    | Delete a nomination (owner)      | DELETE | ✅   | HTTP 204 No Content                                            | ✅     | 6          |
+| `/nominations/7/`                                    | Delete a nomination (owner)      | DELETE | ✅   | HTTP 204 No Content                                            | ✅     | 6          |
 | `/nominations/1/`                                    | Delete a nomination (not owner)  | DELETE | ✅   | HTTP 403 Forbidden / Nomination should be read-only            | ✅     | 7          |
 | `/nominations/?search=raymond`                       | Search by nominee/nominator      | GET    | ❌   | HTTP 200 OK / Only nominations involving "raymond"             | ✅     | 8          |
 | `/nominations/?nominator__profile__department=SALES` | Filter by department (nominator) | GET    | ❌   | HTTP 200 OK / Only nominations from "SALES" nominator profiles | ✅     | 9          |
-| `/nominations/?tag=8`                                | Filter by tag                    | GET    | ❌   | HTTP 200 OK / Only nominations with "MentorShip" tag (ID=8)    | ✅     | 10         |
+| `/nominations/?tag=3`                                | Filter by tag                    | GET    | ❌   | HTTP 200 OK / Only nominations with "Innovation" tag (ID=3)    | ✅     | 10         |
 | `/nominations/?nominee=2`                            | Filter by nominee                | GET    | ❌   | HTTP 200 OK / Only nominee "steph" (ID=2)                      | ✅     | 11         |
 
 <details>
@@ -508,6 +508,83 @@ Each section below corresponds to a model and includes the tested endpoint, HTTP
 <summary> 11/ Filter by nominee </summary>
 
 ![11](documentation/API/nominations/Nominations_nominee.png)
+
+</details>
+
+#### **Comments**
+
+| Endpoint                  | Action                       | Method | Auth | Expected                                         | Actual | Screenshot |
+| ------------------------- | ---------------------------- | ------ | ---- | ------------------------------------------------ | ------ | ---------- |
+| `/comments/`              | List all the comments        | GET    | ❌   | HTTP 200 OK                                      | ✅     | 1          |
+| `/comments/5/`            | View a comment detail        | GET    | ❌   | HTTP 200 OK                                      | ✅     | 2          |
+| `/comments/`              | Create a comment             | POST   | ✅   | HTTP 201 Created                                 | ✅     | 3          |
+| `/comments/4/`            | Update a comment (owner)     | PUT    | ✅   | HTTP 200 OK / Comment updated successfully       | ✅     | 4          |
+| `/comments/3/`            | Update a comment (not owner) | GET    | ✅   | HTTP 403 Forbidden / Comment should be read-only | ✅     | 5          |
+| `/comments/4/`            | Delete a comment (owner)     | DELETE | ✅   | HTTP 204 No Content                              | ✅     | 6          |
+| `/comments/3/`            | Delete a comment (not owner) | DELETE | ✅   | HTTP 403 Forbidden / Comment should be read-only | ✅     | 7          |
+| `/comments/?post=4`       | Filter by post               | GET    | ❌   | HTTP 200 OK / Only comments on post 4            | ✅     | 8          |
+| `/comments/?nomination=3` | Filter by nomination         | GET    | ❌   | HTTP 200 OK / Only comments on nomination 3      | ✅     | 9          |
+
+<details>
+<summary> 1/ List all the comments </summary>
+
+![1](documentation/API/comments/CommentsList.png)
+
+</details>
+
+<details>
+<summary> 2/ View a comment detail </summary>
+
+![2](documentation/API/comments/CommentsDetail.png)
+
+</details>
+
+<details>
+<summary> 3/ Create a comment </summary>
+
+![3](documentation/API/comments/CommentsDetail.png)
+
+</details>
+
+<details>
+<summary> 4/ Update a comment (owner) </summary>
+
+![4](documentation/API/comments/Comments_update_owner.png)
+
+</details>
+
+<details>
+<summary> 5/ Update a comment (not owner) </summary>
+
+![5](documentation/API/comments/Comments_update_NOT_owner.png)
+
+</details>
+
+<details>
+<summary> 6/ Delete a comment (owner) </summary>
+
+![6](documentation/API/comments/Comments_delete_owner.png)
+
+</details>
+
+<details>
+<summary> 7/ Delete a comment (not owner) </summary>
+
+![7](documentation/API/comments/Comments_delete_NOT_owner.png)
+
+</details>
+
+<details>
+<summary> 8/ Filter by post </summary>
+
+![8](documentation/API/comments/Comments_filter_posts.png)
+
+</details>
+
+<details>
+<summary> 9/ Filter by nomination </summary>
+
+![9](documentation/API/comments/Comments_filter_nominations.png)
 
 </details>
 
