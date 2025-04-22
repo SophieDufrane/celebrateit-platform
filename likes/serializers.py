@@ -11,7 +11,9 @@ class LikeSerializer(serializers.ModelSerializer):
     """
     user = serializers.ReadOnlyField(source='user.username')
     is_user = serializers.SerializerMethodField()
-    display_name = serializers.ReadOnlyField(source='user.profile.display_name')
+    display_name = serializers.ReadOnlyField(
+        source='user.profile.display_name'
+    )
     profile_image = serializers.ReadOnlyField(source='user.profile.image.url')
 
     def get_is_user(self, obj):
@@ -39,10 +41,10 @@ class LikeSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError({
                 'detail': 'You have already liked this content.'
             })
-    
+
     class Meta:
         model = Like
         fields = [
             'id', 'user', 'is_user', 'display_name',
-            'profile_image', 'post', 'nomination','created_at',
+            'profile_image', 'post', 'nomination', 'created_at',
         ]

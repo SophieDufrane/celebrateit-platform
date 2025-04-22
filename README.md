@@ -601,6 +601,43 @@ Each section below corresponds to a model and includes the tested endpoint, HTTP
 
 </details>
 
+#### **Departments (via Profiles, Posts, Nominations)**
+
+| Endpoint                                           | Action                                      | Method | Auth | Expected                                                 | Actual | Screenshot |
+| -------------------------------------------------- | ------------------------------------------- | ------ | ---- | -------------------------------------------------------- | ------ | ---------- |
+| `/user-profiles/`                                  | List profiles with department field visible | GET    | ❌   | HTTP 200 OK / Department value shown per profile         | ✅     | 1          |
+| `/user-profiles/10`                                | Profile detail with department field        | GET    | ❌   | HTTP 200 OK / Department is correct for the user         | ✅     | 2          |
+| `/posts/?user__profile__department=OPS`            | Filter posts by user department             | GET    | ❌   | HTTP 200 OK / Only posts from users in Operation         | ✅     | 3          |
+| `/nominations/?nominator__profile__department=OPS` | Filter nominations by nominator department  | GET    | ❌   | HTTP 200 OK / Only nominations from Operation nominators | ✅     | 4          |
+
+<details>
+<summary> 1/ List profiles with department field visible </summary>
+
+![1](documentation/API/department/Department_UserProfile_list.png)
+
+</details>
+
+<details>
+<summary> 2/ Profile detail with department field </summary>
+
+![2](documentation/API/department/Department_UserProfile_detail.png)
+
+</details>
+
+<details>
+<summary> 3/ Filter posts by user department </summary>
+
+![3](documentation/API/department/Department_filter_posts.png)
+
+</details>
+
+<details>
+<summary> 4/ Filter nominations by nominator department </summary>
+
+![4](documentation/API/department/Department_filter_nominations.png)
+
+</details>
+
 ### 6.2 Front-End Application Testing
 
 - Manual testing
