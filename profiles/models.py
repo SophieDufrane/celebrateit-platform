@@ -7,6 +7,9 @@ class UserProfile(models.Model):
     """
     User profile model linked to the built-in User model.
     Includes department info, profile picture, presentation, and timestamps.
+
+    The `display_name` property returns the user's full name (first + last),
+    or falls back to their username if no name is provided.
     """
     DEPARTMENT_CHOICES = [
         ('HR', 'Human Resources'),
@@ -38,6 +41,14 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return f"{self.user}'s profile"
+
+    @property
+    def display_name(self):
+        first = self.user.first_name
+        last = self.user.last_name
+        if first or last:
+            return f"{first} {last}".strip()
+        return self.user.username
 
 
 def create_user_profile(sender, instance, created, **kwargs):
