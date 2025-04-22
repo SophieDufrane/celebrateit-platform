@@ -37,6 +37,9 @@ class NominationDetail(generics.RetrieveUpdateDestroyAPIView):
     Retrieve, update, or delete a nomination.
     Only the user who created (nominated) it can modify or delete it.
     """
-    queryset = Nomination.objects.all()
+    queryset = Nomination.objects.annotate(
+        likes_count=Count('likes', distinct=True),
+        comments_count=Count('comment', distinct=True)
+    )
     serializer_class = NominationSerializer
     permission_classes = [IsNominatorOrReadOnly]

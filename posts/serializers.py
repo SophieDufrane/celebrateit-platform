@@ -12,15 +12,17 @@ class PostSerializer(serializers.ModelSerializer):
     display_name = serializers.ReadOnlyField(
         source='user.profile.display_name'
     )
+    likes_count = serializers.ReadOnlyField()
+    comments_count = serializers.ReadOnlyField()
 
     class Meta:
         model = Post
         fields = [
             'id', 'user', 'display_name', 'is_user', 'title', 'content',
             'image', 'created_at', 'updated_at',
+            'likes_count', 'comments_count',
         ]
 
     def get_is_user(self, obj):
         request = self.context.get('request')
         return request and request.user == obj.user
-
