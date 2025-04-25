@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MaxLengthValidator
 
 
 class Post(models.Model):
@@ -14,14 +15,23 @@ class Post(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    title = models.CharField(max_length=255)
-    content = models.TextField()
+    title = models.CharField(
+        max_length=255,
+        blank=False,
+        verbose_name="Title",
+        help_text="Enter a short title for your recognition story."
+    )
+    content = models.TextField(
+        validators=[MaxLengthValidator(2000)],
+        blank=False,
+        verbose_name="Story Content",
+        help_text="Share your story (up to 2000 characters)."
+    )
     image = models.ImageField(
         upload_to='images/',
         default='../default_post_rxcscg',
-        blank=True
+        blank=True,
     )
-    tags = models.ManyToManyField('tags.Tag', blank=True)
 
     class Meta:
         ordering = ['-created_at']
