@@ -1,0 +1,86 @@
+[33m2b740af[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m add root route to API for welcome message and status check
+[33m5c8751e[m add clean() method to Like model to enforce validation for post or nomination
+[33m5a721d4[m add clean() method to Comment model to enforce validation for post or nomination
+[33m2851285[m add color field to Tag model with default and API exposure
+[33meffcc4a[m add likes_count and comments_count to nomination and post serializer
+[33m6982f6d[m Add tags testing summary and endpoint documentation to README
+[33m8b04542[m Add department feature testing summary and endpoint documentation to README
+[33mdd93723[m Add like feature testing summary and endpoint documentation to README
+[33mf40b1e8[m Refactor Like: integrate name_display in LikeSerializer
+[33m80ea572[m enable basic filtering by post and nomination for comments and document test cases in README
+[33m1b68376[m add display_name property and integrate into comment, post, and nomination serializers
+[33m0c76b63[m Refactor Comment: improve serializer with friendly timestamps and title context
+[33mb555889[m Refactor Post: remove tag to reserve tagging for structured nominations only
+[33m2c54195[m Refactor tag field in Nomination serializer to use slug and expose tag_id
+[33md4be2d2[m Add nomination feature testing summary and endpoint documentation to README
+[33m8be6dbe[m Refactor Nomination: update tag field to display tag name and its ID
+[33m075769e[m Refactor Nomination: update nominee field to display username instead of ID
+[33m544effd[m Refactor Nomination model: use ForeignKey for tag to support single-tag
+[33mbf144ea[m Refactor Nominations views: update search options and add filter by tags
+[33m8d9cb54[m Add posts feature testing summary and endpoint documentation to README
+[33m7cb709d[m Add custom datetime format to settings
+[33ma954227[m Refactor Post views: update search options + reverse profile access for filter by departments
+[33mc00c732[m Add first part of the back-end testing in README file and refine structure of the documentation
+[33m8a68a6b[m Enable filtering on user profiles by department using DjangoFilterBackend
+[33m519007f[m Refactor profile views: align search and ordering with user flow, apply consistent permissions, connect users endpoint (flake8 clean)
+[33m016447e[m Add docstring to department URL patterns (flake8 clean)
+[33m5b4739d[m Add department list view with docstring (flake8 clean)
+[33m1a52820[m Add docstring to DepartmentSerializer (flake8 clean)
+[33mad42593[m Add docstring and alphabetical ordering to Department model (flake8 clean)
+[33m788c284[m Add docstring to tag URL patterns (flake8 clean)
+[33mfedde61[m Add docstring to TagList view (flake8 clean)
+[33m3ca5127[m Add docstring to TagSerializer (flake8 clean)
+[33m8ed40ab[m Add docstring and alphabetical ordering to Tag model (flake8 clean)
+[33m9acd294[m Add docstring to likes URL patterns (flake8 clean)
+[33mdc93c90[m Clean Like views: remove duplicate import and confirm filters and permissions (flake8 clean)
+[33m161668f[m Style cleanup in LikeSerializer: spacing and formatting (flake8 clean)
+[33ma9e8f92[m Add docstring to Like model and ensure structure supports post or nomination (flake8 clean)
+[33m92ab73a[m Add docstring to user profile URL patterns (flake8 clean)
+[33m110ddea[m Refactor profile views: fix ordering field (department), clarify docstrings (flake8 clean)
+[33mb8cfbba[m Add docstrings to profile and user serializers (flake8 clean)
+[33m7589ab1[m Add docstrings to UserProfile model and user creation signal (flake8 clean)
+[33mb534784[m Add docstring to comments URL patterns (flake8 clean)
+[33m34ff3a1[m Refactor Comment views: add permission check and improve docstrings (flake8 clean)
+[33m87935b4[m Refactor CommentSerializer: fix docstring, add ownership check and validation logic (flake8 clean)
+[33m67862f9[m Review Comment model: confirm structure for post/nomination support and clarify docstring
+[33m605abb2[m Add docstring and named URL patterns to nominations URLs
+[33me16dbe9[m Refactor Nomination views: add IsAuthenticatedOrReadOnly and improve docstrings for consistency
+[33m7c72ddd[m Refactor NominationSerializer: enforce required tags and add ownership check
+[33mbeae4b3[m Update Nomination model: make content and tags required, add docstring
+[33mab979c7[m Add docstring to posts URL patterns
+[33m9961d7e[m Refactor Post views: add like/comment counts, user search, and correct permissions
+[33m9706cdb[m Refactor PostSerializer: add is_user for ownership check and use SlugRelatedField for tag names
+[33m7070e08[m Make Post content required (remove blank=True)
+[33m7a2b9b9[m Add is_user field to LikeSerializer and align CommentSerializer structure
+[33m724c5ae[m Refactor Comment model and serializer to restrict Comment to either post or nomination, not both
+[33ma05065e[m Add Like model with serializer, views, filters, and endpoints
+[33macd650b[m Add table of contents and complete sections 1 & 2 (Project Overview & UX) in README
+[33m4d7461d[m Update EPIC and User stories in README file
+[33m28dc58b[m Add Comment views and URL routing
+[33m85eff6c[m Add Comment model and serializer with profile and ownership info
+[33m0623316[m Fix permissions issue and add IsNominatorOrReadOnly permission for Nomination detail access
+[33mbb24134[m Add user search view for nominee selection with searchable fields
+[33m8ae95ed[m Remove category field from Nomination model
+[33mc12ceab[m Add Nomination views and URLs
+[33mdbd8fc6[m Add NominationSerializer
+[33m7fdf076[m Create Nomination model and register in admin
+[33mf7bc579[m Add Tag model, serializer, and read-only list view
+[33md485e47[m Refactor permission class to IsObjectOwnerOrReadOnly for clarity and reuse
+[33md692bae[m Add PostDetail view with permission
+[33m532ba8c[m Add PostList view for listing and creating posts
+[33m1169fa8[m Add PostSerializer with basic fields
+[33m1244c89[m Create the Post model
+[33m544e2e1[m Add Department model, fixture, serializer, and list view
+[33mf4cd1dc[m Add ordering to profiles view by last name, department, and created date
+[33m803cbc7[m Refactor UserProfile views using DRF generic views
+[33m8ebe44f[m Add custom permission and is_user_profile method field to UserProfile
+[33m2e51867[m Add PUT method to UserProfileDetail view to allow profile updates
+[33m190319f[m Create UserProfileDetail view and route for /user-profiles/<id>/
+[33m799bebb[m Add ERD draft and updated user stories based on current project scope
+[33me6cb688[m Refactor UserProfile model: rename fields, add department, update serializer
+[33m0b49a2a[m Create UserProfileSerializer, List API view, and route for /user-profiles/
+[33m4a391ce[m Rename Profile model to UserProfile and add signal to auto-create on user creation
+[33ma1699b7[m Add Profile model, admin setup, and test via superuser
+[33mf901533[m Initial project setup with settings, env.py, Cloudinary config
+[33m6e2912d[m Add initial README with project overview and user stories
+[33mbc082a6[m Update issue templates
