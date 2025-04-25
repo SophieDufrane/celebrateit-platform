@@ -21,13 +21,22 @@ class UserProfile(models.Model):
         on_delete=models.SET_NULL,
         blank=True,
         null=True,
-        related_name='users'
+        related_name='users',
+        verbose_name='Department',
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    presentation = models.CharField(max_length=300, blank=True)
+    presentation = models.CharField(
+        max_length=300,
+        blank=True,
+        verbose_name="User bio / About me",
+        help_text="Optional short intro, visible on your profile."
+    )
     image = models.ImageField(
-        upload_to='images/', default='../default_profile_vjekwr'
+        upload_to='images/',
+        default='../default_profile_vjekwr',
+        verbose_name="Profile picture",
+        help_text="Upload a square image for best results."
     )
 
     class Meta:
