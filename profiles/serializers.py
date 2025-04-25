@@ -13,6 +13,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
     first_name = serializers.ReadOnlyField(source='user.first_name')
     last_name = serializers.ReadOnlyField(source='user.last_name')
     is_user_profile = serializers.SerializerMethodField()
+    department = serializers.StringRelatedField()
 
     def get_is_user_profile(self, obj):
         request = self.context['request']
