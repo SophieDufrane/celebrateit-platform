@@ -7,8 +7,17 @@ class Tag(models.Model):
     Tag model used for categorizing recognition stories and nominations.
     Each tag has a name, a unique slug and a color.
     """
-    name = models.CharField(max_length=50, unique=True)
-    slug = models.SlugField(max_length=60, unique=True, blank=True)
+    name = models.CharField(
+        max_length=50,
+        unique=True,
+        help_text="Enter a short label for this tag (max 50 characters)."
+    )
+    slug = models.SlugField(
+        max_length=60,
+        unique=True,
+        blank=False,
+        help_text="Unique slug generated from the name."
+    )
     color = models.CharField(
         max_length=7,
         default='#cccccc',
