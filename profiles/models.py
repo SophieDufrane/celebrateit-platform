@@ -11,23 +11,17 @@ class UserProfile(models.Model):
     The `display_name` property returns the user's full name (first + last),
     or falls back to their username if no name is provided.
     """
-    DEPARTMENT_CHOICES = [
-        ('HR', 'Human Resources'),
-        ('ENG', 'Engineering'),
-        ('SALES', 'Sales'),
-        ('OPS', 'Operations'),
-        ('MARKT', 'Marketing'),
-    ]
-
     user = models.OneToOneField(
         User,
         on_delete=models.CASCADE,
         related_name='profile'
     )
-    department = models.CharField(
-        max_length=50,
-        choices=DEPARTMENT_CHOICES,
-        blank=True
+    department = models.ForeignKey(
+        'department.Department',
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+        related_name='users'
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
