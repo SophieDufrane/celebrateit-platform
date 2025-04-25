@@ -3,6 +3,7 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from posts.models import Post
 from nominations.models import Nomination
+from django.core.validators import MaxLengthValidator
 
 
 class Comment(models.Model):
@@ -26,7 +27,14 @@ class Comment(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    content = models.TextField()
+    content = models.TextField(
+        validators=[MaxLengthValidator(1000)],
+        blank=False,
+        verbose_name="Your Comment",
+        help_text=(
+            "Share your thoughts (up to 1000 characters)."
+        )
+    )
 
     class Meta:
         ordering = ['-created_at']

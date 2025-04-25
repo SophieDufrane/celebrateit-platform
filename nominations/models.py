@@ -24,13 +24,16 @@ class Nomination(models.Model):
         max_length=255,
         blank=False,
         verbose_name="Title",
-        help_text="Enter a short title for your recognition story."
+        help_text="Give a short headline for this nomination."
     )
     content = models.TextField(
         validators=[MaxLengthValidator(2000)],
         blank=False,
-        verbose_name="Story Content",
-        help_text="Share your story (up to 2000 characters)."
+        verbose_name="Nomination Reason",
+        help_text=(
+            "Explain why you are nominating this person "
+            "(up to 2000 characters)."
+        )
     )
     tag = models.ForeignKey(
         'tags.Tag',
