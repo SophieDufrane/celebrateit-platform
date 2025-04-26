@@ -313,6 +313,119 @@ Before starting frontend development, a complete architecture plan was created t
 
 ---
 
+### Frontend Page and Component Structure
+
+```
+Navbar (component)
+│
+├── Logo/Brand (CelebrateIt link to "/")
+├── Home Link (to "/")
+├── Create Link (to "/create")
+├── Profile Link (to "/profiles/:id" - dynamic user ID)
+└── Logout Button (logs out and redirects to login page "/login")
+
+
+LoggedInHomePage (container)
+│
+├── Navbar (component)
+│    ├── Home Link
+│    ├── Create Link
+│    ├── Profile Link
+│    └── Logout Link
+│
+├── MainContentArea (container)
+│    ├── FeedSection (container)
+│    │    ├── FeedToggleButtons (component)
+│    │    ├── FeedList (component)
+│    │         ├── PostCard (component - for recognition posts)
+│    │         │    ├── LikeButton (component)
+│    │         │    └── CommentCounter (component)
+│    │         └── NominationCard (component - for nominations)
+│    │              ├── LikeButton (component)
+│    │              └── CommentCounter (component)
+│    │
+│    └── PeopleSidebar (container)
+│         ├── SearchField (component)
+│         └── PeopleList (component)
+│             ├── PersonCard (component)
+│                 ├── User Icon
+│                 ├── User name
+│                 └── NominateButton (component)
+
+
+PostDetailPage (container)
+│
+├── PostCard (component)
+│    ├── LikeButton (component)
+│    └── CommentCounter (component)
+│
+└── CommentSection (component)
+     ├── CommentForm (component)
+     └── CommentList (component)
+         ├── CommentCard (component)
+         ├── CommentCard (component)
+         └── ….etc
+
+
+NominationDetailPage (container)
+│
+├── NominationCard (component)
+│    ├── LikeButton (component)
+│    └── CommentCounter (component)
+│
+└── CommentSection (component)
+     ├── CommentForm (component)
+     └── CommentList (component)
+         ├── CommentCard (component)
+         ├── CommentCard (component)
+         └── ….etc
+
+
+CreatePage (container)
+│
+├── Title ("What would you like to create?")
+│
+└── CreateOptions (container)
+     ├── CreateRecognitionCard (component)
+     │    └── Button to redirect to /create-recognition
+     └── CreateNominationCard (component)
+          └── Button to redirect to /create-nomination
+
+
+CreateRecognitionPage (container)
+│
+└── RecognitionForm (component)
+     ├── TitleField (component)
+     ├── ContentField (component)
+     ├── ImageUploadField (component) (optional)
+     └── SubmitButton (component)
+
+
+CreateNominationPage (container)
+│
+└── NominationForm (component)
+     ├── NomineeSelector (component) (pick a person or prefilled if clicked from sidebar)
+     ├── TitleField (component) (required)
+     ├── ContentField (component) (required)
+     ├── TagField (component) (required - colorful category)
+     └── SubmitButton (component)
+
+
+ProfilePage (container)
+│
+├── ProfileHeader (component)
+│    ├── Profile Image
+│    ├── Username (First and Last name)
+│    ├── Department
+│    └── Bio / Presentation text
+│
+└── ProfileFeedSection (container)
+     ├── FeedToggleButtons (component) (My Recognitions / My Nominations)
+     └── FeedList (component)
+          ├── PostCard (for recognitions)
+          └── NominationCard (for nominations)
+```
+
 #### Key Planning Decisions
 
 - Reusable Components were prioritized to speed up development and minimize duplication.
