@@ -259,11 +259,71 @@ The colour palette echoes tech industry trends while adding warmth to reflect hu
 
 ## 5. Development
 
-### 5.1 Project Planning
+## 5.1 Project Planning
+
+### Frontend Page and Component Structure
+
+Before starting frontend development, a complete architecture plan was created to ensure clean, reusable, and modular code.
+
+#### Pages Overview
+
+| Page                  | Purpose                                                                 |
+| :-------------------- | :---------------------------------------------------------------------- |
+| LoggedInHomePage      | Displays Recognition/Nomination feed and People Sidebar                 |
+| PostDetailPage        | Shows full recognition story with likes and comments                    |
+| NominationDetailPage  | Shows full nomination details with likes and comments                   |
+| CreatePage            | Menu for users to choose between creating a Recognition or a Nomination |
+| CreateRecognitionPage | Form to create a new Recognition Story (with optional image upload)     |
+| CreateNominationPage  | Form to create a new Nomination (with nominee, title, content, and tag) |
+| ProfilePage           | Displays user's profile information, Recognitions, and Nominations      |
+
+---
+
+#### Major Containers and Components
+
+| Container             | Purpose                                                           |
+| :-------------------- | :---------------------------------------------------------------- |
+| LoggedInHomePage      | Fetch and display feed and people list                            |
+| PostDetailPage        | Fetch and display single recognition post details                 |
+| NominationDetailPage  | Fetch and display single nomination details                       |
+| CreateRecognitionPage | Handle the form for a new recognition                             |
+| CreateNominationPage  | Handle the form for a new nomination                              |
+| ProfilePage           | Fetch and display user information, recognitions, and nominations |
+
+| Component         | Purpose                                                                  |
+| :---------------- | :----------------------------------------------------------------------- |
+| Navbar            | Navigation bar (Home, Create, Profile, Logout)                           |
+| FeedSection       | Displays Recognition or Nomination feed based on toggle                  |
+| FeedToggleButtons | Allows toggling between Recognition and Nomination feed                  |
+| FeedList          | Displays list of PostCard or NominationCard components                   |
+| PostCard          | Displays a single Recognition story preview                              |
+| NominationCard    | Displays a single Nomination preview                                     |
+| LikeButton        | Like/unlike a Recognition or Nomination                                  |
+| CommentCounter    | Displays the number of comments on a post or nomination                  |
+| CommentSection    | Displays comments and comment form for posts/nominations                 |
+| CommentForm       | Form to submit a new comment                                             |
+| CommentCard       | Displays a single comment                                                |
+| PeopleSidebar     | Displays search field and list of people                                 |
+| PersonCard        | Displays an individual person's name and icon                            |
+| NominateButton    | Opens Nomination form prefilled with selected nominee                    |
+| CreateOptions     | Display choice between creating Recognition or Nomination                |
+| RecognitionForm   | Form fields to create a new Recognition (Title, Content, optional Image) |
+| NominationForm    | Form fields to create a new Nomination (Nominee, Title, Content, Tag)    |
+| ProfileHeader     | Displays user's Profile Image, Username, Department, and Bio             |
+
+---
+
+#### Key Planning Decisions
+
+- Reusable Components were prioritized to speed up development and minimize duplication.
+- Toggle Functionality was reused between the Home Feed and the Profile Feed to allow switching between Recognitions and Nominations.
+- Simplifications were made to keep the project realistic and deadline-safe, such as skipping advanced department filters initially.
+- Alignment with Backend Models was ensured before form design to prevent API mismatches (fields and validation match Django models).
+- Comment Sections are embedded inside Post and Nomination Detail Pages, rather than being handled by separate comment pages.
+
+---
 
 - Agile methodology, Kanban, or other approaches used
-
-- Tools (e.g., Trello, Jira, GitHub Projects)
 
 ### 5.2 Code Structure
 
