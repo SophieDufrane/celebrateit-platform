@@ -15,14 +15,52 @@ const LoggedInHomePage = () => {
             <Button variant="outline-info">Nominations</Button>
           </div>
 
-          {/* One Empty Card */}
+          {/* One Fake Card */}
           <Card className="mb-3">
             <Card.Body>
-              <Card.Title>Title</Card.Title>
+              {/* Top Section: Icon + Name + Date */}
+              <div className="d-flex align-items-center justify-content-between mb-4">
+                {/* Avatar */}
+                <div
+                  style={{
+                    width: "40px",
+                    height: "40px",
+                    borderRadius: "50%",
+                    backgroundColor: "#ccc",
+                  }}
+                ></div>
+
+                {/* Author Name */}
+                <strong className="ml-2 flex-grow-1">John Doe</strong>
+
+                {/* Date */}
+                <small className="text-muted">April 25, 2025</small>
+              </div>
+              <Card.Title>Thank you for your amazing work!</Card.Title>
               <Card.Text>
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
+                Your dedication and attention to detail made a huge difference
+                on the project. We truly appreciate everything you've done to
+                make it a success!
               </Card.Text>
+
+              {/* Like and Comment Icons */}
+              <div className="d-flex justify-content-around mt-4">
+                <div className="text-center">
+                  <i className="far fa-heart fa-lg"></i>
+                  <div>
+                    <small>12</small>
+                  </div>
+                  {/* Fake like count */}
+                </div>
+
+                <div className="text-center">
+                  <i className="far fa-comment fa-lg"></i>
+                  <div>
+                    <small>3</small>
+                  </div>
+                  {/* Fake comment count */}
+                </div>
+              </div>
             </Card.Body>
           </Card>
         </Col>
