@@ -835,6 +835,8 @@ Each section below corresponds to a model and includes the tested endpoint, HTTP
 
 </details>
 
+x
+
 ### 6.2 Front-End Application Testing
 
 - Manual testing
