@@ -172,13 +172,13 @@ CelebrateIt is structured with a focus on separation of concerns. While the fron
 
 ### Entity Relationship Diagram (ERD)
 
-![ERD](documentation/ERD_CelebrateIt.png)
+![ERD](documentation/erd_celebrateit.png)
 
 #### Flowchart for User Navigation
 
 This section provides a visual representation of the user navigation flow within CelebrateIt. The flowchart captures how users interact with the platform, including key actions such as logging in, browsing stories, creating recognition posts, and navigating between profile pages.
 
-![Flowchart](documentation/Flowchart_CelebrateIt.png)
+![Flowchart](documentation/flowchart_celebrateit.png)
 
 ---
 
@@ -194,7 +194,7 @@ The following wireframes outline the structure and layout of the main screens in
 
     <details>
       <summary>Landing Page</summary>
-      <img src="images-documentation/readme_images/features/landing_page.png">
+      <img src="">
     </details>
 
 - **Secure Authentication**
@@ -222,16 +222,11 @@ The colour palette echoes tech industry trends while adding warmth to reflect hu
 | `#DECD62`  | Citron           |
 | `#484848`  | Davy's Grey      |
 
-![Colour Inspiration](images-documentation/readme_images/color_scheme.png)
+![Colour Inspiration](documentation/color_scheme.png)
 
 <details>
   <summary>Click to view inspiration from Workhuman</summary>
-  <img src="images-documentation/readme_images/colours_inspiration_from_workhuman.png">
-</details>
-
-<details>
-  <summary>Click to view trend reference</summary>
-  <img src="images-documentation/readme_images/trends.webp">
+  <img src="documentation/colours_inspiration_from_workhuman.png">
 </details>
 
 ### Typography
@@ -475,42 +470,42 @@ Each section below corresponds to a model and includes the tested endpoint, HTTP
 <details>
 <summary> 1/ List all user profiles </summary>
 
-![1](documentation/API/profiles/UserProfileList.png)
+![1](documentation/api/profiles/profile_list.png)
 
 </details>
 
 <details>
 <summary> 2/ View profile detail </summary>
 
-![2](documentation/API/profiles/UserProfile_NOT_auth.png)
+![2](documentation/api/profiles/profile_not_auth.png)
 
 </details>
 
 <details>
 <summary> 3/ Update profile (owner) </summary>
 
-![3](documentation/API/profiles/UserProfile_update_owner.png)
+![3](documentation/api/profiles/profile_update_owner.png)
 
 </details>
 
 <details>
 <summary> 4/ Update profile (not owner) </summary>
 
-![4](documentation/API/profiles/UserProfile_update_NOT_owner.png)
+![4](documentation/api/profiles/profile_update_not_owner.png)
 
 </details>
 
 <details>
 <summary> 5/ Filter by department </summary>
 
-![5](documentation/API/profiles/UserProfileList_filter_department.png)
+![5](documentation/api/profiles/profile_list_filter_department.png)
 
 </details>
 
 <details>
 <summary> 6/ Search by name </summary>
 
-![6](documentation/API/profiles/UserProfileList_search_name.png)
+![6](documentation/api/profiles/profile_list_search_name.png)
 
 </details>
 
@@ -531,63 +526,63 @@ Each section below corresponds to a model and includes the tested endpoint, HTTP
 <details>
 <summary> 1/ List all the posts </summary>
 
-![1](documentation/API/posts/PostsList.png)
+![1](documentation/api/posts/posts_list.png)
 
 </details>
 
 <details>
 <summary> 2/ View a post detail </summary>
 
-![2](documentation/API/posts/PostsDetail_NOT_auth.png)
+![2](documentation/api/posts/posts_detail_not_auth.png)
 
 </details>
 
 <details>
 <summary> 3/ Create a post </summary>
 
-![3](documentation/API/posts/Posts_Create.png)
+![3](documentation/api/posts/posts_create.png)
 
 </details>
 
 <details>
 <summary> 4/ Update a post (owner) </summary>
 
-![4](documentation/API/posts/Posts_update_owner.png)
+![4](documentation/api/posts/posts_update_owner.png)
 
 </details>
 
 <details>
 <summary> 5/ Update a post (not owner) </summary>
 
-![5](documentation/API/posts/Posts_update_NOT_owner.png)
+![5](documentation/api/posts/posts_update_not_owner.png)
 
 </details>
 
 <details>
 <summary> 6/ Delete a post (owner) </summary>
 
-![6](documentation/API/posts/Posts_delete.png)
+![6](documentation/api/posts/posts_delete.png)
 
 </details>
 
 <details>
 <summary> 7/ Delete a post (not owner) </summary>
 
-![7](documentation/API/posts/Posts_delete_NOT_owner.png)
+![7](documentation/api/posts/posts_delete_not_owner.png)
 
 </details>
 
 <details>
 <summary> 8/ Search by name </summary>
 
-![8](documentation/API/posts/Posts_search_name.png)
+![8](documentation/api/posts/posts_search_name.png)
 
 </details>
 
 <details>
 <summary> 9/ Search by department </summary>
 
-![9](documentation/API/posts/Posts_search_department.png)
+![9](documentation/api/posts/posts_search_department.png)
 
 </details>
 
@@ -610,77 +605,77 @@ Each section below corresponds to a model and includes the tested endpoint, HTTP
 <details>
 <summary> 1/ List all the nominations </summary>
 
-![1](documentation/API/nominations/NominationsList.png)
+![1](documentation/api/nominations/nomin_list.png)
 
 </details>
 
 <details>
 <summary> 2/ View a nomination detail </summary>
 
-![2](documentation/API/nominations/NominationsDetail_NOT_auth.png)
+![2](documentation/api/nominations/nomin_detail_not_auth.png)
 
 </details>
 
 <details>
 <summary> 3/ Create a nomination </summary>
 
-![3](documentation/API/nominations/Nominations_create.png)
+![3](documentation/api/nominations/nomin_create.png)
 
 </details>
 
 <details>
 <summary> 4/ Update a nomination (owner) </summary>
 
-![4](documentation/API/nominations/Nominations_update_owner.png)
+![4](documentation/api/nominations/nomin_update_owner.png)
 
 </details>
 
 <details>
 <summary> 5/ Update a nomination (not owner) </summary>
 
-![5](documentation/API/nominations/Nominations_update_NOT_owner.png)
+![5](documentation/api/nominations/nomin_update_not_owner.png)
 
 </details>
 
 <details>
 <summary> 6/ Delete a nomination (owner) </summary>
 
-![6](documentation/API/nominations/Nominations_delete_owner.png)
+![6](documentation/api/nominations/nomin_delete_owner.png)
 
 </details>
 
 <details>
 <summary> 7/ Delete a nomination (not owner) </summary>
 
-![7](documentation/API/nominations/Nominations_delete_NOT_owner.png)
+![7](documentation/api/nominations/nomin_delete_not_owner.png)
 
 </details>
 
 <details>
 <summary> 8/ Search by nominee/nominator </summary>
 
-![8](documentation/API/nominations/Nominations_search_name.png)
+![8](documentation/api/nominations/nomin_search_name.png)
 
 </details>
 
 <details>
 <summary> 9/ Filter by department (nominator) </summary>
 
-![9](documentation/API/nominations/Nominations_nominator_department.png)
+![9](documentation/api/nominations/nomin_nominator_department.png)
 
 </details>
 
 <details>
 <summary> 10/ Filter by tag </summary>
 
-![10](documentation/API/nominations/Nominations_tag.png)
+![10](documentation/api/nominations/nomin_tag.png)
 
 </details>
 
 <details>
 <summary> 11/ Filter by nominee </summary>
 
-![11](documentation/API/nominations/Nominations_nominee.png)
+![11](documentation/api/nominations/nomin_nominee.png)
 
 </details>
 
@@ -698,42 +693,42 @@ Each section below corresponds to a model and includes the tested endpoint, HTTP
 <details>
 <summary> 1/ List all the comments </summary>
 
-![1](documentation/API/comments/CommentsList.png)
+![1](documentation/api/comments/comments_list.png)
 
 </details>
 
 <details>
 <summary> 2/ Create a comment </summary>
 
-![2](documentation/API/comments/CommentsDetail.png)
+![2](documentation/api/comments/comments_create.png)
 
 </details>
 
 <details>
 <summary> 3/ Update a comment (owner) </summary>
 
-![3](documentation/API/comments/Comments_update_owner.png)
+![3](documentation/api/comments/comments_update_owner.png)
 
 </details>
 
 <details>
 <summary> 4/ Delete a comment (owner) </summary>
 
-![4](documentation/API/comments/Comments_delete_owner.png)
+![4](documentation/api/comments/comments_delete_owner.png)
 
 </details>
 
 <details>
 <summary> 5/ Filter by post </summary>
 
-![5](documentation/API/comments/Comments_filter_posts.png)
+![5](documentation/api/comments/comments_filter_posts.png)
 
 </details>
 
 <details>
 <summary> 6/ Filter by nomination </summary>
 
-![6](documentation/API/comments/Comments_filter_nominations.png)
+![6](documentation/api/comments/comments_filter_nominations.png)
 
 </details>
 
@@ -749,28 +744,28 @@ Each section below corresponds to a model and includes the tested endpoint, HTTP
 <details>
 <summary> 1/ Create a like on post/nomination </summary>
 
-![1](documentation/API/likes/Likes_create.png)
+![1](documentation/api/likes/likes_create.png)
 
 </details>
 
 <details>
 <summary> 2/ Invalid: like both post & nomination </summary>
 
-![2](documentation/API/likes/Likes_post_OR_nomination_validation.png)
+![2](documentation/api/likes/likes_post_or_nomin_validation.png)
 
 </details>
 
 <details>
 <summary> 3/ Invalid: like same thing twice </summary>
 
-![3](documentation/API/likes/Likes_same_twice_validation.png)
+![3](documentation/api/likes/likes_same_twice_validation.png)
 
 </details>
 
 <details>
 <summary> 4/ Delete a like (owner) </summary>
 
-![4](documentation/API/likes/Likes_delete_owner.png)
+![4](documentation/api/likes/likes_delete_owner.png)
 
 </details>
 
@@ -786,28 +781,28 @@ Each section below corresponds to a model and includes the tested endpoint, HTTP
 <details>
 <summary> 1/ List profiles with department field visible </summary>
 
-![1](documentation/API/department/Department_UserProfile_list.png)
+![1](documentation/api/department/department_profile_list.png)
 
 </details>
 
 <details>
 <summary> 2/ Profile detail with department field </summary>
 
-![2](documentation/API/department/Department_UserProfile_detail.png)
+![2](documentation/api/department/department_profile_detail.png)
 
 </details>
 
 <details>
 <summary> 3/ Filter posts by user department </summary>
 
-![3](documentation/API/department/Department_filter_posts.png)
+![3](documentation/api/department/department_filter_posts.png)
 
 </details>
 
 <details>
 <summary> 4/ Filter nominations by nominator department </summary>
 
-![4](documentation/API/department/Department_filter_nominations.png)
+![4](documentation/api/department/department_filter_nominations.png)
 
 </details>
 
@@ -822,21 +817,21 @@ Each section below corresponds to a model and includes the tested endpoint, HTTP
 <details>
 <summary> 1/ List all tags </summary>
 
-![1](documentation/API/tags/TagsList.png)
+![1](documentation/api/tags/tags_list.png)
 
 </details>
 
 <details>
 <summary> 2/ Create nomination with tag </summary>
 
-![2](documentation/API/tags/Tags_nomination_create.png)
+![2](documentation/api/tags/tags_nomination_create.png)
 
 </details>
 
 <details>
 <summary> 3/ Filter nominations by tag </summary>
 
-![3](documentation/API/tags/Tags_nomination_filter.png)
+![3](documentation/api/tags/tags_nomination_filter.png)
 
 </details>
 
