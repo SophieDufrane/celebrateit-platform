@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Container, Row, Col, Card, ListGroup } from "react-bootstrap";
+import styles from "../styles/LoggedInHomePage.module.css";
 
 const LoggedInHomePage = () => {
   return (
@@ -8,15 +9,17 @@ const LoggedInHomePage = () => {
         {/* Left Column - Feed */}
         <Col md={8}>
           {/* Feed Toggle Buttons */}
-          <div className="d-flex justify-content-center mb-3">
-            <Button variant="outline-secondary" className="mr-2">
+          <div className={styles.FeedToggleButtons}>
+            <Button className={`${styles.FeedButton} ${styles.YellowButton}`}>
               Recognition Stories
             </Button>
-            <Button variant="outline-info">Nominations</Button>
+            <Button className={`${styles.FeedButton} ${styles.BlueButton}`}>
+              Nominations
+            </Button>
           </div>
 
           {/* One Fake Card */}
-          <Card className="mb-3">
+          <Card className={styles.PostCard}>
             <Card.Body>
               {/* Top Section: Icon + Name + Date */}
               <div className="d-flex align-items-center justify-content-between mb-4">
@@ -66,7 +69,7 @@ const LoggedInHomePage = () => {
         </Col>
 
         {/* Right Column - Sidebar */}
-        <Col md={4}>
+        <Col md={4} className={styles.PeopleSidebar}>
           {/* Search field placeholder */}
           <input
             type="text"
@@ -77,9 +80,15 @@ const LoggedInHomePage = () => {
 
           {/* People list placeholder */}
           <ListGroup>
-            <ListGroup.Item>Person 1</ListGroup.Item>
-            <ListGroup.Item>Person 2</ListGroup.Item>
-            <ListGroup.Item>Person 3</ListGroup.Item>
+            <ListGroup.Item className={styles.PersonItem}>
+              Person 1
+            </ListGroup.Item>
+            <ListGroup.Item className={styles.PersonItem}>
+              Person 2
+            </ListGroup.Item>
+            <ListGroup.Item className={styles.PersonItem}>
+              Person 3
+            </ListGroup.Item>
           </ListGroup>
         </Col>
       </Row>

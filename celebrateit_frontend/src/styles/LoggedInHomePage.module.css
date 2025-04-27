@@ -1,0 +1,49 @@
+.FeedToggleButtons {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.FeedButton {
+  width: 100%;
+  margin-bottom: 0.5rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.YellowButton {
+  background-color: #decd62;
+  color: #300e82;
+}
+
+.YellowButton:hover {
+  background-color: #300e82;
+  color: white;
+}
+
+.BlueButton {
+  background-color: #300e82;
+  color: white;
+}
+
+.BlueButton:hover {
+  background-color: #decd62;
+  color: #300e82;
+}
+
+.PostCard {
+  margin-bottom: 1rem;
+}
+
+.PeopleSidebar {
+  margin-top: 2rem;
+}
+
+.PersonItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
