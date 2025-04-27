@@ -1,9 +1,10 @@
 import React from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
+import styles from "../styles/NavBar.module.css";
 
 const NavBar = () => {
   return (
-    <Navbar expand="md" fixed="top">
+    <Navbar className={styles.Navbar} expand="md" fixed="top">
       <Container>
         <Navbar.Brand href="#home">CelebrateIt</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

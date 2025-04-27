@@ -1,0 +1,13 @@
+.Navbar {
+  background-color: #300e82;
+}
+
+.Navbar a,
+.Navbar .nav-link {
+  color: white !important;
+}
+
+.Navbar a:hover,
+.Navbar .nav-link:hover {
+  color: #decd62 !important;
+}
