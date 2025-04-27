@@ -16,11 +16,11 @@ const NavBar = () => {
             <Nav.Link as={NavLink} exact to="/">
               Home
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/signin">
-              Sign in
+            <Nav.Link as={NavLink} to="/login">
+              Log In
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/signup">
-              Sign up
+            <Nav.Link as={NavLink} to="/register">
+              Register
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
