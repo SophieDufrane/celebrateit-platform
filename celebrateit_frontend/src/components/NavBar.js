@@ -16,6 +16,12 @@ const NavBar = () => {
             <Nav.Link as={NavLink} exact to="/">
               Home
             </Nav.Link>
+            <NavLink to="/create" className="nav-link">
+              Create
+            </NavLink>
+            <NavLink to="/profile" className="nav-link">
+              Profile
+            </NavLink>
             <Nav.Link as={NavLink} to="/login">
               Log In
             </Nav.Link>
