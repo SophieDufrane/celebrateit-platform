@@ -35,54 +35,6 @@ const LoggedInHomePage = () => {
             </Button>
           </div>
 
-          {/* One Fake Card */}
-          <Card className={styles.PostCard}>
-            <Card.Body>
-              {/* Top Section: Icon + Name + Date */}
-              <div className="d-flex align-items-center justify-content-between mb-4">
-                {/* Avatar */}
-                <div
-                  style={{
-                    width: "40px",
-                    height: "40px",
-                    borderRadius: "50%",
-                    backgroundColor: "#ccc",
-                  }}
-                ></div>
-
-                {/* Author Name */}
-                <strong className="ml-2 flex-grow-1">John Doe</strong>
-
-                {/* Date */}
-                <small className="text-muted">April 25, 2025</small>
-              </div>
-              <Card.Title>Thank you for your amazing work!</Card.Title>
-              <Card.Text>
-                Your dedication and attention to detail made a huge difference
-                on the project. We truly appreciate everything you've done to
-                make it a success!
-              </Card.Text>
-
-              {/* Like and Comment Icons */}
-              <div className="d-flex justify-content-around mt-4">
-                <div className="text-center">
-                  <i className="far fa-heart fa-lg"></i>
-                  <div>
-                    <small>12</small>
-                  </div>
-                  {/* Fake like count */}
-                </div>
-
-                <div className="text-center">
-                  <i className="far fa-comment fa-lg"></i>
-                  <div>
-                    <small>3</small>
-                  </div>
-                  {/* Fake comment count */}
-                </div>
-              </div>
-            </Card.Body>
-          </Card>
           {hasLoaded ? (
             posts.length ? (
               posts.map((post) => <Post key={post.id} {...post} />)
