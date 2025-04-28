@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { axiosReq } from "../api/axiosDefaults";
 import { Button, Container, Row, Col, Card, ListGroup } from "react-bootstrap";
+import Post from "../components/Post";
 import styles from "../styles/LoggedInHomePage.module.css";
 
 const LoggedInHomePage = () => {
@@ -84,14 +85,7 @@ const LoggedInHomePage = () => {
           </Card>
           {hasLoaded ? (
             posts.length ? (
-              posts.map((post) => (
-                <Card key={post.id} className={styles.PostCard}>
-                  <Card.Body>
-                    <Card.Title>{post.title}</Card.Title>
-                    <Card.Text>{post.content}</Card.Text>
-                  </Card.Body>
-                </Card>
-              ))
+              posts.map((post) => <Post key={post.id} />)
             ) : (
               <div>No posts yet</div> // If loaded but empty
             )
