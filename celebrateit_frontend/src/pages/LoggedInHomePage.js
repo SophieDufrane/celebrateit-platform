@@ -1,14 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { axiosReq } from "../api/axiosDefaults";
 import { Button, Container, Row, Col, Card, ListGroup } from "react-bootstrap";
 import styles from "../styles/LoggedInHomePage.module.css";
 
 const LoggedInHomePage = () => {
+  const [posts, setPosts] = useState([]);
+
   useEffect(() => {
     axiosReq
       .get("/posts/")
       .then((response) => {
         console.log("API fetch success:", response.data);
+        setPosts(response.data.results);
       })
       .catch((error) => {
         console.error("API fetch error:", error);
@@ -77,6 +80,14 @@ const LoggedInHomePage = () => {
               </div>
             </Card.Body>
           </Card>
+          {posts.map((post) => (
+            <Card key={post.id} className={styles.PostCard}>
+              <Card.Body>
+                <Card.Title>{post.title}</Card.Title>
+                <Card.Text>{post.content}</Card.Text>
+              </Card.Body>
+            </Card>
+          ))}
         </Col>
 
         {/* Right Column - Sidebar */}
