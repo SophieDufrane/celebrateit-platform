@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { axiosReq } from "../api/axiosDefaults";
 import { Container } from "react-bootstrap";
+import Post from "../components/Post";
 
 const PostDetailPage = ({ match }) => {
   const { id } = match.params;
@@ -23,8 +24,15 @@ const PostDetailPage = ({ match }) => {
 
   return (
     <Container>
-      <h1>{post.title}</h1>
-      <p>{post.content}</p>
+      <Post
+        title={post.title}
+        content={post.content}
+        image={post.image}
+        display_name={post.display_name}
+        created_at={post.created_at}
+        likes_count={post.likes_count}
+        comments_count={post.comments_count}
+      />
     </Container>
   );
 };
