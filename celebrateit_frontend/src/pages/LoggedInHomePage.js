@@ -5,6 +5,7 @@ import styles from "../styles/LoggedInHomePage.module.css";
 
 const LoggedInHomePage = () => {
   const [posts, setPosts] = useState([]);
+  const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
     axiosReq
@@ -12,6 +13,7 @@ const LoggedInHomePage = () => {
       .then((response) => {
         console.log("API fetch success:", response.data);
         setPosts(response.data.results);
+        setHasLoaded(true);
       })
       .catch((error) => {
         console.error("API fetch error:", error);
@@ -80,14 +82,22 @@ const LoggedInHomePage = () => {
               </div>
             </Card.Body>
           </Card>
-          {posts.map((post) => (
-            <Card key={post.id} className={styles.PostCard}>
-              <Card.Body>
-                <Card.Title>{post.title}</Card.Title>
-                <Card.Text>{post.content}</Card.Text>
-              </Card.Body>
-            </Card>
-          ))}
+          {hasLoaded ? (
+            posts.length ? (
+              posts.map((post) => (
+                <Card key={post.id} className={styles.PostCard}>
+                  <Card.Body>
+                    <Card.Title>{post.title}</Card.Title>
+                    <Card.Text>{post.content}</Card.Text>
+                  </Card.Body>
+                </Card>
+              ))
+            ) : (
+              <div>No posts yet</div> // If loaded but empty
+            )
+          ) : (
+            <div>Loading...</div> // While waiting
+          )}
         </Col>
 
         {/* Right Column - Sidebar */}
