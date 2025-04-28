@@ -85,7 +85,7 @@ const LoggedInHomePage = () => {
           </Card>
           {hasLoaded ? (
             posts.length ? (
-              posts.map((post) => <Post key={post.id} />)
+              posts.map((post) => <Post key={post.id} {...post} />)
             ) : (
               <div>No posts yet</div> // If loaded but empty
             )
