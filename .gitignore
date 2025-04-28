@@ -15,3 +15,5 @@ env.py
 
 # VS Code settings
 .vscode/
+
+**node_modules/
