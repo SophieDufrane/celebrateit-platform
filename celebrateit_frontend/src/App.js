@@ -17,7 +17,7 @@ function App() {
       <Container className={styles.Main}>
         <Switch>
           <Route exact path="/" component={LoggedInHomePage} />
-          <Route exact path="/posts" component={PostDetailPage} />
+          <Route exact path="/posts/:id" component={PostDetailPage} />
           <Route exact path="/nominations" component={NominationDetailPage} />
           <Route exact path="/create" component={CreatePage} />
           <Route

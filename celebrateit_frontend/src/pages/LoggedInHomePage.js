@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { axiosReq } from "../api/axiosDefaults";
-import { Button, Container, Row, Col, Card, ListGroup } from "react-bootstrap";
+import { Button, Container, Row, Col, ListGroup } from "react-bootstrap";
 import Post from "../components/Post";
 import styles from "../styles/LoggedInHomePage.module.css";
 
@@ -20,6 +20,7 @@ const LoggedInHomePage = () => {
         console.error("API fetch error:", error);
       });
   }, []);
+
   return (
     <Container>
       <Row>
