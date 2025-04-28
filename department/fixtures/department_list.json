@@ -3,45 +3,45 @@
     "model": "department.department",
     "pk": 1,
     "fields": {
-      "code": "HR",
-      "name": "Human Resources",
-      "icon": "department_icons/hr.jpg"
+      "name": "Engineering",
+      "code": "ENG",
+      "icon": "https://res.cloudinary.com/dupxlk3kb/image/upload/v1744556125/department_icons/eng.jpg.jpg"
     }
   },
   {
     "model": "department.department",
     "pk": 2,
     "fields": {
-      "code": "ENG",
-      "name": "Engineering",
-      "icon": "department_icons/eng.jpg"
+      "name": "Marketing",
+      "code": "MKT",
+      "icon": "https://res.cloudinary.com/dupxlk3kb/image/upload/v1745859184/20945382_cojgxe.jpg"
     }
   },
   {
     "model": "department.department",
     "pk": 3,
     "fields": {
-      "code": "SALES",
       "name": "Sales",
-      "icon": "department_icons/sales.jpg"
+      "code": "SLS",
+      "icon": "https://res.cloudinary.com/dupxlk3kb/image/upload/v1744556123/department_icons/sales.jpg.jpg"
     }
   },
   {
     "model": "department.department",
     "pk": 4,
     "fields": {
-      "code": "OPS",
       "name": "Operations",
-      "icon": "department_icons/ops.jpg"
+      "code": "OPS",
+      "icon": "https://res.cloudinary.com/dupxlk3kb/image/upload/v1744556125/department_icons/ops.jpg.jpg"
     }
   },
   {
     "model": "department.department",
     "pk": 5,
     "fields": {
-      "code": "MARKT",
-      "name": "Marketing",
-      "icon": "department_icons/markt.jpg"
+      "name": "Human Resources",
+      "code": "HR",
+      "icon": "https://res.cloudinary.com/dupxlk3kb/image/upload/v1744556124/department_icons/hr.jpg.jpg"
     }
   }
 ]

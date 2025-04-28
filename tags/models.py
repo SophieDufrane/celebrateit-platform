@@ -27,6 +27,14 @@ class Tag(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
+
+        # Ensure slug uniqueness
+        original_slug = self.slug
+        counter = 1
+        while Tag.objects.filter(slug=self.slug).exists():
+            self.slug = f"{original_slug}-{counter}"
+            counter += 1
+
         super().save(*args, **kwargs)
 
     def __str__(self):
