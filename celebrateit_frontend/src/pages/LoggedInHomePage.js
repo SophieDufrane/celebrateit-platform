@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { axiosReq } from "../api/axiosDefaults";
 import { Button, Container, Row, Col, Card, ListGroup } from "react-bootstrap";
 import styles from "../styles/LoggedInHomePage.module.css";
 
 const LoggedInHomePage = () => {
+  useEffect(() => {
+    axiosReq
+      .get("/posts/")
+      .then((response) => {
+        console.log("API fetch success:", response.data);
+      })
+      .catch((error) => {
+        console.error("API fetch error:", error);
+      });
+  }, []);
   return (
     <Container>
       <Row>
