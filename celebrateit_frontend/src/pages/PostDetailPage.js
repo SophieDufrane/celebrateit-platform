@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { axiosReq } from "../api/axiosDefaults";
-import { Container } from "react-bootstrap";
+import { axiosReq, axiosRes } from "../api/axiosDefaults";
+import { Container, Button } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 import Post from "../components/Post";
 
 const PostDetailPage = ({ match }) => {
