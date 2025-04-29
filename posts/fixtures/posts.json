@@ -1,0 +1,122 @@
+[
+  {
+    "model": "posts.post",
+    "pk": 3,
+    "fields": {
+      "user": 2,
+      "title": "Celebrating Innovation",
+      "content": "Alice introduced a fantastic new approach that boosted our marketing team's productivity. Her creativity and initiative are truly inspiring.",
+      "image": "",
+      "created_at": "2025-04-26T10:00:00Z",
+      "updated_at": "2025-04-26T10:00:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 4,
+    "fields": {
+      "user": 3,
+      "title": "Engineering Excellence",
+      "content": "Bob demonstrated outstanding problem-solving skills by refactoring a key module, significantly improving system performance and stability.",
+      "image": "",
+      "created_at": "2025-04-27T11:00:00Z",
+      "updated_at": "2025-04-27T11:00:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 5,
+    "fields": {
+      "user": 4,
+      "title": "Team Spirit Recognition",
+      "content": "Charlie brought incredible energy to the HR offsite, making sure everyone felt heard and involved in the strategic discussions.",
+      "image": "",
+      "created_at": "2025-04-28T09:30:00Z",
+      "updated_at": "2025-04-28T09:30:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 6,
+    "fields": {
+      "user": 5,
+      "title": "Operations Optimization",
+      "content": "Diana streamlined our procurement process, leading to faster vendor deliveries and reduced costs across departments.",
+      "image": "",
+      "created_at": "2025-04-28T14:45:00Z",
+      "updated_at": "2025-04-28T14:45:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 7,
+    "fields": {
+      "user": 2,
+      "title": "Marketing Success Story",
+      "content": "Alice's leadership on the latest campaign brought record-breaking engagement, showing her strategic thinking and creative leadership.",
+      "image": "",
+      "created_at": "2025-04-29T08:15:00Z",
+      "updated_at": "2025-04-29T08:15:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 8,
+    "fields": {
+      "user": 1,
+      "title": "Leadership in Action",
+      "content": "Sophie guided the team with exceptional empathy and decisiveness during a critical transition period, earning respect across the organization.",
+      "image": "",
+      "created_at": "2025-04-27T13:00:00Z",
+      "updated_at": "2025-04-27T13:00:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 9,
+    "fields": {
+      "user": 5,
+      "title": "Operational Breakthrough",
+      "content": "Thanks to Diana's new scheduling system, our service department saw a 20% increase in efficiency last month!",
+      "image": "",
+      "created_at": "2025-04-29T07:00:00Z",
+      "updated_at": "2025-04-29T07:00:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 10,
+    "fields": {
+      "user": 3,
+      "title": "Technical Achievement",
+      "content": "Bob implemented a robust CI/CD pipeline that has drastically improved our deployment process, reducing errors and deployment time.",
+      "image": "",
+      "created_at": "2025-04-29T10:30:00Z",
+      "updated_at": "2025-04-29T10:30:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 11,
+    "fields": {
+      "user": 4,
+      "title": "People First Initiatives",
+      "content": "Charlie launched a new wellness initiative that has already improved employee engagement and satisfaction metrics within HR.",
+      "image": "",
+      "created_at": "2025-04-28T16:30:00Z",
+      "updated_at": "2025-04-28T16:30:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 12,
+    "fields": {
+      "user": 1,
+      "title": "HR Excellence",
+      "content": "Sophie spearheaded a comprehensive review of our internal policies, leading to stronger alignment with best HR practices.",
+      "image": "",
+      "created_at": "2025-04-29T09:00:00Z",
+      "updated_at": "2025-04-29T09:00:00Z"
+    }
+  }
+]

@@ -4,6 +4,7 @@
     "pk": 1,
     "fields": {
       "name": "Leadership",
+      "slug": "leadership",
       "color": "#300E82"
     }
   },
@@ -12,6 +13,7 @@
     "pk": 2,
     "fields": {
       "name": "Teamwork",
+      "slug": "teamwork",
       "color": "#586BBE"
     }
   },
@@ -20,6 +22,7 @@
     "pk": 3,
     "fields": {
       "name": "Innovation",
+      "slug": "innovation",
       "color": "#9B6B82"
     }
   },
@@ -28,6 +31,7 @@
     "pk": 4,
     "fields": {
       "name": "Customer Focus",
+      "slug": "customer-focus",
       "color": "#DECD62"
     }
   },
@@ -36,6 +40,7 @@
     "pk": 5,
     "fields": {
       "name": "Collaboration",
+      "slug": "collaboration",
       "color": "#484848"
     }
   }

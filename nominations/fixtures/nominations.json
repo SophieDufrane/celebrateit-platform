@@ -1,0 +1,132 @@
+[
+  {
+    "model": "nominations.nomination",
+    "pk": 1,
+    "fields": {
+      "nominator": 2,
+      "nominee": 5,
+      "title": "Driving Innovation Forward",
+      "content": "Diana consistently challenges the status quo and brings new ideas to the table. Her latest process improvements have significantly optimized our workflows, making a real impact across departments.",
+      "tag": 3,
+      "created_at": "2025-04-28T09:00:00Z",
+      "updated_at": "2025-04-28T09:00:00Z"
+    }
+  },
+  {
+    "model": "nominations.nomination",
+    "pk": 2,
+    "fields": {
+      "nominator": 4,
+      "nominee": 3,
+      "title": "Outstanding Technical Leadership",
+      "content": "Bob’s mentorship and technical leadership during our last sprint helped junior engineers level up dramatically. His patience, expertise, and positive attitude made a real difference to the team's success.",
+      "tag": 1,
+      "created_at": "2025-04-28T10:00:00Z",
+      "updated_at": "2025-04-28T10:00:00Z"
+    }
+  },
+  {
+    "model": "nominations.nomination",
+    "pk": 3,
+    "fields": {
+      "nominator": 5,
+      "nominee": 4,
+      "title": "Championing Collaboration",
+      "content": "Charlie fostered a true culture of trust and openness in HR, ensuring every voice was heard during our quarterly review. Their leadership has strengthened team morale significantly.",
+      "tag": 5,
+      "created_at": "2025-04-28T11:30:00Z",
+      "updated_at": "2025-04-28T11:30:00Z"
+    }
+  },
+  {
+    "model": "nominations.nomination",
+    "pk": 4,
+    "fields": {
+      "nominator": 1,
+      "nominee": 2,
+      "title": "Creative Campaign Excellence",
+      "content": "Alice designed and led an incredibly creative marketing campaign that increased brand visibility by 30% over the last quarter. Her innovation and strategic thinking were key to its success.",
+      "tag": 3,
+      "created_at": "2025-04-28T13:00:00Z",
+      "updated_at": "2025-04-28T13:00:00Z"
+    }
+  },
+  {
+    "model": "nominations.nomination",
+    "pk": 5,
+    "fields": {
+      "nominator": 3,
+      "nominee": 1,
+      "title": "Exceptional Support and Guidance",
+      "content": "Sophie’s steady leadership and support ensured a smooth transition during our reorganization. Her commitment to a people-first approach truly made a challenging time much easier.",
+      "tag": 1,
+      "created_at": "2025-04-28T14:00:00Z",
+      "updated_at": "2025-04-28T14:00:00Z"
+    }
+  },
+  {
+    "model": "nominations.nomination",
+    "pk": 6,
+    "fields": {
+      "nominator": 2,
+      "nominee": 4,
+      "title": "Customer-Centric HR Initiatives",
+      "content": "Charlie launched an internal campaign that put employee feedback at the center of HR initiatives. His dedication to creating a better experience for everyone is inspiring.",
+      "tag": 4,
+      "created_at": "2025-04-28T15:00:00Z",
+      "updated_at": "2025-04-28T15:00:00Z"
+    }
+  },
+  {
+    "model": "nominations.nomination",
+    "pk": 7,
+    "fields": {
+      "nominator": 4,
+      "nominee": 5,
+      "title": "Operational Brilliance",
+      "content": "Diana’s improvements to the scheduling system led to a measurable increase in operational efficiency. Her ability to pinpoint challenges and solve them quickly is invaluable.",
+      "tag": 2,
+      "created_at": "2025-04-28T16:00:00Z",
+      "updated_at": "2025-04-28T16:00:00Z"
+    }
+  },
+  {
+    "model": "nominations.nomination",
+    "pk": 8,
+    "fields": {
+      "nominator": 5,
+      "nominee": 2,
+      "title": "Innovative Thinking in Marketing",
+      "content": "Alice brought fresh, out-of-the-box ideas during the strategy session that ultimately reshaped our Q2 goals. Her vision and courage to challenge norms stood out.",
+      "tag": 3,
+      "created_at": "2025-04-28T17:00:00Z",
+      "updated_at": "2025-04-28T17:00:00Z"
+    }
+  },
+  {
+    "model": "nominations.nomination",
+    "pk": 9,
+    "fields": {
+      "nominator": 1,
+      "nominee": 3,
+      "title": "Reliable Engineering Expertise",
+      "content": "Bob consistently delivers high-quality solutions, anticipating potential roadblocks and proposing proactive alternatives. His professionalism and technical skills set a high bar.",
+      "tag": 1,
+      "created_at": "2025-04-28T18:00:00Z",
+      "updated_at": "2025-04-28T18:00:00Z"
+    }
+  },
+  {
+    "model": "nominations.nomination",
+    "pk": 10,
+    "fields": {
+      "nominator": 3,
+      "nominee": 1,
+      "title": "Leading Through Change",
+      "content": "Sophie’s transparency and optimism during the reorganization helped ease anxiety and maintain productivity across the teams. Her leadership was truly appreciated by all.",
+      "tag": 1,
+      "created_at": "2025-04-28T19:00:00Z",
+      "updated_at": "2025-04-28T19:00:00Z"
+    }
+  }
+]
