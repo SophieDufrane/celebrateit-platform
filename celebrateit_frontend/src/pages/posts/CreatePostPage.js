@@ -1,16 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 
 function CreatePostPage() {
+  const [postData, setPostData] = useState({
+    title: "",
+    content: "",
+    image: null,
+  });
+  const { title, content, image } = postData;
+
+  const handleChange = (event) => {
+    const { name, value, files } = event.target;
+    if (name === "image") {
+      setPostData({
+        ...postData,
+        image: files[0],
+      });
+    } else {
+      setPostData({
+        ...postData,
+        [name]: value,
+      });
+    }
+  };
+
   return (
     <Container>
       <h1>Create a Recognition Story</h1>
       <Form>
         <Form.Group controlId="title">
           <Form.Label>Title</Form.Label>
-          <Form.Control type="text" placeholder="Enter title" name="title" />
+          <Form.Control
+            type="text"
+            placeholder="Enter title"
+            name="title"
+            value={title}
+            onChange={handleChange}
+          />
         </Form.Group>
 
         <Form.Group controlId="content">
@@ -20,11 +48,18 @@ function CreatePostPage() {
             rows={10}
             placeholder="Write your story..."
             name="content"
+            value={content}
+            onChange={handleChange}
           />
         </Form.Group>
         <Form.Group controlId="image">
           <Form.Label>Image (optional)</Form.Label>
-          <Form.File name="image" />
+          <Form.File
+            name="image"
+            onChange={handleChange}
+            label={image?.name || "Choose an image"}
+            custom
+          />
         </Form.Group>
 
         <Button type="submit">Create</Button>
