@@ -2,13 +2,12 @@ import styles from "./App.module.css";
 import NavBar from "./components/NavBar";
 import Container from "react-bootstrap/Container";
 import { Route, Switch } from "react-router-dom";
-import LoggedInHomePage from "./pages/LoggedInHomePage";
-import PostDetailPage from "./pages/PostDetailPage";
-import NominationDetailPage from "./pages/NominationDetailPage";
-import CreatePage from "./pages/CreatePage";
-import CreateRecognitionPage from "./pages/CreateRecognitionPage";
-import CreateNominationPage from "./pages/CreateNominationPage";
-import ProfilePage from "./pages/ProfilePage";
+import LoggedInHomePage from "./pages/home/LoggedInHomePage";
+import CreatePostPage from "./pages/posts/CreatePostPage";
+import PostDetailPage from "./pages/posts/PostDetailPage";
+import CreateNominationPage from "./pages/nominations/CreateNominationPage";
+import NominationDetailPage from "./pages/nominations/NominationDetailPage";
+import ProfilePage from "./pages/profiles/ProfilePage";
 import SignInForm from "./pages/auth/SignInForm";
 import SignUpForm from "./pages/auth/SignUpForm";
 
@@ -19,22 +18,26 @@ function App() {
       <Container className={styles.Main}>
         <Switch>
           <Route exact path="/" component={LoggedInHomePage} />
+          {/* Create and Detail for Posts */}
+          <Route exact path="/posts/create" component={CreatePostPage} />
           <Route exact path="/posts/:id" component={PostDetailPage} />
-          <Route exact path="/nominations" component={NominationDetailPage} />
-          <Route exact path="/create" component={CreatePage} />
+          {/* Create and Detail for Nominations */}
           <Route
             exact
-            path="/create/recognition"
-            component={CreateRecognitionPage}
-          />
-          <Route
-            exact
-            path="/create/nomination"
+            path="/nominations/create"
             component={CreateNominationPage}
           />
+          <Route
+            exact
+            path="/nominations/:id"
+            component={NominationDetailPage}
+          />
+          {/* User Profile */}
           <Route exact path="/profile" component={ProfilePage} />
-          <Route exact path="/login" render={() => <SignInForm />} />
-          <Route exact path="/register" render={() => <SignUpForm />} />
+          {/* Auth */}
+          <Route exact path="/login" component={SignInForm} />
+          <Route exact path="/register" component={SignUpForm} />
+          {/* 404 fallback */}
           <Route render={() => <p>Page not found</p>} />
         </Switch>
       </Container>

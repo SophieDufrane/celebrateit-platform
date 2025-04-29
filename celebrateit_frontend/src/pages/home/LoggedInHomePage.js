@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { axiosReq } from "../api/axiosDefaults";
+import { axiosReq } from "../../api/axiosDefaults";
 import { Button, Container, Row, Col, ListGroup } from "react-bootstrap";
-import Post from "../components/Post";
-import styles from "../styles/LoggedInHomePage.module.css";
+import Post from "../../components/Post";
+import styles from "../../styles/LoggedInHomePage.module.css";
 
 const LoggedInHomePage = () => {
   const [posts, setPosts] = useState([]);

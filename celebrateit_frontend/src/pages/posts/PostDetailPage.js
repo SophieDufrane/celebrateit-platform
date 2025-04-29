@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { axiosReq, axiosRes } from "../api/axiosDefaults";
+import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import { Container, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import Post from "../components/Post";
+import Post from "../../components/Post";
 
 const PostDetailPage = ({ match }) => {
   const { id } = match.params;
