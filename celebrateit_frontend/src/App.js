@@ -9,6 +9,8 @@ import CreatePage from "./pages/CreatePage";
 import CreateRecognitionPage from "./pages/CreateRecognitionPage";
 import CreateNominationPage from "./pages/CreateNominationPage";
 import ProfilePage from "./pages/ProfilePage";
+import SignInForm from "./pages/auth/SignInForm";
+import SignUpForm from "./pages/auth/SignUpForm";
 
 function App() {
   return (
@@ -31,8 +33,8 @@ function App() {
             component={CreateNominationPage}
           />
           <Route exact path="/profile" component={ProfilePage} />
-          <Route exact path="/login" render={() => <h1>Log in</h1>} />
-          <Route exact path="/register" render={() => <h1>Register</h1>} />
+          <Route exact path="/login" render={() => <SignInForm />} />
+          <Route exact path="/register" render={() => <SignUpForm />} />
           <Route render={() => <p>Page not found</p>} />
         </Switch>
       </Container>
