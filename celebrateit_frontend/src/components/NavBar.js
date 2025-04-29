@@ -16,8 +16,11 @@ const NavBar = () => {
             <Nav.Link as={NavLink} exact to="/">
               Home
             </Nav.Link>
-            <NavLink to="/create" className="nav-link">
-              Create
+            <NavLink to="/posts/create" className="nav-link">
+              Recognize
+            </NavLink>
+            <NavLink to="/nominations/create" className="nav-link">
+              Nominate
             </NavLink>
             <NavLink to="/profile" className="nav-link">
               Profile
