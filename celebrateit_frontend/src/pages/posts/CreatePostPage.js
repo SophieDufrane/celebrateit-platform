@@ -51,7 +51,7 @@ function CreatePostPage() {
   return (
     <Container>
       <h1>Create a Recognition Story</h1>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Form.Group controlId="title">
           <Form.Label>Title</Form.Label>
           <Form.Control
@@ -84,9 +84,7 @@ function CreatePostPage() {
             custom
           />
         </Form.Group>
-        <Form onSubmit={handleSubmit}>
-          <Button type="submit">Create</Button>
-        </Form>
+        <Button type="submit">Create</Button>
       </Form>
     </Container>
   );

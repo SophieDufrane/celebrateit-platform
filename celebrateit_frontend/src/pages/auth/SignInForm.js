@@ -5,14 +5,17 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 
 function SignInForm() {
+  const setCurrentUser = useSetCurrentUser();
   const [signInData, setSignInData] = useState({
     username: "",
     password: "",
   });
   const { username, password } = signInData;
+  const history = useHistory();
 
   function handleChange(event) {
     setSignInData({
@@ -25,8 +28,8 @@ function SignInForm() {
     event.preventDefault();
     try {
       const { data } = await axios.post("/dj-rest-auth/login/", signInData);
-      console.log("Login successful:", data);
-      alert("Login success!");
+      setCurrentUser(data.user); // Save user to Context
+      history.goBack();
     } catch (err) {
       console.error("Login failed:", err.response?.data);
     }
