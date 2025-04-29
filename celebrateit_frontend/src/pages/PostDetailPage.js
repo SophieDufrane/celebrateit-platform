@@ -7,6 +7,16 @@ import Post from "../components/Post";
 const PostDetailPage = ({ match }) => {
   const { id } = match.params;
   const [post, setPost] = useState(null);
+  const history = useHistory();
+
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/posts/${post.id}/`);
+      history.push("/");
+    } catch (err) {
+      // console.log(err);
+    }
+  };
 
   useEffect(() => {
     axiosReq
@@ -26,6 +36,7 @@ const PostDetailPage = ({ match }) => {
   return (
     <Container>
       <Post
+        id={post.id}
         title={post.title}
         content={post.content}
         image={post.image}
@@ -33,7 +44,15 @@ const PostDetailPage = ({ match }) => {
         created_at={post.created_at}
         likes_count={post.likes_count}
         comments_count={post.comments_count}
-      />
+      >
+        {post.is_user && (
+          <div className="mt-3">
+            <Button variant="danger" onClick={handleDelete}>
+              Delete Post
+            </Button>
+          </div>
+        )}
+      </Post>
     </Container>
   );
 };
