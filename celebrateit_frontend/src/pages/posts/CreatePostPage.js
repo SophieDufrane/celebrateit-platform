@@ -1,12 +1,36 @@
 import React from "react";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
 
-const CreateRecognitionPage = () => {
+function CreatePostPage() {
   return (
-    <div>
-      <h1>Create Recognition Page</h1>
-      {/* Form to create a new Recognition Story will be here */}
-    </div>
-  );
-};
+    <Container>
+      <h1>Create a Recognition Story</h1>
+      <Form>
+        <Form.Group controlId="title">
+          <Form.Label>Title</Form.Label>
+          <Form.Control type="text" placeholder="Enter title" name="title" />
+        </Form.Group>
 
-export default CreateRecognitionPage;
+        <Form.Group controlId="content">
+          <Form.Label>Content</Form.Label>
+          <Form.Control
+            as="textarea"
+            rows={10}
+            placeholder="Write your story..."
+            name="content"
+          />
+        </Form.Group>
+        <Form.Group controlId="image">
+          <Form.Label>Image (optional)</Form.Label>
+          <Form.File name="image" />
+        </Form.Group>
+
+        <Button type="submit">Create</Button>
+      </Form>
+    </Container>
+  );
+}
+
+export default CreatePostPage;
