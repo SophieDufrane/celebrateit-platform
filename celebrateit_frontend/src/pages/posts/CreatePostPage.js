@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
+import { useHistory } from "react-router-dom";
+import { axiosReq } from "../../api/axiosDefaults";
 
 function CreatePostPage() {
   const [postData, setPostData] = useState({
@@ -10,6 +12,7 @@ function CreatePostPage() {
     image: null,
   });
   const { title, content, image } = postData;
+  const history = useHistory();
 
   const handleChange = (event) => {
     const { name, value, files } = event.target;
@@ -23,6 +26,25 @@ function CreatePostPage() {
         ...postData,
         [name]: value,
       });
+    }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("content", content);
+    if (image) {
+      formData.append("image", image);
+    }
+
+    try {
+      const { data } = await axiosReq.post("/posts/", formData);
+      history.push(`/posts/${data.id}`);
+    } catch (err) {
+      console.error(err.response?.data);
+      // optional: setErrors(err.response?.data);
     }
   };
 
@@ -52,6 +74,7 @@ function CreatePostPage() {
             onChange={handleChange}
           />
         </Form.Group>
+
         <Form.Group controlId="image">
           <Form.Label>Image (optional)</Form.Label>
           <Form.File
@@ -61,8 +84,9 @@ function CreatePostPage() {
             custom
           />
         </Form.Group>
-
-        <Button type="submit">Create</Button>
+        <Form onSubmit={handleSubmit}>
+          <Button type="submit">Create</Button>
+        </Form>
       </Form>
     </Container>
   );
