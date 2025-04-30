@@ -5,6 +5,7 @@ import { Route, Switch } from "react-router-dom";
 import LoggedInHomePage from "./pages/home/LoggedInHomePage";
 import CreatePostPage from "./pages/posts/CreatePostPage";
 import PostDetailPage from "./pages/posts/PostDetailPage";
+import UpdatePostPage from "./pages/posts/UpdatePostPage";
 import CreateNominationPage from "./pages/nominations/CreateNominationPage";
 import NominationDetailPage from "./pages/nominations/NominationDetailPage";
 import ProfilePage from "./pages/profiles/ProfilePage";
@@ -18,9 +19,10 @@ function App() {
       <Container className={styles.Main}>
         <Switch>
           <Route exact path="/" component={LoggedInHomePage} />
-          {/* Create and Detail for Posts */}
+          {/* Create, Update and Detail for Posts */}
           <Route exact path="/posts/create" component={CreatePostPage} />
           <Route exact path="/posts/:id" component={PostDetailPage} />
+          <Route exact path="/posts/:id/edit" component={UpdatePostPage} />
           {/* Create and Detail for Nominations */}
           <Route
             exact
