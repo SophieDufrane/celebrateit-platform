@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useParams, useHistory } from "react-router-dom";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import { Container, Button } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
 import Post from "../../components/Post";
 
-const PostDetailPage = ({ match }) => {
-  const { id } = match.params;
+function PostDetailPage() {
+  const { id } = useParams();
   const history = useHistory();
   const [post, setPost] = useState(null);
 
@@ -55,6 +55,6 @@ const PostDetailPage = ({ match }) => {
       </Post>
     </Container>
   );
-};
+}
 
 export default PostDetailPage;

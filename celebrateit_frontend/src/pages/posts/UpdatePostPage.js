@@ -8,7 +8,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 
 function UpdatePostPage() {
   const { id } = useParams();
-
+  const history = useHistory();
   const [postData, setPostData] = useState({
     title: "",
     content: "",
@@ -16,8 +16,6 @@ function UpdatePostPage() {
   });
 
   const { title, content, image } = postData;
-
-  const history = useHistory();
 
   useEffect(() => {
     axiosReq
