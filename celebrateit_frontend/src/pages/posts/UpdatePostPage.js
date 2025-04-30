@@ -47,10 +47,28 @@ function UpdatePostPage() {
     }
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("content", content);
+    if (image && typeof image !== "string") {
+      formData.append("image", image);
+    }
+
+    try {
+      await axiosReq.patch(`/posts/${id}/`, formData);
+      history.push(`/posts/${id}`);
+    } catch (err) {
+      console.error("Submission error:", err.response?.data);
+    }
+  };
+
   return (
     <Container>
       <h1>Edit Post {id}</h1>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Form.Group controlId="title">
           <Form.Label>Title</Form.Label>
           <Form.Control
@@ -88,9 +106,7 @@ function UpdatePostPage() {
           />
         </Form.Group>
 
-        <Button type="submit" disabled>
-          Update
-        </Button>
+        <Button type="submit">Update</Button>
       </Form>
     </Container>
   );
