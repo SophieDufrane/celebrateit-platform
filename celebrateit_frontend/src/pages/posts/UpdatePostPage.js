@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
+import { useHistory } from "react-router-dom";
+import { axiosReq } from "../../api/axiosDefaults";
 
 function UpdatePostPage() {
   const { id } = useParams();
@@ -14,6 +16,21 @@ function UpdatePostPage() {
   });
 
   const { title, content, image } = postData;
+
+  const history = useHistory();
+
+  useEffect(() => {
+    axiosReq
+      .get(`/posts/${id}/`)
+      .then((response) => {
+        const { title, content, image } = response.data;
+        setPostData({ title, content, image });
+      })
+      .catch((err) => {
+        console.error("Error fetching post:", err);
+        history.push("/");
+      });
+  }, [id, history]);
 
   const handleChange = (event) => {
     const { name, value, files } = event.target;
@@ -70,7 +87,10 @@ function UpdatePostPage() {
             custom
           />
         </Form.Group>
-        <Button type="submit">Update</Button>
+
+        <Button type="submit" disabled>
+          Update
+        </Button>
       </Form>
     </Container>
   );

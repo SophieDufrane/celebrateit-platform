@@ -6,8 +6,8 @@ import Post from "../../components/Post";
 
 const PostDetailPage = ({ match }) => {
   const { id } = match.params;
-  const [post, setPost] = useState(null);
   const history = useHistory();
+  const [post, setPost] = useState(null);
 
   const handleDelete = async () => {
     try {
