@@ -89,16 +89,12 @@ function UpdatePostPage() {
 
         <Form.Group controlId="image">
           <Form.Label>Change Image (optional)</Form.Label>
-          <Form.File
-            name="image"
-            onChange={handleChange}
-            label={
-              typeof image === "string"
-                ? "Current image will remain"
-                : image?.name
-            }
-            custom
-          />
+          <Form.Control type="file" name="image" onChange={handleChange} />
+          {typeof image === "string" && (
+            <Form.Text className="text-muted">
+              Current image: {image.split("/").pop()}
+            </Form.Text>
+          )}
         </Form.Group>
 
         <Button type="submit">Update</Button>
