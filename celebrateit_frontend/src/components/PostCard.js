@@ -15,7 +15,9 @@ const PostCard = (props) => {
   } = props;
 
   const truncatedContent =
-    content.length > 150 ? content.slice(0, 150) + "..." : content;
+    content.length > 150
+      ? content.slice(0, content.slice(0, 150).lastIndexOf(" ")) + "..."
+      : content;
 
   return (
     <Card className="mb-3">
@@ -46,6 +48,7 @@ const PostCard = (props) => {
           <Card.Title>{title}</Card.Title>
           {/* Content */}
           <Card.Text>{truncatedContent}</Card.Text>
+          {content.length > 150 && <div>Read more…</div>}
           {/* Image */}
           {image && <Card.Img variant="top" src={image} alt={title} />}
         </Link>
