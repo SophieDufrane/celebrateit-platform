@@ -71,9 +71,15 @@ function PostDetailPage() {
         comments_count={post.comments_count}
       >
         {post.is_user && (
-          <div className="mt-3">
+          <div className="d-flex gap-2 mt-3">
+            <Button
+              variant="secondary"
+              onClick={() => history.push(`/posts/${post.id}/edit`)}
+            >
+              Edit
+            </Button>
             <Button variant="danger" onClick={handleDelete}>
-              Delete Post
+              Delete
             </Button>
           </div>
         )}
