@@ -11,6 +11,7 @@ function UpdatePostPage() {
     content: "",
     image: null,
   });
+  const [removeImage, setRemoveImage] = useState(false);
 
   const { title, content, image } = postData;
 
@@ -48,7 +49,9 @@ function UpdatePostPage() {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
-    if (image && typeof image !== "string") {
+    if (removeImage) {
+      formData.append("image", ""); // sends an empty value to clear it
+    } else if (image && typeof image !== "string") {
       formData.append("image", image);
     }
 
@@ -91,9 +94,18 @@ function UpdatePostPage() {
           <Form.Label>Change Image (optional)</Form.Label>
           <Form.Control type="file" name="image" onChange={handleChange} />
           {typeof image === "string" && (
-            <Form.Text className="text-muted">
-              Current image: {image.split("/").pop()}
-            </Form.Text>
+            <>
+              <Form.Text className="text-muted">
+                Current image: {image.split("/").pop()}
+              </Form.Text>
+              <Form.Check
+                type="checkbox"
+                label="Remove image"
+                checked={removeImage}
+                onChange={(e) => setRemoveImage(e.target.checked)}
+                className="mt-2"
+              />
+            </>
           )}
         </Form.Group>
 
