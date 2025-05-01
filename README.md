@@ -262,49 +262,35 @@ Before starting frontend development, a complete architecture plan was created t
 
 #### Pages Overview
 
-| Page                  | Purpose                                                                 |
-| :-------------------- | :---------------------------------------------------------------------- |
-| LoggedInHomePage      | Displays Recognition/Nomination feed and People Sidebar                 |
-| PostDetailPage        | Shows full recognition story with likes and comments                    |
-| NominationDetailPage  | Shows full nomination details with likes and comments                   |
-| CreatePage            | Menu for users to choose between creating a Recognition or a Nomination |
-| CreateRecognitionPage | Form to create a new Recognition Story (with optional image upload)     |
-| CreateNominationPage  | Form to create a new Nomination (with nominee, title, content, and tag) |
-| ProfilePage           | Displays user's profile information, Recognitions, and Nominations      |
+| Page                  | Purpose                                                              |
+| :-------------------- | :------------------------------------------------------------------- |
+| MenuPage or LoginPage | Form to Login or Register                                            |
+| LoggedInHomePage      | Displays Recognition and Nomination feed alongside People Sidebar    |
+| PostDetailPage        | Shows full recognition story with likes and comments                 |
+| CreatePostPage        | Form to create a recognition Story (title, content, optionnal image) |
+| UpdatePostPage        | Form for updating an existing recognition story                      |
+| NominationDetailPage  | Shows full nomination details with likes and comments                |
+| CreateNominationPage  | Form to create a new nomination (nominee, title, content, and tag)   |
+| UpdateNominationPage  | Form for updating an existing nomination                             |
+| ProfilePage           | Displays user profile, recognitions, and nominations                 |
 
 ---
 
 #### Major Containers and Components
 
-| Container             | Purpose                                                           |
-| :-------------------- | :---------------------------------------------------------------- |
-| LoggedInHomePage      | Fetch and display feed and people list                            |
-| PostDetailPage        | Fetch and display single recognition post details                 |
-| NominationDetailPage  | Fetch and display single nomination details                       |
-| CreateRecognitionPage | Handle the form for a new recognition                             |
-| CreateNominationPage  | Handle the form for a new nomination                              |
-| ProfilePage           | Fetch and display user information, recognitions, and nominations |
+| Container             | Purpose                                                              |
+| :-------------------- | :------------------------------------------------------------------- |
+| LoggedInHomePage      | Fetches and display feed and people list                             |
+| PostDetailPage        | Fetches and display single recognition post                          |
+| NominationDetailPage  | Fetches and display single nomination                                |
+| CreateRecognitionPage | Handles the form for a new recognition                               |
+| CreateNominationPage  | Handles the form for a new nomination                                |
+| ProfilePage           | Fetches and displays user information, recognitions, and nominations |
 
-| Component         | Purpose                                                                  |
-| :---------------- | :----------------------------------------------------------------------- |
-| Navbar            | Navigation bar (Home, Create, Profile, Logout)                           |
-| FeedSection       | Displays Recognition or Nomination feed based on toggle                  |
-| FeedToggleButtons | Allows toggling between Recognition and Nomination feed                  |
-| FeedList          | Displays list of PostCard or NominationCard components                   |
-| PostCard          | Displays a single Recognition story preview                              |
-| NominationCard    | Displays a single Nomination preview                                     |
-| LikeButton        | Like/unlike a Recognition or Nomination                                  |
-| CommentCounter    | Displays the number of comments on a post or nomination                  |
-| CommentSection    | Displays comments and comment form for posts/nominations                 |
-| CommentForm       | Form to submit a new comment                                             |
-| CommentCard       | Displays a single comment                                                |
-| PeopleSidebar     | Displays search field and list of people                                 |
-| PersonCard        | Displays an individual person's name and icon                            |
-| NominateButton    | Opens Nomination form prefilled with selected nominee                    |
-| CreateOptions     | Display choice between creating Recognition or Nomination                |
-| RecognitionForm   | Form fields to create a new Recognition (Title, Content, optional Image) |
-| NominationForm    | Form fields to create a new Nomination (Nominee, Title, Content, Tag)    |
-| ProfileHeader     | Displays user's Profile Image, Username, Department, and Bio             |
+| Component | Purpose                                                     |
+| :-------- | :---------------------------------------------------------- |
+| Navbar    | Navigation bar (Home, Recognize, Nominate, Profile, Logout) |
+| Post      |                                                             |
 
 ---
 
@@ -313,33 +299,33 @@ Before starting frontend development, a complete architecture plan was created t
 ```
 Navbar (component)
 │
-├── Logo/Brand (CelebrateIt link to "/")
+├── Brand (CelebrateIt link to "/")
 ├── Home Link (to "/")
-├── Create Link (to "/create")
+├── Recognize Link (to "posts/create")
+├── Nominate Link (to "nominations/create")
 ├── Profile Link (to "/profiles/:id" - dynamic user ID)
-└── Logout Button (logs out and redirects to login page "/login")
+└── Logout Link (logs out and redirects to login page "/login")
 
 
 LoggedInHomePage (container)
 │
 ├── Navbar (component)
 │    ├── Home Link
-│    ├── Create Link
+│    ├── Create Links
 │    ├── Profile Link
 │    └── Logout Link
 │
-├── MainContentArea (container)
-│    ├── FeedSection (container)
-│    │    ├── FeedToggleButtons (component)
-│    │    ├── FeedList (component)
-│    │         ├── PostCard (component - for recognition posts)
-│    │         │    ├── LikeButton (component)
-│    │         │    └── CommentCounter (component)
-│    │         └── NominationCard (component - for nominations)
-│    │              ├── LikeButton (component)
-│    │              └── CommentCounter (component)
-│    │
-│    └── PeopleSidebar (container)
+│── FeedSection (container)
+│   ├── FeedToggleButtons (component)
+│   ├── FeedList (component)
+│   |    ├── PostCard (component - for recognition posts)
+│   |    │    ├── LikeButton (component)
+│   |    │    └── CommentCounter (component)
+│   |    └── NominationCard (component - for nominations)
+│   │              ├── LikeButton (component)
+│   │              └── CommentCounter (component)
+│   │
+│   └── PeopleSidebar (container)
 │         ├── SearchField (component)
 │         └── PeopleList (component)
 │             ├── PersonCard (component)

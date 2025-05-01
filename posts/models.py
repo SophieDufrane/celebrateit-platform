@@ -29,8 +29,8 @@ class Post(models.Model):
     )
     image = models.ImageField(
         upload_to='images/',
-        default='../default_post_rxcscg',
         blank=True,
+        null=True,
     )
 
     class Meta:
