@@ -1,19 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, useLocation } from "react-router-dom";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
-import { Container, Button } from "react-bootstrap";
-import { useLocation } from "react-router-dom";
-import Alert from "react-bootstrap/Alert";
+import { Container, Button, Alert } from "react-bootstrap";
 import Post from "../../components/Post";
 
 function PostDetailPage() {
   const { id } = useParams();
   const history = useHistory();
   const location = useLocation();
+
+  const [post, setPost] = useState(null);
+
   const isCreated =
     new URLSearchParams(location.search).get("created") === "true";
 
-  const [post, setPost] = useState(null);
+  // Local state to control whether the success alert should be shown
+  const [showSuccess, setShowSuccess] = useState(isCreated);
+
+  // Automatically hide the alert after 4 seconds
+  useEffect(() => {
+    if (showSuccess) {
+      const timer = setTimeout(() => setShowSuccess(false), 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [showSuccess]);
 
   const handleDelete = async () => {
     try {
@@ -41,12 +51,15 @@ function PostDetailPage() {
 
   return (
     <Container>
-      {isCreated && (
-        <Alert variant="success" dismissible>
+      {showSuccess && (
+        <Alert
+          variant="success"
+          onClose={() => setShowSuccess(false)}
+          dismissible
+        >
           Your recognition has been published!
         </Alert>
       )}
-
       <Post
         id={post.id}
         title={post.title}
