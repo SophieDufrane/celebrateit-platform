@@ -1,10 +1,8 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
 
 const Post = (props) => {
   const {
-    id,
     title,
     content,
     image,
@@ -34,19 +32,12 @@ const Post = (props) => {
           {/* Date */}
           <small className="text-muted">{created_at}</small>
         </div>
-
-        {/* Clickable area */}
-        <Link
-          to={`/posts/${id}`}
-          style={{ textDecoration: "none", color: "inherit" }}
-        >
-          {/* Title */}
-          <Card.Title>{title}</Card.Title>
-          {/* Content */}
-          <Card.Text>{content}</Card.Text>
-          {/* Image */}
-          {image && <Card.Img variant="top" src={image} alt={title} />}
-        </Link>
+        {/* Title */}
+        <Card.Title>{title}</Card.Title>
+        {/* Content */}
+        <Card.Text>{content}</Card.Text>
+        {/* Image */}
+        {image && <Card.Img variant="top" src={image} alt={title} />}
         {/* Action buttons (Delete/Edit etc.) */}
         {children}
       </Card.Body>
