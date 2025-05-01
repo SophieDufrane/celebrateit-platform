@@ -48,6 +48,10 @@ function CreatePostPage() {
     }
   };
 
+  const handleCancel = () => {
+    history.push("/");
+  };
+
   return (
     <Container>
       <h1>Create a Recognition Story</h1>
@@ -77,14 +81,17 @@ function CreatePostPage() {
 
         <Form.Group controlId="image">
           <Form.Label>Image (optional)</Form.Label>
-          <Form.File
-            name="image"
-            onChange={handleChange}
-            label={image?.name || "Choose an image"}
-            custom
-          />
+          <Form.Control type="file" name="image" onChange={handleChange} />
         </Form.Group>
-        <Button type="submit">Create</Button>
+
+        <div className="d-flex gap-2 mt-3">
+          <Button type="submit" variant="primary">
+            Create
+          </Button>
+          <Button variant="outline-secondary" onClick={handleCancel}>
+            Cancel
+          </Button>
+        </div>
       </Form>
     </Container>
   );
