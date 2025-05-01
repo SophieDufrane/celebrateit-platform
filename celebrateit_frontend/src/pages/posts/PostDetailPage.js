@@ -11,19 +11,28 @@ function PostDetailPage() {
 
   const [post, setPost] = useState(null);
 
-  const isCreated =
-    new URLSearchParams(location.search).get("created") === "true";
+  // Check URL for post or update to show success message
+  const searchParams = new URLSearchParams(location.search);
+  const isCreated = searchParams.get("created") === "true";
+  const isUpdated = searchParams.get("updated") === "true";
 
-  // Local state to control whether the success alert should be shown
-  const [showSuccess, setShowSuccess] = useState(isCreated);
+  const showSuccess = isCreated || isUpdated;
+  const successMessage = isCreated
+    ? "Your recognition has been published!"
+    : isUpdated
+    ? "Your recognition has been updated!"
+    : "";
 
-  // Automatically hide the alert after 4 seconds
   useEffect(() => {
     if (showSuccess) {
-      const timer = setTimeout(() => setShowSuccess(false), 4000);
+      const timer = setTimeout(() => {
+        // remove the param from the URL after alert disappears
+        const cleanUrl = location.pathname;
+        history.replace(cleanUrl); // clean up ?updated=true or ?created=true
+      }, 4000);
       return () => clearTimeout(timer);
     }
-  }, [showSuccess]);
+  }, [showSuccess, history, location.pathname]);
 
   const handleDelete = async () => {
     try {
@@ -52,14 +61,11 @@ function PostDetailPage() {
   return (
     <Container>
       {showSuccess && (
-        <Alert
-          variant="success"
-          onClose={() => setShowSuccess(false)}
-          dismissible
-        >
-          Your recognition has been published!
+        <Alert variant="success" dismissible>
+          {successMessage}
         </Alert>
       )}
+
       <Post
         id={post.id}
         title={post.title}

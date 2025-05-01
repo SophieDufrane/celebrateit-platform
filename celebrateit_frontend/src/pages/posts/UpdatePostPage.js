@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
-import { useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
+import { Container, Button, Form } from "react-bootstrap";
 
 function UpdatePostPage() {
   const { id } = useParams();
@@ -57,7 +54,7 @@ function UpdatePostPage() {
 
     try {
       await axiosReq.patch(`/posts/${id}/`, formData);
-      history.push(`/posts/${id}`);
+      history.push(`/posts/${id}?updated=true`);
     } catch (err) {
       console.error("Submission error:", err.response?.data);
     }
