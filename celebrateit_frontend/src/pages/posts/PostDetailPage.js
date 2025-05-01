@@ -28,7 +28,7 @@ function PostDetailPage() {
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/posts/${post.id}/`);
-      history.push("/");
+      history.push("/?deleted=true");
     } catch (err) {
       // console.log(err);
     }

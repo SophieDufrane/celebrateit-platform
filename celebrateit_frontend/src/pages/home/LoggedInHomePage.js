@@ -1,10 +1,24 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
-import { Button, Container, Row, Col, ListGroup } from "react-bootstrap";
+import { Button, Container, Row, Col, ListGroup, Alert } from "react-bootstrap";
 import Post from "../../components/Post";
 import styles from "../../styles/LoggedInHomePage.module.css";
 
 const LoggedInHomePage = () => {
+  const location = useLocation();
+  const isDeleted =
+    new URLSearchParams(location.search).get("deleted") === "true";
+  const [showDeleted, setShowDeleted] = useState(isDeleted);
+
+  // Automatically hide the alert after 4 seconds
+  useEffect(() => {
+    if (showDeleted) {
+      const timer = setTimeout(() => setShowDeleted(false), 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [showDeleted]);
+
   const [posts, setPosts] = useState([]);
   const [hasLoaded, setHasLoaded] = useState(false);
 
@@ -23,6 +37,16 @@ const LoggedInHomePage = () => {
 
   return (
     <Container>
+      {showDeleted && (
+        <Alert
+          variant="success"
+          onClose={() => setShowDeleted(false)}
+          dismissible
+        >
+          The post has been deleted successfully.
+        </Alert>
+      )}
+
       <Row>
         {/* Left Column - Feed */}
         <Col md={8}>
