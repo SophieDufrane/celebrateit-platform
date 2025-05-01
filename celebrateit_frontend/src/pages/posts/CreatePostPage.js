@@ -41,7 +41,7 @@ function CreatePostPage() {
 
     try {
       const { data } = await axiosReq.post("/posts/", formData);
-      history.push(`/posts/${data.id}`);
+      history.push(`/posts/${data.id}?created=true`);
     } catch (err) {
       console.error(err.response?.data);
       // optional: setErrors(err.response?.data);

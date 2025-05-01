@@ -2,11 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import { Container, Button } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
+import Alert from "react-bootstrap/Alert";
 import Post from "../../components/Post";
 
 function PostDetailPage() {
   const { id } = useParams();
   const history = useHistory();
+  const location = useLocation();
+  const isCreated =
+    new URLSearchParams(location.search).get("created") === "true";
+
   const [post, setPost] = useState(null);
 
   const handleDelete = async () => {
@@ -35,6 +41,12 @@ function PostDetailPage() {
 
   return (
     <Container>
+      {isCreated && (
+        <Alert variant="success" dismissible>
+          Your recognition has been published!
+        </Alert>
+      )}
+
       <Post
         id={post.id}
         title={post.title}
