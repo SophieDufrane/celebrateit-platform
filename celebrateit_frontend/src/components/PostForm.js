@@ -1,7 +1,14 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 
-const PostForm = ({ title, content, image, handleChange, handleSubmit }) => {
+const PostForm = ({
+  title,
+  content,
+  image,
+  handleChange,
+  handleSubmit,
+  children,
+}) => {
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId="title">
@@ -31,6 +38,8 @@ const PostForm = ({ title, content, image, handleChange, handleSubmit }) => {
         <Form.Label>Image (optional)</Form.Label>
         <Form.Control type="file" name="image" onChange={handleChange} />
       </Form.Group>
+
+      {children}
     </Form>
   );
 };

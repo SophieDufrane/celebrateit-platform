@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import PostForm from "../../components/PostForm";
@@ -61,7 +61,16 @@ function CreatePostPage() {
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         handleCancel={handleCancel}
-      />
+      >
+        <div className="d-flex gap-2 mt-3">
+          <Button type="submit" variant="primary">
+            Create
+          </Button>
+          <Button variant="outline-secondary" onClick={handleCancel}>
+            Cancel
+          </Button>
+        </div>
+      </PostForm>
     </Container>
   );
 }
