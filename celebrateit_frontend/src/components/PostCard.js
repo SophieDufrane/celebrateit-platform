@@ -12,8 +12,10 @@ const PostCard = (props) => {
     created_at,
     likes_count,
     comments_count,
-    children,
   } = props;
+
+  const truncatedContent =
+    content.length > 150 ? content.slice(0, 150) + "..." : content;
 
   return (
     <Card className="mb-3">
@@ -43,12 +45,10 @@ const PostCard = (props) => {
           {/* Title */}
           <Card.Title>{title}</Card.Title>
           {/* Content */}
-          <Card.Text>{content}</Card.Text>
+          <Card.Text>{truncatedContent}</Card.Text>
           {/* Image */}
           {image && <Card.Img variant="top" src={image} alt={title} />}
         </Link>
-        {/* Action buttons (Delete/Edit etc.) */}
-        {children}
       </Card.Body>
 
       {/* Like and Comment icons */}
