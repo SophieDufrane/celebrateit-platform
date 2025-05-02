@@ -3,6 +3,7 @@ import { Card } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import MoreDropdown from "./MoreDropdown";
 import { axiosReq } from "../api/axiosDefaults";
+import styles from "../styles/PostCard.module.css";
 
 const PostCard = (props) => {
   const {
@@ -43,19 +44,12 @@ const PostCard = (props) => {
         <div className="d-flex align-items-center justify-content-between mb-3">
           {/* Left: Icon + Author name */}
           <div className="d-flex align-items-center">
-            <div
-              style={{
-                width: "40px",
-                height: "40px",
-                borderRadius: "50%",
-                backgroundColor: "#ccc",
-              }}
-            ></div>
-            <strong className="ml-2 flex-grow-1">{display_name}</strong>
+            <div className={styles.AvatarPlaceholder} />
+            <strong className="ml-2">{display_name}</strong>
           </div>
 
           {/* Right: Date + Dropdown */}
-          <div className="d-flex align-items-center">
+          <div className="text-right d-flex flex-column align-items-end">
             <small className="text-muted">{created_at}</small>
             {is_user && (
               <MoreDropdown
