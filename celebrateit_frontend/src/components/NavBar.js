@@ -2,11 +2,24 @@ import React from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
-import { useCurrentUser } from "../contexts/CurrentUserContext";
+import {
+  useCurrentUser,
+  useSetCurrentUser,
+} from "../contexts/CurrentUserContext";
+import axios from "axios";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
-  const displayName = currentUser?.first_name || currentUser?.username;
+  const setCurrentUser = useSetCurrentUser();
+
+  const handleSignOut = async () => {
+    try {
+      await axios.post("dj-rest-auth/logout/");
+      setCurrentUser(null);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <Navbar className={styles.Navbar} expand="md" fixed="top">
@@ -36,7 +49,7 @@ const NavBar = () => {
                 >
                   Profile
                 </NavLink>
-                <Nav.Link as={NavLink} to="/logout">
+                <Nav.Link as={NavLink} to="/" onClick={handleSignOut}>
                   Logout
                 </Nav.Link>
               </>
