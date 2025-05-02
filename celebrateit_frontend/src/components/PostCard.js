@@ -1,6 +1,7 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import MoreDropdown from "./MoreDropdown";
 
 const PostCard = (props) => {
   const {
@@ -12,6 +13,7 @@ const PostCard = (props) => {
     created_at,
     likes_count,
     comments_count,
+    is_user,
   } = props;
 
   const truncatedContent =
@@ -19,27 +21,35 @@ const PostCard = (props) => {
       ? content.slice(0, content.slice(0, 150).lastIndexOf(" ")) + "..."
       : content;
 
+  const history = useHistory();
+
   return (
     <Card className="mb-3">
       <Card.Body>
         <div className="d-flex align-items-center justify-content-between mb-3">
-          {/* Icon Placeholder */}
-          <div
-            style={{
-              width: "40px",
-              height: "40px",
-              borderRadius: "50%",
-              backgroundColor: "#ccc",
-            }}
-          ></div>
+          {/* Left: Icon + Author name */}
+          <div className="d-flex align-items-center">
+            <div
+              style={{
+                width: "40px",
+                height: "40px",
+                borderRadius: "50%",
+                backgroundColor: "#ccc",
+              }}
+            ></div>
+            <strong className="ml-2 flex-grow-1">{display_name}</strong>
+          </div>
 
-          {/* Author name */}
-          <strong className="ml-2 flex-grow-1">{display_name}</strong>
-          {/* Date */}
-          <small className="text-muted">{created_at}</small>
+          {/* Right: Date + Dropdown */}
+          <div className="d-flex align-items-center">
+            <small className="text-muted">{created_at}</small>
+            {is_user && (
+              <MoreDropdown
+                handleEdit={() => history.push(`/posts/${id}/edit`)}
+              />
+            )}
+          </div>
         </div>
-
-        {/* Clickable area */}
         <Link
           to={`/posts/${id}`}
           style={{ textDecoration: "none", color: "inherit" }}
