@@ -11,6 +11,16 @@ const LoggedInHomePage = () => {
     new URLSearchParams(location.search).get("deleted") === "true";
   const [showDeleted, setShowDeleted] = useState(isDeleted);
 
+  const [posts, setPosts] = useState([]);
+  const [hasLoaded, setHasLoaded] = useState(false);
+
+  // Handle URL query param to trigger alert
+  useEffect(() => {
+    const isDeletedParam =
+      new URLSearchParams(location.search).get("deleted") === "true";
+    setShowDeleted(isDeletedParam);
+  }, [location.search]);
+
   // Automatically hide the alert after 4 seconds
   useEffect(() => {
     if (showDeleted) {
@@ -19,20 +29,13 @@ const LoggedInHomePage = () => {
     }
   }, [showDeleted]);
 
-  const [posts, setPosts] = useState([]);
-  const [hasLoaded, setHasLoaded] = useState(false);
-
+  // Fetch data
   useEffect(() => {
     axiosReq
       .get("/posts/")
-      .then((response) => {
-        console.log("API fetch success:", response.data);
-        setPosts(response.data.results);
-        setHasLoaded(true);
-      })
-      .catch((error) => {
-        console.error("API fetch error:", error);
-      });
+      .then((res) => setPosts(res.data.results))
+      .catch((err) => console.error(err))
+      .finally(() => setHasLoaded(true));
   }, []);
 
   return (
@@ -62,7 +65,17 @@ const LoggedInHomePage = () => {
 
           {hasLoaded ? (
             posts.length ? (
-              posts.map((post) => <PostCard key={post.id} {...post} />)
+              posts.map((post) => (
+                <PostCard
+                  key={post.id}
+                  {...post}
+                  onPostDelete={(deletedId) =>
+                    setPosts((prevPosts) =>
+                      prevPosts.filter((p) => p.id !== deletedId)
+                    )
+                  }
+                />
+              ))
             ) : (
               <div>No posts yet</div> // If loaded but empty
             )

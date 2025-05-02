@@ -15,6 +15,7 @@ const PostCard = (props) => {
     likes_count,
     comments_count,
     is_user,
+    onPostDelete,
   } = props;
 
   const truncatedContent =
@@ -27,6 +28,9 @@ const PostCard = (props) => {
   const handleDelete = async () => {
     try {
       await axiosReq.delete(`/posts/${id}/`);
+      if (onPostDelete) {
+        onPostDelete(id);
+      }
       history.push("/?deleted=true");
     } catch (err) {
       console.error("Delete failed:", err);
