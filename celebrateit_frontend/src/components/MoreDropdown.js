@@ -1,25 +1,30 @@
 import React from "react";
 import { Dropdown } from "react-bootstrap";
+import styles from "../styles/MoreDropdown.module.css";
 
-const MoreDropdown = ({ handleEdit }) => {
+const ThreeDots = React.forwardRef(({ onClick }, ref) => (
+  <i
+    className={`fas fa-ellipsis-v ${styles.DropdownToggle}`}
+    ref={ref}
+    onClick={(e) => {
+      e.preventDefault();
+      onClick(e);
+    }}
+    role="button"
+    aria-label="options"
+  />
+));
+
+const MoreDropdown = ({ handleEdit, handleDelete }) => {
   return (
     <Dropdown align="end">
-      <Dropdown.Toggle
-        as="button"
-        style={{
-          background: "none",
-          border: "none",
-          boxShadow: "none",
-          padding: 0,
-          color: "#333",
-        }}
-        size="sm"
-      >
-        <i className="fas fa-ellipsis-v" />
-      </Dropdown.Toggle>
+      <Dropdown.Toggle as={ThreeDots} />
 
       <Dropdown.Menu>
-        <Dropdown.Item onClick={handleEdit}>Edit</Dropdown.Item>
+        {handleEdit && <Dropdown.Item onClick={handleEdit}>Edit</Dropdown.Item>}
+        {handleDelete && (
+          <Dropdown.Item onClick={handleDelete}>Delete</Dropdown.Item>
+        )}
       </Dropdown.Menu>
     </Dropdown>
   );

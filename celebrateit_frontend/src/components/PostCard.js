@@ -2,6 +2,7 @@ import React from "react";
 import { Card } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import MoreDropdown from "./MoreDropdown";
+import { axiosReq } from "../api/axiosDefaults";
 
 const PostCard = (props) => {
   const {
@@ -22,6 +23,15 @@ const PostCard = (props) => {
       : content;
 
   const history = useHistory();
+
+  const handleDelete = async () => {
+    try {
+      await axiosReq.delete(`/posts/${id}/`);
+      history.push("/?deleted=true");
+    } catch (err) {
+      console.error("Delete failed:", err);
+    }
+  };
 
   return (
     <Card className="mb-3">
@@ -46,6 +56,7 @@ const PostCard = (props) => {
             {is_user && (
               <MoreDropdown
                 handleEdit={() => history.push(`/posts/${id}/edit`)}
+                handleDelete={handleDelete}
               />
             )}
           </div>
