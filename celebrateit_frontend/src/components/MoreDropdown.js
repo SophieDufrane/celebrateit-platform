@@ -21,9 +21,17 @@ const MoreDropdown = ({ handleEdit, handleDelete }) => {
       <Dropdown.Toggle as={ThreeDots} />
 
       <Dropdown.Menu>
-        {handleEdit && <Dropdown.Item onClick={handleEdit}>Edit</Dropdown.Item>}
+        {handleEdit && (
+          <Dropdown.Item className={styles.DropdownItem} onClick={handleEdit}>
+            <i className="fas fa-edit" />
+            Edit
+          </Dropdown.Item>
+        )}
         {handleDelete && (
-          <Dropdown.Item onClick={handleDelete}>Delete</Dropdown.Item>
+          <Dropdown.Item className={styles.DropdownItem} onClick={handleDelete}>
+            <i className="fas fa-trash-alt" />
+            Delete
+          </Dropdown.Item>
         )}
       </Dropdown.Menu>
     </Dropdown>

@@ -1,0 +1,37 @@
+.DropdownToggle {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 12px;
+  margin-left: 8px;
+  color: #666;
+  cursor: pointer;
+}
+
+.DropdownToggle:hover,
+.DropdownToggle:focus {
+  color: #333;
+  background: none;
+}
+
+.DropdownItem {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  color: #333;
+  white-space: nowrap;
+  min-width: 120px;
+  max-width: 160px;
+}
+
+.DropdownItem:hover,
+.DropdownItem:focus {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.DropdownItem i {
+  margin-right: 8px;
+}
