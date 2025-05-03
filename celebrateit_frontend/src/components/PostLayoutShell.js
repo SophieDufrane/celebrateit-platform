@@ -21,21 +21,26 @@ const PostLayoutShell = (props) => {
           {/* Left: Icon + Author name */}
           <div className="d-flex align-items-center">
             <div className={styles.AvatarPlaceholder} />
-            <strong className="ms-2">{display_name}</strong>
+            <strong className="ml-2">{display_name}</strong>
           </div>
 
           {/* Right: Date */}
           <div className="d-flex align-items-center">
-            <small className="text-muted">{created_at}</small>
+            <small className="text-muted me-2">{created_at}</small>
+            {props.renderDropdown}
           </div>
         </div>
 
-        {/* Title and Content */}
-        <h5 className={styles.PostTitle}>{title}</h5>
-        <p className={styles.PostContent}>{content}</p>
-
-        {/* Image */}
-        {image && <Card.Img variant="top" src={image} alt={title} />}
+        {/* Body content: use children if provided */}
+        {props.children ? (
+          props.children
+        ) : (
+          <>
+            <h5 className={styles.PostTitle}>{title}</h5>
+            <p className={styles.PostContent}>{content}</p>
+            {image && <Card.Img variant="top" src={image} alt={title} />}
+          </>
+        )}
       </Card.Body>
 
       {/* Like and Comment icons */}
