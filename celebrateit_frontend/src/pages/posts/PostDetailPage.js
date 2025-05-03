@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory, useLocation } from "react-router-dom";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
-import { Container, Button, Alert } from "react-bootstrap";
-import Post from "../../components/Post";
+import { Container, Alert } from "react-bootstrap";
+import PostLayoutShell from "../../components/PostLayoutShell";
+import MoreDropdown from "../../components/MoreDropdown";
 
 function PostDetailPage() {
   const { id } = useParams();
@@ -10,6 +11,8 @@ function PostDetailPage() {
   const location = useLocation();
 
   const [post, setPost] = useState(null);
+
+  let dropdownMenu = null;
 
   // Check URL for post or update to show success message
   const searchParams = new URLSearchParams(location.search);
@@ -23,6 +26,15 @@ function PostDetailPage() {
     ? "Your recognition has been updated!"
     : "";
 
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/posts/${post.id}/`);
+      history.push("/?deleted=true");
+    } catch (err) {
+      // console.log(err);
+    }
+  };
+
   useEffect(() => {
     if (showSuccess) {
       const timer = setTimeout(() => {
@@ -33,15 +45,6 @@ function PostDetailPage() {
       return () => clearTimeout(timer);
     }
   }, [showSuccess, history, location.pathname]);
-
-  const handleDelete = async () => {
-    try {
-      await axiosRes.delete(`/posts/${post.id}/`);
-      history.push("/?deleted=true");
-    } catch (err) {
-      // console.log(err);
-    }
-  };
 
   useEffect(() => {
     axiosReq
@@ -58,6 +61,13 @@ function PostDetailPage() {
     return <Container>Loading...</Container>;
   }
 
+  dropdownMenu = post.is_user ? (
+    <MoreDropdown
+      handleEdit={() => history.push(`/posts/${post.id}/edit`)}
+      handleDelete={handleDelete}
+    />
+  ) : null;
+
   return (
     <Container>
       {showSuccess && (
@@ -66,8 +76,7 @@ function PostDetailPage() {
         </Alert>
       )}
 
-      <Post
-        id={post.id}
+      <PostLayoutShell
         title={post.title}
         content={post.content}
         image={post.image}
@@ -75,21 +84,8 @@ function PostDetailPage() {
         created_at={post.created_at}
         likes_count={post.likes_count}
         comments_count={post.comments_count}
-      >
-        {post.is_user && (
-          <div className="d-flex gap-2 mt-3">
-            <Button
-              variant="secondary"
-              onClick={() => history.push(`/posts/${post.id}/edit`)}
-            >
-              Edit
-            </Button>
-            <Button variant="danger" onClick={handleDelete}>
-              Delete
-            </Button>
-          </div>
-        )}
-      </Post>
+        renderDropdown={dropdownMenu}
+      />
     </Container>
   );
 }

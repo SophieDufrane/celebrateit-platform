@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
-import { Container, Button, Form } from "react-bootstrap";
+import { Container, Form } from "react-bootstrap";
 import PostForm from "../../components/PostForm";
 import formStyles from "../../styles/PostForm.module.css";
 import FormFooter from "../../components/FormFooter";
