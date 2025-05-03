@@ -4,7 +4,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { Container, Button, Form } from "react-bootstrap";
 import PostForm from "../../components/PostForm";
 import formStyles from "../../styles/PostForm.module.css";
-import sharedStyles from "../../App.module.css";
+import FormFooter from "../../components/FormFooter";
 
 function UpdatePostPage() {
   const { id } = useParams();
@@ -90,18 +90,11 @@ function UpdatePostPage() {
           </>
         )}
 
-        <div className={formStyles.FormButtonRow}>
-          <Button type="submit" className={sharedStyles.YellowButton}>
-            Update
-          </Button>
-          <Button
-            className={sharedStyles.BlueButton}
-            variant="outline-secondary"
-            onClick={() => history.push(`/posts/${id}`)}
-          >
-            Cancel
-          </Button>
-        </div>
+        {/* Shared button footer */}
+        <FormFooter
+          submitText="Update"
+          onCancel={() => history.push(`/posts/${id}`)}
+        />
       </PostForm>
     </Container>
   );

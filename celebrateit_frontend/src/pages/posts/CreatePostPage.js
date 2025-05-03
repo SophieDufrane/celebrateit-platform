@@ -3,6 +3,7 @@ import { Container, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import PostForm from "../../components/PostForm";
+import FormFooter from "../../components/FormFooter";
 
 function CreatePostPage() {
   const [postData, setPostData] = useState({
@@ -53,7 +54,6 @@ function CreatePostPage() {
 
   return (
     <Container>
-      <h1>Create a Recognition Story</h1>
       <PostForm
         title={title}
         content={content}
@@ -62,14 +62,8 @@ function CreatePostPage() {
         handleSubmit={handleSubmit}
         handleCancel={handleCancel}
       >
-        <div className="d-flex gap-2 mt-3">
-          <Button type="submit" variant="primary">
-            Create
-          </Button>
-          <Button variant="outline-secondary" onClick={handleCancel}>
-            Cancel
-          </Button>
-        </div>
+        {/* Shared button footer */}
+        <FormFooter submitText="Create" onCancel={handleCancel} />
       </PostForm>
     </Container>
   );
