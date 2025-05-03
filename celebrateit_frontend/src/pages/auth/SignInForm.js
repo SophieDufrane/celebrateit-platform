@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import axios from "axios";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import { Link, useHistory } from "react-router-dom";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
+import authStyles from "../../styles/AuthForm.module.css";
+import sharedStyles from "../../App.module.css";
 
 function SignInForm() {
   const setCurrentUser = useSetCurrentUser();
@@ -36,44 +36,57 @@ function SignInForm() {
   }
 
   return (
-    <Row className="my-4">
-      <Col className="p-4">
-        <Container>
-          <h1>Please sign in</h1>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="username">
-              <Form.Label className="d-none">Username</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Username"
-                name="username"
-                value={username}
-                onChange={handleChange}
-              />
-            </Form.Group>
+    <Container>
+      <h1 className="text-center">Please sign in</h1>
+      <img
+        src="/images/signin-illustration.png"
+        alt="Sign in illustration"
+        className={authStyles.AuthImage}
+      />
+      <Form onSubmit={handleSubmit} className={authStyles.FormWrapper}>
+        <Form.Group
+          controlId="username"
+          className={authStyles.FormGroupSpacing}
+        >
+          <Form.Label className="d-none">Username</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Username"
+            name="username"
+            value={username}
+            onChange={handleChange}
+          />
+        </Form.Group>
 
-            <Form.Group controlId="password">
-              <Form.Label className="d-none">Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                name="password"
-                value={password}
-                onChange={handleChange}
-              />
-            </Form.Group>
+        <Form.Group
+          controlId="password"
+          className={authStyles.FormGroupSpacing}
+        >
+          <Form.Label className="d-none">Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            name="password"
+            value={password}
+            onChange={handleChange}
+          />
+        </Form.Group>
 
-            <Button type="submit">Sign In</Button>
-          </Form>
-        </Container>
+        <Button
+          type="submit"
+          className={`${sharedStyles.YellowButton} ${authStyles.CenteredButton}`}
+        >
+          Sign In
+        </Button>
+      </Form>
 
-        <Container>
-          <Link to="/register">
-            Don't have an account? <span>Register now!</span>
-          </Link>
-        </Container>
-      </Col>
-    </Row>
+      <div className={authStyles.AuthLink}>
+        Don't have an account?
+        <Link to="/register" className={authStyles.AuthLinkHighlight}>
+          Register now!
+        </Link>
+      </div>
+    </Container>
   );
 }
 
