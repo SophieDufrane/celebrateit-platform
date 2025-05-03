@@ -3,6 +3,8 @@ import { useParams, useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import { Container, Button, Form } from "react-bootstrap";
 import PostForm from "../../components/PostForm";
+import formStyles from "../../styles/PostForm.module.css";
+import appStyles from "../../App.module.css";
 
 function UpdatePostPage() {
   const { id } = useParams();
@@ -66,7 +68,6 @@ function UpdatePostPage() {
 
   return (
     <Container>
-      <h1>Edit Post {id}</h1>
       <PostForm
         title={title}
         content={content}
@@ -76,9 +77,9 @@ function UpdatePostPage() {
       >
         {typeof image === "string" && (
           <>
-            <Form.Text className="text-muted">
+            <span className={formStyles.CurrentImage}>
               Current image: {image.split("/").pop()}
-            </Form.Text>
+            </span>
             <Form.Check
               type="checkbox"
               label="Remove image"
@@ -89,11 +90,12 @@ function UpdatePostPage() {
           </>
         )}
 
-        <div className="d-flex gap-2 mt-3">
-          <Button type="submit" variant="primary">
+        <div className={formStyles.FormButtonRow}>
+          <Button type="submit" className={appStyles.YellowButton}>
             Update
           </Button>
           <Button
+            className={appStyles.BlueButton}
             variant="outline-secondary"
             onClick={() => history.push(`/posts/${id}`)}
           >

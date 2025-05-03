@@ -1,0 +1,29 @@
+.FormWrapper {
+  border-radius: 5px;
+  overflow: hidden;
+  max-width: 700px;
+  margin: 0 auto;
+  border: 1px solid #e0e0e0;
+}
+
+.FormGroupSpacing {
+  margin: 1.5rem;
+}
+
+.CurrentImage {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: #6c757d;
+  display: block;
+}
+
+.RemoveImageCheckbox {
+  margin-top: 0.5rem;
+}
+
+.FormButtonRow {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  justify-content: flex-start;
+}

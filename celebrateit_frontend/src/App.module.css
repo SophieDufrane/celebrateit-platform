@@ -7,3 +7,25 @@
 .Main {
   padding-top: 80px;
 }
+
+.YellowButton {
+  background-color: #decd62;
+  color: #300e82;
+  border: #decd62;
+}
+
+.YellowButton:hover {
+  background-color: #300e82;
+  color: white;
+}
+
+.BlueButton {
+  background-color: #300e82;
+  color: white;
+  border: #300e82;
+}
+
+.BlueButton:hover {
+  background-color: #decd62;
+  color: #300e82;
+}
