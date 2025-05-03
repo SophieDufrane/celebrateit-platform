@@ -3,7 +3,8 @@ import { useLocation } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import { Button, Container, Row, Col, ListGroup, Alert } from "react-bootstrap";
 import PostCard from "../../components/PostCard";
-import styles from "../../styles/LoggedInHomePage.module.css";
+import feedStyles from "../../styles/LoggedInHomePage.module.css";
+import sharedStyles from "../../App.module.css";
 
 const LoggedInHomePage = () => {
   const location = useLocation();
@@ -53,13 +54,17 @@ const LoggedInHomePage = () => {
       <Row>
         {/* Left Column - Feed */}
         <Col md={8}>
-          <div className={styles.FeedContent}>
+          <div className={feedStyles.FeedContent}>
             {/* Feed Toggle Buttons */}
-            <div className={styles.FeedToggleButtons}>
-              <Button className={`${styles.FeedButton} ${styles.YellowButton}`}>
+            <div className={feedStyles.FeedToggleButtons}>
+              <Button
+                className={`${feedStyles.FeedButton} ${sharedStyles.YellowButton}`}
+              >
                 Recognition Stories
               </Button>
-              <Button className={`${styles.FeedButton} ${styles.BlueButton}`}>
+              <Button
+                className={`${feedStyles.FeedButton} ${sharedStyles.BlueButton}`}
+              >
                 Nominations
               </Button>
             </div>
@@ -87,7 +92,7 @@ const LoggedInHomePage = () => {
         </Col>
 
         {/* Right Column - Sidebar */}
-        <Col md={4} className={styles.PeopleSidebar}>
+        <Col md={4} className={feedStyles.PeopleSidebar}>
           {/* Search field placeholder */}
           <input
             type="text"
@@ -98,13 +103,13 @@ const LoggedInHomePage = () => {
 
           {/* People list placeholder */}
           <ListGroup>
-            <ListGroup.Item className={styles.PersonItem}>
+            <ListGroup.Item className={feedStyles.PersonItem}>
               Person 1
             </ListGroup.Item>
-            <ListGroup.Item className={styles.PersonItem}>
+            <ListGroup.Item className={feedStyles.PersonItem}>
               Person 2
             </ListGroup.Item>
-            <ListGroup.Item className={styles.PersonItem}>
+            <ListGroup.Item className={feedStyles.PersonItem}>
               Person 3
             </ListGroup.Item>
           </ListGroup>

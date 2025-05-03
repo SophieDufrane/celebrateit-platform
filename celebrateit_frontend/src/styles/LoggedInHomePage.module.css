@@ -19,26 +19,6 @@
   transition: all 0.3s ease;
 }
 
-.YellowButton {
-  background-color: #decd62;
-  color: #300e82;
-}
-
-.YellowButton:hover {
-  background-color: #300e82;
-  color: white;
-}
-
-.BlueButton {
-  background-color: #300e82;
-  color: white;
-}
-
-.BlueButton:hover {
-  background-color: #decd62;
-  color: #300e82;
-}
-
 .PostCard {
   margin-bottom: 1rem;
 }
