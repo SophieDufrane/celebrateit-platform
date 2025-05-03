@@ -53,35 +53,37 @@ const LoggedInHomePage = () => {
       <Row>
         {/* Left Column - Feed */}
         <Col md={8}>
-          {/* Feed Toggle Buttons */}
-          <div className={styles.FeedToggleButtons}>
-            <Button className={`${styles.FeedButton} ${styles.YellowButton}`}>
-              Recognition Stories
-            </Button>
-            <Button className={`${styles.FeedButton} ${styles.BlueButton}`}>
-              Nominations
-            </Button>
-          </div>
+          <div className={styles.FeedContent}>
+            {/* Feed Toggle Buttons */}
+            <div className={styles.FeedToggleButtons}>
+              <Button className={`${styles.FeedButton} ${styles.YellowButton}`}>
+                Recognition Stories
+              </Button>
+              <Button className={`${styles.FeedButton} ${styles.BlueButton}`}>
+                Nominations
+              </Button>
+            </div>
 
-          {hasLoaded ? (
-            posts.length ? (
-              posts.map((post) => (
-                <PostCard
-                  key={post.id}
-                  {...post}
-                  onPostDelete={(deletedId) =>
-                    setPosts((prevPosts) =>
-                      prevPosts.filter((p) => p.id !== deletedId)
-                    )
-                  }
-                />
-              ))
+            {hasLoaded ? (
+              posts.length ? (
+                posts.map((post) => (
+                  <PostCard
+                    key={post.id}
+                    {...post}
+                    onPostDelete={(deletedId) =>
+                      setPosts((prevPosts) =>
+                        prevPosts.filter((p) => p.id !== deletedId)
+                      )
+                    }
+                  />
+                ))
+              ) : (
+                <div>No posts yet</div> // If loaded but empty
+              )
             ) : (
-              <div>No posts yet</div> // If loaded but empty
-            )
-          ) : (
-            <div>Loading...</div> // While waiting
-          )}
+              <div>Loading...</div> // While waiting
+            )}
+          </div>
         </Col>
 
         {/* Right Column - Sidebar */}

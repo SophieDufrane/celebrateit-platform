@@ -39,7 +39,7 @@ const PostCard = (props) => {
   };
 
   return (
-    <Card className="mb-3">
+    <Card className={`mb-3 ${styles.CardWrapper}`}>
       <Card.Body>
         <div className="d-flex align-items-center justify-content-between mb-3">
           {/* Left: Icon + Author name */}
@@ -49,7 +49,7 @@ const PostCard = (props) => {
           </div>
 
           {/* Right: Date + Dropdown */}
-          <div className="text-right d-flex flex-column align-items-end">
+          <div className="d-flex align-items-center">
             <small className="text-muted">{created_at}</small>
             {is_user && (
               <MoreDropdown

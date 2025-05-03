@@ -1,3 +1,8 @@
+.FeedContent {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
 .FeedToggleButtons {
   margin-bottom: 1rem;
   display: flex;
