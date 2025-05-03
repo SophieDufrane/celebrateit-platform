@@ -12,3 +12,36 @@
   border-radius: 50%;
   background-color: #ccc;
 }
+
+.PostTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.PostContent {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 0.8rem;
+}
+
+.ReadMore {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.PostFooter {
+  display: flex;
+  justify-content: space-around;
+  padding: 0.8rem 0;
+  border-top: 1px solid #e0e0e0;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.ActionItem {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: default;
+}

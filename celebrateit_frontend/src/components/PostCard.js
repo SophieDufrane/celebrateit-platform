@@ -63,29 +63,26 @@ const PostCard = (props) => {
           to={`/posts/${id}`}
           style={{ textDecoration: "none", color: "inherit" }}
         >
-          {/* Title */}
-          <Card.Title>{title}</Card.Title>
-          {/* Content */}
-          <Card.Text>{truncatedContent}</Card.Text>
-          {content.length > 150 && <div>Read more…</div>}
+          <h5 className={styles.PostTitle}>{title}</h5>
+          <p className={styles.PostContent}>{truncatedContent}</p>
+          {content.length > 150 && (
+            <div className={styles.ReadMore}>Read more…</div>
+          )}
+
           {/* Image */}
           {image && <Card.Img variant="top" src={image} alt={title} />}
         </Link>
       </Card.Body>
 
       {/* Like and Comment icons */}
-      <div className="d-flex justify-content-around mt-3">
-        <div className="text-center">
-          <i className="far fa-heart fa-lg"></i>
-          <div>
-            <small>{likes_count}</small>
-          </div>
+      <div className={styles.PostFooter}>
+        <div className={styles.ActionItem}>
+          <i className="far fa-thumbs-up"></i>
+          <span>{likes_count}</span>
         </div>
-        <div className="text-center">
-          <i className="far fa-comment fa-lg"></i>
-          <div>
-            <small>{comments_count}</small>
-          </div>
+        <div className={styles.ActionItem}>
+          <i className="far fa-comment"></i>
+          <span>{comments_count}</span>
         </div>
       </div>
     </Card>
