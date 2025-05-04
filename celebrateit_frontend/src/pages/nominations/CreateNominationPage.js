@@ -1,12 +1,65 @@
-import React from "react";
+import React, { useState } from "react";
+import { Container } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
+import { axiosReq } from "../../api/axiosDefaults";
+import PostForm from "../../components/PostForm";
+import FormFooter from "../../components/FormFooter";
 
-const CreateNominationPage = () => {
+function CreateNominationPage() {
+  const [nominationData, setNominationData] = useState({
+    title: "",
+    content: "",
+    nominee: "",
+    tag: "",
+  });
+  const { title, content, nominee, tag } = nominationData;
+  const history = useHistory();
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setNominationData({
+      ...nominationData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("content", content);
+    formData.append("nominee", nominee);
+    if (tag) formData.append("tag", tag);
+
+    try {
+      const { data } = await axiosReq.post("/nominations/", formData);
+      history.push(`/nominations/${data.id}?created=true`);
+    } catch (err) {
+      console.error(err.response?.data);
+    }
+  };
+
+  const handleCancel = () => {
+    history.push("/");
+  };
+
   return (
-    <div>
-      <h1>Create Nomination Page</h1>
-      {/* Form to create a new Nomination will be here */}
-    </div>
+    <Container>
+      <PostForm
+        title={title}
+        content={content}
+        nominee={nominee}
+        tag={tag}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        handleCancel={handleCancel}
+      >
+        {/* Shared button footer */}
+        <FormFooter submitText="Create" onCancel={handleCancel} />
+      </PostForm>
+    </Container>
   );
-};
+}
 
 export default CreateNominationPage;
