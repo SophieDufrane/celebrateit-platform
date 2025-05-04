@@ -80,23 +80,44 @@ const LoggedInHomePage = () => {
             </div>
 
             {hasLoaded ? (
-              posts.length ? (
-                posts.map((post) => (
-                  <PostCard
-                    key={post.id}
-                    {...post}
-                    onPostDelete={(deletedId) =>
-                      setPosts((prevPosts) =>
-                        prevPosts.filter((p) => p.id !== deletedId)
-                      )
-                    }
-                  />
-                ))
-              ) : (
-                <div>No posts yet</div> // If loaded but empty
-              )
+              <>
+                {/* Posts */}
+                {posts.length ? (
+                  posts.map((post) => (
+                    <PostCard
+                      key={`post-${post.id}`}
+                      {...post}
+                      onPostDelete={(deletedId) =>
+                        setPosts((prevPosts) =>
+                          prevPosts.filter((p) => p.id !== deletedId)
+                        )
+                      }
+                    />
+                  ))
+                ) : (
+                  <div>No posts yet</div>
+                )}
+
+                {/* Nominations */}
+                {nominations.length ? (
+                  nominations.map((nom) => (
+                    <PostCard
+                      key={`nom-${nom.id}`}
+                      {...nom}
+                      detailUrl={`/nominations/${nom.id}`}
+                      extraContent={
+                        <p>
+                          {nom.display_name} was nominated for {nom.tag}
+                        </p>
+                      }
+                    />
+                  ))
+                ) : (
+                  <div>No nominations yet</div>
+                )}
+              </>
             ) : (
-              <div>Loading...</div> // While waiting
+              <div>Loading...</div>
             )}
           </div>
         </Col>
