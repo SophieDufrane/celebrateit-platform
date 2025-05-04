@@ -24,6 +24,17 @@
 .FormButtonRow {
   display: flex;
   gap: 1.5rem;
-  margin-top: 1.5rem;
+  margin: 1.5rem;
   justify-content: flex-start;
+}
+
+.FormMediaWrapper {
+  margin: 1rem 1.5rem;
+}
+
+.FormImagePreview {
+  max-width: 100px;
+  height: auto;
+  border-radius: 5px;
+  display: block;
 }

@@ -3,6 +3,7 @@ import { Container, Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import PostForm from "../../components/PostForm";
+import formStyles from "../../styles/PostForm.module.css";
 
 function CreatePostPage() {
   const [postData, setPostData] = useState({
@@ -46,10 +47,6 @@ function CreatePostPage() {
     }
   };
 
-  // const handleCancel = () => {
-  //   history.push("/");
-  // };
-
   return (
     <Container>
       <PostForm
@@ -60,8 +57,7 @@ function CreatePostPage() {
         submitText="Create"
         onCancel={() => history.push("/")}
       >
-        {/* Image input injected here */}
-        <Form.Group controlId="image" className="mb-3">
+        <Form.Group controlId="image" className={formStyles.FormMediaWrapper}>
           <Form.Label>Image (optional)</Form.Label>
           <Form.Control type="file" name="image" onChange={handleChange} />
         </Form.Group>

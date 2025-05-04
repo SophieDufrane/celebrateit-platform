@@ -3,6 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import { Container, Form } from "react-bootstrap";
 import PostForm from "../../components/PostForm";
+import formStyles from "../../styles/PostForm.module.css";
 
 function UpdatePostPage() {
   const { id } = useParams();
@@ -75,29 +76,26 @@ function UpdatePostPage() {
         submitText="Update"
         onCancel={() => history.push(`/posts/${id}`)}
       >
-        {typeof image === "string" && (
-          <>
-            <div className="mb-2">
+        <Form.Group className={formStyles.FormMediaWrapper}>
+          {typeof image === "string" && (
+            <>
               <img
                 src={image}
                 alt="Current"
-                style={{
-                  maxWidth: "20%",
-                  height: "auto",
-                  borderRadius: "5px",
-                }}
+                className={formStyles.FormImagePreview}
               />
-            </div>
-            <Form.Check
-              type="checkbox"
-              label="Remove image"
-              checked={removeImage}
-              onChange={(e) => setRemoveImage(e.target.checked)}
-              className="mt-2"
-            />
-          </>
-        )}
-        <Form.Control type="file" name="image" onChange={handleChange} />
+
+              <Form.Check
+                type="checkbox"
+                label="Remove image"
+                checked={removeImage}
+                onChange={(e) => setRemoveImage(e.target.checked)}
+                className="mt-2"
+              />
+            </>
+          )}
+          <Form.Control type="file" name="image" onChange={handleChange} />
+        </Form.Group>
       </PostForm>
     </Container>
   );
