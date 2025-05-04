@@ -18,6 +18,8 @@ const PostCard = (props) => {
     comments_count,
     is_user,
     onPostDelete,
+    detailUrl = `/posts/${id}`,
+    extraContent = null,
   } = props;
 
   const truncatedContent =
@@ -57,10 +59,8 @@ const PostCard = (props) => {
         )
       }
     >
-      <Link
-        to={`/posts/${id}`}
-        style={{ textDecoration: "none", color: "inherit" }}
-      >
+      <Link to={detailUrl} style={{ textDecoration: "none", color: "inherit" }}>
+        {extraContent}
         <h5 className={styles.PostTitle}>{title}</h5>
         <p className={styles.PostContent}>{truncatedContent}</p>
         {content.length > 150 && (
