@@ -3,8 +3,6 @@ import { useParams, useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import { Container, Form } from "react-bootstrap";
 import PostForm from "../../components/PostForm";
-import formStyles from "../../styles/PostForm.module.css";
-import FormFooter from "../../components/FormFooter";
 
 function UpdatePostPage() {
   const { id } = useParams();
@@ -74,12 +72,22 @@ function UpdatePostPage() {
         image={image}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
+        submitText="Update"
+        onCancel={() => history.push(`/posts/${id}`)}
       >
         {typeof image === "string" && (
           <>
-            <span className={formStyles.CurrentImage}>
-              Current image: {image.split("/").pop()}
-            </span>
+            <div className="mb-2">
+              <img
+                src={image}
+                alt="Current"
+                style={{
+                  maxWidth: "20%",
+                  height: "auto",
+                  borderRadius: "5px",
+                }}
+              />
+            </div>
             <Form.Check
               type="checkbox"
               label="Remove image"
@@ -89,12 +97,7 @@ function UpdatePostPage() {
             />
           </>
         )}
-
-        {/* Shared button footer */}
-        <FormFooter
-          submitText="Update"
-          onCancel={() => history.push(`/posts/${id}`)}
-        />
+        <Form.Control type="file" name="image" onChange={handleChange} />
       </PostForm>
     </Container>
   );

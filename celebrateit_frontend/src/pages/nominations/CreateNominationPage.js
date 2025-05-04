@@ -3,7 +3,6 @@ import { Container } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import PostForm from "../../components/PostForm";
-import FormFooter from "../../components/FormFooter";
 
 function CreateNominationPage() {
   const [nominationData, setNominationData] = useState({
@@ -54,10 +53,7 @@ function CreateNominationPage() {
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         handleCancel={handleCancel}
-      >
-        {/* Shared button footer */}
-        <FormFooter submitText="Create" onCancel={handleCancel} />
-      </PostForm>
+      ></PostForm>
     </Container>
   );
 }

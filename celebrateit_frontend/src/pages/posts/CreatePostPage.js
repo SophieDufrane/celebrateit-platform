@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import PostForm from "../../components/PostForm";
-import FormFooter from "../../components/FormFooter";
 
 function CreatePostPage() {
   const [postData, setPostData] = useState({
@@ -44,26 +43,28 @@ function CreatePostPage() {
       history.push(`/posts/${data.id}?created=true`);
     } catch (err) {
       console.error(err.response?.data);
-      // optional: setErrors(err.response?.data);
     }
   };
 
-  const handleCancel = () => {
-    history.push("/");
-  };
+  // const handleCancel = () => {
+  //   history.push("/");
+  // };
 
   return (
     <Container>
       <PostForm
         title={title}
         content={content}
-        image={image}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
-        handleCancel={handleCancel}
+        submitText="Create"
+        onCancel={() => history.push("/")}
       >
-        {/* Shared button footer */}
-        <FormFooter submitText="Create" onCancel={handleCancel} />
+        {/* Image input injected here */}
+        <Form.Group controlId="image" className="mb-3">
+          <Form.Label>Image (optional)</Form.Label>
+          <Form.Control type="file" name="image" onChange={handleChange} />
+        </Form.Group>
       </PostForm>
     </Container>
   );

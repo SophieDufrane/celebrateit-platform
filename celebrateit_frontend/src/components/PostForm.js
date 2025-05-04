@@ -1,16 +1,20 @@
 import React from "react";
-import { Form } from "react-bootstrap";
-import styles from "../styles/PostForm.module.css";
+import { Form, Button } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import styles from "../styles/PostForm.module.css";
+import sharedStyles from "../App.module.css";
 
 const PostForm = ({
   title,
   content,
-  image,
   handleChange,
   handleSubmit,
   children,
+  submitText = "Submit",
+  onCancel,
 }) => {
+  const history = useHistory();
   return (
     <Form onSubmit={handleSubmit} className={styles.FormWrapper}>
       <Form.Group controlId="title" className={styles.FormGroupSpacing}>
@@ -43,11 +47,23 @@ const PostForm = ({
           />
         </OverlayTrigger>
       </Form.Group>
-      <Form.Group controlId="image" className={styles.FormGroupSpacing}>
+      {/* <Form.Group controlId="image" className={styles.FormGroupSpacing}>
         <Form.Label>Image (optional)</Form.Label>
         <Form.Control type="file" name="image" onChange={handleChange} />
-        {children}
-      </Form.Group>
+      </Form.Group> */}
+      {children}
+      <div className={styles.FormButtonRow}>
+        <Button type="submit" className={sharedStyles.YellowButton}>
+          {submitText}
+        </Button>
+        <Button
+          className={sharedStyles.BlueButton}
+          variant="outline-secondary"
+          onClick={onCancel || (() => history.goBack())}
+        >
+          Cancel
+        </Button>
+      </div>
     </Form>
   );
 };
