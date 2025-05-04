@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import PostForm from "../../components/PostForm";
+import formStyles from "../../styles/PostForm.module.css";
 
 function CreateNominationPage() {
   const [nominationData, setNominationData] = useState({
@@ -49,11 +50,33 @@ function CreateNominationPage() {
         title={title}
         content={content}
         nominee={nominee}
-        tag={tag}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
-        handleCancel={handleCancel}
-      ></PostForm>
+        submitText="Nominate"
+        onCancel={handleCancel}
+      >
+        <Form.Group controlId="nominee" className={formStyles.FormMediaWrapper}>
+          {/* Will add Tooltips to the fields*/}
+          <Form.Control
+            type="text"
+            name="nominee"
+            placeholder="Enter nominee's username"
+            value={nominee}
+            onChange={handleChange}
+          />
+          <Form.Control
+            as="select"
+            name="tag"
+            value={tag}
+            onChange={handleChange}
+          >
+            <option value="">Select a tag</option>
+            <option value="1">Teamwork</option>
+            <option value="2">Leadership</option>
+            <option value="3">Creativity</option>
+          </Form.Control>
+        </Form.Group>
+      </PostForm>
     </Container>
   );
 }

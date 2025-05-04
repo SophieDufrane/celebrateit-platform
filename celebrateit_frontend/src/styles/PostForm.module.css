@@ -28,7 +28,8 @@
   justify-content: flex-start;
 }
 
-.FormMediaWrapper {
+.FormMediaWrapper select,
+.FormMediaWrapper input {
   margin: 1rem 1.5rem;
 }
 
