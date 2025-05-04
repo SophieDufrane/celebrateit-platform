@@ -7,6 +7,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import authStyles from "../../styles/AuthForm.module.css";
 import sharedStyles from "../../App.module.css";
+import authPic from "../../assets/auth_pic.jpeg";
 
 function SignInForm() {
   const setCurrentUser = useSetCurrentUser();
@@ -36,55 +37,64 @@ function SignInForm() {
   }
 
   return (
-    <Container>
-      <h1 className="text-center">Please sign in</h1>
-      <img
-        src="/images/signin-illustration.png"
-        alt="Sign in illustration"
-        className={authStyles.AuthImage}
-      />
-      <Form onSubmit={handleSubmit} className={authStyles.FormWrapper}>
-        <Form.Group
-          controlId="username"
-          className={authStyles.FormGroupSpacing}
-        >
-          <Form.Label className="d-none">Username</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Username"
-            name="username"
-            value={username}
-            onChange={handleChange}
-          />
-        </Form.Group>
+    <Container className="d-flex justify-content-center">
+      <div className={authStyles.gradient}>
+        <div className={authStyles.gradientOverlay}>
+          <div className={authStyles.splitBox}>
+            <div className={authStyles.formBox}>
+              <h2 className={authStyles.AuthTitle}>LOGIN</h2>
+              <Form onSubmit={handleSubmit} className={authStyles.FormWrapper}>
+                <Form.Group
+                  controlId="username"
+                  className={authStyles.FormGroupSpacing}
+                >
+                  <Form.Label className="d-none">Username</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Username"
+                    name="username"
+                    value={username}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
 
-        <Form.Group
-          controlId="password"
-          className={authStyles.FormGroupSpacing}
-        >
-          <Form.Label className="d-none">Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-          />
-        </Form.Group>
+                <Form.Group
+                  controlId="password"
+                  className={authStyles.FormGroupSpacing}
+                >
+                  <Form.Label className="d-none">Password</Form.Label>
+                  <Form.Control
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    value={password}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
 
-        <Button
-          type="submit"
-          className={`${sharedStyles.YellowButton} ${authStyles.CenteredButton}`}
-        >
-          Sign In
-        </Button>
-      </Form>
-
-      <div className={authStyles.AuthLink}>
-        Don't have an account?
-        <Link to="/register" className={authStyles.AuthLinkHighlight}>
-          Register now!
-        </Link>
+                <Button
+                  type="submit"
+                  className={`${sharedStyles.YellowButton} ${authStyles.CenteredButton}`}
+                >
+                  Submit
+                </Button>
+              </Form>
+              <div className={authStyles.AuthLink}>
+                OR
+                <Link to="/register" className={authStyles.AuthLinkHighlight}>
+                  Sign up!
+                </Link>
+              </div>
+            </div>
+            <div className={authStyles.imageBox}>
+              <img
+                src={authPic}
+                alt="Sign in illustration"
+                className={authStyles.AuthImage}
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </Container>
   );

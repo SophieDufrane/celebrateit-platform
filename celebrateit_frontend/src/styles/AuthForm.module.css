@@ -11,16 +11,10 @@
 }
 
 .CenteredButton {
-  width: 100%;
+  width: 85%;
   max-width: 300px;
   margin: 1.5rem auto 1rem auto;
   display: block;
-}
-
-.AuthImage {
-  display: block;
-  max-width: 300px;
-  margin: 0 auto 2rem auto;
 }
 
 .AuthLink {
@@ -34,4 +28,47 @@
   color: #300e82;
   font-weight: 500;
   margin-left: 0.3rem;
+}
+
+.gradient {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 800px;
+  height: 400px;
+  margin: 2rem auto;
+  padding: 20px;
+  background: linear-gradient(#300e82, #586bbe, #9b6b82, #decd62);
+}
+
+.gradientOverlay {
+  background: white;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.splitBox {
+  display: flex;
+  width: 100%;
+}
+
+.formBox,
+.imageBox {
+  width: 50%;
+  padding: 20px;
+}
+
+.AuthImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.AuthTitle {
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  margin: 1.2rem 0;
+  text-align: center;
 }
