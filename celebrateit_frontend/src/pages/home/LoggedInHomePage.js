@@ -13,6 +13,8 @@ const LoggedInHomePage = () => {
   const [showDeleted, setShowDeleted] = useState(isDeleted);
 
   const [posts, setPosts] = useState([]);
+  const [nominations, setNominations] = useState([]);
+
   const [hasLoaded, setHasLoaded] = useState(false);
 
   // Handle URL query param to trigger alert
@@ -30,13 +32,21 @@ const LoggedInHomePage = () => {
     }
   }, [showDeleted]);
 
-  // Fetch data
+  // Fetch Posts data
   useEffect(() => {
     axiosReq
       .get("/posts/")
       .then((res) => setPosts(res.data.results))
       .catch((err) => console.error(err))
       .finally(() => setHasLoaded(true));
+  }, []);
+
+  // Fetch Nomiations data
+  useEffect(() => {
+    axiosReq
+      .get("/nominations/")
+      .then((res) => setNominations(res.data.results))
+      .catch((err) => console.error("Error fetching nominations:", err));
   }, []);
 
   return (
