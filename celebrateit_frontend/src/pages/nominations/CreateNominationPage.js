@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import PostForm from "../../components/PostForm";
 import formStyles from "../../styles/PostForm.module.css";
 
@@ -71,14 +72,20 @@ function CreateNominationPage() {
         onCancel={handleCancel}
       >
         <Form.Group controlId="nominee" className={formStyles.FormMediaWrapper}>
-          {/* Will add Tooltips to the fields*/}
-          <Form.Control
-            type="text"
-            name="nominee"
-            placeholder="Enter nominee's username"
-            value={nominee}
-            onChange={handleChange}
-          />
+          <OverlayTrigger
+            placement="top"
+            overlay={
+              <Tooltip>Search for a teammate by first or last name</Tooltip>
+            }
+          >
+            <Form.Control
+              type="text"
+              name="nominee"
+              placeholder="Start typing a name..."
+              value={nominee}
+              onChange={handleChange}
+            />
+          </OverlayTrigger>
           <Form.Control
             as="select"
             name="tag"
