@@ -6,19 +6,26 @@ import PostForm from "../../components/PostForm";
 import formStyles from "../../styles/PostForm.module.css";
 
 function CreateNominationPage() {
+  // Form fields
   const [nominationData, setNominationData] = useState({
     title: "",
     content: "",
-    nominee: "",
     tag: "",
   });
-  const [tags, setTags] = useState([]);
-  const { title, content, nominee, tag } = nominationData;
 
+  // Nominee search & selection
+  const [nomineeInput, setNomineeInput] = useState("");
+  const [selectedNomineeId, setSelectedNomineeId] = useState("");
+  const [nomineeResults, setNomineeResults] = useState([]);
+
+  // Tag dropdown
+  const [tags, setTags] = useState([]);
+
+  // Navigation
   const history = useHistory();
 
-  const [nomineeResults, setNomineeResults] = useState([]);
-  const [selectedNomineeName, setSelectedNomineeName] = useState("");
+  // Destructure data for cleaner access
+  const { title, content, tag } = nominationData;
 
   useEffect(() => {
     const fetchTags = async () => {
@@ -35,9 +42,9 @@ function CreateNominationPage() {
   }, []);
 
   useEffect(() => {
-    if (nominee) {
+    if (nomineeInput) {
       axiosReq
-        .get(`/users/?search=${nominee}`)
+        .get(`/users/?search=${nomineeInput}`)
         .then((res) => {
           setNomineeResults(res.data.results);
           console.log("Nominee results:", res.data);
@@ -48,29 +55,29 @@ function CreateNominationPage() {
     } else {
       setNomineeResults([]);
     }
-  }, [nominee]);
+  }, [nomineeInput]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setNominationData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+
+    if (name === "nominee") {
+      setNomineeInput(value);
+      setSelectedNomineeId("");
+    } else {
+      setNominationData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Submitting nomination with:", {
-      title,
-      content,
-      nominee,
-      tag,
-    });
 
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
-    formData.append("nominee", nominee);
+    formData.append("nominee", selectedNomineeId);
     if (tag) formData.append("tag", tag);
 
     try {
@@ -86,11 +93,8 @@ function CreateNominationPage() {
   };
 
   const handleNomineeSelect = (user) => {
-    setNominationData((prevData) => ({
-      ...prevData,
-      nominee: user.id,
-    }));
-    setSelectedNomineeName(`${user.first_name} ${user.last_name}`);
+    setSelectedNomineeId(user.id);
+    setNomineeInput(`${user.first_name} ${user.last_name}`);
     setNomineeResults([]);
   };
 
@@ -99,7 +103,6 @@ function CreateNominationPage() {
       <PostForm
         title={title}
         content={content}
-        nominee={nominee}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         submitText="Create"
@@ -117,7 +120,7 @@ function CreateNominationPage() {
                 type="text"
                 name="nominee"
                 placeholder="Start typing a name..."
-                value={selectedNomineeName}
+                value={nomineeInput}
                 onChange={handleChange}
               />
             </OverlayTrigger>

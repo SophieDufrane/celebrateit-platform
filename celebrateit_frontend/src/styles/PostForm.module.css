@@ -46,3 +46,25 @@
   border-radius: 5px;
   display: block;
 }
+
+.SuggestionBox {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  max-height: 200px;
+  overflow-y: auto;
+  margin: 0 1.5rem 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1000;
+}
+
+.SuggestionItem {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.SuggestionItem:hover {
+  background-color: #decd62;
+  color: #300e82;
+}
