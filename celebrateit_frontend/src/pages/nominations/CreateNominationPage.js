@@ -39,7 +39,7 @@ function CreateNominationPage() {
       axiosReq
         .get(`/users/?search=${nominee}`)
         .then((res) => {
-          setNomineeResults(res.data);
+          setNomineeResults(res.data.results);
           console.log("Nominee results:", res.data);
         })
         .catch((err) => {
@@ -79,6 +79,14 @@ function CreateNominationPage() {
     history.push("/");
   };
 
+  const handleNomineeSelect = (user) => {
+    setNominationData((prevData) => ({
+      ...prevData,
+      nominee: user.id,
+    }));
+    setNomineeResults([]);
+  };
+
   return (
     <Container>
       <PostForm
@@ -105,6 +113,19 @@ function CreateNominationPage() {
               onChange={handleChange}
             />
           </OverlayTrigger>
+          {nomineeResults.length > 0 && (
+            <div className={formStyles.SuggestionBox}>
+              {nomineeResults.map((user) => (
+                <div
+                  key={user.id}
+                  className={formStyles.SuggestionItem}
+                  onClick={() => handleNomineeSelect(user)}
+                >
+                  {user.first_name} {user.last_name}
+                </div>
+              ))}
+            </div>
+          )}
           <Form.Control
             as="select"
             name="tag"
