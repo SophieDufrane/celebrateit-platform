@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
-import { Container, Form } from "react-bootstrap";
+import { Container, Form, OverlayTrigger, Tooltip } from "react-bootstrap";
 import PostForm from "../../components/PostForm";
 import formStyles from "../../styles/PostForm.module.css";
 
@@ -84,17 +84,26 @@ function UpdatePostPage() {
                 alt="Current"
                 className={formStyles.FormImagePreview}
               />
-
-              <Form.Check
-                type="checkbox"
-                label="Remove image"
-                checked={removeImage}
-                onChange={(e) => setRemoveImage(e.target.checked)}
-                className="mt-2"
-              />
+              <div className="d-flex align-items-center gap-2 mt-2 mb-3">
+                <Form.Check
+                  type="checkbox"
+                  id="remove-image"
+                  label=""
+                  checked={removeImage}
+                  onChange={(e) => setRemoveImage(e.target.checked)}
+                />
+                <Form.Label htmlFor="remove-image" className="mb-0">
+                  Remove image
+                </Form.Label>
+              </div>
             </>
           )}
-          <Form.Control type="file" name="image" onChange={handleChange} />
+          <OverlayTrigger
+            placement="top"
+            overlay={<Tooltip>Upload an image (optional)</Tooltip>}
+          >
+            <Form.Control type="file" name="image" onChange={handleChange} />
+          </OverlayTrigger>
         </Form.Group>
       </PostForm>
     </Container>

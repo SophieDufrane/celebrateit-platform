@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Container, Form } from "react-bootstrap";
+import { Container, Form, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import PostForm from "../../components/PostForm";
 import formStyles from "../../styles/PostForm.module.css";
 
@@ -107,33 +106,35 @@ function CreateNominationPage() {
         onCancel={handleCancel}
       >
         <Form.Group controlId="nominee" className={formStyles.FormMediaWrapper}>
-          <OverlayTrigger
-            placement="top"
-            overlay={
-              <Tooltip>Search for a teammate by first or last name</Tooltip>
-            }
-          >
-            <Form.Control
-              type="text"
-              name="nominee"
-              placeholder="Start typing a name..."
-              value={selectedNomineeName}
-              onChange={handleChange}
-            />
-          </OverlayTrigger>
-          {nomineeResults.length > 0 && (
-            <div className={formStyles.SuggestionBox}>
-              {nomineeResults.map((user) => (
-                <div
-                  key={user.id}
-                  className={formStyles.SuggestionItem}
-                  onClick={() => handleNomineeSelect(user)}
-                >
-                  {user.first_name} {user.last_name}
-                </div>
-              ))}
-            </div>
-          )}
+          <div className="mb-3">
+            <OverlayTrigger
+              placement="top"
+              overlay={
+                <Tooltip>Search for a teammate by first or last name</Tooltip>
+              }
+            >
+              <Form.Control
+                type="text"
+                name="nominee"
+                placeholder="Start typing a name..."
+                value={selectedNomineeName}
+                onChange={handleChange}
+              />
+            </OverlayTrigger>
+            {nomineeResults.length > 0 && (
+              <div className={formStyles.SuggestionBox}>
+                {nomineeResults.map((user) => (
+                  <div
+                    key={user.id}
+                    className={formStyles.SuggestionItem}
+                    onClick={() => handleNomineeSelect(user)}
+                  >
+                    {user.first_name} {user.last_name}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
           <OverlayTrigger
             placement="top"
             overlay={<Tooltip>Pick a tag that reflects the nomination</Tooltip>}

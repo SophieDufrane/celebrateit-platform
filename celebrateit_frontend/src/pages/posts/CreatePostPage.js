@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Form } from "react-bootstrap";
+import { Container, Form, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import PostForm from "../../components/PostForm";
@@ -58,8 +58,12 @@ function CreatePostPage() {
         onCancel={() => history.push("/")}
       >
         <Form.Group controlId="image" className={formStyles.FormMediaWrapper}>
-          <Form.Label>Image (optional)</Form.Label>
-          <Form.Control type="file" name="image" onChange={handleChange} />
+          <OverlayTrigger
+            placement="top"
+            overlay={<Tooltip>Upload an image (optional)</Tooltip>}
+          >
+            <Form.Control type="file" name="image" onChange={handleChange} />
+          </OverlayTrigger>
         </Form.Group>
       </PostForm>
     </Container>

@@ -28,9 +28,16 @@
   justify-content: flex-start;
 }
 
+.FormMediaWrapper {
+  margin: 1.5rem;
+}
+
+.FormMediaWrapper input,
 .FormMediaWrapper select,
-.FormMediaWrapper input {
-  margin: 1rem 1.5rem;
+.FormMediaWrapper textarea {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .FormImagePreview {
