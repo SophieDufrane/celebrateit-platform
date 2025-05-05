@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { axiosRes } from "../../api/axiosDefaults";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
@@ -28,8 +29,9 @@ function SignInForm() {
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-      const { data } = await axios.post("/dj-rest-auth/login/", signInData);
-      setCurrentUser(data.user); // Save user to Context
+      await axios.post("/dj-rest-auth/login/", signInData);
+      const { data: userData } = await axiosRes.get("/dj-rest-auth/user/");
+      setCurrentUser(userData); // Save real user data to Context
       history.goBack();
     } catch (err) {
       console.error("Login failed:", err.response?.data);
