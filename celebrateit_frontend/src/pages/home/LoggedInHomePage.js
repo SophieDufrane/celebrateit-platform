@@ -88,25 +88,23 @@ const LoggedInHomePage = () => {
 
             {hasLoaded ? (
               <>
-                {/* Posts */}
-                {posts.length ? (
-                  posts.map((post) => (
-                    <PostCard
-                      key={`post-${post.id}`}
-                      {...post}
-                      onPostDelete={(deletedId) =>
-                        setPosts((prevPosts) =>
-                          prevPosts.filter((p) => p.id !== deletedId)
-                        )
-                      }
-                    />
-                  ))
-                ) : (
-                  <div>No posts yet</div>
-                )}
-
-                {/* Nominations */}
-                {nominations.length ? (
+                {!showNominations ? (
+                  posts.length ? (
+                    posts.map((post) => (
+                      <PostCard
+                        key={`post-${post.id}`}
+                        {...post}
+                        onPostDelete={(deletedId) =>
+                          setPosts((prevPosts) =>
+                            prevPosts.filter((p) => p.id !== deletedId)
+                          )
+                        }
+                      />
+                    ))
+                  ) : (
+                    <div>No posts yet</div>
+                  )
+                ) : nominations.length ? (
                   nominations.map((nom) => (
                     <PostCard
                       key={`nom-${nom.id}`}
