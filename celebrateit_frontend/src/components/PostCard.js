@@ -19,6 +19,7 @@ const PostCard = (props) => {
     is_user,
     onPostDelete,
     detailUrl = `/posts/${id}`,
+    editUrl = `/posts/${id}/edit`,
     extraContent = null,
   } = props;
 
@@ -53,7 +54,7 @@ const PostCard = (props) => {
       renderDropdown={
         is_user && (
           <MoreDropdown
-            handleEdit={() => history.push(`/posts/${id}/edit`)}
+            handleEdit={() => history.push(editUrl)}
             handleDelete={handleDelete}
           />
         )

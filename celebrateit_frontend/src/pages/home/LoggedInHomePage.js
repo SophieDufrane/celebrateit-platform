@@ -116,6 +116,7 @@ const LoggedInHomePage = () => {
                       key={`nom-${nom.id}`}
                       {...nom}
                       detailUrl={`/nominations/${nom.id}`}
+                      editUrl={`/nominations/${nom.id}/edit`}
                       extraContent={
                         <p>
                           {nom.display_name} was nominated for {nom.tag}
