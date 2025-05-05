@@ -134,19 +134,24 @@ function CreateNominationPage() {
               ))}
             </div>
           )}
-          <Form.Control
-            as="select"
-            name="tag"
-            value={tag}
-            onChange={handleChange}
+          <OverlayTrigger
+            placement="top"
+            overlay={<Tooltip>Pick a tag that reflects the nomination</Tooltip>}
           >
-            <option value="">Select a tag</option>
-            {tags.map((tagObj) => (
-              <option key={tagObj.id} value={tagObj.name}>
-                {tagObj.name}
-              </option>
-            ))}
-          </Form.Control>
+            <Form.Control
+              as="select"
+              name="tag"
+              value={tag}
+              onChange={handleChange}
+            >
+              <option value="">Select a tag</option>
+              {tags.map((tagObj) => (
+                <option key={tagObj.id} value={tagObj.name}>
+                  {tagObj.name}
+                </option>
+              ))}
+            </Form.Control>
+          </OverlayTrigger>
         </Form.Group>
       </PostForm>
     </Container>
