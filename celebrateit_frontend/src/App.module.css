@@ -10,46 +10,49 @@
 
 .YellowButton {
   background-color: #decd62;
+  border: 1px solid #decd62;
   color: #300e82;
-  border: #decd62;
 }
 
 .YellowButton:hover {
   background-color: #300e82;
+  border: 1px solid #300e82;
   color: white;
 }
 
 .BlueButton {
   background-color: #300e82;
+  border: 1px solid #300e82;
   color: white;
-  border: #300e82;
 }
 
 .BlueButton:hover {
   background-color: #decd62;
+  border: 1px solid #decd62;
   color: #300e82;
 }
 
 .FeedToggleActive {
   background-color: #300e82;
+  border: 1px solid #300e82 !important;
   color: white;
-  border: none !important;
 }
 
 .FeedToggleInactive {
   background-color: transparent;
-  border: 2px solid #999 !important;
+  border: 1px solid #999 !important;
   color: #999;
 }
 
 .FeedToggleInactive:hover {
   background-color: #decd62;
+  border: 1px solid #decd62 !important;
   color: #300e82;
-  border: none !important;
 }
 
 .FeedToggleActive:hover {
   background-color: #300e82;
+  border: 1px solid #300e82 !important;
   color: white;
   cursor: default;
 }

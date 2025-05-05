@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -12,8 +12,23 @@ function CreateNominationPage() {
     nominee: "",
     tag: "",
   });
+  const [tags, setTags] = useState([]);
   const { title, content, nominee, tag } = nominationData;
   const history = useHistory();
+
+  useEffect(() => {
+    const fetchTags = async () => {
+      try {
+        const { data } = await axiosReq.get("/tags/");
+        console.log("Fetched tags:", data);
+        setTags(data.results);
+      } catch (err) {
+        console.error("Error fetching tags:", err);
+      }
+    };
+
+    fetchTags();
+  }, []);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -71,9 +86,11 @@ function CreateNominationPage() {
             onChange={handleChange}
           >
             <option value="">Select a tag</option>
-            <option value="1">Teamwork</option>
-            <option value="2">Leadership</option>
-            <option value="3">Creativity</option>
+            {tags.map((tagObj) => (
+              <option key={tagObj.id} value={tagObj.id}>
+                {tagObj.name}
+              </option>
+            ))}
           </Form.Control>
         </Form.Group>
       </PostForm>
