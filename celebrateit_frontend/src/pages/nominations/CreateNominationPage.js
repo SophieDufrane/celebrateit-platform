@@ -15,7 +15,10 @@ function CreateNominationPage() {
   });
   const [tags, setTags] = useState([]);
   const { title, content, nominee, tag } = nominationData;
+
   const history = useHistory();
+
+  const [nomineeResults, setNomineeResults] = useState([]);
 
   useEffect(() => {
     const fetchTags = async () => {
@@ -31,12 +34,28 @@ function CreateNominationPage() {
     fetchTags();
   }, []);
 
+  useEffect(() => {
+    if (nominee) {
+      axiosReq
+        .get(`/users/?search=${nominee}`)
+        .then((res) => {
+          setNomineeResults(res.data);
+          console.log("Nominee results:", res.data);
+        })
+        .catch((err) => {
+          console.error("Error fetching nominees:", err);
+        });
+    } else {
+      setNomineeResults([]);
+    }
+  }, [nominee]);
+
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setNominationData({
-      ...nominationData,
+    setNominationData((prevData) => ({
+      ...prevData,
       [name]: value,
-    });
+    }));
   };
 
   const handleSubmit = async (event) => {
