@@ -14,6 +14,7 @@ const LoggedInHomePage = () => {
 
   const [posts, setPosts] = useState([]);
   const [nominations, setNominations] = useState([]);
+  const [showNominations, setShowNominations] = useState(false);
 
   const [hasLoaded, setHasLoaded] = useState(false);
 
@@ -68,14 +69,20 @@ const LoggedInHomePage = () => {
             {/* Feed Toggle Buttons */}
             <div className={feedStyles.FeedToggleButtons}>
               <Button
-                className={`${feedStyles.FeedButton} ${sharedStyles.YellowButton}`}
+                className={`${feedStyles.FeedButton} ${
+                  sharedStyles.YellowButton
+                } ${!showNominations ? feedStyles.Active : ""}`}
+                onClick={() => setShowNominations(false)}
               >
                 Recognition Stories
               </Button>
               <Button
-                className={`${feedStyles.FeedButton} ${sharedStyles.BlueButton}`}
+                className={`${feedStyles.FeedButton} ${
+                  sharedStyles.BlueButton
+                } ${showNominations ? feedStyles.Active : ""}`}
+                onClick={() => setShowNominations(true)}
               >
-                Nominations
+                Nominationss
               </Button>
             </div>
 
