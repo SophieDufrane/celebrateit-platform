@@ -29,3 +29,33 @@
   background-color: #decd62;
   color: #300e82;
 }
+
+.FeedToggleActive {
+  background-color: #300e82;
+  color: white;
+  border: none !important;
+}
+
+.FeedToggleInactive {
+  background-color: transparent;
+  border: 2px solid #999 !important;
+  color: #999;
+}
+
+.FeedToggleInactive:hover {
+  background-color: #decd62;
+  color: #300e82;
+  border: none !important;
+}
+
+.FeedToggleActive:hover {
+  background-color: #300e82;
+  color: white;
+  cursor: default;
+}
+
+.FeedToggleActive:focus,
+.FeedToggleInactive:focus {
+  outline: none;
+  box-shadow: none;
+}

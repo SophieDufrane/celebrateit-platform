@@ -69,20 +69,26 @@ const LoggedInHomePage = () => {
             {/* Feed Toggle Buttons */}
             <div className={feedStyles.FeedToggleButtons}>
               <Button
+                variant="none"
                 className={`${feedStyles.FeedButton} ${
-                  sharedStyles.YellowButton
-                } ${!showNominations ? feedStyles.Active : ""}`}
+                  !showNominations
+                    ? sharedStyles.FeedToggleActive
+                    : sharedStyles.FeedToggleInactive
+                }`}
                 onClick={() => setShowNominations(false)}
               >
                 Recognition Stories
               </Button>
               <Button
+                variant="none"
                 className={`${feedStyles.FeedButton} ${
-                  sharedStyles.BlueButton
-                } ${showNominations ? feedStyles.Active : ""}`}
+                  showNominations
+                    ? sharedStyles.FeedToggleActive
+                    : sharedStyles.FeedToggleInactive
+                }`}
                 onClick={() => setShowNominations(true)}
               >
-                Nominationss
+                Nominations
               </Button>
             </div>
 
