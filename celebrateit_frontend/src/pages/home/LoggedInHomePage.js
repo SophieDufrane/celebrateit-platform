@@ -119,7 +119,9 @@ const LoggedInHomePage = () => {
                       editUrl={`/nominations/${nom.id}/edit`}
                       extraContent={
                         <p>
-                          {nom.display_name} was nominated for {nom.tag}
+                          <strong>{nom.nominee_display_name}</strong> was
+                          nominated by <strong>{nom.display_name}</strong> for{" "}
+                          <em>{nom.tag}</em>
                         </p>
                       }
                     />
