@@ -61,6 +61,12 @@ function CreateNominationPage() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log("Submitting nomination with:", {
+      title,
+      content,
+      nominee,
+      tag,
+    });
 
     const formData = new FormData();
     formData.append("title", title);
@@ -97,7 +103,7 @@ function CreateNominationPage() {
         nominee={nominee}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
-        submitText="Nominate"
+        submitText="Create"
         onCancel={handleCancel}
       >
         <Form.Group controlId="nominee" className={formStyles.FormMediaWrapper}>
@@ -136,7 +142,7 @@ function CreateNominationPage() {
           >
             <option value="">Select a tag</option>
             {tags.map((tagObj) => (
-              <option key={tagObj.id} value={tagObj.id}>
+              <option key={tagObj.id} value={tagObj.name}>
                 {tagObj.name}
               </option>
             ))}
