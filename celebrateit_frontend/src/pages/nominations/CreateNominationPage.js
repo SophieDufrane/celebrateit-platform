@@ -19,6 +19,7 @@ function CreateNominationPage() {
   const history = useHistory();
 
   const [nomineeResults, setNomineeResults] = useState([]);
+  const [selectedNomineeName, setSelectedNomineeName] = useState("");
 
   useEffect(() => {
     const fetchTags = async () => {
@@ -84,6 +85,7 @@ function CreateNominationPage() {
       ...prevData,
       nominee: user.id,
     }));
+    setSelectedNomineeName(`${user.first_name} ${user.last_name}`);
     setNomineeResults([]);
   };
 
@@ -109,7 +111,7 @@ function CreateNominationPage() {
               type="text"
               name="nominee"
               placeholder="Start typing a name..."
-              value={nominee}
+              value={selectedNomineeName}
               onChange={handleChange}
             />
           </OverlayTrigger>
