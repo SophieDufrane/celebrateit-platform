@@ -64,111 +64,72 @@ CelebrateIt is designed for:
 
 To plan the project development, I adopted an Agile methodology centered on user experience. By using user stories grouped into EPICs, the project is broken down into smaller, manageable pieces, ensuring a structured and user-focused approach.
 
-#### **EPIC - Getting Started & Joining the Platform**
+---
 
-| **ID**                                                         | **Theme**                | **User Story**                                                                                                                  | **Prioritization** |
-| -------------------------------------------------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
-| [1](https://github.com/SophieDufrane/PP5-celebrateit/issues/1) | Account Registration     | New employees can create an account with basic credentials to join the CelebrateIt platform.                                    | _must have_        |
-| [2](https://github.com/SophieDufrane/PP5-celebrateit/issues/2) | Login to Account         | Returning users can securely log into their existing profile to access all features.                                            | _must have_        |
-| [3](https://github.com/SophieDufrane/PP5-celebrateit/issues/4) | Log out of Account       | Users can securely log out of their account to ensure their information remains protected when they are not using the platform. | _must have_        |
-| [4](https://github.com/SophieDufrane/PP5-celebrateit/issues/5) | Navigation Menu          | Users can access the main navigation menu from anywhere in the app to move between sections easily.                             | _must have_        |
-| [5](https://github.com/SophieDufrane/PP5-celebrateit/issues/6) | Conditional Menu Options | The menu adapts based on login status — showing login/signup when logged out, and profile/logout when logged in.                | _must have_        |
+#### **EPIC – Getting Started & Joining the Platform**
 
-#### **EPIC - Exploring the Community**
+| **ID**                                                          | **Theme**                | **User Story**                                                                       | **Prioritisation** |
+| --------------------------------------------------------------- | ------------------------ | ------------------------------------------------------------------------------------ | ------------------ |
+| [#1](https://github.com/SophieDufrane/PP5-celebrateit/issues/1) | Account Registration     | Users can create an account with basic credentials to join the CelebrateIt platform. | Must Have          |
+| [#2](https://github.com/SophieDufrane/PP5-celebrateit/issues/2) | Login to Account         | Users can securely log into their account to access features.                        | Must Have          |
+| [#4](https://github.com/SophieDufrane/PP5-celebrateit/issues/4) | Log out of Account       | Users can securely log out to protect their account.                                 | Must Have          |
+| [#8](https://github.com/SophieDufrane/PP5-celebrateit/issues/8) | Conditional Menu Options | The menu adapts to login status, showing relevant options.                           | Must Have          |
 
-| **ID**                                                          | **Theme**                                 | **User Story**                                                                                                   | **Prioritization** |
-| --------------------------------------------------------------- | ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ------------------ |
-| [1](https://github.com/SophieDufrane/PP5-celebrateit/issues/7)  | Discover the Latest Stories & Nominations | Users can browse the feed to see the most recent recognition stories and nominations shared across the platform. | _must have_        |
-| [2](https://github.com/SophieDufrane/PP5-celebrateit/issues/8)  | Find People                               | Users can search for colleagues by name and filter them by department.                                           | _should have_      |
-| [3](https://github.com/SophieDufrane/PP5-celebrateit/issues/10) | Filter Nominations                        | Users can filter nominations by tag to focus on specific values or behaviours being celebrated.                  | _should have_      |
+---
 
-#### **EPIC - Sharing Stories and Nominations.**
+#### **EPIC – Recognition & Nomination CRUD**
 
-| **ID**                                                          | **Theme**                         | **User Story**                                                                                           | **Prioritization** |
-| --------------------------------------------------------------- | --------------------------------- | -------------------------------------------------------------------------------------------------------- | ------------------ |
-| [1](https://github.com/SophieDufrane/PP5-celebrateit/issues/11) | Create a Recognition Story        | Enable users to share inspiring stories about colleagues, teams, or moments worth celebrating.           | _must have_        |
-| [2](https://github.com/SophieDufrane/PP5-celebrateit/issues/27) | Nominate a colleague              | Allow users to nominate colleagues or teams for their outstanding work and achievements.                 | _must have_        |
-| [3](https://github.com/SophieDufrane/PP5-celebrateit/issues/12) | View My Own Stories & Nominations | Users can view all their content, including stories and nominations                                      | _should have_      |
-| [4](https://github.com/SophieDufrane/PP5-celebrateit/issues/13) | Edit My Recognition Story         | Users can return to a story they’ve written and update or refine it as needed.                           | _should have_      |
-| [5](https://github.com/SophieDufrane/PP5-celebrateit/issues/14) | Delete My Recognition Story       | Users can delete a story they previously shared if they no longer want it to be visible on the platform. | _should have_      |
+| **ID**                                                            | **Theme**               | **User Story**                                                         | **Prioritisation** |
+| ----------------------------------------------------------------- | ----------------------- | ---------------------------------------------------------------------- | ------------------ |
+| [#12](https://github.com/SophieDufrane/PP5-celebrateit/issues/12) | Create a Recognition    | Users can submit a recognition story to celebrate someone.             | Must Have          |
+| [#14](https://github.com/SophieDufrane/PP5-celebrateit/issues/14) | Edit Recognition        | Users can edit a previously shared recognition.                        | Must Have          |
+| [#15](https://github.com/SophieDufrane/PP5-celebrateit/issues/15) | Delete Recognition      | Users can delete their recognition story.                              | Must Have          |
+| [#16](https://github.com/SophieDufrane/PP5-celebrateit/issues/16) | View Recognition Detail | Users can view the full content of a recognition story.                | Must Have          |
+| [#29](https://github.com/SophieDufrane/PP5-celebrateit/issues/29) | View Recognition Feed   | Users can browse all recognitions in the feed.                         | Must Have          |
+| [#28](https://github.com/SophieDufrane/PP5-celebrateit/issues/28) | Create a Nomination     | Users can nominate a colleague for recognition using tags.             | Must Have          |
+| [#30](https://github.com/SophieDufrane/PP5-celebrateit/issues/30) | Edit Nomination         | Users can update nomination content and tags.                          | Must Have          |
+| [#31](https://github.com/SophieDufrane/PP5-celebrateit/issues/31) | Delete Nomination       | Users can remove a nomination they previously made.                    | Must Have          |
+| [#32](https://github.com/SophieDufrane/PP5-celebrateit/issues/32) | View Nomination Feed    | Users can browse all nominations in the feed.                          | Must Have          |
+| [#31](https://github.com/SophieDufrane/PP5-celebrateit/issues/31) | View Nomination Detail  | Users can view full details of a nomination.                           | Must Have          |
+| [#13](https://github.com/SophieDufrane/PP5-celebrateit/issues/13) | View Own Posts          | Users can view a list of recognitions and nominations they’ve created. | Could Have         |
 
-#### **EPIC - Engaging with Stories & Nominations**
+---
 
-| **ID**                                                          | **Theme**                                     | **User Story**                                                                                             | **Prioritization** |
-| --------------------------------------------------------------- | --------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ------------------ |
-| [1](https://github.com/SophieDufrane/PP5-celebrateit/issues/15) | View Story & Nominations Details              | Any user can click into a story or a nomination to view it fully, including all details.                   | _must have_        |
-| [2](https://github.com/SophieDufrane/PP5-celebrateit/issues/16) | Like a Story or Nomination                    | Logged-in users can show support by liking a story or a nomination they connect with.                      | _could have_       |
-| [3](https://github.com/SophieDufrane/PP5-celebrateit/issues/17) | Comment on a Story or Nomination              | Users can join the conversation by commenting on recognition stories or nominations shared by others.      | _could have_       |
-| [4](https://github.com/SophieDufrane/PP5-celebrateit/issues/18) | Edit or Delete My Comments                    | Users can update or remove comments they've written.                                                       | _could have_       |
-| [5](https://github.com/SophieDufrane/PP5-celebrateit/issues/20) | Stories or Nominations from Followed Profiles | The feed can be filtered to show only stories and nominations shared by users or teams the person follows. | _could have_       |
+#### **EPIC – Engaging with People & Posts**
 
-#### **EPIC - Managing My Profile & Network**
+| **ID**                                                            | **Theme**             | **User Story**                                     | **Prioritisation** |
+| ----------------------------------------------------------------- | --------------------- | -------------------------------------------------- | ------------------ |
+| [#17](https://github.com/SophieDufrane/PP5-celebrateit/issues/17) | Like a Post           | Users can like a post to show appreciation.        | Should Have        |
+| [#21](https://github.com/SophieDufrane/PP5-celebrateit/issues/21) | Comment on a Post     | Users can comment on posts to engage with content. | Must Have          |
+| [#33](https://github.com/SophieDufrane/PP5-celebrateit/issues/33) | Edit/Delete Comments  | Users can edit or remove their own comments.       | Should Have        |
+| [#11](https://github.com/SophieDufrane/PP5-celebrateit/issues/11) | Search for Colleagues | Users can search for other people by name.         | Should Have        |
 
-| **ID**                                                          | **Theme**            | **User Story**                                                                                                              | **Prioritization** |
-| --------------------------------------------------------------- | -------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------------------ |
-| [1](https://github.com/SophieDufrane/PP5-celebrateit/issues/21) | View Public Profiles | Users can view the public-facing profiles of other employees, including their presentation, department, and shared stories. | _must have_        |
-| [2](https://github.com/SophieDufrane/PP5-celebrateit/issues/22) | Edit My Profile      | Logged-in users can edit their avatar, presentation, and department to personalize their presence on the platform.          | _must have_        |
+---
 
-#### **EPIC - Keeping the Experience Seamless**
+#### **EPIC – Managing My Profile & Network**
 
-| **ID**                                                          | **Theme**               | **User Story**                                                                                               | **Prioritization** |
-| --------------------------------------------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------ | ------------------ |
-| [1](https://github.com/SophieDufrane/PP5-celebrateit/issues/24) | Stay Logged In          | The platform maintains the user’s session until they choose to log out, reducing unnecessary interruptions.  | _must have_        |
-| [2](https://github.com/SophieDufrane/PP5-celebrateit/issues/25) | Smooth Page Navigation  | Users can move between pages without full reloads, for a fast and fluid experience.                          | _should have_      |
-| [3](https://github.com/SophieDufrane/PP5-celebrateit/issues/26) | Endless Story Scrolling | Stories load automatically as users scroll, removing the need for pagination and keeping engagement flowing. | _could have_       |
+| **ID**                                                            | **Theme**            | **User Story**                                                      | **Prioritisation** |
+| ----------------------------------------------------------------- | -------------------- | ------------------------------------------------------------------- | ------------------ |
+| [#22](https://github.com/SophieDufrane/PP5-celebrateit/issues/22) | Edit My Profile      | Users can update their avatar and bio to personalise their profile. | Should Have        |
+| [#21](https://github.com/SophieDufrane/PP5-celebrateit/issues/21) | View Public Profiles | Users can view other users’ bios and shared posts.                  | Must Have          |
 
 ---
 
 ### 2.2 Scope
 
-This section outlines the features and functionalities planned for CelebrateIt, categorized using the **MoSCoW Prioritization Framework**. This framework identifies features as:
+All features listed above are prioritised using the **MoSCoW Framework** to guide development focus and ensure a successful MVP.
 
-- **Must Have**: Essential features that are critical for the platform's core functionality > 56%
+The current breakdown is:
 
-- **Should Have**: High-priority features that enhance the user experience but are not essential for the platform's operation. > 26%
+- **Must Have** (15 / 22 → 68%): Core functionality required for project success.
 
-- **Could Have**: Nice-to-have features that provide additional value but are not critical to the platform's success. > 17%
+- **Should Have** (6 / 22 → 27%): Enhancements that improve usability and experience.
 
-- **Won't Have**: Features explicitly excluded from the current scope.
+- **Could Have** (1 / 22 → 5%): Nice-to-have features if time allows.
 
-#### Planned Features
+- **Won’t Have**: Explicitly removed from scope.
 
-| **Feature**                                   | **MoSCoW Prioritization** |
-| --------------------------------------------- | ------------------------- |
-| Account Registration                          | Must Have                 |
-| Login to Account                              | Must Have                 |
-| Log out of Account                            | Must Have                 |
-| Navigation Menu                               | Must Have                 |
-| Conditional Menu Options                      | Should Have               |
-| Discover the Latest Stories & Nominations     | Must Have                 |
-| Search Stories, Nominations & People          | Should Have               |
-| Browse Departments                            | Could Have                |
-| Create a Recognition Story                    | Must Have                 |
-| Create a Nomination                           | Must Have                 |
-| View My Own Stories & Nominations             | Must Have                 |
-| Edit My Story & Nomination                    | Should Have               |
-| Delete My Story                               | Should Have               |
-| View Story & Nominations Details              | Must Have                 |
-| Like a Story or Nomination                    | Should Have               |
-| Comment on a Story or Nomination              | Should Have               |
-| Edit or Delete My Comments                    | Could Have                |
-| Stories or Nominations from Followed Profiles | Could Have                |
-| View Public Profiles                          | Should Have               |
-| Edit My Profile                               | Should Have               |
-| Stay Logged In                                | Must Have                 |
-| Smooth Page Navigation                        | Should Have               |
-| Endless Story Scrolling                       | Could Have                |
-
----
-
-### 2.3 System Architecture
-
-CelebrateIt is structured with a focus on separation of concerns. While the frontend handles presentation and user interactions, the backend provides a modular, scalable API to support those features.
-
-- Built with Django REST Framework
-- Divided into apps per domain: posts, nominations, profiles, etc.
-- Modular, permission-based views and serializers
-- Shared models like comments and likes allow interactions across apps
+This distribution ensures alignment with project constraints and focus, while still allowing space for polish and stretch goals where appropriate.
 
 ### Entity Relationship Diagram (ERD)
 
