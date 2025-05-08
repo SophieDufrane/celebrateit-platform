@@ -133,6 +133,8 @@ This distribution ensures alignment with project constraints and focus, while st
 
 ### Entity Relationship Diagram (ERD)
 
+The ERD provides a high-level overview of the database structure, including the relationships between key models such as users, profiles, recognitions, nominations, tags, comments, and likes. It was designed early in the planning phase to ensure consistent field usage and API compatibility.
+
 ![ERD](documentation/erd_celebrateit.png)
 
 #### Flowchart for User Navigation
@@ -153,8 +155,7 @@ CelebrateIt follows a decoupled architecture, separating the backend and fronten
 - **Authentication**: User sessions and permissions are managed via Django Allauth and token-based headers on the frontend.
 - **Media and Hosting**:
   - User-uploaded images are stored on **Cloudinary**
-  - The backend is deployed via **Heroku**
-  - The frontend can be deployed via **GitHub Pages** or any static hosting platform
+  - Both frontend and backend are deployed via **Heroku** using a single monorepo setup, ensuring a unified deployment pipeline and simplified maintenance.
 
 This architecture supports scalability and flexibility, allowing future iterations such as mobile apps or third-party integrations to use the same backend API.
 
@@ -328,10 +329,6 @@ Navbar (component)
 LoggedInHomePage (container)
 │
 ├── Navbar (component)
-│    ├── Home Link
-│    ├── Create Links
-│    ├── Profile Link
-│    └── Logout Link
 │
 │── FeedSection (container)
 │   ├── FeedToggleButtons (component)
