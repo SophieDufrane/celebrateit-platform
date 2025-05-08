@@ -73,7 +73,7 @@ To plan the project development, I adopted an Agile methodology centered on user
 | [#1](https://github.com/SophieDufrane/PP5-celebrateit/issues/1) | Account Registration     | Users can create an account with basic credentials to join the CelebrateIt platform. | Must Have          |
 | [#2](https://github.com/SophieDufrane/PP5-celebrateit/issues/2) | Login to Account         | Users can securely log into their account to access features.                        | Must Have          |
 | [#4](https://github.com/SophieDufrane/PP5-celebrateit/issues/4) | Log out of Account       | Users can securely log out to protect their account.                                 | Must Have          |
-| [#8](https://github.com/SophieDufrane/PP5-celebrateit/issues/8) | Conditional Menu Options | The menu adapts to login status, showing relevant options.                           | Must Have          |
+| [#6](https://github.com/SophieDufrane/PP5-celebrateit/issues/6) | Conditional Menu Options | The menu adapts to login status, showing relevant options.                           | Should Have          |
 
 ---
 
@@ -81,17 +81,17 @@ To plan the project development, I adopted an Agile methodology centered on user
 
 | **ID**                                                            | **Theme**               | **User Story**                                                         | **Prioritisation** |
 | ----------------------------------------------------------------- | ----------------------- | ---------------------------------------------------------------------- | ------------------ |
-| [#12](https://github.com/SophieDufrane/PP5-celebrateit/issues/12) | Create a Recognition    | Users can submit a recognition story to celebrate someone.             | Must Have          |
-| [#14](https://github.com/SophieDufrane/PP5-celebrateit/issues/14) | Edit Recognition        | Users can edit a previously shared recognition.                        | Must Have          |
-| [#15](https://github.com/SophieDufrane/PP5-celebrateit/issues/15) | Delete Recognition      | Users can delete their recognition story.                              | Must Have          |
-| [#16](https://github.com/SophieDufrane/PP5-celebrateit/issues/16) | View Recognition Detail | Users can view the full content of a recognition story.                | Must Have          |
-| [#29](https://github.com/SophieDufrane/PP5-celebrateit/issues/29) | View Recognition Feed   | Users can browse all recognitions in the feed.                         | Must Have          |
-| [#28](https://github.com/SophieDufrane/PP5-celebrateit/issues/28) | Create a Nomination     | Users can nominate a colleague for recognition using tags.             | Must Have          |
-| [#30](https://github.com/SophieDufrane/PP5-celebrateit/issues/30) | Edit Nomination         | Users can update nomination content and tags.                          | Must Have          |
-| [#31](https://github.com/SophieDufrane/PP5-celebrateit/issues/31) | Delete Nomination       | Users can remove a nomination they previously made.                    | Must Have          |
+| [#11](https://github.com/SophieDufrane/PP5-celebrateit/issues/11) | Create a Recognition    | Users can submit a recognition story to celebrate someone.             | Must Have          |
+| [#13](https://github.com/SophieDufrane/PP5-celebrateit/issues/13) | Edit Recognition        | Users can edit a previously shared recognition.                        | Must Have          |
+| [#14](https://github.com/SophieDufrane/PP5-celebrateit/issues/14) | Delete Recognition      | Users can delete their recognition story.                              | Must Have          |
+| [#15](https://github.com/SophieDufrane/PP5-celebrateit/issues/15) | View Recognition Detail | Users can view the full content of a recognition story.                | Should Have          |
+| [#28](https://github.com/SophieDufrane/PP5-celebrateit/issues/28) | View Recognition Feed   | Users can browse all recognitions in the feed.                         | Must Have          |
+| [#27](https://github.com/SophieDufrane/PP5-celebrateit/issues/27) | Create a Nomination     | Users can nominate a colleague for recognition using tags.             | Must Have          |
+| [#29](https://github.com/SophieDufrane/PP5-celebrateit/issues/29) | Edit Nomination         | Users can update nomination content and tags.                          | Must Have          |
+| [#30](https://github.com/SophieDufrane/PP5-celebrateit/issues/30) | Delete Nomination       | Users can remove a nomination they previously made.                    | Must Have          |
+| [#31](https://github.com/SophieDufrane/PP5-celebrateit/issues/31) | View Nomination Detail  | Users can view full details of a nomination.                           | Should Have          |
 | [#32](https://github.com/SophieDufrane/PP5-celebrateit/issues/32) | View Nomination Feed    | Users can browse all nominations in the feed.                          | Must Have          |
-| [#31](https://github.com/SophieDufrane/PP5-celebrateit/issues/31) | View Nomination Detail  | Users can view full details of a nomination.                           | Must Have          |
-| [#13](https://github.com/SophieDufrane/PP5-celebrateit/issues/13) | View Own Posts          | Users can view a list of recognitions and nominations they’ve created. | Could Have         |
+| [#12](https://github.com/SophieDufrane/PP5-celebrateit/issues/12) | View Own Posts          | Users can view a list of recognitions and nominations they’ve created. | Could Have         |
 
 ---
 
@@ -99,10 +99,10 @@ To plan the project development, I adopted an Agile methodology centered on user
 
 | **ID**                                                            | **Theme**             | **User Story**                                     | **Prioritisation** |
 | ----------------------------------------------------------------- | --------------------- | -------------------------------------------------- | ------------------ |
-| [#17](https://github.com/SophieDufrane/PP5-celebrateit/issues/17) | Like a Post           | Users can like a post to show appreciation.        | Should Have        |
-| [#21](https://github.com/SophieDufrane/PP5-celebrateit/issues/21) | Comment on a Post     | Users can comment on posts to engage with content. | Must Have          |
+| [#16](https://github.com/SophieDufrane/PP5-celebrateit/issues/16) | Like a Post           | Users can like a post to show appreciation.        | Should Have        |
+| [#17](https://github.com/SophieDufrane/PP5-celebrateit/issues/17) | Comment on a Post     | Users can comment on posts to engage with content. | Must Have          |
 | [#33](https://github.com/SophieDufrane/PP5-celebrateit/issues/33) | Edit/Delete Comments  | Users can edit or remove their own comments.       | Should Have        |
-| [#11](https://github.com/SophieDufrane/PP5-celebrateit/issues/11) | Search for Colleagues | Users can search for other people by name.         | Should Have        |
+| [#8](https://github.com/SophieDufrane/PP5-celebrateit/issues/8) | Search for Colleagues | Users can search for other people by name.         | Should Have        |
 
 ---
 
@@ -110,7 +110,7 @@ To plan the project development, I adopted an Agile methodology centered on user
 
 | **ID**                                                            | **Theme**            | **User Story**                                                      | **Prioritisation** |
 | ----------------------------------------------------------------- | -------------------- | ------------------------------------------------------------------- | ------------------ |
-| [#22](https://github.com/SophieDufrane/PP5-celebrateit/issues/22) | Edit My Profile      | Users can update their avatar and bio to personalise their profile. | Should Have        |
+| [#22](https://github.com/SophieDufrane/PP5-celebrateit/issues/22) | Edit My Profile      | Users can update their avatar and bio to personalise their profile. | Could Have        |
 | [#21](https://github.com/SophieDufrane/PP5-celebrateit/issues/21) | View Public Profiles | Users can view other users’ bios and shared posts.                  | Must Have          |
 
 ---
@@ -121,11 +121,11 @@ All features listed above are prioritised using the **MoSCoW Framework** to guid
 
 The current breakdown is:
 
-- **Must Have** (15 / 22 → 68%): Core functionality required for project success.
+- **Must Have** (13 / 21 → 62%): Core functionality required for project success.
 
-- **Should Have** (6 / 22 → 27%): Enhancements that improve usability and experience.
+- **Should Have** (6 / 21 → 28%): Enhancements that improve usability and experience.
 
-- **Could Have** (1 / 22 → 5%): Nice-to-have features if time allows.
+- **Could Have** (2 / 21 → 10%): Nice-to-have features if time allows.
 
 - **Won’t Have**: Explicitly removed from scope.
 
