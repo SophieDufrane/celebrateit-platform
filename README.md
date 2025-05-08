@@ -143,6 +143,23 @@ This section provides a visual representation of the user navigation flow within
 
 ---
 
+### 2.3 System Architecture
+
+CelebrateIt follows a decoupled architecture, separating the backend and frontend into two distinct layers:
+
+- **Backend**: Built with Django REST Framework (DRF), the backend exposes a RESTful API. It handles authentication, user profiles, nominations, recognitions, comments, likes, and tag/category logic. The API returns JSON responses that can be consumed by any client.
+- **Frontend**: Developed using React, the frontend interacts with the API via `axios`. It handles routing with React Router, manages state locally (with hooks), and presents a dynamic interface to the user.
+- **Data Flow**: React fetches data from DRF endpoints and displays it based on the user's interactions. Forms (e.g. create/edit nomination) submit data back to the API to update the database.
+- **Authentication**: User sessions and permissions are managed via Django Allauth and token-based headers on the frontend.
+- **Media and Hosting**:
+  - User-uploaded images are stored on **Cloudinary**
+  - The backend is deployed via **Heroku**
+  - The frontend can be deployed via **GitHub Pages** or any static hosting platform
+
+This architecture supports scalability and flexibility, allowing future iterations such as mobile apps or third-party integrations to use the same backend API.
+
+---
+
 ### 2.4 Skeleton
 
 #### Wireframes for Key Screens or Pages
@@ -199,17 +216,57 @@ The colour palette echoes tech industry trends while adding warmth to reflect hu
 
 ## 3. Features
 
-- List of features available in the app
+### Implemented Features
 
-- List of features lest to implement
+- Secure user registration and login via Django Allauth
+- Conditional navigation menu that adapts to auth state
+- Create, edit, delete, and view **Recognition** stories
+- Create, edit, delete, and view **Nominations** with required tags
+- Combined feed with toggle to switch between Recognition and Nominations
+- Detail pages for each recognition and nomination
+- Real-time **like** system for posts and nominations
+- **Comment** system with edit and delete options for authors
+- Public profile pages showing user's info and contributions
+- Logged-in users can **edit their avatar and bio**
+- **Search bar** to find colleagues from the feed by name
+- Profile feed toggle: view your own recognitions and nominations
+
+### Upcoming or In Progress
+
+- Finalise Nomination CRUD frontend integration
+- Frontend tests and confirmation prompts
+- Final styling and responsiveness tweaks
+- README completion with testing documentation
+- Heroku deployment (backend) and potential CI setup
 
 ---
 
 ## 4. Technologies Used
 
-- List programming languages, frameworks, libraries, and tools used
+### Frontend
 
-- Mention any third-party APIs or integrations
+- React
+- React Router DOM
+- Axios
+- Bootstrap
+- CSS Modules
+
+### Backend
+
+- Django
+- Django REST Framework
+- Django Allauth
+- PostgreSQL (via Heroku)
+- Cloudinary (for image uploads)
+
+### Deployment & Tools
+
+- Heroku (backend)
+- GitHub & GitHub Pages (optional frontend deployment)
+- Git & GitHub for version control
+- VS Code
+- Insomnia/Postman for API testing
+- Lighthouse & DevTools for performance/accessibility audits
 
 ---
 
@@ -786,9 +843,42 @@ x
 
 ### 6.2 Front-End Application Testing
 
-- Manual testing
+All manual testing was performed on the deployed frontend using a real user account. Each user story was tested with expected interactions and outcomes, covering both positive and negative cases.
 
-- Automated testing
+Testing included:
+- Auth flows (register, login, logout)
+- Recognition and nomination CRUD
+- Feed behaviour and toggling
+- Detail page rendering
+- Like and comment functionality
+- User profile views and editing
+- Search bar and sidebar interactions
+
+See full table of test cases in [Manual Frontend Testing](#8-manual-frontend-testing).
+
+|**Priority**|**User Story**|**Page(s)**|**Test Scenario / Action**|**Expected Result**|✅ / ❌|
+|------------|--------------|-----------|---------------------------|-------------------|--------|
+|Must Have|Register an Account|Register Page|Fill out form with valid inputs and submit|Redirected to login, message confirms successful registration||
+|Must Have|Login to Account|Login Page|Enter valid credentials and submit|Redirected to feed with user menu visible||
+|Must Have|Logout|Any Page (Navbar)|Click logout|User is logged out and redirected to login||
+|Must Have|Conditional Menu Options|All Pages|Login and check navbar / Logout and check again|Menu adapts based on login status||
+|Must Have|Create Recognition|Post Create Page|Fill out form with content and submit|Redirected to detail, new post shows in feed||
+|Must Have|Edit Recognition|Feed > Edit Dropdown|Change title or content and save|Updated post appears in feed and detail||
+|Must Have|Delete Recognition|Feed > Delete Dropdown|Click delete and confirm|Post is removed from feed and not accessible by URL||
+|Must Have|View Recognition Detail|Feed > Click Card|Click post preview in feed|Full post loads with correct data||
+|Must Have|Create Nomination|Nomination Create Page|Submit valid form with nominee and tag|Redirect to detail, nomination shows in feed||
+|Must Have|Edit Nomination|Feed > Edit Dropdown|Update text or tags|Updated nomination shown in feed and detail||
+|Must Have|Delete Nomination|Feed > Delete Dropdown|Delete a nomination and confirm|Nomination disappears from feed and is inaccessible||
+|Must Have|View Nomination Detail|Feed > Click Card|Click on nomination preview|Full nomination loads with correct data||
+|Must Have|View Recognition Feed|Homepage|Open homepage|Feed shows latest recognitions, ordered by date||
+|Must Have|View Nomination Feed|Toggle in Homepage|Use toggle to switch feed type|Feed updates to show only nominations||
+|Must Have|Comment on Post|Detail Page|Submit valid comment|Comment appears below post||
+|Should Have|Like a Post|Feed / Detail|Click like and unlike|Count updates and button toggles correctly||
+|Should Have|Edit/Delete My Comment|Detail Page|Click edit or delete on owned comment|Comment updates or disappears as expected||
+|Should Have|Search for Colleagues|Feed Search Bar|Type partial name|Matching users show with avatar + \"Nominate\" button||
+|Should Have|Edit My Profile|Profile Edit Page|Change avatar or bio and save|Profile updates and info reflects new data||
+|Must Have|View Public Profiles|Feed / Detail > Author|Click username/avatar of another user|Public profile loads with bio + list of posts||
+|Could Have|View My Own Posts|My Profile Page|Visit profile and review recognitions + nominations|All user-created posts appear with preview||
 
 ### 6.3 Validators
 
