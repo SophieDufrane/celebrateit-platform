@@ -14,6 +14,7 @@ function SignUpForm() {
     password1: "",
     password2: "",
   });
+  const [errors, setErrors] = useState({});
   const { username, password1, password2 } = signUpData;
   const history = useHistory();
 
@@ -30,7 +31,7 @@ function SignUpForm() {
       await axios.post("/dj-rest-auth/registration/", signUpData);
       history.push("/login");
     } catch (err) {
-      console.error("Registration failed:", err.response?.data);
+      setErrors(err.response?.data || {});
     }
   }
 
@@ -54,6 +55,11 @@ function SignUpForm() {
                     value={username}
                     onChange={handleChange}
                   />
+                  {errors.username && (
+                    <Form.Text className="text-danger">
+                      {errors.username}
+                    </Form.Text>
+                  )}
                 </Form.Group>
 
                 <Form.Group
@@ -68,6 +74,11 @@ function SignUpForm() {
                     value={password1}
                     onChange={handleChange}
                   />
+                  {errors.password1 && (
+                    <Form.Text className="text-danger">
+                      {errors.password1}
+                    </Form.Text>
+                  )}
                 </Form.Group>
 
                 <Form.Group
@@ -82,6 +93,11 @@ function SignUpForm() {
                     value={password2}
                     onChange={handleChange}
                   />
+                  {errors.password2 && (
+                    <Form.Text className="text-danger">
+                      {errors.password2}
+                    </Form.Text>
+                  )}
                 </Form.Group>
 
                 <Button
