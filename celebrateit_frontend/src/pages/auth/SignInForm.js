@@ -33,6 +33,7 @@ function SignInForm() {
     username: "",
     password: "",
   });
+  const [loginErrors, setLoginErrors] = useState({});
   const { username, password } = signInData;
   const history = useHistory();
 
@@ -51,7 +52,7 @@ function SignInForm() {
       setCurrentUser(userData); // Save real user data to Context
       history.push("/");
     } catch (err) {
-      console.error("Login failed:", err.response?.data);
+      setLoginErrors(err.response?.data || {});
     }
   }
 
@@ -73,6 +74,17 @@ function SignInForm() {
             <div className={authStyles.splitBox}>
               <div className={authStyles.formBox}>
                 <h2 className={authStyles.AuthTitle}>LOGIN</h2>
+                {Object.keys(loginErrors).length > 0 && (
+                  <div className={authStyles.ErrorBox}>
+                    <ul className="mb-0 ps-3">
+                      {Object.values(loginErrors)
+                        .flat()
+                        .map((message, index) => (
+                          <li key={index}>{message}</li>
+                        ))}
+                    </ul>
+                  </div>
+                )}
                 <Form
                   onSubmit={handleSubmit}
                   className={authStyles.FormWrapper}

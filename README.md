@@ -859,9 +859,9 @@ Testing included:
 | **Priority** | **User Story**           | **Page(s)**       | **Test Scenario / Action**                      | **Expected Result**                                                                | Actual | **Screenshot** |
 | ------------ | ------------------------ | ----------------- | ----------------------------------------------- | ---------------------------------------------------------------------------------- | ------ | -------------- |
 | Must Have    | Register an Account      | Register Page     | Fill out form with valid inputs and submit      | Redirected to login, message confirms successful registration                      | ✅     | 1 - 2          |
-| Must Have    | Login to Account         | Login Page        | Enter valid credentials and submit              | Redirected to feed with user menu visible                                          | ✅     |                |
-| Must Have    | Logout                   | Any Page (Navbar) | Click logout                                    | User is logged out and redirected to login, message confirms successful logged out | ✅     | 3              |
-| Must Have    | Conditional Menu Options | All Pages         | Login and check navbar / Logout and check again | Menu adapts based on login status                                                  | ✅     | 4 - 5          |
+| Must Have    | Login to Account         | Login Page        | Enter valid credentials and submit              | Redirected to feed with user menu visible                                          | ✅     | 3              |
+| Must Have    | Logout                   | Any Page (Navbar) | Click logout                                    | User is logged out and redirected to login, message confirms successful logged out | ✅     | 4              |
+| Must Have    | Conditional Menu Options | All Pages         | Login and check navbar / Logout and check again | Menu adapts based on login status                                                  | ✅     | 5 - 6          |
 
 <details>
 <summary> 1/ Register – Validation Errors Display </summary>
@@ -878,23 +878,30 @@ Testing included:
 </details>
 
 <details>
-<summary> 3/ Logged out - Successful message </summary>
+<summary> 3/ Log In - Validation Errors Display </summary>
 
-![3](documentation/frontend/testing/logged_out_successful.png)
-
-</details>
-
-<details>
-<summary> 4/ Conditional Menu Options when logged out </summary>
-
-![4](documentation/frontend/testing/navbar_logged_out.png)
+![3](documentation/frontend/testing/login_wrong_credentials.png)
 
 </details>
 
 <details>
-<summary> 5/ Conditional Menu Options when logged in </summary>
+<summary> 4/ Logged out - Successful message </summary>
 
-![5](documentation/frontend/testing/navbar_logged_in.png)
+![4](documentation/frontend/testing/logged_out_successful.png)
+
+</details>
+
+<details>
+<summary> 5/ Conditional Menu Options when logged out </summary>
+
+![5](documentation/frontend/testing/navbar_logged_out.png)
+
+</details>
+
+<details>
+<summary> 6/ Conditional Menu Options when logged in </summary>
+
+![6](documentation/frontend/testing/navbar_logged_in.png)
 
 </details>
 
