@@ -73,7 +73,7 @@ To plan the project development, I adopted an Agile methodology centered on user
 | [#1](https://github.com/SophieDufrane/PP5-celebrateit/issues/1) | Account Registration     | Users can create an account with basic credentials to join the CelebrateIt platform. | Must Have          |
 | [#2](https://github.com/SophieDufrane/PP5-celebrateit/issues/2) | Login to Account         | Users can securely log into their account to access features.                        | Must Have          |
 | [#4](https://github.com/SophieDufrane/PP5-celebrateit/issues/4) | Log out of Account       | Users can securely log out to protect their account.                                 | Must Have          |
-| [#6](https://github.com/SophieDufrane/PP5-celebrateit/issues/6) | Conditional Menu Options | The menu adapts to login status, showing relevant options.                           | Should Have          |
+| [#6](https://github.com/SophieDufrane/PP5-celebrateit/issues/6) | Conditional Menu Options | The menu adapts to login status, showing relevant options.                           | Should Have        |
 
 ---
 
@@ -84,12 +84,12 @@ To plan the project development, I adopted an Agile methodology centered on user
 | [#11](https://github.com/SophieDufrane/PP5-celebrateit/issues/11) | Create a Recognition    | Users can submit a recognition story to celebrate someone.             | Must Have          |
 | [#13](https://github.com/SophieDufrane/PP5-celebrateit/issues/13) | Edit Recognition        | Users can edit a previously shared recognition.                        | Must Have          |
 | [#14](https://github.com/SophieDufrane/PP5-celebrateit/issues/14) | Delete Recognition      | Users can delete their recognition story.                              | Must Have          |
-| [#15](https://github.com/SophieDufrane/PP5-celebrateit/issues/15) | View Recognition Detail | Users can view the full content of a recognition story.                | Should Have          |
+| [#15](https://github.com/SophieDufrane/PP5-celebrateit/issues/15) | View Recognition Detail | Users can view the full content of a recognition story.                | Should Have        |
 | [#28](https://github.com/SophieDufrane/PP5-celebrateit/issues/28) | View Recognition Feed   | Users can browse all recognitions in the feed.                         | Must Have          |
 | [#27](https://github.com/SophieDufrane/PP5-celebrateit/issues/27) | Create a Nomination     | Users can nominate a colleague for recognition using tags.             | Must Have          |
 | [#29](https://github.com/SophieDufrane/PP5-celebrateit/issues/29) | Edit Nomination         | Users can update nomination content and tags.                          | Must Have          |
 | [#30](https://github.com/SophieDufrane/PP5-celebrateit/issues/30) | Delete Nomination       | Users can remove a nomination they previously made.                    | Must Have          |
-| [#31](https://github.com/SophieDufrane/PP5-celebrateit/issues/31) | View Nomination Detail  | Users can view full details of a nomination.                           | Should Have          |
+| [#31](https://github.com/SophieDufrane/PP5-celebrateit/issues/31) | View Nomination Detail  | Users can view full details of a nomination.                           | Should Have        |
 | [#32](https://github.com/SophieDufrane/PP5-celebrateit/issues/32) | View Nomination Feed    | Users can browse all nominations in the feed.                          | Must Have          |
 | [#12](https://github.com/SophieDufrane/PP5-celebrateit/issues/12) | View Own Posts          | Users can view a list of recognitions and nominations they’ve created. | Could Have         |
 
@@ -102,7 +102,7 @@ To plan the project development, I adopted an Agile methodology centered on user
 | [#16](https://github.com/SophieDufrane/PP5-celebrateit/issues/16) | Like a Post           | Users can like a post to show appreciation.        | Should Have        |
 | [#17](https://github.com/SophieDufrane/PP5-celebrateit/issues/17) | Comment on a Post     | Users can comment on posts to engage with content. | Must Have          |
 | [#33](https://github.com/SophieDufrane/PP5-celebrateit/issues/33) | Edit/Delete Comments  | Users can edit or remove their own comments.       | Should Have        |
-| [#8](https://github.com/SophieDufrane/PP5-celebrateit/issues/8) | Search for Colleagues | Users can search for other people by name.         | Should Have        |
+| [#8](https://github.com/SophieDufrane/PP5-celebrateit/issues/8)   | Search for Colleagues | Users can search for other people by name.         | Should Have        |
 
 ---
 
@@ -110,7 +110,7 @@ To plan the project development, I adopted an Agile methodology centered on user
 
 | **ID**                                                            | **Theme**            | **User Story**                                                      | **Prioritisation** |
 | ----------------------------------------------------------------- | -------------------- | ------------------------------------------------------------------- | ------------------ |
-| [#22](https://github.com/SophieDufrane/PP5-celebrateit/issues/22) | Edit My Profile      | Users can update their avatar and bio to personalise their profile. | Could Have        |
+| [#22](https://github.com/SophieDufrane/PP5-celebrateit/issues/22) | Edit My Profile      | Users can update their avatar and bio to personalise their profile. | Could Have         |
 | [#21](https://github.com/SophieDufrane/PP5-celebrateit/issues/21) | View Public Profiles | Users can view other users’ bios and shared posts.                  | Must Have          |
 
 ---
@@ -169,17 +169,21 @@ The following wireframes outline the structure and layout of the main screens in
 
 - **Secure Authentication**
 
-  - Employees register, sign in and out securely using **Django Allauth**.
+  - Employees register, log in and out securely using **Django Allauth**.
 
-    <details>
-      <summary>Landing Page</summary>
-      <img src="">
-    </details>
+      <details>
+      <summary> Register an Account </summary>
 
-- **Secure Authentication**
-- **Secure Authentication**
-- **Secure Authentication**
-- **Secure Authentication**
+    ![Register](documentation/frontend/skeleton/register_form.png)
+
+      </details>
+
+      <details>
+      <summary> Log in to an existing Account </summary>
+
+    ![Log in](documentation/frontend/skeleton/login_form.png)
+
+      </details>
 
 ---
 
@@ -836,13 +840,12 @@ Each section below corresponds to a model and includes the tested endpoint, HTTP
 
 </details>
 
-x
-
 ### 6.2 Front-End Application Testing
 
 All manual testing was performed on the deployed frontend using a real user account. Each user story was tested with expected interactions and outcomes, covering both positive and negative cases.
 
 Testing included:
+
 - Auth flows (register, login, logout)
 - Recognition and nomination CRUD
 - Feed behaviour and toggling
@@ -851,31 +854,76 @@ Testing included:
 - User profile views and editing
 - Search bar and sidebar interactions
 
-See full table of test cases in [Manual Frontend Testing](#8-manual-frontend-testing).
+#### **Getting Started & Joining the Platform**
 
-|**Priority**|**User Story**|**Page(s)**|**Test Scenario / Action**|**Expected Result**|✅ / ❌|
-|------------|--------------|-----------|---------------------------|-------------------|--------|
-|Must Have|Register an Account|Register Page|Fill out form with valid inputs and submit|Redirected to login, message confirms successful registration||
-|Must Have|Login to Account|Login Page|Enter valid credentials and submit|Redirected to feed with user menu visible||
-|Must Have|Logout|Any Page (Navbar)|Click logout|User is logged out and redirected to login||
-|Must Have|Conditional Menu Options|All Pages|Login and check navbar / Logout and check again|Menu adapts based on login status||
-|Must Have|Create Recognition|Post Create Page|Fill out form with content and submit|Redirected to detail, new post shows in feed||
-|Must Have|Edit Recognition|Feed > Edit Dropdown|Change title or content and save|Updated post appears in feed and detail||
-|Must Have|Delete Recognition|Feed > Delete Dropdown|Click delete and confirm|Post is removed from feed and not accessible by URL||
-|Must Have|View Recognition Detail|Feed > Click Card|Click post preview in feed|Full post loads with correct data||
-|Must Have|Create Nomination|Nomination Create Page|Submit valid form with nominee and tag|Redirect to detail, nomination shows in feed||
-|Must Have|Edit Nomination|Feed > Edit Dropdown|Update text or tags|Updated nomination shown in feed and detail||
-|Must Have|Delete Nomination|Feed > Delete Dropdown|Delete a nomination and confirm|Nomination disappears from feed and is inaccessible||
-|Must Have|View Nomination Detail|Feed > Click Card|Click on nomination preview|Full nomination loads with correct data||
-|Must Have|View Recognition Feed|Homepage|Open homepage|Feed shows latest recognitions, ordered by date||
-|Must Have|View Nomination Feed|Toggle in Homepage|Use toggle to switch feed type|Feed updates to show only nominations||
-|Must Have|Comment on Post|Detail Page|Submit valid comment|Comment appears below post||
-|Should Have|Like a Post|Feed / Detail|Click like and unlike|Count updates and button toggles correctly||
-|Should Have|Edit/Delete My Comment|Detail Page|Click edit or delete on owned comment|Comment updates or disappears as expected||
-|Should Have|Search for Colleagues|Feed Search Bar|Type partial name|Matching users show with avatar + \"Nominate\" button||
-|Should Have|Edit My Profile|Profile Edit Page|Change avatar or bio and save|Profile updates and info reflects new data||
-|Must Have|View Public Profiles|Feed / Detail > Author|Click username/avatar of another user|Public profile loads with bio + list of posts||
-|Could Have|View My Own Posts|My Profile Page|Visit profile and review recognitions + nominations|All user-created posts appear with preview||
+| **Priority** | **User Story**           | **Page(s)**       | **Test Scenario / Action**                      | **Expected Result**                                           | Actual | **Screenshot** |
+| ------------ | ------------------------ | ----------------- | ----------------------------------------------- | ------------------------------------------------------------- | ------ | -------------- |
+| Must Have    | Register an Account      | Register Page     | Fill out form with valid inputs and submit      | Redirected to login, message confirms successful registration | ✅     | 1 - 2          |
+| Must Have    | Login to Account         | Login Page        | Enter valid credentials and submit              | Redirected to feed with user menu visible                     | ✅     |                |
+| Must Have    | Logout                   | Any Page (Navbar) | Click logout                                    | User is logged out and redirected to login                    | ✅     |                |
+| Must Have    | Conditional Menu Options | All Pages         | Login and check navbar / Logout and check again | Menu adapts based on login status                             | ✅     | 3 - 4          |
+
+<details>
+<summary> 1/ Register – Validation Errors Display </summary>
+
+![1](documentation/frontend/testing/register_form_messages.png)
+
+</details>
+
+<details>
+<summary> 2/ Register - Successful message </summary>
+
+![2](documentation/frontend/testing/registration_successful.png)
+
+</details>
+
+<details>
+<summary> 3/ Conditional Menu Options when logged out </summary>
+
+![3](documentation/frontend/testing/navbar_logged_out.png)
+
+</details>
+
+<details>
+<summary> 4/ Conditional Menu Options when logged in </summary>
+
+![4](documentation/frontend/testing/navbar_logged_in.png)
+
+</details>
+
+---
+
+#### **Recognition & Nomination CRUD**
+
+| **Priority** | **User Story**          | **Page(s)**            | **Test Scenario / Action**             | **Expected Result**                                 | Actual | **Screenshot** |
+| ------------ | ----------------------- | ---------------------- | -------------------------------------- | --------------------------------------------------- | ------ | -------------- |
+| Must Have    | Create Recognition      | Post Create Page       | Fill out form with content and submit  | Redirected to detail, new post shows in feed        |        |
+| Must Have    | Edit Recognition        | Feed > Edit Dropdown   | Change title or content and save       | Updated post appears in feed and detail             |        |
+| Must Have    | Delete Recognition      | Feed > Delete Dropdown | Click delete and confirm               | Post is removed from feed and not accessible by URL |        |
+| Must Have    | View Recognition Detail | Feed > Click Card      | Click post preview in feed             | Full post loads with correct data                   |        |
+| Must Have    | Create Nomination       | Nomination Create Page | Submit valid form with nominee and tag | Redirect to detail, nomination shows in feed        |        |
+| Must Have    | Edit Nomination         | Feed > Edit Dropdown   | Update text or tags                    | Updated nomination shown in feed and detail         |        |
+| Must Have    | Delete Nomination       | Feed > Delete Dropdown | Delete a nomination and confirm        | Nomination disappears from feed and is inaccessible |        |
+| Must Have    | View Nomination Detail  | Feed > Click Card      | Click on nomination preview            | Full nomination loads with correct data             |        |
+| Must Have    | View Recognition Feed   | Homepage               | Open homepage                          | Feed shows latest recognitions, ordered by date     |        |
+| Must Have    | View Nomination Feed    | Toggle in Homepage     | Use toggle to switch feed type         | Feed updates to show only nominations               |        |
+
+#### **Engaging with People & Posts**
+
+| **Priority** | **User Story**         | **Page(s)**     | **Test Scenario / Action**            | **Expected Result**                                   | Actual | **Screenshot** |
+| ------------ | ---------------------- | --------------- | ------------------------------------- | ----------------------------------------------------- | ------ | -------------- |
+| Must Have    | Comment on Post        | Detail Page     | Submit valid comment                  | Comment appears below post                            |        |
+| Should Have  | Like a Post            | Feed / Detail   | Click like and unlike                 | Count updates and button toggles correctly            |        |
+| Should Have  | Edit/Delete My Comment | Detail Page     | Click edit or delete on owned comment | Comment updates or disappears as expected             |        |
+| Should Have  | Search for Colleagues  | Feed Search Bar | Type partial name                     | Matching users show with avatar + \"Nominate\" button |        |
+
+#### **Managing My Profile & Network**
+
+| **Priority** | **User Story**       | **Page(s)**            | **Test Scenario / Action**                          | **Expected Result**                           | Actual | **Screenshot** |
+| ------------ | -------------------- | ---------------------- | --------------------------------------------------- | --------------------------------------------- | ------ | -------------- |
+| Should Have  | Edit My Profile      | Profile Edit Page      | Change avatar or bio and save                       | Profile updates and info reflects new data    |        |
+| Must Have    | View Public Profiles | Feed / Detail > Author | Click username/avatar of another user               | Public profile loads with bio + list of posts |        |
+| Could Have   | View My Own Posts    | My Profile Page        | Visit profile and review recognitions + nominations | All user-created posts appear with preview    |        |
 
 ### 6.3 Validators
 
