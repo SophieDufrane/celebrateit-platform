@@ -14,12 +14,19 @@ function SignInForm() {
     new URLSearchParams(location.search).get("registered")
   );
 
+  const [showLogout, setShowLogout] = useState(
+    new URLSearchParams(location.search).get("loggedOut")
+  );
+
   useEffect(() => {
-    if (showSuccess) {
-      const timer = setTimeout(() => setShowSuccess(false), 4000);
+    if (showSuccess || showLogout) {
+      const timer = setTimeout(() => {
+        setShowSuccess(false);
+        setShowLogout(false);
+      }, 4000);
       return () => clearTimeout(timer);
     }
-  }, [showSuccess]);
+  }, [showSuccess, showLogout]);
 
   const setCurrentUser = useSetCurrentUser();
   const [signInData, setSignInData] = useState({
@@ -53,6 +60,11 @@ function SignInForm() {
       {showSuccess && (
         <Alert variant="success" className="mt-3 text-center">
           Registration successful! Please log in.
+        </Alert>
+      )}
+      {showLogout && (
+        <Alert variant="info" className="mt-3 text-center">
+          You have been logged out.
         </Alert>
       )}
       <Container className="d-flex justify-content-center">
