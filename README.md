@@ -911,9 +911,9 @@ Testing included:
 
 | **Priority** | **User Story**          | **Page(s)**            | **Test Scenario / Action**             | **Expected Result**                                 | Actual | **Screenshot** |
 | ------------ | ----------------------- | ---------------------- | -------------------------------------- | --------------------------------------------------- | ------ | -------------- |
-| Must Have    | Create Recognition      | Post Create Page       | Fill out form with content and submit  | Redirected to detail, new post shows in feed        |        |
-| Must Have    | Edit Recognition        | Feed > Edit Dropdown   | Change title or content and save       | Updated post appears in feed and detail             |        |
-| Must Have    | Delete Recognition      | Feed > Delete Dropdown | Click delete and confirm               | Post is removed from feed and not accessible by URL |        |
+| Must Have    | Create Recognition      | Post Create Page       | Fill out form with content and submit  | Redirected to detail, new post shows in feed        | ✅     | 1              |
+| Must Have    | Edit Recognition        | Feed > Edit Dropdown   | Change title or content and save       | Updated post appears in feed and detail             | ✅     | 2 - 3 - 4      |
+| Must Have    | Delete Recognition      | Feed > Delete Dropdown | Click delete and confirm               | Post is removed from feed and not accessible by URL |        | 5- 6           |
 | Must Have    | View Recognition Detail | Feed > Click Card      | Click post preview in feed             | Full post loads with correct data                   |        |
 | Must Have    | Create Nomination       | Nomination Create Page | Submit valid form with nominee and tag | Redirect to detail, nomination shows in feed        |        |
 | Must Have    | Edit Nomination         | Feed > Edit Dropdown   | Update text or tags                    | Updated nomination shown in feed and detail         |        |
@@ -921,6 +921,48 @@ Testing included:
 | Must Have    | View Nomination Detail  | Feed > Click Card      | Click on nomination preview            | Full nomination loads with correct data             |        |
 | Must Have    | View Recognition Feed   | Homepage               | Open homepage                          | Feed shows latest recognitions, ordered by date     |        |
 | Must Have    | View Nomination Feed    | Toggle in Homepage     | Use toggle to switch feed type         | Feed updates to show only nominations               |        |
+
+<details>
+<summary> 1/ Create Recognition – Successful message </summary>
+
+![1](documentation/frontend/testing/post_created.png)
+
+</details>
+
+<details>
+<summary> 2/ Edit Recognition – Dropdown feed </summary>
+
+![2](documentation/frontend/testing/dropdown_feed.png)
+
+</details>
+
+<details>
+<summary> 3/ Edit Recognition – Form pre-filled </summary>
+
+![3](documentation/frontend/testing/edit_post_form.png)
+
+</details>
+
+<details>
+<summary> 4/ Edit Recognition – Successful message </summary>
+
+![4](documentation/frontend/testing/edit_post_successful.png)
+
+</details>
+
+<details>
+<summary> 5/ Delit Recognition > NEED TO ADD THE CONFIRMATION MESSAGE </summary>
+
+![5](documentation/frontend/testing/.png)
+
+</details>
+
+<details>
+<summary> 6/ Delit Recognition > Successful message </summary>
+
+![6](documentation/frontend/testing/deleted_post_successful.png)
+
+</details>
 
 #### **Engaging with People & Posts**
 
