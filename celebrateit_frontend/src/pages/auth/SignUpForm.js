@@ -41,6 +41,17 @@ function SignUpForm() {
             <div className={authStyles.formBox}>
               <h2 className={authStyles.AuthTitle}>Register</h2>
               <Form onSubmit={handleSubmit} className={authStyles.FormWrapper}>
+                {Object.keys(errors).length > 0 && (
+                  <div className={authStyles.ErrorBox}>
+                    <ul className="mb-0 ps-3">
+                      {Object.values(errors)
+                        .flat()
+                        .map((message, index) => (
+                          <li key={index}>{message}</li>
+                        ))}
+                    </ul>
+                  </div>
+                )}
                 <Form.Group
                   controlId="username"
                   className={authStyles.FormGroupSpacing}
@@ -53,11 +64,6 @@ function SignUpForm() {
                     value={username}
                     onChange={handleChange}
                   />
-                  {errors.username && (
-                    <Form.Text className="text-danger">
-                      {errors.username}
-                    </Form.Text>
-                  )}
                 </Form.Group>
 
                 <Form.Group
@@ -72,11 +78,6 @@ function SignUpForm() {
                     value={password1}
                     onChange={handleChange}
                   />
-                  {errors.password1 && (
-                    <Form.Text className="text-danger">
-                      {errors.password1}
-                    </Form.Text>
-                  )}
                 </Form.Group>
 
                 <Form.Group
@@ -91,11 +92,6 @@ function SignUpForm() {
                     value={password2}
                     onChange={handleChange}
                   />
-                  {errors.password2 && (
-                    <Form.Text className="text-danger">
-                      {errors.password2}
-                    </Form.Text>
-                  )}
                 </Form.Group>
 
                 <Button
