@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { axiosRes } from "../api/axiosDefaults";
+import { axiosReq } from "../api/axiosDefaults";
 
 export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();
@@ -12,7 +12,7 @@ export const CurrentUserProvider = ({ children }) => {
 
   const handleMount = async () => {
     try {
-      const { data } = await axiosRes.get("dj-rest-auth/user/");
+      const { data } = await axiosReq.get("dj-rest-auth/user/");
       setCurrentUser(data);
     } catch (err) {
       // Not logged in or session expired

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory, useLocation } from "react-router-dom";
-import { axiosReq, axiosRes } from "../../api/axiosDefaults";
+import { axiosReq } from "../../api/axiosDefaults";
 import { Container, Alert } from "react-bootstrap";
 import PostLayoutShell from "../../components/PostLayoutShell";
 import MoreDropdown from "../../components/MoreDropdown";
@@ -28,7 +28,7 @@ function NominationDetailPage() {
 
   const handleDelete = async () => {
     try {
-      await axiosRes.delete(`/nominations/${nomination.id}/`);
+      await axiosReq.delete(`/nominations/${nomination.id}/`);
       history.push("/?deleted=true");
     } catch (err) {
       console.error("Error deleting nomination:", err);

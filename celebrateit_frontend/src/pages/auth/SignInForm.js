@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { axiosRes } from "../../api/axiosDefaults";
+import { axiosReq } from "../../api/axiosDefaults";
 import { Form, Button, Container, Alert } from "react-bootstrap";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
@@ -48,7 +48,7 @@ function SignInForm() {
     event.preventDefault();
     try {
       await axios.post("/dj-rest-auth/login/", signInData);
-      const { data: userData } = await axiosRes.get("/dj-rest-auth/user/");
+      const { data: userData } = await axiosReq.get("/dj-rest-auth/user/");
       setCurrentUser(userData); // Save real user data to Context
       history.push("/");
     } catch (err) {

@@ -47,10 +47,6 @@ const PostForm = ({
           />
         </OverlayTrigger>
       </Form.Group>
-      {/* <Form.Group controlId="image" className={styles.FormGroupSpacing}>
-        <Form.Label>Image (optional)</Form.Label>
-        <Form.Control type="file" name="image" onChange={handleChange} />
-      </Form.Group> */}
       {children}
       <div className={styles.FormButtonRow}>
         <Button type="submit" className={sharedStyles.YellowButton}>

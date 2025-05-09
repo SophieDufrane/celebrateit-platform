@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { axiosReq } from "../../api/axiosDefaults";
 import { Form, Button, Container } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import authStyles from "../../styles/AuthForm.module.css";
@@ -26,7 +26,7 @@ function SignUpForm() {
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-      await axios.post("/dj-rest-auth/registration/", signUpData);
+      await axiosReq.post("/dj-rest-auth/registration/", signUpData);
       history.push("/login?registered=true");
     } catch (err) {
       setErrors(err.response?.data || {});

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory, useLocation } from "react-router-dom";
-import { axiosReq, axiosRes } from "../../api/axiosDefaults";
+import { axiosReq } from "../../api/axiosDefaults";
 import { Container, Alert } from "react-bootstrap";
 import PostLayoutShell from "../../components/PostLayoutShell";
 import MoreDropdown from "../../components/MoreDropdown";
@@ -28,7 +28,7 @@ function PostDetailPage() {
 
   const handleDelete = async () => {
     try {
-      await axiosRes.delete(`/posts/${post.id}/`);
+      await axiosReq.delete(`/posts/${post.id}/`);
       history.push("/?deleted=true");
     } catch (err) {
       // console.log(err);
