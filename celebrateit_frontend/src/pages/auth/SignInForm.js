@@ -32,7 +32,7 @@ function SignInForm() {
       await axios.post("/dj-rest-auth/login/", signInData);
       const { data: userData } = await axiosRes.get("/dj-rest-auth/user/");
       setCurrentUser(userData); // Save real user data to Context
-      history.goBack();
+      history.push("/");
     } catch (err) {
       console.error("Login failed:", err.response?.data);
     }
