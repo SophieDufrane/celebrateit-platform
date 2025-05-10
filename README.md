@@ -866,103 +866,168 @@ Testing included:
 <details>
 <summary> 1/ Register – Validation Errors Display </summary>
 
-![1](documentation/frontend/testing/register_form_messages.png)
+![1](documentation/frontend/testing/auth/register_form_messages.png)
 
 </details>
 
 <details>
 <summary> 2/ Register - Successful message </summary>
 
-![2](documentation/frontend/testing/registration_successful.png)
+![2](documentation/frontend/testing/auth/registration_successful.png)
 
 </details>
 
 <details>
 <summary> 3/ Log In - Validation Errors Display </summary>
 
-![3](documentation/frontend/testing/login_wrong_credentials.png)
+![3](documentation/frontend/testing/auth/login_wrong_credentials.png)
 
 </details>
 
 <details>
 <summary> 4/ Logged out - Successful message </summary>
 
-![4](documentation/frontend/testing/logged_out_successful.png)
+![4](documentation/frontend/testing/auth/logged_out_successful.png)
 
 </details>
 
 <details>
 <summary> 5/ Conditional Menu Options when logged out </summary>
 
-![5](documentation/frontend/testing/navbar_logged_out.png)
+![5](documentation/frontend/testing/auth/navbar_logged_out.png)
 
 </details>
 
 <details>
 <summary> 6/ Conditional Menu Options when logged in </summary>
 
-![6](documentation/frontend/testing/navbar_logged_in.png)
+![6](documentation/frontend/testing/auth/navbar_logged_in.png)
 
 </details>
 
 ---
 
-#### **Recognition & Nomination CRUD**
+#### **Recognition CRUD**
 
-| **Priority** | **User Story**          | **Page(s)**            | **Test Scenario / Action**             | **Expected Result**                                 | Actual | **Screenshot** |
-| ------------ | ----------------------- | ---------------------- | -------------------------------------- | --------------------------------------------------- | ------ | -------------- |
-| Must Have    | Create Recognition      | Post Create Page       | Fill out form with content and submit  | Redirected to detail, new post shows in feed        | ✅     | 1              |
-| Must Have    | Edit Recognition        | Feed > Edit Dropdown   | Change title or content and save       | Updated post appears in feed and detail             | ✅     | 2 - 3 - 4      |
-| Must Have    | Delete Recognition      | Feed > Delete Dropdown | Click delete and confirm               | Post is removed from feed and not accessible by URL | ✅     | 5- 6           |
-| Must Have    | View Recognition Detail | Feed > Click Card      | Click post preview in feed             | Full post loads with correct data                   |        |
-| Must Have    | Create Nomination       | Nomination Create Page | Submit valid form with nominee and tag | Redirect to detail, nomination shows in feed        |        |
-| Must Have    | Edit Nomination         | Feed > Edit Dropdown   | Update text or tags                    | Updated nomination shown in feed and detail         |        |
-| Must Have    | Delete Nomination       | Feed > Delete Dropdown | Delete a nomination and confirm        | Nomination disappears from feed and is inaccessible |        |
-| Must Have    | View Nomination Detail  | Feed > Click Card      | Click on nomination preview            | Full nomination loads with correct data             |        |
-| Must Have    | View Recognition Feed   | Homepage               | Open homepage                          | Feed shows latest recognitions, ordered by date     | ✅     |
-| Must Have    | View Nomination Feed    | Toggle in Homepage     | Use toggle to switch feed type         | Feed updates to show only nominations               |        |
+| **Priority** | **User Story**          | **Page(s)**            | **Test Scenario / Action**            | **Expected Result**                                 | Actual | **Screenshot** |
+| ------------ | ----------------------- | ---------------------- | ------------------------------------- | --------------------------------------------------- | ------ | -------------- |
+| Must Have    | Create Recognition      | Post Create Page       | Fill out form with content and submit | Redirected to detail, new post shows in feed        | ✅     | 1              |
+| Must Have    | Edit Recognition        | Feed > Edit Dropdown   | Change title or content and save      | Updated post appears in feed and detail             | ✅     | 2 - 3 - 4      |
+| Must Have    | Delete Recognition      | Feed > Delete Dropdown | Click delete and confirm              | Post is removed from feed and not accessible by URL | ✅     | 5 - 6          |
+| Must Have    | View Recognition Detail | Feed > Click Card      | Click post preview in feed            | Full post loads with correct data                   | ✅     |                |
+| Must Have    | View Recognition Feed   | Homepage               | Open homepage                         | Feed shows latest recognitions, ordered by date     | ✅     |                |
 
 <details>
 <summary> 1/ Create Recognition – Successful message </summary>
 
-![1](documentation/frontend/testing/post_created.png)
+![1](documentation/frontend/testing/recognition/recognition_create_successful.png)
 
 </details>
 
 <details>
 <summary> 2/ Edit Recognition – Dropdown feed </summary>
 
-![2](documentation/frontend/testing/dropdown_feed.png)
+![2](documentation/frontend/testing/recognition/dropdown_feed.png)
 
 </details>
 
 <details>
 <summary> 3/ Edit Recognition – Form pre-filled </summary>
 
-![3](documentation/frontend/testing/edit_post_form.png)
+![3](documentation/frontend/testing/recognition/recognition_edit.png)
 
 </details>
 
 <details>
 <summary> 4/ Edit Recognition – Successful message </summary>
 
-![4](documentation/frontend/testing/edit_post_successful.png)
+![4](documentation/frontend/testing/recognition/recognition_edit_successful.png)
 
 </details>
 
 <details>
-<summary> 5/ Delit Recognition - Confirmation prompt </summary>
+<summary> 5/ Delete Recognition - Confirmation prompt </summary>
 
-![5](documentation/frontend/testing/post_delete_confirm_prompt.png)
+![5](documentation/frontend/testing/recognition/recognition_delete_prompt.png)
 
 </details>
 
 <details>
-<summary> 6/ Delit Recognition > Successful message </summary>
+<summary> 6/ Delete Recognition > Successful message </summary>
 
-![6](documentation/frontend/testing/deleted_post_successful.png)
+![6](documentation/frontend/testing/recognition/recognition_delete_successful.png)
 
 </details>
+
+---
+
+#### **Nomination CRUD**
+
+| **Priority** | **User Story**         | **Page(s)**            | **Test Scenario / Action**             | **Expected Result**                                 | Actual | **Screenshot** |
+| ------------ | ---------------------- | ---------------------- | -------------------------------------- | --------------------------------------------------- | ------ | -------------- |
+| Must Have    | Create Nomination      | Nomination Create Page | Submit valid form with nominee and tag | Redirect to detail, nomination shows in feed        | ✅     | 1 - 2 - 3 - 4  |
+| Must Have    | Edit Nomination        | Feed > Edit Dropdown   | Update text or tags                    | Updated nomination shown in feed and detail         | ✅     | 5 - 6          |
+| Must Have    | Delete Nomination      | Feed > Delete Dropdown | Delete a nomination and confirm        | Nomination disappears from feed and is inaccessible | ✅     | 7 - 8          |
+| Must Have    | View Nomination Detail | Feed > Click Card      | Click on nomination preview            | Full nomination loads with correct data             | ✅     |                |
+| Must Have    | View Nomination Feed   | Toggle in Homepage     | Use toggle to switch feed type         | Feed updates to show only nominations               | ✅     |                |
+
+<details>
+<summary> 1/ Create Nomination – Successful message </summary>
+
+![1](documentation/frontend/testing/nomination/nomination_create_successful.png)
+
+</details>
+
+<details>
+<summary> 2/ Create Nomination – tag dropdwon </summary>
+
+![2](documentation/frontend/testing/nomination/nomination_create_tag.png)
+
+</details>
+
+<details>
+<summary> 3/ Create Nomination – search people by name </summary>
+
+![3](documentation/frontend/testing/nomination/nomination_create_name.png)
+
+</details>
+
+<details>
+<summary> 4/ Create Nomination – tag mandatory </summary>
+
+![4](documentation/frontend/testing/nomination/nomination_create_tag_mandatory.png)
+
+</details>
+
+<details>
+<summary> 5/ Edit Nomination – Dropdown feed </summary>
+
+![5](documentation/frontend/testing/nomination/nomination_edit_feed.png)
+
+</details>
+
+<details>
+<summary> 6/ Edit Nomination – Successful message </summary>
+
+![6](documentation/frontend/testing/nomination/nomination_edit_successful.png)
+
+</details>
+
+<details>
+<summary> 7/ Delete Nomination - Confirmation prompt </summary>
+
+![7](documentation/frontend/testing/nomination/nomination_delete_prompt.png)
+
+</details>
+
+<details>
+<summary> 8/ Delete Nomination > Successful message </summary>
+
+![8](documentation/frontend/testing/nomination/nomination_delete_successful.png)
+
+</details>
+
+---
 
 #### **Engaging with People & Posts**
 
