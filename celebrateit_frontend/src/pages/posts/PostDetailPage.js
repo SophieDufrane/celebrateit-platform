@@ -4,10 +4,12 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { Container, Alert } from "react-bootstrap";
 import PostLayoutShell from "../../components/PostLayoutShell";
 import MoreDropdown from "../../components/MoreDropdown";
+import ConfirmDeleteModal from "../../components/ConfirmDeleteModal";
 
 function PostDetailPage() {
   const { id } = useParams();
   const history = useHistory();
+  const [showConfirm, setShowConfirm] = useState(false);
   const location = useLocation();
 
   const [post, setPost] = useState(null);
@@ -26,12 +28,18 @@ function PostDetailPage() {
     ? "Your recognition has been updated!"
     : "";
 
-  const handleDelete = async () => {
+  const handleDelete = () => {
+    setShowConfirm(true);
+  };
+
+  const confirmDelete = async () => {
     try {
       await axiosReq.delete(`/posts/${post.id}/`);
       history.push("/?deleted=true");
     } catch (err) {
-      // console.log(err);
+      console.error("Delete failed:", err);
+    } finally {
+      setShowConfirm(false);
     }
   };
 
@@ -85,6 +93,11 @@ function PostDetailPage() {
         likes_count={post.likes_count}
         comments_count={post.comments_count}
         renderDropdown={dropdownMenu}
+      />
+      <ConfirmDeleteModal
+        show={showConfirm}
+        onHide={() => setShowConfirm(false)}
+        onConfirm={confirmDelete}
       />
     </Container>
   );
