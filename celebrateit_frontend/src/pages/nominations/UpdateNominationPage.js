@@ -34,7 +34,7 @@ function UpdateNominationPage() {
   useEffect(() => {
     axiosReq
       .get("/tags/")
-      .then((response) => setTags(response.data))
+      .then((response) => setTags(response.data.results))
       .catch((err) => {
         console.error("Error fetching tags:", err);
       });
