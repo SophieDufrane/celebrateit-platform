@@ -27,6 +27,8 @@ function CreateNominationPage() {
   // Destructure data for cleaner access
   const { title, content, tag } = nominationData;
 
+  const [errors, setErrors] = useState({});
+
   useEffect(() => {
     const fetchTags = async () => {
       try {
@@ -84,6 +86,9 @@ function CreateNominationPage() {
       const { data } = await axiosReq.post("/nominations/", formData);
       history.push(`/nominations/${data.id}?created=true`);
     } catch (err) {
+      if (err.response?.status !== 401) {
+        setErrors(err.response?.data);
+      }
       console.error(err.response?.data);
     }
   };
@@ -156,6 +161,11 @@ function CreateNominationPage() {
               ))}
             </Form.Control>
           </OverlayTrigger>
+          {errors?.tag?.map((message, idx) => (
+            <div key={idx} className="text-danger mt-1">
+              {message}
+            </div>
+          ))}
         </Form.Group>
       </PostForm>
     </Container>
