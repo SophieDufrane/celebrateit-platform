@@ -11,6 +11,11 @@ const PostLayoutShell = (props) => {
     created_at,
     likes_count,
     comments_count,
+    renderDropdown,
+    nominee,
+    tag,
+    tag_color,
+    children,
   } = props;
 
   return (
@@ -27,20 +32,33 @@ const PostLayoutShell = (props) => {
           {/* Right: Date */}
           <div className="d-flex align-items-center">
             <small className="text-muted me-2">{created_at}</small>
-            {props.renderDropdown}
+            {renderDropdown}
           </div>
         </div>
 
         {/* Body content: use children if provided */}
-        {props.children ? (
-          props.children
+        {children ? (
+          children
         ) : (
           <>
             <h5 className={styles.PostTitle}>{title}</h5>
-            {props.nominee && props.display_name && props.tag && (
+            {nominee && display_name && (
               <p>
-                <strong>{props.nominee}</strong> was nominated by{" "}
-                <strong>{props.display_name}</strong> for <em>{props.tag}</em>
+                <strong>{nominee}</strong> was nominated by{" "}
+                <strong>{display_name}</strong>{" "}
+                {tag && tag_color && (
+                  <span
+                    style={{
+                      backgroundColor: tag_color,
+                      color: "#fff",
+                      padding: "2px 8px",
+                      borderRadius: "12px",
+                      fontSize: "0.8rem",
+                    }}
+                  >
+                    {tag}
+                  </span>
+                )}
               </p>
             )}
 

@@ -85,6 +85,7 @@ function NominationDetailPage() {
         renderDropdown={dropdownMenu}
         nominee={nomination.nominee_display_name}
         tag={nomination.tag}
+        tag_color={nomination.tag_color}
       />
     </Container>
   );
