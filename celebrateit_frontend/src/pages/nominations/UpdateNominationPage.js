@@ -10,8 +10,12 @@ function UpdateNominationPage() {
   const [postData, setPostData] = useState({
     title: "",
     content: "",
+    nominee_display_name: "",
+    tag: "",
   });
-  const { title, content } = postData;
+  const { title, content, nominee_display_name, tag } = postData;
+
+  const [tags, setTags] = useState([]);
 
   useEffect(() => {
     axiosReq
@@ -57,7 +61,7 @@ function UpdateNominationPage() {
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         submitText="Update"
-        onCancel={() => history.push(`/posts/${id}`)}
+        onCancel={() => history.push(`/nominations/${id}`)}
       ></PostForm>
     </Container>
   );
