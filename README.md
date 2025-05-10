@@ -913,7 +913,7 @@ Testing included:
 | ------------ | ----------------------- | ---------------------- | -------------------------------------- | --------------------------------------------------- | ------ | -------------- |
 | Must Have    | Create Recognition      | Post Create Page       | Fill out form with content and submit  | Redirected to detail, new post shows in feed        | ✅     | 1              |
 | Must Have    | Edit Recognition        | Feed > Edit Dropdown   | Change title or content and save       | Updated post appears in feed and detail             | ✅     | 2 - 3 - 4      |
-| Must Have    | Delete Recognition      | Feed > Delete Dropdown | Click delete and confirm               | Post is removed from feed and not accessible by URL |        | 5- 6           |
+| Must Have    | Delete Recognition      | Feed > Delete Dropdown | Click delete and confirm               | Post is removed from feed and not accessible by URL | ✅     | 5- 6           |
 | Must Have    | View Recognition Detail | Feed > Click Card      | Click post preview in feed             | Full post loads with correct data                   |        |
 | Must Have    | Create Nomination       | Nomination Create Page | Submit valid form with nominee and tag | Redirect to detail, nomination shows in feed        |        |
 | Must Have    | Edit Nomination         | Feed > Edit Dropdown   | Update text or tags                    | Updated nomination shown in feed and detail         |        |
@@ -951,9 +951,9 @@ Testing included:
 </details>
 
 <details>
-<summary> 5/ Delit Recognition > NEED TO ADD THE CONFIRMATION MESSAGE </summary>
+<summary> 5/ Delit Recognition - Confirmation prompt </summary>
 
-![5](documentation/frontend/testing/.png)
+![5](documentation/frontend/testing/post_delete_confirm_prompt.png)
 
 </details>
 
