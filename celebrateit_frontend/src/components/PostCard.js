@@ -22,6 +22,7 @@ const PostCard = (props) => {
     detailUrl = `/posts/${id}`,
     editUrl = `/posts/${id}/edit`,
     extraContent = null,
+    deleteUrl = `/posts/${id}`,
   } = props;
 
   const truncatedContent =
@@ -38,7 +39,7 @@ const PostCard = (props) => {
 
   const confirmDelete = async () => {
     try {
-      await axiosReq.delete(`/posts/${id}/`);
+      await axiosReq.delete(deleteUrl);
       if (onPostDelete) {
         onPostDelete(id);
       }

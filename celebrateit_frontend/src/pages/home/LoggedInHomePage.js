@@ -117,6 +117,12 @@ const LoggedInHomePage = () => {
                       {...nom}
                       detailUrl={`/nominations/${nom.id}`}
                       editUrl={`/nominations/${nom.id}/edit`}
+                      deleteUrl={`/nominations/${nom.id}/`}
+                      onPostDelete={(deletedId) =>
+                        setNominations((prevNoms) =>
+                          prevNoms.filter((n) => n.id !== deletedId)
+                        )
+                      }
                       extraContent={
                         <>
                           <p>
