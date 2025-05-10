@@ -4,10 +4,12 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { Container, Alert } from "react-bootstrap";
 import PostLayoutShell from "../../components/PostLayoutShell";
 import MoreDropdown from "../../components/MoreDropdown";
+import ConfirmDeleteModal from "../../components/ConfirmDeleteModal";
 
 function NominationDetailPage() {
   const { id } = useParams();
   const history = useHistory();
+  const [showConfirm, setShowConfirm] = useState(false);
   const location = useLocation();
 
   const [nomination, setNomination] = useState(null);
@@ -26,12 +28,18 @@ function NominationDetailPage() {
     ? "Your nomination has been updated!"
     : "";
 
-  const handleDelete = async () => {
+  const handleDelete = () => {
+    setShowConfirm(true);
+  };
+
+  const confirmDelete = async () => {
     try {
       await axiosReq.delete(`/nominations/${nomination.id}/`);
       history.push("/?deleted=true");
     } catch (err) {
       console.error("Error deleting nomination:", err);
+    } finally {
+      setShowConfirm(false);
     }
   };
 
@@ -86,6 +94,11 @@ function NominationDetailPage() {
         nominee={nomination.nominee_display_name}
         tag={nomination.tag}
         tag_color={nomination.tag_color}
+      />
+      <ConfirmDeleteModal
+        show={showConfirm}
+        onHide={() => setShowConfirm(false)}
+        onConfirm={confirmDelete}
       />
     </Container>
   );
