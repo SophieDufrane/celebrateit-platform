@@ -27,6 +27,7 @@ class NominationSerializer(serializers.ModelSerializer):
         queryset=Tag.objects.all()
     )
     tag_id = serializers.ReadOnlyField(source='tag.id')
+    tag_color = serializers.SerializerMethodField()
     likes_count = serializers.ReadOnlyField()
     comments_count = serializers.ReadOnlyField()
 
@@ -35,10 +36,13 @@ class NominationSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'is_user', 'nominator', 'display_name', 'nominee',
             'nominee_username', 'nominee_display_name', 'title', 'content',
-            'tag', 'tag_id', 'created_at', 'updated_at',
+            'tag', 'tag_id', 'tag_color', 'created_at', 'updated_at',
             'likes_count', 'comments_count',
         ]
 
     def get_is_user(self, obj):
         request = self.context.get('request')
         return request and request.user == obj.nominator
+
+    def get_tag_color(self, obj):
+        return obj.tag.color if obj.tag else None
