@@ -118,11 +118,25 @@ const LoggedInHomePage = () => {
                       detailUrl={`/nominations/${nom.id}`}
                       editUrl={`/nominations/${nom.id}/edit`}
                       extraContent={
-                        <p>
-                          <strong>{nom.nominee_display_name}</strong> was
-                          nominated by <strong>{nom.display_name}</strong> for{" "}
-                          <em>{nom.tag}</em>
-                        </p>
+                        <>
+                          <p>
+                            <strong>{nom.nominee_display_name}</strong> was
+                            nominated by <strong>{nom.display_name}</strong> for{" "}
+                            {nom.tag && nom.tag_color && (
+                              <span
+                                style={{
+                                  backgroundColor: nom.tag_color,
+                                  color: "#fff",
+                                  padding: "2px 8px",
+                                  borderRadius: "12px",
+                                  fontSize: "0.8rem",
+                                }}
+                              >
+                                {nom.tag}
+                              </span>
+                            )}
+                          </p>
+                        </>
                       }
                     />
                   ))
