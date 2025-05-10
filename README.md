@@ -919,7 +919,7 @@ Testing included:
 | Must Have    | Edit Nomination         | Feed > Edit Dropdown   | Update text or tags                    | Updated nomination shown in feed and detail         |        |
 | Must Have    | Delete Nomination       | Feed > Delete Dropdown | Delete a nomination and confirm        | Nomination disappears from feed and is inaccessible |        |
 | Must Have    | View Nomination Detail  | Feed > Click Card      | Click on nomination preview            | Full nomination loads with correct data             |        |
-| Must Have    | View Recognition Feed   | Homepage               | Open homepage                          | Feed shows latest recognitions, ordered by date     |        |
+| Must Have    | View Recognition Feed   | Homepage               | Open homepage                          | Feed shows latest recognitions, ordered by date     | ✅     |
 | Must Have    | View Nomination Feed    | Toggle in Homepage     | Use toggle to switch feed type         | Feed updates to show only nominations               |        |
 
 <details>

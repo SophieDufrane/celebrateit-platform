@@ -37,6 +37,13 @@ const PostLayoutShell = (props) => {
         ) : (
           <>
             <h5 className={styles.PostTitle}>{title}</h5>
+            {props.nominee && props.display_name && props.tag && (
+              <p>
+                <strong>{props.nominee}</strong> was nominated by{" "}
+                <strong>{props.display_name}</strong> for <em>{props.tag}</em>
+              </p>
+            )}
+
             <p className={styles.PostContent}>{content}</p>
             {image && <Card.Img variant="top" src={image} alt={title} />}
           </>

@@ -39,7 +39,7 @@ function NominationDetailPage() {
     if (showSuccess) {
       const timer = setTimeout(() => {
         const cleanUrl = location.pathname;
-        history.replace(cleanUrl); // clean up ?updated=true or ?created=true
+        history.replace(cleanUrl);
       }, 4000);
       return () => clearTimeout(timer);
     }
@@ -83,7 +83,8 @@ function NominationDetailPage() {
         likes_count={nomination.likes_count}
         comments_count={nomination.comments_count}
         renderDropdown={dropdownMenu}
-        // pass nominee, tag later
+        nominee={nomination.nominee_display_name}
+        tag={nomination.tag}
       />
     </Container>
   );
