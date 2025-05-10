@@ -21,14 +21,23 @@ function UpdateNominationPage() {
     axiosReq
       .get(`/nominations/${id}/`)
       .then((response) => {
-        const { title, content } = response.data;
-        setPostData({ title, content });
+        const { title, content, nominee_display_name, tag } = response.data;
+        setPostData({ title, content, nominee_display_name, tag });
       })
       .catch((err) => {
         console.error("Error fetching nominations:", err);
         history.push("/");
       });
   }, [id, history]);
+
+  useEffect(() => {
+    axiosReq
+      .get("/tags/")
+      .then((response) => setTags(response.data))
+      .catch((err) => {
+        console.error("Error fetching tags:", err);
+      });
+  }, []);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
