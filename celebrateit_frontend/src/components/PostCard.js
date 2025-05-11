@@ -27,7 +27,9 @@ const PostCard = (props) => {
     extraContent = null,
     deleteUrl = `/posts/${id}`,
   } = props;
-  console.log(`Post ${id} - likes: ${likes_count}, like_id: ${like_id}`);
+  // console.log(`Post ${id} - likes: ${likes_count}, like_id: ${like_id}`);
+
+  const isNomination = !!props.nominee;
 
   const currentUser = useCurrentUser();
 
@@ -94,6 +96,31 @@ const PostCard = (props) => {
     }
   };
 
+  const postActions = !isNomination ? (
+    <div className={styles.PostFooter}>
+      <div className={styles.ActionItem}>
+        {is_user ? (
+          <i className="far fa-thumbs-up" title="Can't like your own post!" />
+        ) : like_id ? (
+          <span onClick={handleUnlike} style={{ cursor: "pointer" }}>
+            <i className={`fas fa-thumbs-up ${styles.Heart}`} />
+          </span>
+        ) : currentUser ? (
+          <span onClick={handleLike} style={{ cursor: "pointer" }}>
+            <i className={`far fa-thumbs-up ${styles.HeartOutline}`} />
+          </span>
+        ) : (
+          <i className="far fa-thumbs-up" title="Log in to like posts!" />
+        )}
+        <span>{likes_count}</span>
+      </div>
+      <div className={styles.ActionItem}>
+        <i className="far fa-comment"></i>
+        <span>{comments_count}</span>
+      </div>
+    </div>
+  ) : null;
+
   return (
     <>
       <PostLayoutShell
@@ -112,33 +139,7 @@ const PostCard = (props) => {
             />
           )
         }
-        postActions={
-          <div className={styles.PostFooter}>
-            <div className={styles.ActionItem}>
-              {is_user ? (
-                <i
-                  className="far fa-thumbs-up"
-                  title="Can't like your own post!"
-                />
-              ) : like_id ? (
-                <span onClick={handleUnlike} style={{ cursor: "pointer" }}>
-                  <i className={`fas fa-thumbs-up ${styles.Heart}`} />
-                </span>
-              ) : currentUser ? (
-                <span onClick={handleLike} style={{ cursor: "pointer" }}>
-                  <i className={`far fa-thumbs-up ${styles.HeartOutline}`} />
-                </span>
-              ) : (
-                <i className="far fa-thumbs-up" title="Log in to like posts!" />
-              )}
-              <span>{likes_count}</span>
-            </div>
-            <div className={styles.ActionItem}>
-              <i className="far fa-comment"></i>
-              <span>{comments_count}</span>
-            </div>
-          </div>
-        }
+        postActions={postActions}
       >
         <Link
           to={detailUrl}
