@@ -7,6 +7,7 @@ import { Container, Alert } from "react-bootstrap";
 import PostLayoutShell from "../../components/PostLayoutShell";
 import MoreDropdown from "../../components/MoreDropdown";
 import ConfirmDeleteModal from "../../components/ConfirmDeleteModal";
+import CommentForm from "../../components/CommentForm";
 import styles from "../../styles/PostCard.module.css";
 
 function PostDetailPage() {
@@ -155,6 +156,8 @@ function PostDetailPage() {
         renderDropdown={dropdownMenu}
         postActions={postActions}
       />
+      <CommentForm disabled={!currentUser} />
+
       <ConfirmDeleteModal
         show={showConfirm}
         onHide={() => setShowConfirm(false)}
