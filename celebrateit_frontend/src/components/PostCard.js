@@ -38,17 +38,13 @@ const PostCard = (props) => {
       });
       console.log("Like API response:", data);
 
-      setPosts((prevPosts) => {
-        if (!prevPosts?.results) return prevPosts;
-        return {
-          ...prevPosts,
-          results: prevPosts.results.map((item) =>
-            item.id === id
-              ? { ...item, likes_count: item.likes_count + 1, like_id: data.id }
-              : item
-          ),
-        };
-      });
+      setPosts((prevPosts) =>
+        prevPosts.map((item) =>
+          item.id === id
+            ? { ...item, likes_count: item.likes_count + 1, like_id: data.id }
+            : item
+        )
+      );
     } catch (err) {
       console.log(err);
     }
@@ -57,17 +53,14 @@ const PostCard = (props) => {
   const handleUnlike = async () => {
     try {
       await axiosRes.delete(`/likes/${like_id}/`);
-      setPosts((prevPosts) => {
-        if (!prevPosts?.results) return prevPosts;
-        return {
-          ...prevPosts,
-          results: prevPosts.results.map((item) =>
-            item.id === id
-              ? { ...item, likes_count: item.likes_count - 1, like_id: null }
-              : item
-          ),
-        };
-      });
+
+      setPosts((prevPosts) =>
+        prevPosts.map((item) =>
+          item.id === id
+            ? { ...item, likes_count: item.likes_count - 1, like_id: null }
+            : item
+        )
+      );
     } catch (err) {
       console.log(err);
     }
