@@ -15,6 +15,7 @@ const PostLayoutShell = (props) => {
     nominee,
     tag,
     tag_color,
+    postActions,
     children,
   } = props;
 
@@ -68,17 +69,8 @@ const PostLayoutShell = (props) => {
         )}
       </Card.Body>
 
-      {/* Like and Comment icons */}
-      <div className={styles.PostFooter}>
-        <div className={styles.ActionItem}>
-          <i className="far fa-thumbs-up"></i>
-          <span>{likes_count}</span>
-        </div>
-        <div className={styles.ActionItem}>
-          <i className="far fa-comment"></i>
-          <span>{comments_count}</span>
-        </div>
-      </div>
+      {/* Like and Comment section */}
+      {postActions}
     </Card>
   );
 };
