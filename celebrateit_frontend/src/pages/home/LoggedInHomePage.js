@@ -100,6 +100,7 @@ const LoggedInHomePage = () => {
                       <PostCard
                         key={`post-${post.id}`}
                         {...post}
+                        setPosts={setPosts}
                         onPostDelete={(deletedId) =>
                           setPosts((prevPosts) =>
                             prevPosts.filter((p) => p.id !== deletedId)
@@ -115,6 +116,7 @@ const LoggedInHomePage = () => {
                     <PostCard
                       key={`nom-${nom.id}`}
                       {...nom}
+                      setPosts={setPosts}
                       detailUrl={`/nominations/${nom.id}`}
                       editUrl={`/nominations/${nom.id}/edit`}
                       deleteUrl={`/nominations/${nom.id}/`}
