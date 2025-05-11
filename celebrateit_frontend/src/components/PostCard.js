@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Card } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
-import { axiosReq } from "../api/axiosDefaults";
+import { axiosReq, axiosRes } from "../api/axiosDefaults";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
 import MoreDropdown from "./MoreDropdown";
 import ConfirmDeleteModal from "./ConfirmDeleteModal";
 import styles from "../styles/PostCard.module.css";
@@ -18,12 +19,34 @@ const PostCard = (props) => {
     likes_count,
     comments_count,
     is_user,
+    like_id,
+    setPosts,
     onPostDelete,
     detailUrl = `/posts/${id}`,
     editUrl = `/posts/${id}/edit`,
     extraContent = null,
     deleteUrl = `/posts/${id}`,
   } = props;
+
+  const currentUser = useCurrentUser();
+
+  const handleLike = async () => {
+    try {
+      const { data } = await axiosRes.post("/likes/", {
+        post: id, // temporary, to adjust for nominations after
+      });
+      setPosts((prevPosts) => ({
+        ...prevPosts,
+        results: prevPosts.results.map((item) =>
+          item.id === id
+            ? { ...item, likes_count: item.likes_count + 1, like_id: data.id }
+            : item
+        ),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const truncatedContent =
     content.length > 150
