@@ -47,9 +47,17 @@ function SignInForm() {
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-      await axios.post("/dj-rest-auth/login/", signInData);
+      const { data } = await axios.post("/dj-rest-auth/login/", signInData);
+
+      // Store the tokens
+      localStorage.setItem("access_token", data.access_token);
+      localStorage.setItem("refresh_token", data.refresh_token);
+
+      // Refetch user using token
       const { data: userData } = await axiosReq.get("/dj-rest-auth/user/");
-      setCurrentUser(userData); // Save real user data to Context
+      setCurrentUser(userData);
+
+      // Redirect
       history.push("/");
     } catch (err) {
       setLoginErrors(err.response?.data || {});
