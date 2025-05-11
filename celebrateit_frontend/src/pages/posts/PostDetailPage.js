@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory, useLocation } from "react-router-dom";
+import axios from "axios";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Container, Alert } from "react-bootstrap";
@@ -89,7 +90,7 @@ function PostDetailPage() {
   }, [showSuccess, history, location.pathname]);
 
   useEffect(() => {
-    axiosReq
+    axios
       .get(`/posts/${id}/`)
       .then((response) => {
         setPost(response.data);
