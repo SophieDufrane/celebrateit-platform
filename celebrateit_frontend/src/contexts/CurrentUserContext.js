@@ -11,6 +11,9 @@ export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
 
   const handleMount = async () => {
+    const token = localStorage.getItem("access_token");
+    if (!token) return;
+
     try {
       const { data } = await axiosReq.get("dj-rest-auth/user/");
       setCurrentUser(data);
