@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory, useLocation } from "react-router-dom";
-import { axiosReq } from "../../api/axiosDefaults";
+import { axiosReq, axiosRes } from "../../api/axiosDefaults";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Container, Alert } from "react-bootstrap";
 import PostLayoutShell from "../../components/PostLayoutShell";
 import MoreDropdown from "../../components/MoreDropdown";
 import ConfirmDeleteModal from "../../components/ConfirmDeleteModal";
+import styles from "../../styles/PostCard.module.css";
 
 function PostDetailPage() {
   const { id } = useParams();
@@ -14,7 +16,39 @@ function PostDetailPage() {
 
   const [post, setPost] = useState(null);
 
+  const isNomination = !!post?.nominee;
+
   let dropdownMenu = null;
+
+  const currentUser = useCurrentUser();
+
+  const handleLike = async () => {
+    try {
+      const { data } = await axiosRes.post("/likes/", {
+        post: post.id,
+      });
+      setPost((prevPost) => ({
+        ...prevPost,
+        likes_count: prevPost.likes_count + 1,
+        like_id: data.id,
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleUnlike = async () => {
+    try {
+      await axiosRes.delete(`/likes/${post.like_id}/`);
+      setPost((prevPost) => ({
+        ...prevPost,
+        likes_count: prevPost.likes_count - 1,
+        like_id: null,
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   // Check URL for post or update to show success message
   const searchParams = new URLSearchParams(location.search);
@@ -76,6 +110,31 @@ function PostDetailPage() {
     />
   ) : null;
 
+  const postActions = !isNomination ? (
+    <div className={styles.PostFooter}>
+      <div className={styles.ActionItem}>
+        {post.is_user ? (
+          <i className="far fa-thumbs-up" title="Can't like your own post!" />
+        ) : post.like_id ? (
+          <span onClick={handleUnlike} style={{ cursor: "pointer" }}>
+            <i className={`fas fa-thumbs-up ${styles.Heart}`} />
+          </span>
+        ) : currentUser ? (
+          <span onClick={handleLike} style={{ cursor: "pointer" }}>
+            <i className={`far fa-thumbs-up ${styles.HeartOutline}`} />
+          </span>
+        ) : (
+          <i className="far fa-thumbs-up" title="Log in to like posts!" />
+        )}
+        <span>{post.likes_count}</span>
+      </div>
+      <div className={styles.ActionItem}>
+        <i className="far fa-comment"></i>
+        <span>{post.comments_count}</span>
+      </div>
+    </div>
+  ) : null;
+
   return (
     <Container>
       {showSuccess && (
@@ -93,6 +152,7 @@ function PostDetailPage() {
         likes_count={post.likes_count}
         comments_count={post.comments_count}
         renderDropdown={dropdownMenu}
+        postActions={postActions}
       />
       <ConfirmDeleteModal
         show={showConfirm}
