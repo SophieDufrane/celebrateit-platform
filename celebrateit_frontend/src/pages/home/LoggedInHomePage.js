@@ -116,7 +116,7 @@ const LoggedInHomePage = () => {
                     <PostCard
                       key={`nom-${nom.id}`}
                       {...nom}
-                      setPosts={setPosts}
+                      setPosts={setNominations}
                       detailUrl={`/nominations/${nom.id}`}
                       editUrl={`/nominations/${nom.id}/edit`}
                       deleteUrl={`/nominations/${nom.id}/`}

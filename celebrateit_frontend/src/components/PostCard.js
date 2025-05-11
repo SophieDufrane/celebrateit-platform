@@ -27,14 +27,14 @@ const PostCard = (props) => {
     extraContent = null,
     deleteUrl = `/posts/${id}`,
   } = props;
-  // console.log(`Post ${id} - likes: ${likes_count}, like_id: ${like_id}`);
+  console.log(`Post ${id} - likes: ${likes_count}, like_id: ${like_id}`);
 
   const currentUser = useCurrentUser();
 
   const handleLike = async () => {
     try {
       const { data } = await axiosRes.post("/likes/", {
-        post: id, // temporary, to adjust for nominations after
+        post: id,
       });
       console.log("Like API response:", data);
 
@@ -45,6 +45,7 @@ const PostCard = (props) => {
             : item
         )
       );
+      console.log("Post updated with new like_id:", data.id);
     } catch (err) {
       console.log(err);
     }
@@ -52,6 +53,7 @@ const PostCard = (props) => {
 
   const handleUnlike = async () => {
     try {
+      console.log("Trying to unlike with like_id:", like_id);
       await axiosRes.delete(`/likes/${like_id}/`);
 
       setPosts((prevPosts) =>
