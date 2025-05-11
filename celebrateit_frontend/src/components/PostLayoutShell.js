@@ -9,8 +9,6 @@ const PostLayoutShell = (props) => {
     image,
     display_name,
     created_at,
-    likes_count,
-    comments_count,
     renderDropdown,
     nominee,
     tag,

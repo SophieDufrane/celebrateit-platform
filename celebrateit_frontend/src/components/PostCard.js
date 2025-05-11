@@ -108,6 +108,33 @@ const PostCard = (props) => {
             />
           )
         }
+        postActions={
+          <div className={styles.PostFooter}>
+            <div className={styles.ActionItem}>
+              {is_user ? (
+                <i
+                  className="far fa-thumbs-up"
+                  title="Can't like your own post!"
+                />
+              ) : like_id ? (
+                <span onClick={handleUnlike}>
+                  <i className={`fas fa-thumbs-up ${styles.Heart}`} />
+                </span>
+              ) : currentUser ? (
+                <span onClick={handleLike}>
+                  <i className={`far fa-thumbs-up ${styles.HeartOutline}`} />
+                </span>
+              ) : (
+                <i className="far fa-thumbs-up" title="Log in to like posts!" />
+              )}
+              <span>{likes_count}</span>
+            </div>
+            <div className={styles.ActionItem}>
+              <i className="far fa-comment"></i>
+              <span>{comments_count}</span>
+            </div>
+          </div>
+        }
       >
         <Link
           to={detailUrl}
