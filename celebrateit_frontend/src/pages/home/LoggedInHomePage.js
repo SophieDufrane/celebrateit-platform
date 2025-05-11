@@ -98,7 +98,7 @@ const LoggedInHomePage = () => {
                   posts.length ? (
                     posts.map((post) => (
                       <PostCard
-                        key={`post-${post.id}-${post.like_id || "none"}`}
+                        key={`post-${post.id}`}
                         {...post}
                         setPosts={setPosts}
                         onPostDelete={(deletedId) =>

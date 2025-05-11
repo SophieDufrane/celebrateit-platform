@@ -27,7 +27,7 @@ const PostCard = (props) => {
     extraContent = null,
     deleteUrl = `/posts/${id}`,
   } = props;
-  console.log(`Post ${id} - likes: ${likes_count}, like_id: ${like_id}`);
+  // console.log(`Post ${id} - likes: ${likes_count}, like_id: ${like_id}`);
 
   const currentUser = useCurrentUser();
 
@@ -37,6 +37,7 @@ const PostCard = (props) => {
         post: id, // temporary, to adjust for nominations after
       });
       console.log("Like API response:", data);
+
       setPosts((prevPosts) => {
         if (!prevPosts?.results) return prevPosts;
         return {
@@ -125,11 +126,11 @@ const PostCard = (props) => {
                   title="Can't like your own post!"
                 />
               ) : like_id ? (
-                <span onClick={handleUnlike}>
+                <span onClick={handleUnlike} style={{ cursor: "pointer" }}>
                   <i className={`fas fa-thumbs-up ${styles.Heart}`} />
                 </span>
               ) : currentUser ? (
-                <span onClick={handleLike}>
+                <span onClick={handleLike} style={{ cursor: "pointer" }}>
                   <i className={`far fa-thumbs-up ${styles.HeartOutline}`} />
                 </span>
               ) : (
