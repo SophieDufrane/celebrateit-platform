@@ -48,6 +48,22 @@ const PostCard = (props) => {
     }
   };
 
+  const handleUnlike = async () => {
+    try {
+      await axiosRes.delete(`/likes/${like_id}/`);
+      setPosts((prevPosts) => ({
+        ...prevPosts,
+        results: prevPosts.results.map((item) =>
+          item.id === id
+            ? { ...item, likes_count: item.likes_count - 1, like_id: null }
+            : item
+        ),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const truncatedContent =
     content.length > 150
       ? content.slice(0, content.slice(0, 150).lastIndexOf(" ")) + "..."
