@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { axiosReq } from "../../api/axiosDefaults";
+import axios from "axios";
 import { Button, Container, Row, Col, ListGroup, Alert } from "react-bootstrap";
 import PostCard from "../../components/PostCard";
 import feedStyles from "../../styles/LoggedInHomePage.module.css";
@@ -35,7 +35,7 @@ const LoggedInHomePage = () => {
 
   // Fetch Posts data
   useEffect(() => {
-    axiosReq
+    axios
       .get("/posts/")
       .then((res) => setPosts(res.data.results))
       .catch((err) => console.error(err))
@@ -44,7 +44,7 @@ const LoggedInHomePage = () => {
 
   // Fetch Nomiations data
   useEffect(() => {
-    axiosReq
+    axios
       .get("/nominations/")
       .then((res) => setNominations(res.data.results))
       .catch((err) => console.error("Error fetching nominations:", err));
