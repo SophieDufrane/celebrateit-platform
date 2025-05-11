@@ -43,5 +43,15 @@
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  cursor: default;
+  color: inherit;
+  text-decoration: none;
+}
+
+.ActionItem:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+.Clickable {
+  cursor: pointer;
 }

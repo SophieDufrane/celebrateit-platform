@@ -102,22 +102,35 @@ const PostCard = (props) => {
         {is_user ? (
           <i className="far fa-thumbs-up" title="Can't like your own post!" />
         ) : like_id ? (
-          <span onClick={handleUnlike} style={{ cursor: "pointer" }}>
-            <i className={`fas fa-thumbs-up ${styles.Heart}`} />
+          <span
+            onClick={handleUnlike}
+            className={`${styles.ActionItem} ${styles.Clickable}`}
+          >
+            <i
+              className={`fas fa-thumbs-up ${styles.Heart} ${styles.Clickable}`}
+            />
           </span>
         ) : currentUser ? (
-          <span onClick={handleLike} style={{ cursor: "pointer" }}>
-            <i className={`far fa-thumbs-up ${styles.HeartOutline}`} />
+          <span
+            onClick={handleLike}
+            className={`${styles.ActionItem} ${styles.Clickable}`}
+          >
+            <i
+              className={`far fa-thumbs-up ${styles.HeartOutline} ${styles.Clickable}`}
+            />
           </span>
         ) : (
           <i className="far fa-thumbs-up" title="Log in to like posts!" />
         )}
         <span>{likes_count}</span>
       </div>
-      <div className={styles.ActionItem}>
-        <i className="far fa-comment"></i>
+      <Link
+        to={`/posts/${id}`}
+        className={`${styles.ActionItem} ${styles.Clickable}`}
+      >
+        <i className="far fa-comment" />
         <span>{comments_count}</span>
-      </div>
+      </Link>
     </div>
   ) : null;
 
