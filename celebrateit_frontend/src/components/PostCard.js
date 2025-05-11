@@ -27,6 +27,7 @@ const PostCard = (props) => {
     extraContent = null,
     deleteUrl = `/posts/${id}`,
   } = props;
+  console.log(`Post ${id} - likes: ${likes_count}, like_id: ${like_id}`);
 
   const currentUser = useCurrentUser();
 
@@ -35,14 +36,18 @@ const PostCard = (props) => {
       const { data } = await axiosRes.post("/likes/", {
         post: id, // temporary, to adjust for nominations after
       });
-      setPosts((prevPosts) => ({
-        ...prevPosts,
-        results: prevPosts.results.map((item) =>
-          item.id === id
-            ? { ...item, likes_count: item.likes_count + 1, like_id: data.id }
-            : item
-        ),
-      }));
+      console.log("Like API response:", data);
+      setPosts((prevPosts) => {
+        if (!prevPosts?.results) return prevPosts;
+        return {
+          ...prevPosts,
+          results: prevPosts.results.map((item) =>
+            item.id === id
+              ? { ...item, likes_count: item.likes_count + 1, like_id: data.id }
+              : item
+          ),
+        };
+      });
     } catch (err) {
       console.log(err);
     }
@@ -51,14 +56,17 @@ const PostCard = (props) => {
   const handleUnlike = async () => {
     try {
       await axiosRes.delete(`/likes/${like_id}/`);
-      setPosts((prevPosts) => ({
-        ...prevPosts,
-        results: prevPosts.results.map((item) =>
-          item.id === id
-            ? { ...item, likes_count: item.likes_count - 1, like_id: null }
-            : item
-        ),
-      }));
+      setPosts((prevPosts) => {
+        if (!prevPosts?.results) return prevPosts;
+        return {
+          ...prevPosts,
+          results: prevPosts.results.map((item) =>
+            item.id === id
+              ? { ...item, likes_count: item.likes_count - 1, like_id: null }
+              : item
+          ),
+        };
+      });
     } catch (err) {
       console.log(err);
     }

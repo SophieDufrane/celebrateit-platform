@@ -16,3 +16,25 @@ export const axiosReq = axios.create({
 export const axiosRes = axios.create({
   withCredentials: true,
 });
+
+axiosReq.interceptors.request.use(
+  async (config) => {
+    const token = localStorage.getItem("access_token");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
+axiosRes.interceptors.request.use(
+  async (config) => {
+    const token = localStorage.getItem("access_token");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
