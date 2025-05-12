@@ -156,7 +156,7 @@ function PostDetailPage() {
         renderDropdown={dropdownMenu}
         postActions={postActions}
       />
-      <CommentForm disabled={!currentUser} />
+      <CommentForm postId={post.id} disabled={!currentUser} />
 
       <ConfirmDeleteModal
         show={showConfirm}
