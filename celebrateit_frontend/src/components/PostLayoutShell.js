@@ -1,6 +1,7 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import styles from "../styles/PostCard.module.css";
+import PostHeader from "./PostHeader";
 
 const PostLayoutShell = (props) => {
   const {
@@ -20,20 +21,21 @@ const PostLayoutShell = (props) => {
   return (
     <Card className={`mb-3 ${styles.CardWrapper}`}>
       <Card.Body>
-        {/* Header: Avatar + Author name + Date */}
-        <div className="d-flex align-items-center justify-content-between mb-3">
-          {/* Left: Icon + Author name */}
+        {/* <div className="d-flex align-items-center justify-content-between mb-3">
           <div className="d-flex align-items-center">
             <div className={styles.AvatarPlaceholder} />
             <strong className="ml-2">{display_name}</strong>
           </div>
-
-          {/* Right: Date */}
           <div className="d-flex align-items-center">
             <small className="text-muted me-2">{created_at}</small>
             {renderDropdown}
           </div>
-        </div>
+        </div> */}
+        <PostHeader
+          display_name={display_name}
+          created_at={created_at}
+          renderDropdown={renderDropdown}
+        />
 
         {/* Always show post title and content */}
         <h5 className={styles.PostTitle}>{title}</h5>
