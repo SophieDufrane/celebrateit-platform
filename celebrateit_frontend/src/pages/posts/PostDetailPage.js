@@ -11,19 +11,24 @@ import CommentForm from "../../components/CommentForm";
 import styles from "../../styles/PostCard.module.css";
 
 function PostDetailPage() {
+  // Routing & context
   const { id } = useParams();
   const history = useHistory();
-  const [showConfirm, setShowConfirm] = useState(false);
   const location = useLocation();
-
-  const [post, setPost] = useState(null);
-
-  const isNomination = !!post?.nominee;
-
-  let dropdownMenu = null;
-
   const currentUser = useCurrentUser();
 
+  // State
+  const [post, setPost] = useState(null);
+  const [comments, setComments] = useState([]);
+  const [showConfirm, setShowConfirm] = useState(false);
+
+  // Derived/computed values
+  const isNomination = !!post?.nominee;
+
+  // Temporary values
+  let dropdownMenu = null;
+
+  // Handlers - Like / Unlike / Delete
   const handleLike = async () => {
     try {
       const { data } = await axiosRes.post("/likes/", {
@@ -52,18 +57,6 @@ function PostDetailPage() {
     }
   };
 
-  // Check URL for post or update to show success message
-  const searchParams = new URLSearchParams(location.search);
-  const isCreated = searchParams.get("created") === "true";
-  const isUpdated = searchParams.get("updated") === "true";
-
-  const showSuccess = isCreated || isUpdated;
-  const successMessage = isCreated
-    ? "Your recognition has been published!"
-    : isUpdated
-    ? "Your recognition has been updated!"
-    : "";
-
   const handleDelete = () => {
     setShowConfirm(true);
   };
@@ -79,17 +72,31 @@ function PostDetailPage() {
     }
   };
 
+  // Check URL for post or update to show success message
+  const searchParams = new URLSearchParams(location.search);
+  const isCreated = searchParams.get("created") === "true";
+  const isUpdated = searchParams.get("updated") === "true";
+
+  const showSuccess = isCreated || isUpdated;
+  const successMessage = isCreated
+    ? "Your recognition has been published!"
+    : isUpdated
+    ? "Your recognition has been updated!"
+    : "";
+
+  // Effects
+  // Effect: auto-hide success alert and clean up URL
   useEffect(() => {
     if (showSuccess) {
       const timer = setTimeout(() => {
-        // remove the param from the URL after alert disappears
         const cleanUrl = location.pathname;
-        history.replace(cleanUrl); // clean up ?updated=true or ?created=true
+        history.replace(cleanUrl);
       }, 4000);
       return () => clearTimeout(timer);
     }
   }, [showSuccess, history, location.pathname]);
 
+  // Effect: fetch post details
   useEffect(() => {
     axios
       .get(`/posts/${id}/`)
@@ -101,10 +108,25 @@ function PostDetailPage() {
       });
   }, [id]);
 
+  // Fetch comments
+  useEffect(() => {
+    axios
+      .get(`/comments/?post=${id}`)
+      .then((response) => {
+        setComments(response.data.results || response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching comments:", error);
+      });
+  }, [id]);
+
+  // Early return: loading state
   if (!post) {
     return <Container>Loading...</Container>;
   }
 
+  // Render helpers
+  // Temporary values
   dropdownMenu = post.is_user ? (
     <MoreDropdown
       handleEdit={() => history.push(`/posts/${post.id}/edit`)}
@@ -157,6 +179,18 @@ function PostDetailPage() {
         postActions={postActions}
       />
       <CommentForm postId={post.id} disabled={!currentUser} />
+      {comments.length ? (
+        comments.map((comment) => (
+          <div key={comment.id} className="mb-3 px-3">
+            <strong>{comment.display_name}</strong>
+            <p className="mb-1">{comment.content}</p>
+            <small className="text-muted">{comment.created_at}</small>
+            <hr />
+          </div>
+        ))
+      ) : (
+        <p className="text-muted px-3">No comments yet.</p>
+      )}
 
       <ConfirmDeleteModal
         show={showConfirm}
