@@ -134,31 +134,33 @@ const PostCard = (props) => {
 
   return (
     <>
-      <Link to={detailUrl} style={{ textDecoration: "none", color: "inherit" }}>
-        <PostLayoutShell
-          title={title}
-          content={truncatedContent}
-          image={image}
-          display_name={display_name}
-          created_at={created_at}
-          likes_count={likes_count}
-          comments_count={comments_count}
-          renderDropdown={
-            is_user && (
-              <MoreDropdown
-                handleEdit={() => history.push(editUrl)}
-                handleDelete={handleDelete}
-              />
-            )
-          }
-          postActions={postActions}
-          extraContent={
-            content.length > 150 && (
-              <div className={styles.ReadMore}>Read more…</div>
-            )
-          }
-        />
-      </Link>
+      <PostLayoutShell
+        title={title}
+        content={truncatedContent}
+        image={image}
+        display_name={display_name}
+        created_at={created_at}
+        likes_count={likes_count}
+        comments_count={comments_count}
+        renderDropdown={
+          is_user && (
+            <MoreDropdown
+              handleEdit={() => history.push(editUrl)}
+              handleDelete={handleDelete}
+            />
+          )
+        }
+        postActions={postActions}
+        extraContent={
+          content.length > 150 && (
+            <div className={styles.ViewFullPos}>
+              <Link to={detailUrl} className={styles.ViewFullPosLink}>
+                <div className={styles.ViewFullPos}>View full post</div>
+              </Link>
+            </div>
+          )
+        }
+      />
 
       <ConfirmDeleteModal
         show={showConfirm}

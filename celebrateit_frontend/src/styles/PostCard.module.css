@@ -25,9 +25,21 @@
   margin-bottom: 0.8rem;
 }
 
-.ReadMore {
+.ViewFullPost {
+  margin-top: 0.5rem;
+}
+
+.ViewFullPosLink {
   font-size: 0.9rem;
   font-weight: 600;
+  color: inherit;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.ViewFullPosLink:hover {
+  color: #300e82;
+  text-decoration: none;
 }
 
 .PostFooter {
@@ -56,8 +68,4 @@
 .ActionItem:hover {
   color: inherit;
   text-decoration: none;
-}
-
-.Clickable {
-  cursor: pointer;
 }
