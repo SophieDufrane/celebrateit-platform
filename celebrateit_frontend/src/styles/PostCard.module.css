@@ -39,6 +39,12 @@
   font-size: 0.9rem;
 }
 
+.PostChildren {
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
 .ActionItem {
   display: flex;
   align-items: center;

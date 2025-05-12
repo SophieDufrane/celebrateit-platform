@@ -177,20 +177,23 @@ function PostDetailPage() {
         comments_count={post.comments_count}
         renderDropdown={dropdownMenu}
         postActions={postActions}
-      />
-      <CommentForm postId={post.id} disabled={!currentUser} />
-      {comments.length ? (
-        comments.map((comment) => (
-          <div key={comment.id} className="mb-3 px-3">
-            <strong>{comment.display_name}</strong>
-            <p className="mb-1">{comment.content}</p>
-            <small className="text-muted">{comment.created_at}</small>
-            <hr />
-          </div>
-        ))
-      ) : (
-        <p className="text-muted px-3">No comments yet.</p>
-      )}
+      >
+        <>
+          <CommentForm postId={post.id} disabled={!currentUser} />
+          {comments.length ? (
+            comments.map((comment) => (
+              <div key={comment.id} className="mb-3 px-3">
+                <strong>{comment.display_name}</strong>
+                <p className="mb-1">{comment.content}</p>
+                <small className="text-muted">{comment.created_at}</small>
+                <hr />
+              </div>
+            ))
+          ) : (
+            <p className="text-muted px-3">No comments yet.</p>
+          )}
+        </>
+      </PostLayoutShell>
 
       <ConfirmDeleteModal
         show={showConfirm}
