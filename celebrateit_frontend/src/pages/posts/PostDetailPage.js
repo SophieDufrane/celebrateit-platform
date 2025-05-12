@@ -179,6 +179,15 @@ function PostDetailPage() {
         postActions={postActions}
       >
         <>
+          {post.image && (
+            <div className={styles.ImageWrapper}>
+              <img
+                src={post.image}
+                alt={post.title}
+                className={styles.PostImage}
+              />
+            </div>
+          )}
           <CommentForm postId={post.id} disabled={!currentUser} />
           {comments.length ? (
             comments.map((comment) => (
