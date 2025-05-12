@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Card } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import { axiosReq, axiosRes } from "../api/axiosDefaults";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
@@ -153,8 +152,19 @@ const PostCard = (props) => {
           )
         }
         postActions={postActions}
-      >
-        <Link
+        extraContent={
+          <Link
+            to={detailUrl}
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            {extraContent}
+            {content.length > 150 && (
+              <div className={styles.ReadMore}>Read more…</div>
+            )}
+          </Link>
+        }
+      />
+      {/* <Link
           to={detailUrl}
           style={{ textDecoration: "none", color: "inherit" }}
         >
@@ -166,7 +176,8 @@ const PostCard = (props) => {
           )}
           {image && <Card.Img variant="top" src={image} alt={title} />}
         </Link>
-      </PostLayoutShell>
+      </PostLayoutShell> */}
+
       <ConfirmDeleteModal
         show={showConfirm}
         onHide={() => setShowConfirm(false)}
