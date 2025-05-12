@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { Button, Container, Row, Col, ListGroup, Alert } from "react-bootstrap";
 import PostCard from "../../components/PostCard";
+import NominationCard from "../../components/NominationCard";
 import feedStyles from "../../styles/LoggedInHomePage.module.css";
 import sharedStyles from "../../App.module.css";
 
@@ -113,38 +114,14 @@ const LoggedInHomePage = () => {
                   )
                 ) : nominations.length ? (
                   nominations.map((nom) => (
-                    <PostCard
+                    <NominationCard
                       key={`nom-${nom.id}`}
                       {...nom}
                       setPosts={setNominations}
-                      detailUrl={`/nominations/${nom.id}`}
-                      editUrl={`/nominations/${nom.id}/edit`}
-                      deleteUrl={`/nominations/${nom.id}/`}
                       onPostDelete={(deletedId) =>
                         setNominations((prevNoms) =>
                           prevNoms.filter((n) => n.id !== deletedId)
                         )
-                      }
-                      extraContent={
-                        <>
-                          <p>
-                            <strong>{nom.nominee_display_name}</strong> was
-                            nominated by <strong>{nom.display_name}</strong> for{" "}
-                            {nom.tag && nom.tag_color && (
-                              <span
-                                style={{
-                                  backgroundColor: nom.tag_color,
-                                  color: "#fff",
-                                  padding: "2px 8px",
-                                  borderRadius: "12px",
-                                  fontSize: "0.8rem",
-                                }}
-                              >
-                                {nom.tag}
-                              </span>
-                            )}
-                          </p>
-                        </>
                       }
                     />
                   ))

@@ -15,7 +15,7 @@ const NominationCard = (props) => {
     display_name,
     created_at,
     is_user,
-    nominee,
+    nominee_display_name: nominee,
     tag,
     tag_color,
     onPostDelete,

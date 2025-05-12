@@ -25,12 +25,21 @@ const PostCard = (props) => {
     editUrl = `/posts/${id}/edit`,
     deleteUrl = `/posts/${id}`,
   } = props;
-  // console.log(`Post ${id} - likes: ${likes_count}, like_id: ${like_id}`);
 
-  const isNomination = !!props.nominee;
-
+  // User & Navigation
   const currentUser = useCurrentUser();
+  const history = useHistory();
 
+  // Local UI State
+  const [showConfirm, setShowConfirm] = useState(false);
+
+  // Derived display content
+  const truncatedContent =
+    content.length > 150
+      ? content.slice(0, content.slice(0, 150).lastIndexOf(" ")) + "..."
+      : content;
+
+  // Event Handlers
   const handleLike = async () => {
     try {
       const { data } = await axiosRes.post("/likes/", {
@@ -68,17 +77,7 @@ const PostCard = (props) => {
     }
   };
 
-  const truncatedContent =
-    content.length > 150
-      ? content.slice(0, content.slice(0, 150).lastIndexOf(" ")) + "..."
-      : content;
-
-  const history = useHistory();
-  const [showConfirm, setShowConfirm] = useState(false);
-
-  const handleDelete = () => {
-    setShowConfirm(true);
-  };
+  const handleDelete = () => setShowConfirm(true);
 
   const confirmDelete = async () => {
     try {
@@ -94,7 +93,8 @@ const PostCard = (props) => {
     }
   };
 
-  const postActions = !isNomination ? (
+  // Footer: Likes + Comments
+  const postActions = (
     <div className={styles.PostFooter}>
       <div className={styles.ActionItem}>
         {is_user ? (
@@ -130,14 +130,13 @@ const PostCard = (props) => {
         <span>{comments_count}</span>
       </Link>
     </div>
-  ) : null;
+  );
 
   return (
     <>
       <PostLayoutShell
         title={title}
         content={truncatedContent}
-        image={image}
         display_name={display_name}
         created_at={created_at}
         likes_count={likes_count}
@@ -160,7 +159,13 @@ const PostCard = (props) => {
             </div>
           )
         }
-      />
+      >
+        {image && (
+          <div className={styles.ImageWrapper}>
+            <img src={image} alt={title} className={styles.PostImage} />
+          </div>
+        )}
+      </PostLayoutShell>
 
       <ConfirmDeleteModal
         show={showConfirm}
