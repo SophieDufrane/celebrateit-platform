@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { axiosReq, axiosRes } from "../api/axiosDefaults";
-import { useCurrentUser } from "../contexts/CurrentUserContext";
+import { axiosReq } from "../api/axiosDefaults";
 import MoreDropdown from "./MoreDropdown";
 import ConfirmDeleteModal from "./ConfirmDeleteModal";
 import styles from "../styles/PostCard.module.css";
@@ -25,7 +24,6 @@ const NominationCard = (props) => {
   } = props;
 
   // User & Navigation
-  const currentUser = useCurrentUser();
   const history = useHistory();
 
   // Local UI State

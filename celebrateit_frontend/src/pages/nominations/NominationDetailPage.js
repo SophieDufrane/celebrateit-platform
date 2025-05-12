@@ -6,6 +6,7 @@ import { Container, Alert } from "react-bootstrap";
 import PostLayoutShell from "../../components/PostLayoutShell";
 import MoreDropdown from "../../components/MoreDropdown";
 import ConfirmDeleteModal from "../../components/ConfirmDeleteModal";
+import styles from "../../styles/PostCard.module.css";
 
 function NominationDetailPage() {
   const { id } = useParams();
@@ -89,12 +90,27 @@ function NominationDetailPage() {
         content={nomination.content}
         display_name={nomination.display_name}
         created_at={nomination.created_at}
-        likes_count={nomination.likes_count}
-        comments_count={nomination.comments_count}
         renderDropdown={dropdownMenu}
-        nominee={nomination.nominee_display_name}
-        tag={nomination.tag}
-        tag_color={nomination.tag_color}
+        metaTop={
+          nomination.nominee_display_name &&
+          nomination.tag && (
+            <p className={styles.NominationMeta}>
+              <strong>{nomination.nominee_display_name}</strong> was nominated
+              by <strong>{nomination.display_name}</strong>{" "}
+              <span
+                style={{
+                  backgroundColor: nomination.tag_color,
+                  color: "#fff",
+                  padding: "2px 8px",
+                  borderRadius: "12px",
+                  fontSize: "0.8rem",
+                }}
+              >
+                {nomination.tag}
+              </span>
+            </p>
+          )
+        }
       />
       <ConfirmDeleteModal
         show={showConfirm}
