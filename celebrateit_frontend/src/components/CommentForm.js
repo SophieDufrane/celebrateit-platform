@@ -33,27 +33,43 @@ function CommentForm({ postId, onCommentSubmit, disabled = false }) {
   return (
     <Form onSubmit={handleSubmit} className={styles.FormWrapper}>
       <Form.Group controlId="commentText" className={styles.FormGroupSpacing}>
-        <OverlayTrigger
-          placement="top"
-          overlay={<Tooltip>Add your comment</Tooltip>}
-        >
+        {disabled ? (
           <Form.Control
             as="textarea"
             rows={3}
-            placeholder="Write a comment..."
+            placeholder="Log in to comment"
             name="comment"
-            disabled={disabled}
+            disabled
             value={content}
             onChange={handleChange}
           />
-        </OverlayTrigger>
+        ) : (
+          <OverlayTrigger
+            placement="top"
+            overlay={<Tooltip>Add your comment</Tooltip>}
+          >
+            <Form.Control
+              as="textarea"
+              rows={3}
+              placeholder="Write a comment..."
+              name="comment"
+              disabled={disabled}
+              value={content}
+              onChange={handleChange}
+            />
+          </OverlayTrigger>
+        )}
         {errors?.content && (
           <div className="text-danger mt-2">{errors.content}</div>
         )}
       </Form.Group>
 
       <div className={styles.FormButtonRow}>
-        <Button type="submit" className={sharedStyles.YellowButton}>
+        <Button
+          type="submit"
+          className={sharedStyles.YellowButton}
+          disabled={disabled}
+        >
           Post
         </Button>
       </div>

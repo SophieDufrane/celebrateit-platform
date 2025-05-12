@@ -20,6 +20,14 @@
   color: white;
 }
 
+.YellowButton:disabled {
+  background-color: #f0e9b8;
+  border: 1px solid #f0e9b8;
+  color: #999;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
 .BlueButton {
   background-color: #300e82;
   border: 1px solid #300e82;
