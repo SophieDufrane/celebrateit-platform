@@ -16,21 +16,12 @@ const PostLayoutShell = (props) => {
     tag_color,
     postActions,
     children,
+    extraContent,
   } = props;
 
   return (
     <Card className={`mb-3 ${styles.CardWrapper}`}>
       <Card.Body>
-        {/* <div className="d-flex align-items-center justify-content-between mb-3">
-          <div className="d-flex align-items-center">
-            <div className={styles.AvatarPlaceholder} />
-            <strong className="ml-2">{display_name}</strong>
-          </div>
-          <div className="d-flex align-items-center">
-            <small className="text-muted me-2">{created_at}</small>
-            {renderDropdown}
-          </div>
-        </div> */}
         <PostHeader
           display_name={display_name}
           created_at={created_at}
@@ -61,6 +52,9 @@ const PostLayoutShell = (props) => {
         )}
 
         <p className={styles.PostContent}>{content}</p>
+
+        {/* Show Read more if passed from PostCard */}
+        {extraContent && <div>{extraContent}</div>}
 
         {image && <Card.Img variant="top" src={image} alt={title} />}
 

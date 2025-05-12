@@ -23,7 +23,6 @@ const PostCard = (props) => {
     onPostDelete,
     detailUrl = `/posts/${id}`,
     editUrl = `/posts/${id}/edit`,
-    extraContent = null,
     deleteUrl = `/posts/${id}`,
   } = props;
   // console.log(`Post ${id} - likes: ${likes_count}, like_id: ${like_id}`);
@@ -135,48 +134,31 @@ const PostCard = (props) => {
 
   return (
     <>
-      <PostLayoutShell
-        title={title}
-        content={truncatedContent}
-        image={image}
-        display_name={display_name}
-        created_at={created_at}
-        likes_count={likes_count}
-        comments_count={comments_count}
-        renderDropdown={
-          is_user && (
-            <MoreDropdown
-              handleEdit={() => history.push(editUrl)}
-              handleDelete={handleDelete}
-            />
-          )
-        }
-        postActions={postActions}
-        extraContent={
-          <Link
-            to={detailUrl}
-            style={{ textDecoration: "none", color: "inherit" }}
-          >
-            {extraContent}
-            {content.length > 150 && (
+      <Link to={detailUrl} style={{ textDecoration: "none", color: "inherit" }}>
+        <PostLayoutShell
+          title={title}
+          content={truncatedContent}
+          image={image}
+          display_name={display_name}
+          created_at={created_at}
+          likes_count={likes_count}
+          comments_count={comments_count}
+          renderDropdown={
+            is_user && (
+              <MoreDropdown
+                handleEdit={() => history.push(editUrl)}
+                handleDelete={handleDelete}
+              />
+            )
+          }
+          postActions={postActions}
+          extraContent={
+            content.length > 150 && (
               <div className={styles.ReadMore}>Read more…</div>
-            )}
-          </Link>
-        }
-      />
-      {/* <Link
-          to={detailUrl}
-          style={{ textDecoration: "none", color: "inherit" }}
-        >
-          {extraContent}
-          <h5 className={styles.PostTitle}>{title}</h5>
-          <p className={styles.PostContent}>{truncatedContent}</p>
-          {content.length > 150 && (
-            <div className={styles.ReadMore}>Read more…</div>
-          )}
-          {image && <Card.Img variant="top" src={image} alt={title} />}
-        </Link>
-      </PostLayoutShell> */}
+            )
+          }
+        />
+      </Link>
 
       <ConfirmDeleteModal
         show={showConfirm}
