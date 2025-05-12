@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import styles from "../styles/PostForm.module.css";
 import sharedStyles from "../App.module.css";
 
 function CommentForm({ disabled = false }) {
+  const [content, setContent] = useState("");
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (event) => {
+    setContent(event.target.value);
+  };
+
   return (
     <Form className={styles.FormWrapper}>
       <Form.Group controlId="commentText" className={styles.FormGroupSpacing}>
