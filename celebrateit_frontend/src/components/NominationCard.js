@@ -24,19 +24,21 @@ const NominationCard = (props) => {
     deleteUrl = `/nominations/${id}`,
   } = props;
 
+  // User & Navigation
   const currentUser = useCurrentUser();
+  const history = useHistory();
 
+  // Local UI State
+  const [showConfirm, setShowConfirm] = useState(false);
+
+  // Derived display content
   const truncatedContent =
     content.length > 150
       ? content.slice(0, content.slice(0, 150).lastIndexOf(" ")) + "..."
       : content;
 
-  const history = useHistory();
-  const [showConfirm, setShowConfirm] = useState(false);
-
-  const handleDelete = () => {
-    setShowConfirm(true);
-  };
+  // Event Handlers
+  const handleDelete = () => setShowConfirm(true);
 
   const confirmDelete = async () => {
     try {
@@ -67,8 +69,9 @@ const NominationCard = (props) => {
             />
           )
         }
-        extraContent={
-          nominee && tag ? (
+        metaTop={
+          nominee &&
+          tag && (
             <p className={styles.NominationMeta}>
               <strong>{nominee}</strong> was nominated by{" "}
               <strong>{display_name}</strong>{" "}
@@ -84,9 +87,19 @@ const NominationCard = (props) => {
                 {tag}
               </span>
             </p>
-          ) : null
+          )
+        }
+        extraContent={
+          content.length > 150 && (
+            <div className={styles.ViewFullPos}>
+              <Link to={detailUrl} className={styles.ViewFullPosLink}>
+                <div className={styles.ViewFullPos}>View full post</div>
+              </Link>
+            </div>
+          )
         }
       />
+
       <ConfirmDeleteModal
         show={showConfirm}
         onHide={() => setShowConfirm(false)}

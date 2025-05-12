@@ -19,6 +19,7 @@ const PostLayoutShell = (props) => {
     children,
     extraContent,
     linkTo,
+    metaTop,
   } = props;
 
   const cardBody = (
@@ -28,17 +29,17 @@ const PostLayoutShell = (props) => {
         created_at={created_at}
         renderDropdown={renderDropdown}
       />
+      {/* Optional metadata above title (e.g. nominee & tag for nominations) */}
+      {metaTop && <div className={styles.MetaTopWrapper}>{metaTop}</div>}
 
       {/* Always show post title and content */}
       <h5 className={styles.PostTitle}>{title}</h5>
       <p className={styles.PostContent}>{content}</p>
 
-      {/* Tag/nominee for NominationCard, or read more link for PostCard */}
+      {/* Optional extra content after main content (e.g. 'View full post' link) */}
       {extraContent && (
         <div className={styles.ViewFullWrapper}>{extraContent}</div>
       )}
-
-      {/* {image && <Card.Img variant="top" src={image} alt={title} />} */}
 
       {/* Detail-only content (comment form + comments) */}
       {children && <div className={styles.PostChildren}>{children}</div>}
