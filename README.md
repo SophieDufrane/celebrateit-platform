@@ -281,172 +281,129 @@ The colour palette echoes tech industry trends while adding warmth to reflect hu
 
 ### Frontend Page and Component Structure
 
-Before starting frontend development, a complete architecture plan was created to ensure clean, reusable, and modular code.
+#### Evolution of Component Structure
 
-#### Pages Overview
+CelebrateIt was built with a focus on reusability and clean structure from the start (DRY):
 
-| Page                  | Purpose                                                              |
-| :-------------------- | :------------------------------------------------------------------- |
-| MenuPage or LoginPage | Form to Login or Register                                            |
-| LoggedInHomePage      | Displays Recognition and Nomination feed alongside People Sidebar    |
-| PostDetailPage        | Shows full recognition story with likes and comments                 |
-| CreatePostPage        | Form to create a recognition Story (title, content, optionnal image) |
-| UpdatePostPage        | Form for updating an existing recognition story                      |
-| NominationDetailPage  | Shows full nomination details with likes and comments                |
-| CreateNominationPage  | Form to create a new nomination (nominee, title, content, and tag)   |
-| UpdateNominationPage  | Form for updating an existing nomination                             |
-| ProfilePage           | Displays user profile, recognitions, and nominations                 |
+- A shared layout wrapper, `PostLayoutShell`, was created to handle common elements between recognitions and nominations (avatar, title, content, dropdown, etc.) as well as children for specific elements.
+- This shell was initially used inside a single component: `PostCard`, which handled both recognitions and nominations in the feed.
+- Nomination-specific logic (e.g. nominee name and tag) was conditionally rendered inside `PostCard`.
 
----
+As development progressed:
+- Conditional rendering became harder to manage.
+- Post and Nomination diverged in layout (image for Post only; nominee/tag for Nominations).
+- Code readability and maintainability suffered.
 
-#### Major Containers and Components
+**Decision:** Refactor into two separate components.
 
-| Container             | Purpose                                                              |
-| :-------------------- | :------------------------------------------------------------------- |
-| LoggedInHomePage      | Fetches and display feed and people list                             |
-| PostDetailPage        | Fetches and display single recognition post                          |
-| NominationDetailPage  | Fetches and display single nomination                                |
-| CreateRecognitionPage | Handles the form for a new recognition                               |
-| CreateNominationPage  | Handles the form for a new nomination                                |
-| ProfilePage           | Fetches and displays user information, recognitions, and nominations |
+#### Refactor Outcome
+- `PostLayoutShell`: the shared layout wrapper for both Post and Nomination cards was cleaned of any specific elements.
+- `PostHeader`: The header portion with avatar, name, time stamp, and dropdown menu, was extracted into its own component for even greater clarity and reuse.
+- `PostCard`: Now focused solely on recognition posts, includes image and likes/comments.
+- `NominationCard`: A dedicated component for nominations was created, injecting nominee and tag via `extraContent` prop.
+- `extraContent` prop: Enables layout flexibility without bloating shared structure.
 
-| Component | Purpose                                                     |
-| :-------- | :---------------------------------------------------------- |
-| Navbar    | Navigation bar (Home, Recognize, Nominate, Profile, Logout) |
-| Post      |                                                             |
+This refactor improved clarity, maintainability, and scalability.
 
 ---
 
-### Frontend Page and Component Structure
+#### Pages & Containers Overview
 
-```
+| Page (File) | Purpose |
+|------|---------|
+| `SignInForm` / `SignUpForm` | Handles login and registration forms |
+| `LoggedInHomePage` | Displays recognition + nomination feed snippets and people sidebar |
+| `PostDetailPage` | Renders a full recognition story with comments  |
+| `NominationDetailPage` | Renders a full nomination with nominee and tag  |
+| `CreatePostPage` | Form to submit a new recognition post |
+| `UpdatePostPage` | Form to edit an existing recognition post |
+| `CreateNominationPage` | Form to submit a new nomination (with nominee and tag) |
+| `UpdateNominationPage`  | Form to edit an existing nomination (content and tag-not nominee) |
+| `ProfilePage` | Displays user profile, recognitions, and nominations |
+
+---
+
+#### Component Tree
+
 Navbar (component)
-│
-├── Brand (CelebrateIt link to "/")
-├── Home Link (to "/")
-├── Recognize Link (to "posts/create")
-├── Nominate Link (to "nominations/create")
-├── Profile Link (to "/profiles/:id" - dynamic user ID)
-└── Logout Link (logs out and redirects to login page "/login")
-
+├── NavLinks (Home, Recognise, Nominate, Profile, Logout)
 
 LoggedInHomePage (container)
-│
-├── Navbar (component)
-│
-│── FeedSection (container)
-│   ├── FeedToggleButtons (component)
-│   ├── FeedList (component)
-│   |    ├── PostCard (component - for recognition posts)
-│   |    │    ├── LikeButton (component)
-│   |    │    └── CommentCounter (component)
-│   |    └── NominationCard (component - for nominations)
-│   │              ├── LikeButton (component)
-│   │              └── CommentCounter (component)
-│   │
-│   └── PeopleSidebar (container)
-│         ├── SearchField (component)
-│         └── PeopleList (component)
-│             ├── PersonCard (component)
-│                 ├── User Icon
-│                 ├── User name
-│                 └── NominateButton (component)
+├── FeedSection
+│     ├── FeedToggleButtons
+│     ├── FeedList
+│     │     ├── PostCard → PostLayoutShell
+│     │     └── NominationCard → PostLayoutShell
+├── PeopleSidebar
+│     ├── SearchField
+│     └── PeopleList
+│           └── PersonCard → NominateButton
 
+PostLayoutShell
+├── PostHeader (shared header)
+│     ├── Avatar placeholder
+│     ├── Display name
+│     └── Created at + Dropdown
+├── metaTop (optional – nominee + tag)
+├── Title
+├── Content
+├── extraContent (optional – e.g. 'View full post' or tag block)
+└── children (optional – image, comments, etc.)
 
 PostDetailPage (container)
-│
-├── PostCard (component)
-│    ├── LikeButton (component)
-│    └── CommentCounter (component)
-│
-└── CommentSection (component)
-     ├── CommentForm (component)
-     └── CommentList (component)
-         ├── CommentCard (component)
-         ├── CommentCard (component)
-         └── ….etc
-
+├── PostLayoutShell
+│     └── children
+│           ├── PostImage (optional)
+│           ├── CommentForm
+│           └── CommentList
+├── ConfirmDeleteModal
 
 NominationDetailPage (container)
-│
-├── NominationCard (component)
-│    ├── LikeButton (component)
-│    └── CommentCounter (component)
-│
-└── CommentSection (component)
-     ├── CommentForm (component)
-     └── CommentList (component)
-         ├── CommentCard (component)
-         ├── CommentCard (component)
-         └── ….etc
+├── PostLayoutShell
+│     └── metaTop (nominee info + tag badge)
+├── ConfirmDeleteModal
 
+CreatePostPage / UpdatePostPage (container)
+└── PostForm
+      └── Image upload (optional)
 
-CreatePage (container)
-│
-├── Title ("What would you like to create?")
-│
-└── CreateOptions (container)
-     ├── CreateRecognitionCard (component)
-     │    └── Button to redirect to /create-recognition
-     └── CreateNominationCard (component)
-          └── Button to redirect to /create-nomination
-
-
-CreateRecognitionPage (container)
-│
-└── RecognitionForm (component)
-     ├── TitleField (component)
-     ├── ContentField (component)
-     ├── ImageUploadField (component) (optional)
-     └── SubmitButton (component)
-
-
-CreateNominationPage (container)
-│
-└── NominationForm (component)
-     ├── NomineeSelector (component) (pick a person or prefilled if clicked from sidebar)
-     ├── TitleField (component) (required)
-     ├── ContentField (component) (required)
-     ├── TagField (component) (required - colorful category)
-     └── SubmitButton (component)
-
+CreateNominationPage / UpdateNominationPage (container)
+└── NominationForm
+      ├── Nominee selector
+      └── Tag field
 
 ProfilePage (container)
-│
-├── ProfileHeader (component)
-│    ├── Profile Image
-│    ├── Username (First and Last name)
-│    ├── Department
-│    └── Bio / Presentation text
-│
-└── ProfileFeedSection (container)
-     ├── FeedToggleButtons (component) (My Recognitions / My Nominations)
-     └── FeedList (component)
-          ├── PostCard (for recognitions)
-          └── NominationCard (for nominations)
-```
+├── Profile Header
+|     ├── Profile Image
+|     ├── Username (First and Last name)
+|     ├── Department
+|     └── Bio / Presentation text
+├── ProfileFeedSection (container)
+
+---
 
 #### Key Planning Decisions
 
-- Reusable Components were prioritized to speed up development and minimize duplication.
-- Toggle Functionality was reused between the Home Feed and the Profile Feed to allow switching between Recognitions and Nominations.
-- Simplifications were made to keep the project realistic and deadline-safe, such as skipping advanced department filters initially.
-- Alignment with Backend Models was ensured before form design to prevent API mismatches (fields and validation match Django models).
-- Comment Sections are embedded inside Post and Nomination Detail Pages, rather than being handled by separate comment pages.
+- **Start DRY, then refactor:** Initially reused `PostCard` for both types.
+- **Split when complexity grew:** Introduced `NominationCard` to separate logic and layout.
+- **Centralised layout wrapper:** Used `PostLayoutShell` with `extraContent` prop for flexibility.
+- **Deadline-first logic:** Skipped advanced filters to stay on track.
+- **Backend alignment:** Ensured API compatibility throughout (fields, validation).
+- **Embedded comment sections:** Avoided separate routes for commenting for simplicity.
 
 ---
 
 - Agile methodology, Kanban, or other approaches used
 
-### 5.2 Code Structure
+### 5.2 Code Structure (Backend)
 
-The project is divided into feature-based Django apps:
+The backend is organised into feature-based Django apps:
 
 - `posts/` – Recognition stories and related logic
 - `nominations/` – Peer nominations with required tag selection
 - `profiles/` – User profile extensions with department links
-- `likes/` and `comments/` – Shared interactions for both posts and nominations
-- `tags/` – Used to categorize recognitions and nominations
+- `likes/` and `comments/` – Interactions for recognition stories
+- `tags/` – Used to categorize nominations
 - `department/` – Departments available for user filtering and classification
 
 Each app follows the same structure: `models.py`, `serializers.py`, `views.py`, and `urls.py`. Common permissions are stored in the main `celebrateit_api/permissions.py`.
