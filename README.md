@@ -325,6 +325,8 @@ This refactor improved clarity, maintainability, and scalability.
 
 #### Component Tree
 
+```
+
 Navbar (component)
 ├── NavLinks (Home, Recognise, Nominate, Profile, Logout)
 
@@ -380,7 +382,7 @@ ProfilePage (container)
 |     └── Bio / Presentation text
 ├── ProfileFeedSection (container)
 
----
+```
 
 #### Key Planning Decisions
 
