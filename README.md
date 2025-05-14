@@ -5,38 +5,41 @@
 1. [Project Overview](#1-project-overview)
 
 2. [User Experience (UX)](#2-user-experience-ux)
-
-   - 2.1 [Strategy](#21-strategy)
-   - 2.2 [Scope](#22-scope)
-   - 2.3 [System Architecture](#23-system-architecture)
-   - 2.4 [Skeleton](#24-skeleton)
-   - 2.5 [Surface](#25-surface)
+   - [2.1 Strategy](#21-strategy)
+   - [2.2 Scope](#22-scope)
+   - [2.3 System Architecture](#23-system-architecture)
+   - [2.4 Skeleton](#24-skeleton)
+   - [2.5 Surface](#25-surface)
 
 3. [Features](#3-features)
+   - [Implemented Features](#implemented-features)
+   - [Potential Future Enhancements](#potential-future-enhancements)
 
 4. [Technologies Used](#4-technologies-used)
+   - [4.1 Backend](#41-backend)
+   - [4.2 Frontend](#42-frontend)
+   - [4.3 Deployment & Tools](#43-deployment--tools)
 
-   - 4.1 [Frontend](#41-frontend)
-   - 4.2 [Backend](#42-backend)
-   - 4.3 [Deployment & Tools](#43-deployment-tools)
-
-5. [Development](#5-development)
-
-   - 5.1 [Project Planning](#51-project-planning)
-   - 5.2 [Code Structure](#53-code-structure)
+5. [Development & Project Planning](#5-development--project-planning)
+   - [5.1 Frontend Evolution of Component Structure](#51-frontend-evolution-of-component-structure)
+   - [5.2 Code Structure (Backend)](#52-code-structure-backend)
+   - [Pages & Containers Overview](#pages--containers-overview)
+   - [Component Tree](#component-tree)
+   - [Key Planning Decisions](#key-planning-decisions)
 
 6. [Testing](#6-testing)
+   - [6.1 Back-End Application Testing](#61-back-end-application-testing)
+   - [6.2 Front-End Application Testing](#62-front-end-application-testing)
+   - [6.3 Validators](#63-validators)
+   - [6.3 Bugs and Fixes](#63-bugs-and-fixes)
 
-   - 6.1 [Back-End Application Testing](#61-back-end-application-testing)
-   - 6.2 [Front-End Application Testing](#62-front-end-application-testing)
-   - 6.3 [Bugs and Fixes](#63-bugs-and-fixes)
+7. [Deployment](#7-deployment)
+   - [7.1 Heroku](#71-heroku)
+   - [7.2 Forking and Cloning](#72-forking-and-cloning)
 
-7. [Deployment & Setup](#7-deployment-and-setup)
-
-   - 7.1 [Backend Deployment](#71-backend-deployment)
-   - 7.2 [Local Setup](#72-local-setup)
-
-8. [Credits](#8-credits)
+8. [Credits](#8-credit)
+   - [Content & Resources](#content--resources)
+   - [Acknowledgements](#acknowledgements)
 
 ---
 
