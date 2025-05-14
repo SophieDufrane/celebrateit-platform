@@ -16,6 +16,10 @@
 
 4. [Technologies Used](#4-technologies-used)
 
+   - 4.1 [Frontend](#41-frontend)
+   - 4.2 [Backend](#42-backend)
+   - 4.3 [Deployment & Tools](#43-deployment-tools)
+
 5. [Development](#5-development)
 
    - 5.1 [Project Planning](#51-project-planning)
@@ -99,8 +103,8 @@ To plan the project development, I adopted an Agile methodology centered on user
 
 | **ID**                                                            | **Theme**             | **User Story**                                     | **Prioritisation** |
 | ----------------------------------------------------------------- | --------------------- | -------------------------------------------------- | ------------------ |
-| [#16](https://github.com/SophieDufrane/PP5-celebrateit/issues/16) | Like a Post           | Users can like a post to show appreciation.        | Should Have        |
-| [#17](https://github.com/SophieDufrane/PP5-celebrateit/issues/17) | Comment on a Post     | Users can comment on posts to engage with content. | Must Have          |
+| [#16](https://github.com/SophieDufrane/PP5-celebrateit/issues/16) | Like a recognition           | Users can like a recognition to show appreciation.        | Should Have        |
+| [#17](https://github.com/SophieDufrane/PP5-celebrateit/issues/17) | Comment on a recognition     | Users can comment on recognitions to engage with content. | Must Have          |
 | [#33](https://github.com/SophieDufrane/PP5-celebrateit/issues/33) | Edit/Delete Comments  | Users can edit or remove their own comments.       | Should Have        |
 | [#8](https://github.com/SophieDufrane/PP5-celebrateit/issues/8)   | Search for Colleagues | Users can search for other people by name.         | Should Have        |
 
@@ -149,7 +153,7 @@ This section provides a visual representation of the user navigation flow within
 
 CelebrateIt follows a decoupled architecture, separating the backend and frontend into two distinct layers:
 
-- **Backend**: Built with Django REST Framework (DRF), the backend exposes a RESTful API. It handles authentication, user profiles, nominations, recognitions, comments, likes, and tag/category logic. The API returns JSON responses that can be consumed by any client.
+- **Backend**: Built with Django REST Framework (DRF), the backend exposes a RESTful API. It handles authentication, user profiles, nominations, recognitions, comments, likes, tag/category and department logic. The API returns JSON responses that can be consumed by any client.
 - **Frontend**: Developed using React, the frontend interacts with the API via `axios`. It handles routing with React Router, manages state locally (with hooks), and presents a dynamic interface to the user.
 - **Data Flow**: React fetches data from DRF endpoints and displays it based on the user's interactions. Forms (e.g. create/edit nomination) submit data back to the API to update the database.
 - **Authentication**: User sessions and permissions are managed via Django Allauth and token-based headers on the frontend.
@@ -168,7 +172,6 @@ This architecture supports scalability and flexibility, allowing future iteratio
 The following wireframes outline the structure and layout of the main screens in CelebrateIt:
 
 - **Secure Authentication**
-
   - Employees register, log in and out securely using **Django Allauth**.
 
       <details>
@@ -184,6 +187,60 @@ The following wireframes outline the structure and layout of the main screens in
     ![Log in](documentation/frontend/skeleton/login_form.png)
 
       </details>
+
+- **Home Feed**
+  - Users land on a clean feed displaying recognition stories and nominations with toggle option.
+
+    <details>
+    <summary>Feed Layout</summary>
+
+    ![Feed](documentation/frontend/skeleton/feed.png)
+
+    </details>
+
+- **Create Post / Nomination**
+  - Users can create a recognition story or nominate a colleague with a simple form.
+
+    <details>
+    <summary>Create Recognition Form</summary>
+
+    ![Create Post](documentation/frontend/skeleton/recognition_create.png)
+
+    </details>
+
+    <details>
+    <summary>Create Nomination Form</summary>
+
+    ![Create Nomination](documentation/frontend/skeleton/nomination_create.png)
+
+    </details>
+
+- **Recognition / Nomination Detail View**
+  - Users can read full stories, like, and comment on recognitions.
+
+    <details>
+    <summary>Recognition Detail</summary>
+
+    ![Recognition Detail](documentation/frontend/skeleton/recognition_detail.png)
+
+    </details>
+
+    <details>
+    <summary>Nomination Detail</summary>
+
+    ![Nomination Detail](documentation/frontend/skeleton/nomination_detail.png)
+
+    </details>
+
+- **User Profile Page**
+  - Displays user's info with avatar, name, bio, department and user's contributions.
+
+    <details>
+    <summary>Profile</summary>
+
+    ![Profile](documentation/frontend/skeleton/profile.png)
+
+    </details>
 
 ---
 
@@ -229,59 +286,64 @@ The colour palette echoes tech industry trends while adding warmth to reflect hu
 - Create, edit, delete, and view **Nominations** with required tags
 - Combined feed with toggle to switch between Recognition and Nominations
 - Detail pages for each recognition and nomination
-- Real-time **like** system for posts and nominations
+- Real-time **like** system for recognitions
 - **Comment** system with edit and delete options for authors
 - Public profile pages showing user's info and contributions
 - Logged-in users can **edit their avatar and bio**
 - **Search bar** to find colleagues from the feed by name
-- Profile feed toggle: view your own recognitions and nominations
 
-### Upcoming or In Progress
+### Potential Future Enhancements
 
-- Finalise Nomination CRUD frontend integration
-- Frontend tests and confirmation prompts
-- Final styling and responsiveness tweaks
-- README completion with testing documentation
-- Heroku deployment (backend) and potential CI setup
+- Profile feed: view your own recognitions and nominations
+- ....
+- ....
+- ....
 
 ---
 
 ## 4. Technologies Used
 
-### Frontend
+### 4.1. Backend
 
-- React
-- React Router DOM
-- Axios
-- Bootstrap
-- CSS Modules
+The backend API was developed using Django and the Django REST Framework:
 
-### Backend
-
-- Django
-- Django REST Framework
-- Django Allauth
-- PostgreSQL (via Heroku)
-- Cloudinary (for image uploads)
-
-### Deployment & Tools
-
-- Heroku (backend)
-- GitHub & GitHub Pages (optional frontend deployment)
-- Git & GitHub for version control
-- VS Code
-- Insomnia/Postman for API testing
-- Lighthouse & DevTools for performance/accessibility audits
+- **Django** – Python-based web framework for rapid development and clean architecture.
+- **Django REST Framework** – Used to build RESTful APIs consumed by the frontend.
+- **Django Allauth** – Manages user registration, login, logout, and authentication endpoints.
+- **PostgreSQL** – Relational database hosted on Heroku via automatic provisioning.
+- **Cloudinary** – Handles media uploads and delivery, especially for user-submitted images.
 
 ---
 
-## 5. Development
+### 4.2 Frontend
 
-## 5.1 Project Planning
+The frontend of CelebrateIt was built using the following technologies:
 
-### Frontend Page and Component Structure
+- **React** – Core library for building user interfaces with reusable components.
+- **React Router DOM** – Enables dynamic client-side routing and navigation.
+- **Axios** – Handles HTTP requests to the Django REST API.
+- **Bootstrap** – Provides a responsive layout foundation and base UI components.
+- **CSS Modules** – Used for scoped styling of components and to prevent class name collisions.
 
-#### Evolution of Component Structure
+---
+
+### 4.3 Deployment & Tools
+
+- **Heroku** – Hosting and deployment of the Django REST API backend.
+- **GitHub** – Version control and repository management.
+- **GitHub Pages** *(optional)* – Considered for frontend deployment (not used in final setup).
+- **Git** – Local version control with atomic commits and branching.
+- **VS Code** – Primary code editor with integrated terminal and extensions for React/Django.
+- **Browser-based API testing** – API endpoints were tested directly via browser during development using Django’s built-in dev server.
+- **Chrome DevTools & Lighthouse** – Used for inspecting layout, debugging responsiveness, and running accessibility/performance audits.
+
+---
+
+## 5. Development & Project Planning
+
+### 5.1 Frontend Evolution of Component Structure
+
+#### Initial Structure
 
 CelebrateIt was built with a focus on reusability and clean structure from the start (DRY):
 
@@ -992,10 +1054,31 @@ Testing included:
 
 | **Priority** | **User Story**         | **Page(s)**     | **Test Scenario / Action**            | **Expected Result**                                   | Actual | **Screenshot** |
 | ------------ | ---------------------- | --------------- | ------------------------------------- | ----------------------------------------------------- | ------ | -------------- |
-| Must Have    | Comment on Post        | Detail Page     | Submit valid comment                  | Comment appears below post                            |        |
-| Should Have  | Like a Post            | Feed / Detail   | Click like and unlike                 | Count updates and button toggles correctly            |        |
-| Should Have  | Edit/Delete My Comment | Detail Page     | Click edit or delete on owned comment | Comment updates or disappears as expected             |        |
-| Should Have  | Search for Colleagues  | Feed Search Bar | Type partial name                     | Matching users show with avatar + \"Nominate\" button |        |
+| Must Have    | Comment on Recognition        | Detail Page     | Submit valid comment                  | Comment appears below post                            |        |1|
+| Should Have  | Like a Recognition            | Feed / Detail   | Click like and unlike                 | Count updates and button toggles correctly            |        |2 - 3|
+| Should Have  | Edit/Delete My Comment | Detail Page     | Click edit or delete on owned comment | Comment updates or disappears as expected             |        ||
+| Should Have  | Search for Colleagues  | Feed Search Bar | Type partial name                     | Matching users show with avatar + \"Nominate\" button |        ||
+
+<details>
+<summary> 1/ Comment on Recognition </summary>
+
+![1](documentation/frontend/testing/comment/.png)
+
+</details>
+
+<details>
+<summary> 2/ Like/Unlike on Recognition from the feed </summary>
+
+![2](documentation/frontend/testing/like_feed/.png)
+
+</details>
+
+<details>
+<summary> 3/ Like/Unlike on Recognition from the detail page </summary>
+
+![3](documentation/frontend/testing/like_detail_page/.png)
+
+</details>
 
 #### **Managing My Profile & Network**
 
