@@ -47,7 +47,7 @@
 
 ### Brief Description
 
-CelebrateIt is a mock employee recognition platform inspired by the solutions offered by [Workhuman](https://www.workhuman.com). It allows employees to share recognition stories, nominate colleagues for their achievements, and engage with content through likes and comments. By fostering a sense of appreciation and collaboration, CelebrateIt mirrors the functionality and purpose of modern social recognition platforms.
+[CelebrateIt](https://celebrateit-866641373084.herokuapp.com/) is a mock employee recognition platform inspired by the solutions offered by [Workhuman](https://www.workhuman.com). It allows employees to share recognition stories, nominate colleagues for their achievements, and engage with content through likes and comments. By fostering a sense of appreciation and collaboration, CelebrateIt mirrors the functionality and purpose of modern social recognition platforms.
 
 Built using Django REST for the backend and React for the frontend, this project serves as a learning and portfolio exercise, demonstrating full-stack development skills in designing a scalable, functional, and user-friendly web application.
 
@@ -1113,7 +1113,7 @@ Testing included:
 
 ### 7.1 Heroku
 
-The site was deployed successfully to [Heroku]() following the steps below:
+The site was deployed successfully to [Heroku](https://celebrateit-866641373084.herokuapp.com/) following the steps below:
 
 1. In _Gitpod_, create a list of dependencies in `requirements.txt` file:
    - Run `pip3 freeze > requirements.txt` in the terminal.
@@ -1136,7 +1136,7 @@ The site was deployed successfully to [Heroku]() following the steps below:
 7. Click `Deploy Branch`.
 8. Once App deployed, the message _Your app was successfully deployed._
 
-The live link can be found here: [CelebrateIt]()
+The live link can be found here: [CelebrateIt](https://celebrateit-866641373084.herokuapp.com/)
 
 ### 7.1 Forking and Cloning
 
