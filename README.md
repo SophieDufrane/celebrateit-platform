@@ -5,34 +5,41 @@
 1. [Project Overview](#1-project-overview)
 
 2. [User Experience (UX)](#2-user-experience-ux)
-
-   - 2.1 [Strategy](#21-strategy)
-   - 2.2 [Scope](#22-scope)
-   - 2.3 [System Architecture](#23-system-architecture)
-   - 2.4 [Skeleton](#24-skeleton)
-   - 2.5 [Surface](#25-surface)
+   - [2.1 Strategy](#21-strategy)
+   - [2.2 Scope](#22-scope)
+   - [2.3 System Architecture](#23-system-architecture)
+   - [2.4 Skeleton](#24-skeleton)
+   - [2.5 Surface](#25-surface)
 
 3. [Features](#3-features)
+   - [Implemented Features](#implemented-features)
+   - [Potential Future Enhancements](#potential-future-enhancements)
 
 4. [Technologies Used](#4-technologies-used)
+   - [4.1 Backend](#41-backend)
+   - [4.2 Frontend](#42-frontend)
+   - [4.3 Deployment & Tools](#43-deployment--tools)
 
-5. [Development](#5-development)
-
-   - 5.1 [Project Planning](#51-project-planning)
-   - 5.2 [Code Structure](#53-code-structure)
+5. [Development & Project Planning](#5-development--project-planning)
+   - [5.1 Frontend Evolution of Component Structure](#51-frontend-evolution-of-component-structure)
+   - [5.2 Code Structure (Backend)](#52-code-structure-backend)
+   - [Pages & Containers Overview](#pages--containers-overview)
+   - [Component Tree](#component-tree)
+   - [Key Planning Decisions](#key-planning-decisions)
 
 6. [Testing](#6-testing)
+   - [6.1 Back-End Application Testing](#61-back-end-application-testing)
+   - [6.2 Front-End Application Testing](#62-front-end-application-testing)
+   - [6.3 Validators](#63-validators)
+   - [6.3 Bugs and Fixes](#63-bugs-and-fixes)
 
-   - 6.1 [Back-End Application Testing](#61-back-end-application-testing)
-   - 6.2 [Front-End Application Testing](#62-front-end-application-testing)
-   - 6.3 [Bugs and Fixes](#63-bugs-and-fixes)
+7. [Deployment](#7-deployment)
+   - [7.1 Heroku](#71-heroku)
+   - [7.2 Forking and Cloning](#72-forking-and-cloning)
 
-7. [Deployment & Setup](#7-deployment-and-setup)
-
-   - 7.1 [Backend Deployment](#71-backend-deployment)
-   - 7.2 [Local Setup](#72-local-setup)
-
-8. [Credits](#8-credits)
+8. [Credits](#8-credit)
+   - [Content & Resources](#content--resources)
+   - [Acknowledgements](#acknowledgements)
 
 ---
 
@@ -99,8 +106,8 @@ To plan the project development, I adopted an Agile methodology centered on user
 
 | **ID**                                                            | **Theme**             | **User Story**                                     | **Prioritisation** |
 | ----------------------------------------------------------------- | --------------------- | -------------------------------------------------- | ------------------ |
-| [#16](https://github.com/SophieDufrane/PP5-celebrateit/issues/16) | Like a Post           | Users can like a post to show appreciation.        | Should Have        |
-| [#17](https://github.com/SophieDufrane/PP5-celebrateit/issues/17) | Comment on a Post     | Users can comment on posts to engage with content. | Must Have          |
+| [#16](https://github.com/SophieDufrane/PP5-celebrateit/issues/16) | Like a recognition           | Users can like a recognition to show appreciation.        | Should Have        |
+| [#17](https://github.com/SophieDufrane/PP5-celebrateit/issues/17) | Comment on a recognition     | Users can comment on recognitions to engage with content. | Must Have          |
 | [#33](https://github.com/SophieDufrane/PP5-celebrateit/issues/33) | Edit/Delete Comments  | Users can edit or remove their own comments.       | Should Have        |
 | [#8](https://github.com/SophieDufrane/PP5-celebrateit/issues/8)   | Search for Colleagues | Users can search for other people by name.         | Should Have        |
 
@@ -149,7 +156,7 @@ This section provides a visual representation of the user navigation flow within
 
 CelebrateIt follows a decoupled architecture, separating the backend and frontend into two distinct layers:
 
-- **Backend**: Built with Django REST Framework (DRF), the backend exposes a RESTful API. It handles authentication, user profiles, nominations, recognitions, comments, likes, and tag/category logic. The API returns JSON responses that can be consumed by any client.
+- **Backend**: Built with Django REST Framework (DRF), the backend exposes a RESTful API. It handles authentication, user profiles, nominations, recognitions, comments, likes, tag/category and department logic. The API returns JSON responses that can be consumed by any client.
 - **Frontend**: Developed using React, the frontend interacts with the API via `axios`. It handles routing with React Router, manages state locally (with hooks), and presents a dynamic interface to the user.
 - **Data Flow**: React fetches data from DRF endpoints and displays it based on the user's interactions. Forms (e.g. create/edit nomination) submit data back to the API to update the database.
 - **Authentication**: User sessions and permissions are managed via Django Allauth and token-based headers on the frontend.
@@ -168,7 +175,6 @@ This architecture supports scalability and flexibility, allowing future iteratio
 The following wireframes outline the structure and layout of the main screens in CelebrateIt:
 
 - **Secure Authentication**
-
   - Employees register, log in and out securely using **Django Allauth**.
 
       <details>
@@ -184,6 +190,60 @@ The following wireframes outline the structure and layout of the main screens in
     ![Log in](documentation/frontend/skeleton/login_form.png)
 
       </details>
+
+- **Home Feed**
+  - Users land on a clean feed displaying recognition stories and nominations with toggle option.
+
+    <details>
+    <summary>Feed Layout</summary>
+
+    ![Feed](documentation/frontend/skeleton/feed.png)
+
+    </details>
+
+- **Create Post / Nomination**
+  - Users can create a recognition story or nominate a colleague with a simple form.
+
+    <details>
+    <summary>Create Recognition Form</summary>
+
+    ![Create Post](documentation/frontend/skeleton/recognition_create.png)
+
+    </details>
+
+    <details>
+    <summary>Create Nomination Form</summary>
+
+    ![Create Nomination](documentation/frontend/skeleton/nomination_create.png)
+
+    </details>
+
+- **Recognition / Nomination Detail View**
+  - Users can read full stories, like, and comment on recognitions.
+
+    <details>
+    <summary>Recognition Detail</summary>
+
+    ![Recognition Detail](documentation/frontend/skeleton/recognition_detail.png)
+
+    </details>
+
+    <details>
+    <summary>Nomination Detail</summary>
+
+    ![Nomination Detail](documentation/frontend/skeleton/nomination_detail.png)
+
+    </details>
+
+- **User Profile Page**
+  - Displays user's info with avatar, name, bio, department and user's contributions.
+
+    <details>
+    <summary>Profile</summary>
+
+    ![Profile](documentation/frontend/skeleton/profile.png)
+
+    </details>
 
 ---
 
@@ -229,224 +289,188 @@ The colour palette echoes tech industry trends while adding warmth to reflect hu
 - Create, edit, delete, and view **Nominations** with required tags
 - Combined feed with toggle to switch between Recognition and Nominations
 - Detail pages for each recognition and nomination
-- Real-time **like** system for posts and nominations
+- Real-time **like** system for recognitions
 - **Comment** system with edit and delete options for authors
 - Public profile pages showing user's info and contributions
 - Logged-in users can **edit their avatar and bio**
 - **Search bar** to find colleagues from the feed by name
-- Profile feed toggle: view your own recognitions and nominations
 
-### Upcoming or In Progress
+### Potential Future Enhancements
 
-- Finalise Nomination CRUD frontend integration
-- Frontend tests and confirmation prompts
-- Final styling and responsiveness tweaks
-- README completion with testing documentation
-- Heroku deployment (backend) and potential CI setup
+- Profile feed: view your own recognitions and nominations
+- ....
+- ....
+- ....
 
 ---
 
 ## 4. Technologies Used
 
-### Frontend
+### 4.1. Backend
 
-- React
-- React Router DOM
-- Axios
-- Bootstrap
-- CSS Modules
+The backend API was developed using Django and the Django REST Framework:
 
-### Backend
-
-- Django
-- Django REST Framework
-- Django Allauth
-- PostgreSQL (via Heroku)
-- Cloudinary (for image uploads)
-
-### Deployment & Tools
-
-- Heroku (backend)
-- GitHub & GitHub Pages (optional frontend deployment)
-- Git & GitHub for version control
-- VS Code
-- Insomnia/Postman for API testing
-- Lighthouse & DevTools for performance/accessibility audits
+- **Django** – Python-based web framework for rapid development and clean architecture.
+- **Django REST Framework** – Used to build RESTful APIs consumed by the frontend.
+- **Django Allauth** – Manages user registration, login, logout, and authentication endpoints.
+- **PostgreSQL** – Relational database hosted on Heroku via automatic provisioning.
+- **Cloudinary** – Handles media uploads and delivery, especially for user-submitted images.
 
 ---
 
-## 5. Development
+### 4.2 Frontend
 
-## 5.1 Project Planning
+The frontend of CelebrateIt was built using the following technologies:
 
-### Frontend Page and Component Structure
-
-Before starting frontend development, a complete architecture plan was created to ensure clean, reusable, and modular code.
-
-#### Pages Overview
-
-| Page                  | Purpose                                                              |
-| :-------------------- | :------------------------------------------------------------------- |
-| MenuPage or LoginPage | Form to Login or Register                                            |
-| LoggedInHomePage      | Displays Recognition and Nomination feed alongside People Sidebar    |
-| PostDetailPage        | Shows full recognition story with likes and comments                 |
-| CreatePostPage        | Form to create a recognition Story (title, content, optionnal image) |
-| UpdatePostPage        | Form for updating an existing recognition story                      |
-| NominationDetailPage  | Shows full nomination details with likes and comments                |
-| CreateNominationPage  | Form to create a new nomination (nominee, title, content, and tag)   |
-| UpdateNominationPage  | Form for updating an existing nomination                             |
-| ProfilePage           | Displays user profile, recognitions, and nominations                 |
+- **React** – Core library for building user interfaces with reusable components.
+- **React Router DOM** – Enables dynamic client-side routing and navigation.
+- **Axios** – Handles HTTP requests to the Django REST API.
+- **Bootstrap** – Provides a responsive layout foundation and base UI components.
+- **CSS Modules** – Used for scoped styling of components and to prevent class name collisions.
 
 ---
 
-#### Major Containers and Components
+### 4.3 Deployment & Tools
 
-| Container             | Purpose                                                              |
-| :-------------------- | :------------------------------------------------------------------- |
-| LoggedInHomePage      | Fetches and display feed and people list                             |
-| PostDetailPage        | Fetches and display single recognition post                          |
-| NominationDetailPage  | Fetches and display single nomination                                |
-| CreateRecognitionPage | Handles the form for a new recognition                               |
-| CreateNominationPage  | Handles the form for a new nomination                                |
-| ProfilePage           | Fetches and displays user information, recognitions, and nominations |
-
-| Component | Purpose                                                     |
-| :-------- | :---------------------------------------------------------- |
-| Navbar    | Navigation bar (Home, Recognize, Nominate, Profile, Logout) |
-| Post      |                                                             |
+- **Heroku** – Hosting and deployment of the Django REST API backend.
+- **GitHub** – Version control and repository management.
+- **GitHub Pages** *(optional)* – Considered for frontend deployment (not used in final setup).
+- **Git** – Local version control with atomic commits and branching.
+- **VS Code** – Primary code editor with integrated terminal and extensions for React/Django.
+- **Browser-based API testing** – API endpoints were tested directly via browser during development using Django’s built-in dev server.
+- **Chrome DevTools & Lighthouse** – Used for inspecting layout, debugging responsiveness, and running accessibility/performance audits.
 
 ---
 
-### Frontend Page and Component Structure
+## 5. Development & Project Planning
+
+### 5.1 Frontend Evolution of Component Structure
+
+#### Initial Structure
+
+CelebrateIt was built with a focus on reusability and clean structure from the start (DRY):
+
+- A shared layout wrapper, `PostLayoutShell`, was created to handle common elements between recognitions and nominations (avatar, title, content, dropdown, etc.) as well as children for specific elements.
+- This shell was initially used inside a single component: `PostCard`, which handled both recognitions and nominations in the feed.
+- Nomination-specific logic (e.g. nominee name and tag) was conditionally rendered inside `PostCard`.
+
+As development progressed:
+- Conditional rendering became harder to manage.
+- Post and Nomination diverged in layout (image for Post only; nominee/tag for Nominations).
+- Code readability and maintainability suffered.
+
+**Decision:** Refactor into two separate components.
+
+#### Refactor Outcome
+- `PostLayoutShell`: the shared layout wrapper for both Post and Nomination cards was cleaned of any specific elements.
+- `PostHeader`: The header portion with avatar, name, time stamp, and dropdown menu, was extracted into its own component for even greater clarity and reuse.
+- `PostCard`: Now focused solely on recognition posts, includes image and likes/comments.
+- `NominationCard`: A dedicated component for nominations was created, injecting nominee and tag via `extraContent` prop.
+- `extraContent` prop: Enables layout flexibility without bloating shared structure.
+
+This refactor improved clarity, maintainability, and scalability.
+
+---
+
+#### Pages & Containers Overview
+
+| Page (File) | Purpose |
+|------|---------|
+| `SignInForm` / `SignUpForm` | Handles login and registration forms |
+| `LoggedInHomePage` | Displays recognition + nomination feed snippets and people sidebar |
+| `PostDetailPage` | Renders a full recognition story with comments  |
+| `NominationDetailPage` | Renders a full nomination with nominee and tag  |
+| `CreatePostPage` | Form to submit a new recognition post |
+| `UpdatePostPage` | Form to edit an existing recognition post |
+| `CreateNominationPage` | Form to submit a new nomination (with nominee and tag) |
+| `UpdateNominationPage`  | Form to edit an existing nomination (content and tag-not nominee) |
+| `ProfilePage` | Displays user profile, recognitions, and nominations |
+
+---
+
+#### Component Tree
 
 ```
-Navbar (component)
-│
-├── Brand (CelebrateIt link to "/")
-├── Home Link (to "/")
-├── Recognize Link (to "posts/create")
-├── Nominate Link (to "nominations/create")
-├── Profile Link (to "/profiles/:id" - dynamic user ID)
-└── Logout Link (logs out and redirects to login page "/login")
 
+Navbar (component)
+├── NavLinks (Home, Recognise, Nominate, Profile, Logout)
 
 LoggedInHomePage (container)
-│
-├── Navbar (component)
-│
-│── FeedSection (container)
-│   ├── FeedToggleButtons (component)
-│   ├── FeedList (component)
-│   |    ├── PostCard (component - for recognition posts)
-│   |    │    ├── LikeButton (component)
-│   |    │    └── CommentCounter (component)
-│   |    └── NominationCard (component - for nominations)
-│   │              ├── LikeButton (component)
-│   │              └── CommentCounter (component)
-│   │
-│   └── PeopleSidebar (container)
-│         ├── SearchField (component)
-│         └── PeopleList (component)
-│             ├── PersonCard (component)
-│                 ├── User Icon
-│                 ├── User name
-│                 └── NominateButton (component)
+├── FeedSection
+│     ├── FeedToggleButtons
+│     ├── FeedList
+│     │     ├── PostCard → PostLayoutShell
+│     │     └── NominationCard → PostLayoutShell
+├── PeopleSidebar
+│     ├── SearchField
+│     └── PeopleList
+│           └── PersonCard → NominateButton
 
+PostLayoutShell
+├── PostHeader (shared header)
+│     ├── Avatar placeholder
+│     ├── Display name
+│     └── Created at + Dropdown
+├── metaTop (optional – nominee + tag)
+├── Title
+├── Content
+├── extraContent (optional – e.g. 'View full post' or tag block)
+└── children (optional – image, comments, etc.)
 
 PostDetailPage (container)
-│
-├── PostCard (component)
-│    ├── LikeButton (component)
-│    └── CommentCounter (component)
-│
-└── CommentSection (component)
-     ├── CommentForm (component)
-     └── CommentList (component)
-         ├── CommentCard (component)
-         ├── CommentCard (component)
-         └── ….etc
-
+├── PostLayoutShell
+│     └── children
+│           ├── PostImage (optional)
+│           ├── CommentForm
+│           └── CommentList
+├── ConfirmDeleteModal
 
 NominationDetailPage (container)
-│
-├── NominationCard (component)
-│    ├── LikeButton (component)
-│    └── CommentCounter (component)
-│
-└── CommentSection (component)
-     ├── CommentForm (component)
-     └── CommentList (component)
-         ├── CommentCard (component)
-         ├── CommentCard (component)
-         └── ….etc
+├── PostLayoutShell
+│     └── metaTop (nominee info + tag badge)
+├── ConfirmDeleteModal
 
+CreatePostPage / UpdatePostPage (container)
+└── PostForm
+      └── Image upload (optional)
 
-CreatePage (container)
-│
-├── Title ("What would you like to create?")
-│
-└── CreateOptions (container)
-     ├── CreateRecognitionCard (component)
-     │    └── Button to redirect to /create-recognition
-     └── CreateNominationCard (component)
-          └── Button to redirect to /create-nomination
-
-
-CreateRecognitionPage (container)
-│
-└── RecognitionForm (component)
-     ├── TitleField (component)
-     ├── ContentField (component)
-     ├── ImageUploadField (component) (optional)
-     └── SubmitButton (component)
-
-
-CreateNominationPage (container)
-│
-└── NominationForm (component)
-     ├── NomineeSelector (component) (pick a person or prefilled if clicked from sidebar)
-     ├── TitleField (component) (required)
-     ├── ContentField (component) (required)
-     ├── TagField (component) (required - colorful category)
-     └── SubmitButton (component)
-
+CreateNominationPage / UpdateNominationPage (container)
+└── NominationForm
+      ├── Nominee selector
+      └── Tag field
 
 ProfilePage (container)
-│
-├── ProfileHeader (component)
-│    ├── Profile Image
-│    ├── Username (First and Last name)
-│    ├── Department
-│    └── Bio / Presentation text
-│
-└── ProfileFeedSection (container)
-     ├── FeedToggleButtons (component) (My Recognitions / My Nominations)
-     └── FeedList (component)
-          ├── PostCard (for recognitions)
-          └── NominationCard (for nominations)
+├── Profile Header
+|     ├── Profile Image
+|     ├── Username (First and Last name)
+|     ├── Department
+|     └── Bio / Presentation text
+├── ProfileFeedSection (container)
+
 ```
 
 #### Key Planning Decisions
 
-- Reusable Components were prioritized to speed up development and minimize duplication.
-- Toggle Functionality was reused between the Home Feed and the Profile Feed to allow switching between Recognitions and Nominations.
-- Simplifications were made to keep the project realistic and deadline-safe, such as skipping advanced department filters initially.
-- Alignment with Backend Models was ensured before form design to prevent API mismatches (fields and validation match Django models).
-- Comment Sections are embedded inside Post and Nomination Detail Pages, rather than being handled by separate comment pages.
+- **Start DRY, then refactor:** Initially reused `PostCard` for both types.
+- **Split when complexity grew:** Introduced `NominationCard` to separate logic and layout.
+- **Centralised layout wrapper:** Used `PostLayoutShell` with `extraContent` prop for flexibility.
+- **Deadline-first logic:** Skipped advanced filters to stay on track.
+- **Backend alignment:** Ensured API compatibility throughout (fields, validation).
+- **Embedded comment sections:** Avoided separate routes for commenting for simplicity.
 
 ---
 
 - Agile methodology, Kanban, or other approaches used
 
-### 5.2 Code Structure
+### 5.2 Code Structure (Backend)
 
-The project is divided into feature-based Django apps:
+The backend is organised into feature-based Django apps:
 
 - `posts/` – Recognition stories and related logic
 - `nominations/` – Peer nominations with required tag selection
 - `profiles/` – User profile extensions with department links
-- `likes/` and `comments/` – Shared interactions for both posts and nominations
-- `tags/` – Used to categorize recognitions and nominations
+- `likes/` and `comments/` – Interactions for recognition stories
+- `tags/` – Used to categorize nominations
 - `department/` – Departments available for user filtering and classification
 
 Each app follows the same structure: `models.py`, `serializers.py`, `views.py`, and `urls.py`. Common permissions are stored in the main `celebrateit_api/permissions.py`.
@@ -1033,10 +1057,31 @@ Testing included:
 
 | **Priority** | **User Story**         | **Page(s)**     | **Test Scenario / Action**            | **Expected Result**                                   | Actual | **Screenshot** |
 | ------------ | ---------------------- | --------------- | ------------------------------------- | ----------------------------------------------------- | ------ | -------------- |
-| Must Have    | Comment on Post        | Detail Page     | Submit valid comment                  | Comment appears below post                            |        |
-| Should Have  | Like a Post            | Feed / Detail   | Click like and unlike                 | Count updates and button toggles correctly            |        |
-| Should Have  | Edit/Delete My Comment | Detail Page     | Click edit or delete on owned comment | Comment updates or disappears as expected             |        |
-| Should Have  | Search for Colleagues  | Feed Search Bar | Type partial name                     | Matching users show with avatar + \"Nominate\" button |        |
+| Must Have    | Comment on Recognition        | Detail Page     | Submit valid comment                  | Comment appears below post                            |        |1|
+| Should Have  | Like a Recognition            | Feed / Detail   | Click like and unlike                 | Count updates and button toggles correctly            |        |2 - 3|
+| Should Have  | Edit/Delete My Comment | Detail Page     | Click edit or delete on owned comment | Comment updates or disappears as expected             |        ||
+| Should Have  | Search for Colleagues  | Feed Search Bar | Type partial name                     | Matching users show with avatar + \"Nominate\" button |        ||
+
+<details>
+<summary> 1/ Comment on Recognition </summary>
+
+![1](documentation/frontend/testing/comment/.png)
+
+</details>
+
+<details>
+<summary> 2/ Like/Unlike on Recognition from the feed </summary>
+
+![2](documentation/frontend/testing/like_feed/.png)
+
+</details>
+
+<details>
+<summary> 3/ Like/Unlike on Recognition from the detail page </summary>
+
+![3](documentation/frontend/testing/like_detail_page/.png)
+
+</details>
 
 #### **Managing My Profile & Network**
 
