@@ -25,11 +25,11 @@
   margin-bottom: 0.8rem;
 }
 
-.ViewFullPost {
+.ViewFullPostWrapper {
   margin-top: 0.5rem;
 }
 
-.ViewFullPosLink {
+.ViewFullPostLink {
   font-size: 0.9rem;
   font-weight: 600;
   color: inherit;
@@ -37,7 +37,7 @@
   font-weight: 600;
 }
 
-.ViewFullPosLink:hover {
+.ViewFullPostLink:hover {
   color: #300e82;
   text-decoration: none;
 }
@@ -68,6 +68,10 @@
 .ActionItem:hover {
   color: inherit;
   text-decoration: none;
+}
+
+.Clickable {
+  cursor: pointer;
 }
 
 .TagSection {

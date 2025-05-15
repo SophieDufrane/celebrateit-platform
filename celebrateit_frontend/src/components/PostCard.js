@@ -151,13 +151,11 @@ const PostCard = (props) => {
         }
         postActions={postActions}
         extraContent={
-          content.length > 150 && (
-            <div className={styles.ViewFullPos}>
-              <Link to={detailUrl} className={styles.ViewFullPosLink}>
-                <div className={styles.ViewFullPos}>View full post</div>
-              </Link>
-            </div>
-          )
+          <div className={styles.ViewFullPostWrapper}>
+            <Link to={detailUrl} className={styles.ViewFullPostLink}>
+              View full post
+            </Link>
+          </div>
         }
       >
         {image && (
