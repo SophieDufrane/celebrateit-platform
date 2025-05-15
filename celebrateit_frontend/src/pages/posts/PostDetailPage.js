@@ -188,7 +188,13 @@ function PostDetailPage() {
               />
             </div>
           )}
-          <CommentForm postId={post.id} disabled={!currentUser} />
+          <CommentForm
+            postId={post.id}
+            disabled={!currentUser}
+            onCommentSubmit={(newComment) =>
+              setComments((prevComments) => [newComment, ...prevComments])
+            }
+          />
           {comments.length ? (
             comments.map((comment) => (
               <div key={comment.id} className="mb-3 px-3">
