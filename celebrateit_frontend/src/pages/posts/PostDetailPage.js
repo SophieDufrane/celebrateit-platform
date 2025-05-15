@@ -226,12 +226,19 @@ function PostDetailPage() {
               setShowCommentSuccess(true);
             }}
           />
+
+          <div className={styles.CommentSpacer} />
+
           {comments.length ? (
             comments.map((comment) => (
-              <div key={comment.id} className="mb-3 px-3">
-                <strong>{comment.display_name}</strong>
-                <p className="mb-1">{comment.content}</p>
-                <small className="text-muted">{comment.created_at}</small>
+              <div key={comment.id} className={styles.CommentBlock}>
+                <strong className={styles.CommentAuthor}>
+                  {comment.display_name}
+                </strong>
+                <p className={styles.CommentText}>{comment.content}</p>
+                <small className={styles.CommentDate}>
+                  {comment.created_at}
+                </small>
                 <hr />
               </div>
             ))
