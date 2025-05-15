@@ -1,6 +1,7 @@
 from pathlib import Path
 import os
 import dj_database_url
+import json
 
 if os.path.exists('env.py'):
     import env
@@ -44,10 +45,9 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = 'DEBUG' in os.environ
 
-ALLOWED_HOSTS = [
-    os.environ.get('ALLOWED_HOST'),
-    'localhost',
-]
+ALLOWED_HOSTS = json.loads(
+    os.environ.get("ALLOWED_HOSTS", '["localhost", "127.0.0.1"]')
+)
 
 INSTALLED_APPS = [
     'django.contrib.admin',
