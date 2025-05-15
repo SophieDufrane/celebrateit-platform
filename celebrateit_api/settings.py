@@ -90,8 +90,16 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    os.environ.get('CLIENT_ORIGIN')
+    os.environ.get('CLIENT_ORIGIN', 'http://localhost:3000'),
+    'http://localhost:3000',
+    'https://celebrateit-frontend.herokuapp.com',
 ]
+
+CORS_ALLOW_CREDENTIALS = True
+CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SAMESITE = 'Lax'
+SESSION_COOKIE_SAMESITE = 'Lax'
 
 CORS_ALLOW_CREDENTIALS = True
 

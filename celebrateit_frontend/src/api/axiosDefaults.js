@@ -6,35 +6,9 @@
 // Setting a baseURL before you reach deployment will cause errors
 import axios from "axios";
 
+axios.defaults.baseURL = "http://127.0.0.1:8000/";
 axios.defaults.headers.post["Content-Type"] = "multipart/form-data";
 axios.defaults.withCredentials = true;
 
-export const axiosReq = axios.create({
-  withCredentials: true,
-});
-
-export const axiosRes = axios.create({
-  withCredentials: true,
-});
-
-axiosReq.interceptors.request.use(
-  async (config) => {
-    const token = localStorage.getItem("access_token");
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => Promise.reject(error)
-);
-
-axiosRes.interceptors.request.use(
-  async (config) => {
-    const token = localStorage.getItem("access_token");
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => Promise.reject(error)
-);
+export const axiosReq = axios.create();
+export const axiosRes = axios.create();
