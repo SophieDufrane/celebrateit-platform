@@ -36,7 +36,7 @@ function CommentForm({ postId, onCommentSubmit, disabled = false }) {
         {disabled ? (
           <Form.Control
             as="textarea"
-            rows={3}
+            rows={2}
             placeholder="Log in to comment"
             name="comment"
             disabled
@@ -50,7 +50,7 @@ function CommentForm({ postId, onCommentSubmit, disabled = false }) {
           >
             <Form.Control
               as="textarea"
-              rows={3}
+              rows={2}
               placeholder="Write a comment..."
               name="comment"
               disabled={disabled}

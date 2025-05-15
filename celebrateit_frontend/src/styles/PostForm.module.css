@@ -1,8 +1,8 @@
 .FormWrapper {
   border-radius: 5px;
-  overflow: hidden;
   max-width: 700px;
   margin: 0 auto;
+  background-color: #fafafa;
   border: 1px solid #e0e0e0;
 }
 
@@ -25,7 +25,8 @@
   display: flex;
   gap: 1.5rem;
   margin: 1.5rem;
-  justify-content: flex-start;
+  margin-top: 0.5rem;
+  /* justify-content: flex-start; */
 }
 
 .FormMediaWrapper {
