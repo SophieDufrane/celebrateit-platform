@@ -5,9 +5,14 @@ import styles from "../styles/PostForm.module.css";
 import sharedStyles from "../App.module.css";
 
 function CommentForm({ postId, onCommentSubmit, disabled = false }) {
+  // State
   const [content, setContent] = useState("");
   const [errors, setErrors] = useState({});
 
+  // Derived/computed values
+  const isValidComment = content.trim().length > 0;
+
+  // Handlers
   const handleChange = (event) => {
     setContent(event.target.value);
   };
@@ -68,7 +73,7 @@ function CommentForm({ postId, onCommentSubmit, disabled = false }) {
         <Button
           type="submit"
           className={sharedStyles.YellowButton}
-          disabled={disabled}
+          disabled={disabled || !isValidComment}
         >
           Post
         </Button>
