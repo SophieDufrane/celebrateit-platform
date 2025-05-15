@@ -21,6 +21,7 @@ function PostDetailPage() {
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]);
   const [showConfirm, setShowConfirm] = useState(false);
+  const [showCommentSuccess, setShowCommentSuccess] = useState(false);
 
   // Derived/computed values
   const isNomination = !!post?.nominee;
@@ -96,6 +97,14 @@ function PostDetailPage() {
     }
   }, [showSuccess, history, location.pathname]);
 
+  // Effect: auto-hide comment success alert
+  useEffect(() => {
+    if (showCommentSuccess) {
+      const timer = setTimeout(() => setShowCommentSuccess(false), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [showCommentSuccess]);
+
   // Effect: fetch post details
   useEffect(() => {
     axios
@@ -167,6 +176,12 @@ function PostDetailPage() {
         </Alert>
       )}
 
+      {showCommentSuccess && (
+        <Alert variant="success" dismissible>
+          Comment posted successfully!
+        </Alert>
+      )}
+
       <PostLayoutShell
         title={post.title}
         content={post.content}
@@ -191,9 +206,10 @@ function PostDetailPage() {
           <CommentForm
             postId={post.id}
             disabled={!currentUser}
-            onCommentSubmit={(newComment) =>
-              setComments((prevComments) => [newComment, ...prevComments])
-            }
+            onCommentSubmit={(newComment) => {
+              setComments((prevComments) => [newComment, ...prevComments]);
+              setShowCommentSuccess(true);
+            }}
           />
           {comments.length ? (
             comments.map((comment) => (
