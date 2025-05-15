@@ -208,6 +208,10 @@ function PostDetailPage() {
             disabled={!currentUser}
             onCommentSubmit={(newComment) => {
               setComments((prevComments) => [newComment, ...prevComments]);
+              setPost((prevPost) => ({
+                ...prevPost,
+                comments_count: prevPost.comments_count + 1,
+              }));
               setShowCommentSuccess(true);
             }}
           />
