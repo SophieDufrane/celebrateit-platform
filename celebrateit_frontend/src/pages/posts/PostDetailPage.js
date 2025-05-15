@@ -3,7 +3,7 @@ import { useParams, useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Container, Alert } from "react-bootstrap";
+import { Container, Alert, OverlayTrigger, Tooltip } from "react-bootstrap";
 import PostLayoutShell from "../../components/PostLayoutShell";
 import MoreDropdown from "../../components/MoreDropdown";
 import ConfirmDeleteModal from "../../components/ConfirmDeleteModal";
@@ -147,7 +147,18 @@ function PostDetailPage() {
     <div className={styles.PostFooter}>
       <div className={styles.ActionItem}>
         {post.is_user ? (
-          <i className="far fa-thumbs-up" title="Can't like your own post!" />
+          <OverlayTrigger
+            placement="top"
+            overlay={
+              <Tooltip id={`tooltip-self-like`}>
+                Can't like your own post!
+              </Tooltip>
+            }
+          >
+            <span style={{ cursor: "not-allowed" }}>
+              <i className="far fa-thumbs-up" />
+            </span>
+          </OverlayTrigger>
         ) : post.like_id ? (
           <span onClick={handleUnlike} style={{ cursor: "pointer" }}>
             <i className={`fas fa-thumbs-up ${styles.Heart}`} />

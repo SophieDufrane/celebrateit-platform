@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { axiosReq, axiosRes } from "../api/axiosDefaults";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import MoreDropdown from "./MoreDropdown";
 import ConfirmDeleteModal from "./ConfirmDeleteModal";
 import styles from "../styles/PostCard.module.css";
@@ -98,7 +99,18 @@ const PostCard = (props) => {
     <div className={styles.PostFooter}>
       <div className={styles.ActionItem}>
         {is_user ? (
-          <i className="far fa-thumbs-up" title="Can't like your own post!" />
+          <OverlayTrigger
+            placement="top"
+            overlay={
+              <Tooltip id={`tooltip-self-like`}>
+                Can't like your own post!
+              </Tooltip>
+            }
+          >
+            <span style={{ cursor: "not-allowed" }}>
+              <i className="far fa-thumbs-up" />
+            </span>
+          </OverlayTrigger>
         ) : like_id ? (
           <span
             onClick={handleUnlike}
