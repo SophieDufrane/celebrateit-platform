@@ -31,7 +31,7 @@ function PostDetailPage() {
   // Temporary values
   let dropdownMenu = null;
 
-  // Handlers - Like / Unlike / Delete
+  // Handlers - Like / Unlike
   const handleLike = async () => {
     try {
       const { data } = await axiosRes.post("/likes/", {
@@ -60,6 +60,7 @@ function PostDetailPage() {
     }
   };
 
+  // Handlers - Delete Posts
   const handleDelete = () => {
     setShowConfirm(true);
   };
@@ -72,6 +73,24 @@ function PostDetailPage() {
       console.error("Delete failed:", err);
     } finally {
       setShowConfirm(false);
+    }
+  };
+
+  // Handlers - Delete comment
+  const confirmDeleteComment = async () => {
+    try {
+      await axiosReq.delete(`/comments/${showDeleteModal}/`);
+      setComments((prevComments) =>
+        prevComments.filter((comment) => comment.id !== showDeleteModal)
+      );
+      setPost((prevPost) => ({
+        ...prevPost,
+        comments_count: prevPost.comments_count - 1,
+      }));
+    } catch (err) {
+      console.error("Error deleting comment:", err);
+    } finally {
+      setShowDeleteModal(null);
     }
   };
 
@@ -265,6 +284,11 @@ function PostDetailPage() {
         show={showConfirm}
         onHide={() => setShowConfirm(false)}
         onConfirm={confirmDelete}
+      />
+      <ConfirmDeleteModal
+        show={!!showDeleteModal}
+        onHide={() => setShowDeleteModal(null)}
+        onConfirm={confirmDeleteComment}
       />
     </Container>
   );
