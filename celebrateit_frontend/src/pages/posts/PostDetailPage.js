@@ -121,6 +121,7 @@ function PostDetailPage() {
 
   // Fetch comments
   useEffect(() => {
+    if (!currentUser) return;
     axios
       .get(`/comments/?post=${id}`)
       .then((response) => {
@@ -129,7 +130,7 @@ function PostDetailPage() {
       .catch((error) => {
         console.error("Error fetching comments:", error);
       });
-  }, [id]);
+  }, [id, currentUser]);
 
   // Early return: loading state
   if (!post) {
@@ -232,29 +233,37 @@ function PostDetailPage() {
           <div className={styles.CommentSpacer} />
 
           {comments.length ? (
-            comments.map((comment) => (
-              <div
-                key={comment.id}
-                className={`${styles.CommentBlock} position-relative`}
-              >
-                <strong className={styles.CommentAuthor}>
-                  {comment.display_name}
-                </strong>
-                {comment.is_user && (
-                  <div className="position-absolute end-0 top-0">
-                    <MoreDropdown
-                      handleEdit={() => setEditingComment(comment)}
-                      handleDelete={() => setShowDeleteModal(comment.id)}
-                    />
-                  </div>
-                )}
-                <p className={styles.CommentText}>{comment.content}</p>
-                <small className={styles.CommentDate}>
-                  {comment.created_at}
-                </small>
-                <hr />
-              </div>
-            ))
+            comments.map((comment) => {
+              alert(
+                `Comment by ${comment.display_name}, is_user: ${comment.is_user}`
+              );
+
+              return (
+                <div
+                  key={comment.id}
+                  className={`${styles.CommentBlock} position-relative`}
+                >
+                  <strong className={styles.CommentAuthor}>
+                    {comment.display_name}
+                  </strong>
+
+                  {comment.is_user && (
+                    <div className="position-absolute end-0 top-0">
+                      <MoreDropdown
+                        handleEdit={() => setEditingComment(comment)}
+                        handleDelete={() => setShowDeleteModal(comment.id)}
+                      />
+                    </div>
+                  )}
+
+                  <p className={styles.CommentText}>{comment.content}</p>
+                  <small className={styles.CommentDate}>
+                    {comment.created_at}
+                  </small>
+                  <hr />
+                </div>
+              );
+            })
           ) : (
             <p className="text-muted px-3">No comments yet.</p>
           )}
