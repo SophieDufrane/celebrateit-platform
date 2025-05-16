@@ -22,6 +22,8 @@ function PostDetailPage() {
   const [comments, setComments] = useState([]);
   const [showConfirm, setShowConfirm] = useState(false);
   const [showCommentSuccess, setShowCommentSuccess] = useState(false);
+  const [editingComment, setEditingComment] = useState(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(null);
 
   // Derived/computed values
   const isNomination = !!post?.nominee;
@@ -231,10 +233,21 @@ function PostDetailPage() {
 
           {comments.length ? (
             comments.map((comment) => (
-              <div key={comment.id} className={styles.CommentBlock}>
+              <div
+                key={comment.id}
+                className={`${styles.CommentBlock} position-relative`}
+              >
                 <strong className={styles.CommentAuthor}>
                   {comment.display_name}
                 </strong>
+                {comment.is_user && (
+                  <div className="position-absolute end-0 top-0">
+                    <MoreDropdown
+                      handleEdit={() => setEditingComment(comment)}
+                      handleDelete={() => setShowDeleteModal(comment.id)}
+                    />
+                  </div>
+                )}
                 <p className={styles.CommentText}>{comment.content}</p>
                 <small className={styles.CommentDate}>
                   {comment.created_at}
