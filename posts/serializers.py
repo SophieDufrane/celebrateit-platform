@@ -14,15 +14,24 @@ class PostSerializer(serializers.ModelSerializer):
     )
     likes_count = serializers.ReadOnlyField()
     comments_count = serializers.ReadOnlyField()
+    like_id = serializers.SerializerMethodField()
 
     class Meta:
         model = Post
         fields = [
             'id', 'user', 'display_name', 'is_user', 'title', 'content',
             'image', 'created_at', 'updated_at',
-            'likes_count', 'comments_count',
+            'likes_count', 'comments_count', 'like_id',
         ]
 
     def get_is_user(self, obj):
         request = self.context.get('request')
         return request and request.user == obj.user
+
+    def get_like_id(self, obj):
+        request = self.context.get('request')
+        user = request.user if request else None
+        if user and user.is_authenticated:
+            like = obj.likes.filter(user=user).first()
+            return like.id if like else None
+        return None
