@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { axiosReq } from "../../api/axiosDefaults";
-import { Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import styles from "../../styles/PostCard.module.css";
-import sharedStyles from "../../App.module.css";
+import FormFooter from "../../components/FormFooter";
 
 function CommentEditForm(props) {
   // Props from parent
@@ -42,18 +42,7 @@ function CommentEditForm(props) {
           className={styles.CommentText}
         />
       </Form.Group>
-      <div className={styles.FormButtonRow}>
-        <Button type="submit" className={sharedStyles.YellowButton}>
-          Update
-        </Button>
-        <Button
-          className={sharedStyles.BlueButton}
-          variant="outline-secondary"
-          onClick={onCancel}
-        >
-          Cancel
-        </Button>
-      </div>
+      <FormFooter submitText="Update" onCancel={onCancel} />
     </Form>
   );
 }

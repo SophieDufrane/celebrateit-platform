@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Form, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Form, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
+import FormFooter from "../../components/FormFooter";
 import styles from "../../styles/PostForm.module.css";
-import sharedStyles from "../../App.module.css";
 
 function CommentForm({ postId, onCommentSubmit, disabled = false }) {
   // State
@@ -69,15 +69,11 @@ function CommentForm({ postId, onCommentSubmit, disabled = false }) {
         )}
       </Form.Group>
 
-      <div className={styles.FormButtonRow}>
-        <Button
-          type="submit"
-          className={sharedStyles.YellowButton}
-          disabled={disabled || !isValidComment}
-        >
-          Post
-        </Button>
-      </div>
+      <FormFooter
+        submitText="Post"
+        disabled={disabled || !isValidComment}
+        showCancel={false}
+      />
     </Form>
   );
 }

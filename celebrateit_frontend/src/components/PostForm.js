@@ -1,9 +1,8 @@
 import React from "react";
-import { Form, Button } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+import { Form } from "react-bootstrap";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import FormFooter from "./FormFooter";
 import styles from "../styles/PostForm.module.css";
-import sharedStyles from "../App.module.css";
 
 const PostForm = ({
   title,
@@ -14,7 +13,6 @@ const PostForm = ({
   submitText = "Submit",
   onCancel,
 }) => {
-  const history = useHistory();
   return (
     <Form onSubmit={handleSubmit} className={styles.FormWrapper}>
       <Form.Group controlId="title" className={styles.FormGroupSpacing}>
@@ -48,18 +46,7 @@ const PostForm = ({
         </OverlayTrigger>
       </Form.Group>
       {children}
-      <div className={styles.FormButtonRow}>
-        <Button type="submit" className={sharedStyles.YellowButton}>
-          {submitText}
-        </Button>
-        <Button
-          className={sharedStyles.BlueButton}
-          variant="outline-secondary"
-          onClick={onCancel || (() => history.goBack())}
-        >
-          Cancel
-        </Button>
-      </div>
+      <FormFooter submitText={submitText} onCancel={onCancel} />
     </Form>
   );
 };
