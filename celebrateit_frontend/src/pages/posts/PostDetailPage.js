@@ -7,7 +7,7 @@ import { Container, Alert, OverlayTrigger, Tooltip } from "react-bootstrap";
 import PostLayoutShell from "../../components/PostLayoutShell";
 import MoreDropdown from "../../components/MoreDropdown";
 import ConfirmDeleteModal from "../../components/ConfirmDeleteModal";
-import CommentForm from "../../components/CommentForm";
+import CommentForm from "../comment/CommentForm";
 import styles from "../../styles/PostCard.module.css";
 
 function PostDetailPage() {
@@ -254,23 +254,49 @@ function PostDetailPage() {
           {comments.length ? (
             comments.map((comment) => (
               <div key={comment.id} className={styles.CommentBlock}>
-                <div className="d-flex justify-content-between align-items-start">
-                  <strong className={styles.CommentAuthor}>
-                    {comment.display_name}
-                  </strong>
+                {editingComment?.id === comment.id ? (
+                  <CommentForm
+                    postId={post.id}
+                    content={editingComment.content}
+                    onCancel={() => setEditingComment(null)}
+                    onCommentSubmit={async (updatedData) => {
+                      try {
+                        const { data } = await axiosReq.patch(
+                          `/comments/${comment.id}/`,
+                          updatedData
+                        );
+                        setComments((prevComments) =>
+                          prevComments.map((c) =>
+                            c.id === comment.id ? data : c
+                          )
+                        );
+                        setEditingComment(null);
+                      } catch (err) {
+                        console.error("Update failed:", err);
+                      }
+                    }}
+                  />
+                ) : (
+                  <>
+                    <div className="d-flex justify-content-between align-items-start">
+                      <strong className={styles.CommentAuthor}>
+                        {comment.display_name}
+                      </strong>
 
-                  {comment.is_user && (
-                    <MoreDropdown
-                      handleEdit={() => setEditingComment(comment)}
-                      handleDelete={() => setShowDeleteModal(comment.id)}
-                    />
-                  )}
-                </div>
+                      {comment.is_user && (
+                        <MoreDropdown
+                          handleEdit={() => setEditingComment(comment)}
+                          handleDelete={() => setShowDeleteModal(comment.id)}
+                        />
+                      )}
+                    </div>
 
-                <p className={styles.CommentText}>{comment.content}</p>
-                <small className={styles.CommentDate}>
-                  {comment.created_at}
-                </small>
+                    <p className={styles.CommentText}>{comment.content}</p>
+                    <small className={styles.CommentDate}>
+                      {comment.created_at}
+                    </small>
+                  </>
+                )}
                 <hr />
               </div>
             ))

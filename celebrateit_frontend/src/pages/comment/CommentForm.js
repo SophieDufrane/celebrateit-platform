@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Form, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { axiosReq } from "../api/axiosDefaults";
-import styles from "../styles/PostForm.module.css";
-import sharedStyles from "../App.module.css";
+import { axiosReq } from "../../api/axiosDefaults";
+import styles from "../../styles/PostForm.module.css";
+import sharedStyles from "../../App.module.css";
 
 function CommentForm({ postId, onCommentSubmit, disabled = false }) {
   // State
