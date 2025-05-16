@@ -233,37 +233,28 @@ function PostDetailPage() {
           <div className={styles.CommentSpacer} />
 
           {comments.length ? (
-            comments.map((comment) => {
-              alert(
-                `Comment by ${comment.display_name}, is_user: ${comment.is_user}`
-              );
-
-              return (
-                <div
-                  key={comment.id}
-                  className={`${styles.CommentBlock} position-relative`}
-                >
+            comments.map((comment) => (
+              <div key={comment.id} className={styles.CommentBlock}>
+                <div className="d-flex justify-content-between align-items-start">
                   <strong className={styles.CommentAuthor}>
                     {comment.display_name}
                   </strong>
 
                   {comment.is_user && (
-                    <div className="position-absolute end-0 top-0">
-                      <MoreDropdown
-                        handleEdit={() => setEditingComment(comment)}
-                        handleDelete={() => setShowDeleteModal(comment.id)}
-                      />
-                    </div>
+                    <MoreDropdown
+                      handleEdit={() => setEditingComment(comment)}
+                      handleDelete={() => setShowDeleteModal(comment.id)}
+                    />
                   )}
-
-                  <p className={styles.CommentText}>{comment.content}</p>
-                  <small className={styles.CommentDate}>
-                    {comment.created_at}
-                  </small>
-                  <hr />
                 </div>
-              );
-            })
+
+                <p className={styles.CommentText}>{comment.content}</p>
+                <small className={styles.CommentDate}>
+                  {comment.created_at}
+                </small>
+                <hr />
+              </div>
+            ))
           ) : (
             <p className="text-muted px-3">No comments yet.</p>
           )}
