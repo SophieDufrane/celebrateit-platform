@@ -9,6 +9,7 @@ import MoreDropdown from "../../components/MoreDropdown";
 import ConfirmDeleteModal from "../../components/ConfirmDeleteModal";
 import CommentForm from "../comment/CommentForm";
 import Comment from "../comment/Comment";
+import CommentEditForm from "../comment/CommentEditForm";
 import styles from "../../styles/PostCard.module.css";
 
 function PostDetailPage() {
@@ -256,26 +257,11 @@ function PostDetailPage() {
             comments.map((comment) => {
               return editingComment?.id === comment.id ? (
                 <div key={comment.id} className={styles.CommentBlock}>
-                  <CommentForm
+                  <CommentEditForm
+                    comment={comment}
                     postId={post.id}
-                    content={editingComment.content}
-                    onCancel={() => setEditingComment(null)}
-                    onCommentSubmit={async (updatedData) => {
-                      try {
-                        const { data } = await axiosReq.patch(
-                          `/comments/${comment.id}/`,
-                          updatedData
-                        );
-                        setComments((prevComments) =>
-                          prevComments.map((c) =>
-                            c.id === comment.id ? data : c
-                          )
-                        );
-                        setEditingComment(null);
-                      } catch (err) {
-                        console.error("Update failed:", err);
-                      }
-                    }}
+                    setComments={setComments}
+                    setEditingComment={setEditingComment}
                   />
                 </div>
               ) : (
