@@ -8,6 +8,7 @@ import PostLayoutShell from "../../components/PostLayoutShell";
 import MoreDropdown from "../../components/MoreDropdown";
 import ConfirmDeleteModal from "../../components/ConfirmDeleteModal";
 import CommentForm from "../comment/CommentForm";
+import Comment from "../comment/Comment";
 import styles from "../../styles/PostCard.module.css";
 
 function PostDetailPage() {
@@ -252,9 +253,9 @@ function PostDetailPage() {
           <div className={styles.CommentSpacer} />
 
           {comments.length ? (
-            comments.map((comment) => (
-              <div key={comment.id} className={styles.CommentBlock}>
-                {editingComment?.id === comment.id ? (
+            comments.map((comment) => {
+              return editingComment?.id === comment.id ? (
+                <div key={comment.id} className={styles.CommentBlock}>
                   <CommentForm
                     postId={post.id}
                     content={editingComment.content}
@@ -276,30 +277,16 @@ function PostDetailPage() {
                       }
                     }}
                   />
-                ) : (
-                  <>
-                    <div className="d-flex justify-content-between align-items-start">
-                      <strong className={styles.CommentAuthor}>
-                        {comment.display_name}
-                      </strong>
-
-                      {comment.is_user && (
-                        <MoreDropdown
-                          handleEdit={() => setEditingComment(comment)}
-                          handleDelete={() => setShowDeleteModal(comment.id)}
-                        />
-                      )}
-                    </div>
-
-                    <p className={styles.CommentText}>{comment.content}</p>
-                    <small className={styles.CommentDate}>
-                      {comment.created_at}
-                    </small>
-                  </>
-                )}
-                <hr />
-              </div>
-            ))
+                </div>
+              ) : (
+                <Comment
+                  key={comment.id}
+                  comment={comment}
+                  setEditingComment={setEditingComment}
+                  setShowDeleteModal={setShowDeleteModal}
+                />
+              );
+            })
           ) : (
             <p className="text-muted px-3">No comments yet.</p>
           )}
