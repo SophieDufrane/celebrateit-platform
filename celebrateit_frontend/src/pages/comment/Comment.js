@@ -6,7 +6,7 @@ function Comment(props) {
   const { comment, setEditingComment, setShowDeleteModal } = props;
 
   return (
-    <>
+    <div className={styles.SingleComment}>
       <div className="d-flex justify-content-between align-items-start">
         <strong className={styles.CommentAuthor}>{comment.display_name}</strong>
 
@@ -17,10 +17,9 @@ function Comment(props) {
           />
         )}
       </div>
-
       <p className={styles.CommentText}>{comment.content}</p>
       <small className={styles.CommentDate}>{comment.created_at}</small>
-    </>
+    </div>
   );
 }
 

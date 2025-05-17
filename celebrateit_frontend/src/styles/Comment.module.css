@@ -1,11 +1,10 @@
-.CommentSpacer {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+.CommentSection {
+  margin-top: 1.5rem;
 }
 
-.CommentBlock {
-  font-size: 0.9rem;
-  margin-left: 1.5rem;
+.SingleComment {
+  border-top: 1px solid #eee;
+  padding: 1rem;
 }
 
 .CommentAuthor {
@@ -13,7 +12,7 @@
 }
 
 .CommentText {
-  margin: 0.3rem 0;
+  font-size: 0.9rem;
 }
 
 .CommentDate {

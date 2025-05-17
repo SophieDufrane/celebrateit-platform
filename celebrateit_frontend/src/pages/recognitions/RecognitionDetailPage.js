@@ -11,6 +11,7 @@ import CommentForm from "../comment/CommentForm";
 import Comment from "../comment/Comment";
 import CommentEditForm from "../comment/CommentEditForm";
 import styles from "../../styles/PostCard.module.css";
+import commentStyles from "../../styles/Comment.module.css";
 
 function RecognitionDetailPage() {
   // Routing & context
@@ -251,7 +252,7 @@ function RecognitionDetailPage() {
             }}
           />
 
-          <div className={styles.CommentSpacer} />
+          <div className={commentStyles.CommentSection} />
 
           {comments.length ? (
             comments.map((comment) => {
