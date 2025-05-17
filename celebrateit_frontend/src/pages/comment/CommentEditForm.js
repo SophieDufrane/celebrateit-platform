@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { axiosReq } from "../../api/axiosDefaults";
 import { Form } from "react-bootstrap";
-import styles from "../../styles/PostCard.module.css";
+import styles from "../../styles/Comment.module.css";
 import FormFooter from "../../components/FormFooter";
 
 function CommentEditForm(props) {
@@ -32,7 +32,7 @@ function CommentEditForm(props) {
     }
   };
   return (
-    <Form onSubmit={handleSubmit} className={styles.CommentBlock}>
+    <Form onSubmit={handleSubmit} className={styles.SingleComment}>
       <Form.Group>
         <Form.Control
           as="textarea"
