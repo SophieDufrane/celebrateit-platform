@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { axiosReq } from "../api/axiosDefaults";
-import MoreDropdown from "./MoreDropdown";
-import ConfirmDeleteModal from "./ConfirmDeleteModal";
-import styles from "../styles/PostCard.module.css";
-import PostLayoutShell from "./PostLayoutShell";
+import { axiosReq } from "../../api/axiosDefaults";
+import MoreDropdown from "../../components/MoreDropdown";
+import ConfirmDeleteModal from "../../components/ConfirmDeleteModal";
+import styles from "../../styles/PostCard.module.css";
+import PostLayoutShell from "../../components/PostLayoutShell";
 
 const NominationCard = (props) => {
   const {

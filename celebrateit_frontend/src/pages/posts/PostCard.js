@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { axiosReq, axiosRes } from "../api/axiosDefaults";
-import { useCurrentUser } from "../contexts/CurrentUserContext";
+import { axiosReq, axiosRes } from "../../api/axiosDefaults";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
-import MoreDropdown from "./MoreDropdown";
-import ConfirmDeleteModal from "./ConfirmDeleteModal";
-import styles from "../styles/PostCard.module.css";
-import PostLayoutShell from "./PostLayoutShell";
+import MoreDropdown from "../../components/MoreDropdown";
+import ConfirmDeleteModal from "../../components/ConfirmDeleteModal";
+import styles from "../../styles/PostCard.module.css";
+import PostLayoutShell from "../../components/PostLayoutShell";
 
 const PostCard = (props) => {
   const {

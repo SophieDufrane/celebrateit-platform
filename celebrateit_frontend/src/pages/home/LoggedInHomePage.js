@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { Button, Container, Row, Col, ListGroup, Alert } from "react-bootstrap";
-import PostCard from "../../components/PostCard";
-import NominationCard from "../../components/NominationCard";
+import PostCard from "../posts/PostCard";
+import NominationCard from "../nominations/NominationCard";
 import feedStyles from "../../styles/LoggedInHomePage.module.css";
 import sharedStyles from "../../App.module.css";
 
