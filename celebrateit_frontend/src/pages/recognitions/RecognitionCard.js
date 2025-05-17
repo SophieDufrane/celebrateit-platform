@@ -20,7 +20,7 @@ const RecognitionCard = (props) => {
     comments_count,
     is_user,
     like_id,
-    setPosts,
+    setRecognitions,
     onPostDelete,
     detailUrl = `/recognitions/${id}`,
     editUrl = `/recognitions/${id}/edit`,
@@ -48,14 +48,14 @@ const RecognitionCard = (props) => {
       });
       console.log("Like API response:", data);
 
-      setPosts((prevPosts) =>
-        prevPosts.map((item) =>
+      setRecognitions((prev) =>
+        prev.map((item) =>
           item.id === id
             ? { ...item, likes_count: item.likes_count + 1, like_id: data.id }
             : item
         )
       );
-      console.log("Post updated with new like_id:", data.id);
+      console.log("Recognition updated with new like_id:", data.id);
     } catch (err) {
       console.log(err);
     }
@@ -66,8 +66,8 @@ const RecognitionCard = (props) => {
       console.log("Trying to unlike with like_id:", like_id);
       await axiosRes.delete(`/likes/${like_id}/`);
 
-      setPosts((prevPosts) =>
-        prevPosts.map((item) =>
+      setRecognitions((prev) =>
+        prev.map((item) =>
           item.id === id
             ? { ...item, likes_count: item.likes_count - 1, like_id: null }
             : item
@@ -103,7 +103,7 @@ const RecognitionCard = (props) => {
             placement="top"
             overlay={
               <Tooltip id={`tooltip-self-like`}>
-                Can't like your own post!
+                Can't like your own recognition!
               </Tooltip>
             }
           >
@@ -130,7 +130,10 @@ const RecognitionCard = (props) => {
             />
           </span>
         ) : (
-          <i className="far fa-thumbs-up" title="Log in to like posts!" />
+          <i
+            className="far fa-thumbs-up"
+            title="Log in to like recognitions!"
+          />
         )}
         <span>{likes_count}</span>
       </div>
