@@ -5,6 +5,7 @@
 1. [Project Overview](#1-project-overview)
 
 2. [User Experience (UX)](#2-user-experience-ux)
+
    - [2.1 Strategy](#21-strategy)
    - [2.2 Scope](#22-scope)
    - [2.3 System Architecture](#23-system-architecture)
@@ -12,15 +13,18 @@
    - [2.5 Surface](#25-surface)
 
 3. [Features](#3-features)
+
    - [Implemented Features](#implemented-features)
    - [Potential Future Enhancements](#potential-future-enhancements)
 
 4. [Technologies Used](#4-technologies-used)
+
    - [4.1 Backend](#41-backend)
    - [4.2 Frontend](#42-frontend)
    - [4.3 Deployment & Tools](#43-deployment--tools)
 
 5. [Development & Project Planning](#5-development--project-planning)
+
    - [5.1 Frontend Evolution of Component Structure](#51-frontend-evolution-of-component-structure)
    - [5.2 Code Structure (Backend)](#52-code-structure-backend)
    - [Pages & Containers Overview](#pages--containers-overview)
@@ -28,14 +32,17 @@
    - [Key Planning Decisions](#key-planning-decisions)
 
 6. [Testing](#6-testing)
+
    - [6.1 Back-End Application Testing](#61-back-end-application-testing)
    - [6.2 Front-End Application Testing](#62-front-end-application-testing)
    - [6.3 Validators](#63-validators)
    - [6.3 Bugs and Fixes](#63-bugs-and-fixes)
 
 7. [Deployment](#7-deployment)
-   - [7.1 Heroku](#71-heroku)
-   - [7.2 Forking and Cloning](#72-forking-and-cloning)
+
+   - [7.1 Backend Deployment](#71-backend-deployment-initial-phase)
+   - [7.2 Frontend Deployment](#72-frontend-deployment-static-build-integration)
+   - [7.3 Forking and Cloning](#73-forking-and-cloning)
 
 8. [Credits](#8-credit)
    - [Content & Resources](#content--resources)
@@ -104,12 +111,12 @@ To plan the project development, I adopted an Agile methodology centered on user
 
 #### **EPIC – Engaging with People & Posts**
 
-| **ID**                                                            | **Theme**             | **User Story**                                     | **Prioritisation** |
-| ----------------------------------------------------------------- | --------------------- | -------------------------------------------------- | ------------------ |
-| [#16](https://github.com/SophieDufrane/PP5-celebrateit/issues/16) | Like a recognition           | Users can like a recognition to show appreciation.        | Should Have        |
-| [#17](https://github.com/SophieDufrane/PP5-celebrateit/issues/17) | Comment on a recognition     | Users can comment on recognitions to engage with content. | Must Have          |
-| [#33](https://github.com/SophieDufrane/PP5-celebrateit/issues/33) | Edit/Delete Comments  | Users can edit or remove their own comments.       | Should Have        |
-| [#8](https://github.com/SophieDufrane/PP5-celebrateit/issues/8)   | Search for Colleagues | Users can search for other people by name.         | Should Have        |
+| **ID**                                                            | **Theme**                | **User Story**                                            | **Prioritisation** |
+| ----------------------------------------------------------------- | ------------------------ | --------------------------------------------------------- | ------------------ |
+| [#16](https://github.com/SophieDufrane/PP5-celebrateit/issues/16) | Like a recognition       | Users can like a recognition to show appreciation.        | Should Have        |
+| [#17](https://github.com/SophieDufrane/PP5-celebrateit/issues/17) | Comment on a recognition | Users can comment on recognitions to engage with content. | Must Have          |
+| [#33](https://github.com/SophieDufrane/PP5-celebrateit/issues/33) | Edit/Delete Comments     | Users can edit or remove their own comments.              | Should Have        |
+| [#8](https://github.com/SophieDufrane/PP5-celebrateit/issues/8)   | Search for Colleagues    | Users can search for other people by name.                | Should Have        |
 
 ---
 
@@ -175,6 +182,7 @@ This architecture supports scalability and flexibility, allowing future iteratio
 The following wireframes outline the structure and layout of the main screens in CelebrateIt:
 
 - **Secure Authentication**
+
   - Employees register, log in and out securely using **Django Allauth**.
 
       <details>
@@ -192,6 +200,7 @@ The following wireframes outline the structure and layout of the main screens in
       </details>
 
 - **Home Feed**
+
   - Users land on a clean feed displaying recognition stories and nominations with toggle option.
 
     <details>
@@ -202,6 +211,7 @@ The following wireframes outline the structure and layout of the main screens in
     </details>
 
 - **Create Post / Nomination**
+
   - Users can create a recognition story or nominate a colleague with a simple form.
 
     <details>
@@ -219,6 +229,7 @@ The following wireframes outline the structure and layout of the main screens in
     </details>
 
 - **Recognition / Nomination Detail View**
+
   - Users can read full stories, like, and comment on recognitions.
 
     <details>
@@ -236,6 +247,7 @@ The following wireframes outline the structure and layout of the main screens in
     </details>
 
 - **User Profile Page**
+
   - Displays user's info with avatar, name, bio, department and user's contributions.
 
     <details>
@@ -334,7 +346,7 @@ The frontend of CelebrateIt was built using the following technologies:
 
 - **Heroku** – Hosting and deployment of the Django REST API backend.
 - **GitHub** – Version control and repository management.
-- **GitHub Pages** *(optional)* – Considered for frontend deployment (not used in final setup).
+- **GitHub Pages** _(optional)_ – Considered for frontend deployment (not used in final setup).
 - **Git** – Local version control with atomic commits and branching.
 - **VS Code** – Primary code editor with integrated terminal and extensions for React/Django.
 - **Browser-based API testing** – API endpoints were tested directly via browser during development using Django’s built-in dev server.
@@ -355,6 +367,7 @@ CelebrateIt was built with a focus on reusability and clean structure from the s
 - Nomination-specific logic (e.g. nominee name and tag) was conditionally rendered inside `PostCard`.
 
 As development progressed:
+
 - Conditional rendering became harder to manage.
 - Post and Nomination diverged in layout (image for Post only; nominee/tag for Nominations).
 - Code readability and maintainability suffered.
@@ -362,6 +375,7 @@ As development progressed:
 **Decision:** Refactor into two separate components.
 
 #### Refactor Outcome
+
 - `PostLayoutShell`: the shared layout wrapper for both Post and Nomination cards was cleaned of any specific elements.
 - `PostHeader`: The header portion with avatar, name, time stamp, and dropdown menu, was extracted into its own component for even greater clarity and reuse.
 - `PostCard`: Now focused solely on recognition posts, includes image and likes/comments.
@@ -374,17 +388,17 @@ This refactor improved clarity, maintainability, and scalability.
 
 #### Pages & Containers Overview
 
-| Page (File) | Purpose |
-|------|---------|
-| `SignInForm` / `SignUpForm` | Handles login and registration forms |
-| `LoggedInHomePage` | Displays recognition + nomination feed snippets and people sidebar |
-| `PostDetailPage` | Renders a full recognition story with comments  |
-| `NominationDetailPage` | Renders a full nomination with nominee and tag  |
-| `CreatePostPage` | Form to submit a new recognition post |
-| `UpdatePostPage` | Form to edit an existing recognition post |
-| `CreateNominationPage` | Form to submit a new nomination (with nominee and tag) |
-| `UpdateNominationPage`  | Form to edit an existing nomination (content and tag-not nominee) |
-| `ProfilePage` | Displays user profile, recognitions, and nominations |
+| Page (File)                 | Purpose                                                            |
+| --------------------------- | ------------------------------------------------------------------ |
+| `SignInForm` / `SignUpForm` | Handles login and registration forms                               |
+| `LoggedInHomePage`          | Displays recognition + nomination feed snippets and people sidebar |
+| `PostDetailPage`            | Renders a full recognition story with comments                     |
+| `NominationDetailPage`      | Renders a full nomination with nominee and tag                     |
+| `CreatePostPage`            | Form to submit a new recognition post                              |
+| `UpdatePostPage`            | Form to edit an existing recognition post                          |
+| `CreateNominationPage`      | Form to submit a new nomination (with nominee and tag)             |
+| `UpdateNominationPage`      | Form to edit an existing nomination (content and tag-not nominee)  |
+| `ProfilePage`               | Displays user profile, recognitions, and nominations               |
 
 ---
 
@@ -1057,10 +1071,10 @@ Testing included:
 
 | **Priority** | **User Story**         | **Page(s)**     | **Test Scenario / Action**            | **Expected Result**                                   | Actual | **Screenshot** |
 | ------------ | ---------------------- | --------------- | ------------------------------------- | ----------------------------------------------------- | ------ | -------------- |
-| Must Have    | Comment on Recognition        | Detail Page     | Submit valid comment                  | Comment appears below post                            |        |1|
-| Should Have  | Like a Recognition            | Feed / Detail   | Click like and unlike                 | Count updates and button toggles correctly            |        |2 - 3|
-| Should Have  | Edit/Delete My Comment | Detail Page     | Click edit or delete on owned comment | Comment updates or disappears as expected             |        ||
-| Should Have  | Search for Colleagues  | Feed Search Bar | Type partial name                     | Matching users show with avatar + \"Nominate\" button |        ||
+| Must Have    | Comment on Recognition | Detail Page     | Submit valid comment                  | Comment appears below post                            |        | 1              |
+| Should Have  | Like a Recognition     | Feed / Detail   | Click like and unlike                 | Count updates and button toggles correctly            |        | 2 - 3          |
+| Should Have  | Edit/Delete My Comment | Detail Page     | Click edit or delete on owned comment | Comment updates or disappears as expected             |        |                |
+| Should Have  | Search for Colleagues  | Feed Search Bar | Type partial name                     | Matching users show with avatar + \"Nominate\" button |        |                |
 
 <details>
 <summary> 1/ Comment on Recognition </summary>
@@ -1111,34 +1125,282 @@ Testing included:
 
 ## 7. Deployment
 
-### 7.1 Heroku
-
-The site was deployed successfully to [Heroku](https://celebrateit-866641373084.herokuapp.com/) following the steps below:
-
-1. In _Gitpod_, create a list of dependencies in `requirements.txt` file:
-   - Run `pip3 freeze > requirements.txt` in the terminal.
-   - Create _Procfile_
-2. In _Heroku_ account, create the new App:
-   - Select `New` and `Create a new app`.
-   - Name the App (name must be unique) and choose a region: `Europe`
-   - Click `Create App`.
-3. In the new App page, access to the `Settings` section.
-4. In `Config Var` add :
-   - `DATABASE_URL` and its value.
-   - `SECRET_KEY` and its value.
-   - `CLOUDINARY_URL` and its value.
-   - Click `Add`.
-5. Access to the `Deploy` section.
-6. Select the deployment method:
-   - Select `GitHub`
-   - Search for the repository by taping the name in the search barre.
-   - Click on `Connect`
-7. Click `Deploy Branch`.
-8. Once App deployed, the message _Your app was successfully deployed._
+This project was deployed as a **fullstack app** using **Heroku**, serving both the Django API and React frontend from a single Heroku app. The backend was deployed first, followed by the frontend build.
 
 The live link can be found here: [CelebrateIt](https://celebrateit-866641373084.herokuapp.com/)
 
-### 7.1 Forking and Cloning
+### 7.1 Backend Deployment (Initial Phase)
+
+##### Tech Stack
+
+- Django REST Framework
+- PostgreSQL (Heroku Postgres)
+- Cloudinary (media hosting)
+
+##### Steps:
+
+1. **Set up PostgreSQL and Connect Heroku**
+
+   - Create a Heroku app and attach a PostgreSQL database.
+   - In Heroku Settings > Config Vars, add:
+
+     - `DATABASE_URL` → provided by Heroku
+     - `SECRET_KEY`, `CLOUDINARY_URL`, `ALLOWED_HOSTS`, `CLIENT_ORIGIN`
+
+   - Install required packages:
+
+   ```bash
+   pip install dj_database_url psycopg2 gunicorn 'django-cors-headers<4.6'
+   pip freeze > requirements.txt
+   ```
+
+2. **Database Configuration in `settings.py`**
+
+   - Add this at the top:
+
+   ```python
+   import dj_database_url
+   import json
+   ```
+
+   - Replace `DATABASES` block:
+
+   ```python
+   if 'DEV' in os.environ:
+         DATABASES = {
+            'default': {
+               'ENGINE': 'django.db.backends.sqlite3',
+               'NAME': BASE_DIR / 'db.sqlite3',
+            }
+         }
+   else:
+         DATABASES = {
+            'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+         }
+   ```
+
+   - Update `ALLOWED_HOSTS`:
+
+   ```python
+   ALLOWED_HOSTS = json.loads(
+         os.environ.get("ALLOWED_HOSTS", '["localhost", "127.0.0.1"]')
+   )
+   ```
+
+3. **JWT Authentication and Permissions**
+
+   - Add to `settings.py`:
+
+   ```python
+   REST_USE_JWT = True
+   JWT_AUTH_COOKIE = 'my-app-auth'
+   JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
+   JWT_AUTH_SAMESITE = 'None'
+   JWT_AUTH_SECURE = True
+   ```
+
+   - Add these apps to `INSTALLED_APPS`:
+
+   ```python
+   'dj_rest_auth',
+   'dj_rest_auth.registration',
+   'allauth',
+   'allauth.account',
+   'corsheaders',
+   ```
+
+   - And middleware:
+
+   ```python
+   'corsheaders.middleware.CorsMiddleware',
+   ```
+
+   - Set CORS:
+
+   ```python
+   CORS_ALLOWED_ORIGINS = [
+         origin for origin in [
+            os.environ.get('CLIENT_ORIGIN'),
+            os.environ.get('CLIENT_ORIGIN_DEV'),
+         ] if origin
+   ]
+   CORS_ALLOW_CREDENTIALS = True
+   ```
+
+4. **Prepare for Deployment**
+
+   - Create `Procfile`:
+
+   ```text
+   release: python manage.py makemigrations && python manage.py migrate
+   web: gunicorn celebrateit_api.wsgi
+   ```
+
+   - Create `runtime.txt`:
+
+   ```text
+   python-3.10.11
+   ```
+
+   - In `settings.py`, replace hardcoded secret:
+
+   ```python
+   SECRET_KEY = os.getenv('SECRET_KEY')
+   ```
+
+5. **Database Setup**
+
+   - Run in terminal:
+
+   ```bash
+   python manage.py makemigrations
+   python manage.py migrate
+   python manage.py createsuperuser
+   ```
+
+6. **Initial Deploy to Heroku**
+
+   - Push to GitHub.
+   - In Heroku > Deploy tab, connect your repo.
+   - Click **Deploy Branch**.
+
+The backend should now be live and ready to serve the frontend.
+
+### 7.2 Frontend Deployment (Static Build Integration)
+
+##### Tech Stack
+
+- React
+- WhiteNoise (for serving static files via Django)
+
+1. **Install & configure WhiteNoise**
+
+   ```bash
+   pip install whitenoise==6.4.0
+   pip freeze > requirements.txt
+   ```
+
+In `settings.py`:
+
+- Add to `MIDDLEWARE`:
+
+```python
+'whitenoise.middleware.WhiteNoiseMiddleware',
+```
+
+- Ensure this order in `INSTALLED_APPS`:
+
+```python
+'cloudinary_storage',
+'django.contrib.staticfiles',
+'cloudinary',
+```
+
+- Add:
+
+```python
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+WHITENOISE_ROOT = BASE_DIR / 'staticfiles_build' / 'build'
+```
+
+2. **Build & move React app**
+
+   - From `celebrateit_frontend/`:
+
+   ```bash
+   npm run build
+   ```
+
+   - From root project folder:
+
+   ```bash
+   rm -rf staticfiles_build/build
+   mv celebrateit_frontend/build staticfiles_build/
+   ```
+
+3. **Update URLs and Axios**
+
+   - In `urls.py`:
+
+   ```python
+   from django.views.generic import TemplateView
+
+   urlpatterns = [
+      path('', TemplateView.as_view(template_name='index.html')),
+      path('api/', include('your_app.urls')),
+   ]
+
+   handler404 = TemplateView.as_view(template_name='index.html')
+   ```
+
+   - In `axiosDefaults.js`:
+
+   ```js
+   axios.defaults.baseURL = "/api";
+   ```
+
+   - In `package.json`:
+
+   ```json
+   "proxy": "http://localhost:8000"
+   ```
+
+4. **Runtime & Requirements**
+
+   - Create `runtime.txt` in the root:
+
+   ```
+   python-3.10.11
+   ```
+
+   - Ensure `psycopg2` is in requirements:
+
+   ```
+   psycopg2==2.9.9
+   ```
+
+---
+
+### Heroku Config Vars (Final Fullstack)
+
+| Key                     | Value                            |
+| ----------------------- | -------------------------------- |
+| `ALLOWED_HOSTS`         | `["your-app.herokuapp.com"]`     |
+| `CLIENT_ORIGIN`         | `https://your-app.herokuapp.com` |
+| `DATABASE_URL`          | postgresql Provided by CI        |
+| `SECRET_KEY`            | Django secret                    |
+| `CLOUDINARY_URL`        | From Cloudinary dashboard        |
+| `DISABLE_COLLECTSTATIC` | `1` (optional during setup)      |
+
+---
+
+### Final Deployment Steps
+
+1. Commit and push to GitHub:
+
+   ```bash
+   git add .
+   git commit -m "Prepare fullstack app for Heroku deployment"
+   git push
+   ```
+
+2. On Heroku → Deploy tab:
+
+   - Select `main` branch
+   - Click **Deploy Branch**
+
+---
+
+### Post-deployment Checks
+
+- Visit `https://your-app.herokuapp.com/`
+- Confirm React app loads and routes
+- Confirm Django API at `/api/...`
+- Test login, form submissions, image upload, etc.
+
+---
+
+### 7.3 Forking and Cloning
 
 Forking the repository creates a copy of this project, allowing modifications without affecting the original code. Once the repository is forked, it can be cloned to a local machine for development.</br>
 Follow these steps to fork, clone, and work on the project:
