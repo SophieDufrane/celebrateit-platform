@@ -6,24 +6,24 @@ import PostForm from "../../components/PostForm";
 import formStyles from "../../styles/PostForm.module.css";
 
 function CreateRecognitionPage() {
-  const [postData, setPostData] = useState({
+  const [recognitionData, setRecognitionData] = useState({
     title: "",
     content: "",
     image: null,
   });
-  const { title, content, image } = postData;
+  const { title, content, image } = recognitionData;
   const history = useHistory();
 
   const handleChange = (event) => {
     const { name, value, files } = event.target;
     if (name === "image") {
-      setPostData({
-        ...postData,
+      setRecognitionData({
+        ...recognitionData,
         image: files[0],
       });
     } else {
-      setPostData({
-        ...postData,
+      setRecognitionData({
+        ...recognitionData,
         [name]: value,
       });
     }
