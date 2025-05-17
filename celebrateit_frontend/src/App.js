@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import { Route, Switch } from "react-router-dom";
 
 // Pages
-import HomeFeedPage from "./pages/home/HomeFeedPage ";
+import HomeFeedPage from "./pages/home/HomeFeedPage";
 import CreateRecognitionPage from "./pages/recognitions/CreateRecognitionPage";
 import RecognitionDetailPage from "./pages/recognitions/RecognitionDetailPage";
 import UpdateRecognitionPage from "./pages/recognitions/UpdateRecognitionPage";
