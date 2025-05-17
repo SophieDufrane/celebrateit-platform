@@ -21,7 +21,7 @@ function RecognitionDetailPage() {
   const currentUser = useCurrentUser();
 
   // State
-  const [post, setPost] = useState(null);
+  const [recognition, setRecognition] = useState(null);
   const [comments, setComments] = useState([]);
   const [showConfirm, setShowConfirm] = useState(false);
   const [showCommentSuccess, setShowCommentSuccess] = useState(false);
@@ -29,7 +29,7 @@ function RecognitionDetailPage() {
   const [showDeleteModal, setShowDeleteModal] = useState(null);
 
   // Derived/computed values
-  const isNomination = !!post?.nominee;
+  const isNomination = !!recognition?.nominee;
 
   // Temporary values
   let dropdownMenu = null;
@@ -38,11 +38,11 @@ function RecognitionDetailPage() {
   const handleLike = async () => {
     try {
       const { data } = await axiosRes.post("/likes/", {
-        post: post.id,
+        post: recognition.id,
       });
-      setPost((prevPost) => ({
-        ...prevPost,
-        likes_count: prevPost.likes_count + 1,
+      setRecognition((prev) => ({
+        ...prev,
+        likes_count: prev.likes_count + 1,
         like_id: data.id,
       }));
     } catch (err) {
@@ -52,10 +52,10 @@ function RecognitionDetailPage() {
 
   const handleUnlike = async () => {
     try {
-      await axiosRes.delete(`/likes/${post.like_id}/`);
-      setPost((prevPost) => ({
-        ...prevPost,
-        likes_count: prevPost.likes_count - 1,
+      await axiosRes.delete(`/likes/${recognition.like_id}/`);
+      setRecognition((prev) => ({
+        ...prev,
+        likes_count: prev.likes_count - 1,
         like_id: null,
       }));
     } catch (err) {
@@ -70,7 +70,7 @@ function RecognitionDetailPage() {
 
   const confirmDelete = async () => {
     try {
-      await axiosReq.delete(`/posts/${post.id}/`);
+      await axiosReq.delete(`/posts/${recognition.id}/`);
       history.push("/?deleted=true");
     } catch (err) {
       console.error("Delete failed:", err);
@@ -86,9 +86,9 @@ function RecognitionDetailPage() {
       setComments((prevComments) =>
         prevComments.filter((comment) => comment.id !== showDeleteModal)
       );
-      setPost((prevPost) => ({
-        ...prevPost,
-        comments_count: prevPost.comments_count - 1,
+      setRecognition((prev) => ({
+        ...prev,
+        comments_count: prev.comments_count - 1,
       }));
     } catch (err) {
       console.error("Error deleting comment:", err);
@@ -134,10 +134,10 @@ function RecognitionDetailPage() {
     axios
       .get(`/posts/${id}/`)
       .then((response) => {
-        setPost(response.data);
+        setRecognition(response.data);
       })
       .catch((error) => {
-        console.error("Error fetching post details:", error);
+        console.error("Error fetching recognitions details:", error);
       });
   }, [id]);
 
@@ -155,15 +155,15 @@ function RecognitionDetailPage() {
   }, [id, currentUser]);
 
   // Early return: loading state
-  if (!post) {
+  if (!recognition) {
     return <Container>Loading...</Container>;
   }
 
   // Render helpers
   // Temporary values
-  dropdownMenu = post.is_user ? (
+  dropdownMenu = recognition.is_user ? (
     <MoreDropdown
-      handleEdit={() => history.push(`/recognitions/${post.id}/edit`)}
+      handleEdit={() => history.push(`/recognitions/${recognition.id}/edit`)}
       handleDelete={handleDelete}
     />
   ) : null;
@@ -171,12 +171,12 @@ function RecognitionDetailPage() {
   const postActions = !isNomination ? (
     <div className={styles.PostFooter}>
       <div className={styles.ActionItem}>
-        {post.is_user ? (
+        {recognition.is_user ? (
           <OverlayTrigger
             placement="top"
             overlay={
               <Tooltip id={`tooltip-self-like`}>
-                Can't like your own post!
+                Can't like your own recognition!
               </Tooltip>
             }
           >
@@ -184,7 +184,7 @@ function RecognitionDetailPage() {
               <i className="far fa-thumbs-up" />
             </span>
           </OverlayTrigger>
-        ) : post.like_id ? (
+        ) : recognition.like_id ? (
           <span onClick={handleUnlike} style={{ cursor: "pointer" }}>
             <i className={`fas fa-thumbs-up ${styles.Heart}`} />
           </span>
@@ -195,11 +195,11 @@ function RecognitionDetailPage() {
         ) : (
           <i className="far fa-thumbs-up" title="Log in to like posts!" />
         )}
-        <span>{post.likes_count}</span>
+        <span>{recognition.likes_count}</span>
       </div>
       <div className={styles.ActionItem}>
         <i className="far fa-comment"></i>
-        <span>{post.comments_count}</span>
+        <span>{recognition.comments_count}</span>
       </div>
     </div>
   ) : null;
@@ -219,34 +219,34 @@ function RecognitionDetailPage() {
       )}
 
       <PostLayoutShell
-        title={post.title}
-        content={post.content}
-        image={post.image}
-        display_name={post.display_name}
-        created_at={post.created_at}
-        likes_count={post.likes_count}
-        comments_count={post.comments_count}
+        title={recognition.title}
+        content={recognition.content}
+        image={recognition.image}
+        display_name={recognition.display_name}
+        created_at={recognition.created_at}
+        likes_count={recognition.likes_count}
+        comments_count={recognition.comments_count}
         renderDropdown={dropdownMenu}
         postActions={postActions}
       >
         <>
-          {post.image && (
+          {recognition.image && (
             <div className={styles.ImageWrapper}>
               <img
-                src={post.image}
-                alt={post.title}
+                src={recognition.image}
+                alt={recognition.title}
                 className={styles.PostImage}
               />
             </div>
           )}
           <CommentForm
-            postId={post.id}
+            postId={recognition.id}
             disabled={!currentUser}
             onCommentSubmit={(newComment) => {
               setComments((prevComments) => [newComment, ...prevComments]);
-              setPost((prevPost) => ({
-                ...prevPost,
-                comments_count: prevPost.comments_count + 1,
+              setRecognition((prev) => ({
+                ...prev,
+                comments_count: prev.comments_count + 1,
               }));
               setShowCommentSuccess(true);
             }}
@@ -260,7 +260,7 @@ function RecognitionDetailPage() {
                 <div key={comment.id} className={styles.CommentBlock}>
                   <CommentEditForm
                     comment={comment}
-                    postId={post.id}
+                    postId={recognition.id}
                     setComments={setComments}
                     setEditingComment={setEditingComment}
                     onCancel={() => setEditingComment(null)}
