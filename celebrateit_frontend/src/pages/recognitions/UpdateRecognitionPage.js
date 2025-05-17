@@ -8,24 +8,24 @@ import formStyles from "../../styles/PostForm.module.css";
 function UpdateRecognitionPage() {
   const { id } = useParams();
   const history = useHistory();
-  const [postData, setPostData] = useState({
+  const [recognitionData, setRecognitionData] = useState({
     title: "",
     content: "",
     image: null,
   });
   const [removeImage, setRemoveImage] = useState(false);
 
-  const { title, content, image } = postData;
+  const { title, content, image } = recognitionData;
 
   useEffect(() => {
     axiosReq
       .get(`/posts/${id}/`)
       .then((response) => {
         const { title, content, image } = response.data;
-        setPostData({ title, content, image });
+        setRecognitionData({ title, content, image });
       })
       .catch((err) => {
-        console.error("Error fetching post:", err);
+        console.error("Error fetching recognition:", err);
         history.push("/");
       });
   }, [id, history]);
@@ -33,13 +33,13 @@ function UpdateRecognitionPage() {
   const handleChange = (event) => {
     const { name, value, files } = event.target;
     if (name === "image") {
-      setPostData({
-        ...postData,
+      setRecognitionData({
+        ...recognitionData,
         image: files[0],
       });
     } else {
-      setPostData({
-        ...postData,
+      setRecognitionData({
+        ...recognitionData,
         [name]: value,
       });
     }
