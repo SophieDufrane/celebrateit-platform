@@ -22,9 +22,9 @@ const RecognitionCard = (props) => {
     like_id,
     setPosts,
     onPostDelete,
-    detailUrl = `/posts/${id}`,
-    editUrl = `/posts/${id}/edit`,
-    deleteUrl = `/posts/${id}`,
+    detailUrl = `/recognitions/${id}`,
+    editUrl = `/recognitions/${id}/edit`,
+    deleteUrl = `/recognitions/${id}`,
   } = props;
 
   // User & Navigation
@@ -135,7 +135,7 @@ const RecognitionCard = (props) => {
         <span>{likes_count}</span>
       </div>
       <Link
-        to={`/posts/${id}`}
+        to={`/recognitions/${id}`}
         className={`${styles.ActionItem} ${styles.Clickable}`}
       >
         <i className="far fa-comment" />

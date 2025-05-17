@@ -41,7 +41,7 @@ function CreateRecognitionPage() {
 
     try {
       const { data } = await axiosReq.post("/posts/", formData);
-      history.push(`/posts/${data.id}?created=true`);
+      history.push(`/recognitions/${data.id}?created=true`);
     } catch (err) {
       console.error(err.response?.data);
     }

@@ -12,7 +12,7 @@ const HomeFeedPage = () => {
     new URLSearchParams(location.search).get("deleted") === "true";
   const [showDeleted, setShowDeleted] = useState(isDeleted);
 
-  const [posts, setPosts] = useState([]);
+  const [recognitions, setRecognitions] = useState([]);
   const [nominations, setNominations] = useState([]);
   const [showNominations, setShowNominations] = useState(false);
 
@@ -37,7 +37,7 @@ const HomeFeedPage = () => {
   useEffect(() => {
     axios
       .get("/posts/")
-      .then((res) => setPosts(res.data.results))
+      .then((res) => setRecognitions(res.data.results))
       .catch((err) => console.error(err))
       .finally(() => setHasLoaded(true));
   }, []);
@@ -95,21 +95,21 @@ const HomeFeedPage = () => {
             {hasLoaded ? (
               <>
                 {!showNominations ? (
-                  posts.length ? (
-                    posts.map((post) => (
+                  recognitions.length ? (
+                    recognitions.map((post) => (
                       <RecognitionCard
                         key={`post-${post.id}`}
                         {...post}
-                        setPosts={setPosts}
+                        setPosts={setRecognitions}
                         onPostDelete={(deletedId) =>
-                          setPosts((prevPosts) =>
-                            prevPosts.filter((p) => p.id !== deletedId)
+                          setRecognitions((prev) =>
+                            prev.filter((r) => r.id !== deletedId)
                           )
                         }
                       />
                     ))
                   ) : (
-                    <div>No posts yet</div>
+                    <div>No recognitions yet</div>
                   )
                 ) : nominations.length ? (
                   nominations.map((nom) => (

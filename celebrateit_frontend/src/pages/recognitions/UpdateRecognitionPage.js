@@ -59,7 +59,7 @@ function UpdateRecognitionPage() {
 
     try {
       await axiosReq.patch(`/posts/${id}/`, formData);
-      history.push(`/posts/${id}?updated=true`);
+      history.push(`/recognitions/${id}?updated=true`);
     } catch (err) {
       console.error("Submission error:", err.response?.data);
     }
@@ -74,7 +74,7 @@ function UpdateRecognitionPage() {
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         submitText="Update"
-        onCancel={() => history.push(`/posts/${id}`)}
+        onCancel={() => history.push(`/recognitions/${id}`)}
       >
         <Form.Group className={formStyles.FormMediaWrapper}>
           {typeof image === "string" && (

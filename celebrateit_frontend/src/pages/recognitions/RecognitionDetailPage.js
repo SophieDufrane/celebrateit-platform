@@ -162,7 +162,7 @@ function RecognitionDetailPage() {
   // Temporary values
   dropdownMenu = post.is_user ? (
     <MoreDropdown
-      handleEdit={() => history.push(`/posts/${post.id}/edit`)}
+      handleEdit={() => history.push(`/recognitions/${post.id}/edit`)}
       handleDelete={handleDelete}
     />
   ) : null;

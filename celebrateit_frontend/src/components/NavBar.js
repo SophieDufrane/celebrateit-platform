@@ -39,7 +39,7 @@ const NavBar = () => {
 
             {currentUser ? (
               <>
-                <NavLink to="/posts/create" className="nav-link">
+                <NavLink to="/recognitions/create" className="nav-link">
                   Recognize
                 </NavLink>
                 <NavLink to="/nominations/create" className="nav-link">
