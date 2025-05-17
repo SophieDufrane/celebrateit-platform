@@ -7,9 +7,10 @@ import {
   useSetCurrentUser,
 } from "../contexts/CurrentUserContext";
 import { axiosReq } from "../api/axiosDefaults";
+import { removeTokenTimestamp } from "../utils/utils";
 
 const NavBar = () => {
-  const currentUser = useCurrentUser();
+  const { currentUser, currentUserLoaded } = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   const history = useHistory();
 
@@ -17,6 +18,7 @@ const NavBar = () => {
     try {
       await axiosReq.post("/dj-rest-auth/logout/");
       setCurrentUser(null);
+      removeTokenTimestamp();
       history.push("/login?loggedOut=true");
     } catch (err) {
       console.error("Logout failed:", err);
@@ -28,7 +30,9 @@ const NavBar = () => {
       <Container>
         <Navbar.Brand as={NavLink} to="/">
           CelebrateIt{" "}
-          {currentUser && `| ${currentUser.first_name || currentUser.username}`}
+          {currentUser?.first_name || currentUser?.username
+            ? `| ${currentUser.first_name || currentUser.username}`
+            : ""}
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -37,7 +41,7 @@ const NavBar = () => {
               Home
             </Nav.Link>
 
-            {currentUser ? (
+            {currentUser && currentUser ? (
               <>
                 <NavLink to="/recognitions/create" className="nav-link">
                   Recognize
@@ -55,7 +59,7 @@ const NavBar = () => {
                   Logout
                 </Nav.Link>
               </>
-            ) : (
+            ) : currentUserLoaded ? (
               <>
                 <Nav.Link as={NavLink} to="/login">
                   Log In
@@ -64,7 +68,7 @@ const NavBar = () => {
                   Register
                 </Nav.Link>
               </>
-            )}
+            ) : null}
           </Nav>
         </Navbar.Collapse>
       </Container>
