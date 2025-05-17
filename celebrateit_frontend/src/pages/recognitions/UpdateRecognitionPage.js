@@ -5,7 +5,7 @@ import { Container, Form, OverlayTrigger, Tooltip } from "react-bootstrap";
 import PostForm from "../../components/PostForm";
 import formStyles from "../../styles/PostForm.module.css";
 
-function UpdatePostPage() {
+function UpdateRecognitionPage() {
   const { id } = useParams();
   const history = useHistory();
   const [postData, setPostData] = useState({
@@ -110,4 +110,4 @@ function UpdatePostPage() {
   );
 }
 
-export default UpdatePostPage;
+export default UpdateRecognitionPage;

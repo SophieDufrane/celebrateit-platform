@@ -12,7 +12,7 @@ import Comment from "../comment/Comment";
 import CommentEditForm from "../comment/CommentEditForm";
 import styles from "../../styles/PostCard.module.css";
 
-function PostDetailPage() {
+function RecognitionDetailPage() {
   // Routing & context
   const { id } = useParams();
   const history = useHistory();
@@ -293,4 +293,4 @@ function PostDetailPage() {
   );
 }
 
-export default PostDetailPage;
+export default RecognitionDetailPage;

@@ -8,7 +8,7 @@ import ConfirmDeleteModal from "../../components/ConfirmDeleteModal";
 import styles from "../../styles/PostCard.module.css";
 import PostLayoutShell from "../../components/PostLayoutShell";
 
-const PostCard = (props) => {
+const RecognitionCard = (props) => {
   const {
     id,
     title,
@@ -186,4 +186,4 @@ const PostCard = (props) => {
   );
 };
 
-export default PostCard;
+export default RecognitionCard;

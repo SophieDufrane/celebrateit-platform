@@ -5,9 +5,9 @@ import { Route, Switch } from "react-router-dom";
 
 // Pages
 import LoggedInHomePage from "./pages/home/LoggedInHomePage";
-import CreatePostPage from "./pages/posts/CreatePostPage";
-import PostDetailPage from "./pages/posts/PostDetailPage";
-import UpdatePostPage from "./pages/posts/UpdatePostPage";
+import CreateRecognitionPage from "./pages/recognitions/CreateRecognitionPage";
+import RecognitionDetailPage from "./pages/recognitions/RecognitionDetailPage";
+import UpdateRecognitionPage from "./pages/recognitions/UpdateRecognitionPage";
 import CreateNominationPage from "./pages/nominations/CreateNominationPage";
 import NominationDetailPage from "./pages/nominations/NominationDetailPage";
 import UpdateNominationPage from "./pages/nominations/UpdateNominationPage";
@@ -23,10 +23,14 @@ function App() {
         <Switch>
           <Route exact path="/" component={LoggedInHomePage} />
 
-          {/* Create, Update and Detail for Posts */}
-          <Route exact path="/posts/create" component={CreatePostPage} />
-          <Route exact path="/posts/:id" component={PostDetailPage} />
-          <Route exact path="/posts/:id/edit" component={UpdatePostPage} />
+          {/* Create, Update and Detail for Recognitions */}
+          <Route exact path="/posts/create" component={CreateRecognitionPage} />
+          <Route exact path="/posts/:id" component={RecognitionDetailPage} />
+          <Route
+            exact
+            path="/posts/:id/edit"
+            component={UpdateRecognitionPage}
+          />
 
           {/* Create, Update and Detail for Nominations */}
           <Route

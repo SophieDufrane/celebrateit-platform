@@ -5,7 +5,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import PostForm from "../../components/PostForm";
 import formStyles from "../../styles/PostForm.module.css";
 
-function CreatePostPage() {
+function CreateRecognitionPage() {
   const [postData, setPostData] = useState({
     title: "",
     content: "",
@@ -70,4 +70,4 @@ function CreatePostPage() {
   );
 }
 
-export default CreatePostPage;
+export default CreateRecognitionPage;
