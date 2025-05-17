@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import { Route, Switch } from "react-router-dom";
 
 // Pages
-import LoggedInHomePage from "./pages/home/LoggedInHomePage";
+import HomeFeedPage from "./pages/home/HomeFeedPage ";
 import CreateRecognitionPage from "./pages/recognitions/CreateRecognitionPage";
 import RecognitionDetailPage from "./pages/recognitions/RecognitionDetailPage";
 import UpdateRecognitionPage from "./pages/recognitions/UpdateRecognitionPage";
@@ -21,14 +21,22 @@ function App() {
       <NavBar />
       <Container className={styles.Main}>
         <Switch>
-          <Route exact path="/" component={LoggedInHomePage} />
+          <Route exact path="/" component={HomeFeedPage} />
 
           {/* Create, Update and Detail for Recognitions */}
-          <Route exact path="/posts/create" component={CreateRecognitionPage} />
-          <Route exact path="/posts/:id" component={RecognitionDetailPage} />
           <Route
             exact
-            path="/posts/:id/edit"
+            path="/recognitions/create"
+            component={CreateRecognitionPage}
+          />
+          <Route
+            exact
+            path="/recognitions/:id"
+            component={RecognitionDetailPage}
+          />
+          <Route
+            exact
+            path="/recognitions/:id/edit"
             component={UpdateRecognitionPage}
           />
 

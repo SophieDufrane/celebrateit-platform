@@ -7,7 +7,7 @@ import NominationCard from "../nominations/NominationCard";
 import feedStyles from "../../styles/LoggedInHomePage.module.css";
 import sharedStyles from "../../App.module.css";
 
-const LoggedInHomePage = () => {
+const HomeFeedPage = () => {
   const location = useLocation();
   const isDeleted =
     new URLSearchParams(location.search).get("deleted") === "true";
@@ -163,4 +163,4 @@ const LoggedInHomePage = () => {
   );
 };
 
-export default LoggedInHomePage;
+export default HomeFeedPage;
