@@ -9,6 +9,7 @@ import styles from "../../styles/PostCard.module.css";
 import PostLayoutShell from "../../components/PostLayoutShell";
 
 const RecognitionCard = (props) => {
+  // Use frontend naming for routing, but backend naming for delete endpoint
   const {
     id,
     title,
@@ -24,7 +25,7 @@ const RecognitionCard = (props) => {
     onPostDelete,
     detailUrl = `/recognitions/${id}`,
     editUrl = `/recognitions/${id}/edit`,
-    deleteUrl = `/recognitions/${id}`,
+    deleteUrl = `/posts/${id}`, // API uses /posts/
   } = props;
 
   // User & Navigation

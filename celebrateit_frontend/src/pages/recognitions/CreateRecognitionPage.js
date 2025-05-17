@@ -17,6 +17,11 @@ function CreateRecognitionPage() {
   const handleChange = (event) => {
     const { name, value, files } = event.target;
     if (name === "image") {
+      const file = files[0];
+      if (file && file.size > 5 * 1024 * 1024) {
+        alert("Image must be smaller than 5MB.");
+        return;
+      }
       setRecognitionData({
         ...recognitionData,
         image: files[0],
