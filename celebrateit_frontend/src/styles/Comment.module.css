@@ -1,0 +1,22 @@
+.CommentSpacer {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.CommentBlock {
+  font-size: 0.9rem;
+  margin-left: 1.5rem;
+}
+
+.CommentAuthor {
+  font-weight: 600;
+}
+
+.CommentText {
+  margin: 0.3rem 0;
+}
+
+.CommentDate {
+  font-size: 0.8rem;
+  color: #999;
+}
