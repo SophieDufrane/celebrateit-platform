@@ -39,34 +39,3 @@
   border: 1px solid #decd62;
   color: #300e82;
 }
-
-.FeedToggleActive {
-  background-color: #300e82;
-  border: 1px solid #300e82 !important;
-  color: white;
-}
-
-.FeedToggleInactive {
-  background-color: transparent;
-  border: 1px solid #999 !important;
-  color: #999;
-}
-
-.FeedToggleInactive:hover {
-  background-color: #decd62;
-  border: 1px solid #decd62 !important;
-  color: #300e82;
-}
-
-.FeedToggleActive:hover {
-  background-color: #300e82;
-  border: 1px solid #300e82 !important;
-  color: white;
-  cursor: default;
-}
-
-.FeedToggleActive:focus,
-.FeedToggleInactive:focus {
-  outline: none;
-  box-shadow: none;
-}

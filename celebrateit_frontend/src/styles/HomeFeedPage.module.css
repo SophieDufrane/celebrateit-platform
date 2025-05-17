@@ -1,15 +1,4 @@
-.FeedContent {
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.FeedToggleButtons {
-  margin-bottom: 1rem;
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-}
-
+/* ----------- Feed Toggle ----------- */
 .FeedButton {
   width: 100%;
   margin-bottom: 0.5rem;
@@ -19,10 +8,55 @@
   transition: all 0.3s ease;
 }
 
+.FeedToggleButtons {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.FeedToggleActive {
+  background-color: #300e82;
+  border: 1px solid #300e82 !important;
+  color: white;
+}
+
+.FeedToggleInactive {
+  background-color: transparent;
+  border: 1px solid #999 !important;
+  color: #999;
+}
+
+.FeedToggleInactive:hover {
+  background-color: #decd62;
+  border: 1px solid #decd62 !important;
+  color: #300e82;
+}
+
+.FeedToggleActive:hover {
+  background-color: #300e82;
+  border: 1px solid #300e82 !important;
+  color: white;
+  cursor: default;
+}
+
+.FeedToggleActive:focus,
+.FeedToggleInactive:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* ----------- Feed Content ----------- */
+.FeedContent {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
 .PostCard {
   margin-bottom: 1rem;
 }
 
+/* ----------- People Sidebar ----------- */
 .PeopleSidebar {
   margin-top: 2rem;
 }

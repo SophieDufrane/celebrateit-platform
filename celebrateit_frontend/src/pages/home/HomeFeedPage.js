@@ -5,7 +5,6 @@ import { Button, Container, Row, Col, ListGroup, Alert } from "react-bootstrap";
 import RecognitionCard from "../recognitions/RecognitionCard";
 import NominationCard from "../nominations/NominationCard";
 import feedStyles from "../../styles/HomeFeedPage.module.css";
-import sharedStyles from "../../App.module.css";
 
 const HomeFeedPage = () => {
   const location = useLocation();
@@ -73,8 +72,8 @@ const HomeFeedPage = () => {
                 variant="none"
                 className={`${feedStyles.FeedButton} ${
                   !showNominations
-                    ? sharedStyles.FeedToggleActive
-                    : sharedStyles.FeedToggleInactive
+                    ? feedStyles.FeedToggleActive
+                    : feedStyles.FeedToggleInactive
                 }`}
                 onClick={() => setShowNominations(false)}
               >
@@ -84,8 +83,8 @@ const HomeFeedPage = () => {
                 variant="none"
                 className={`${feedStyles.FeedButton} ${
                   showNominations
-                    ? sharedStyles.FeedToggleActive
-                    : sharedStyles.FeedToggleInactive
+                    ? feedStyles.FeedToggleActive
+                    : feedStyles.FeedToggleInactive
                 }`}
                 onClick={() => setShowNominations(true)}
               >
