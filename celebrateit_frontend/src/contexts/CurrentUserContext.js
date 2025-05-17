@@ -12,6 +12,7 @@ export const useSetCurrentUser = () => useContext(SetCurrentUserContext);
 
 export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
+  const [currentUserLoaded, setCurrentUserLoaded] = useState(false);
 
   const history = useHistory();
 
@@ -21,6 +22,8 @@ export const CurrentUserProvider = ({ children }) => {
       setCurrentUser(data);
     } catch (err) {
       // not authenticated
+    } finally {
+      setCurrentUserLoaded(true); // mark auth check complete
     }
   };
 
@@ -73,7 +76,7 @@ export const CurrentUserProvider = ({ children }) => {
   }, [history]);
 
   return (
-    <CurrentUserContext.Provider value={currentUser}>
+    <CurrentUserContext.Provider value={{ currentUser, currentUserLoaded }}>
       <SetCurrentUserContext.Provider value={setCurrentUser}>
         {children}
       </SetCurrentUserContext.Provider>

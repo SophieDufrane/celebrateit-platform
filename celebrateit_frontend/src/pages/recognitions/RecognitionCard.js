@@ -29,11 +29,14 @@ const RecognitionCard = (props) => {
   } = props;
 
   // User & Navigation
-  const currentUser = useCurrentUser();
+  const { currentUser, currentUserLoaded } = useCurrentUser();
   const history = useHistory();
 
   // Local UI State
   const [showConfirm, setShowConfirm] = useState(false);
+
+  // Wait until auth state is resolved to avoid false unauthenticated UI
+  if (!currentUserLoaded) return null;
 
   // Derived display content
   const truncatedContent =

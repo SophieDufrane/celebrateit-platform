@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import MoreDropdown from "../../components/MoreDropdown";
 import ConfirmDeleteModal from "../../components/ConfirmDeleteModal";
 import styles from "../../styles/PostCard.module.css";
@@ -24,10 +25,14 @@ const NominationCard = (props) => {
   } = props;
 
   // User & Navigation
+  const { currentUserLoaded } = useCurrentUser();
   const history = useHistory();
 
   // Local UI State
   const [showConfirm, setShowConfirm] = useState(false);
+
+  // Wait until auth state is resolved to avoid false unauthenticated UI
+  if (!currentUserLoaded) return null;
 
   // Derived display content
   const truncatedContent =
