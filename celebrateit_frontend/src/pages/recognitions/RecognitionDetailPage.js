@@ -263,6 +263,7 @@ function RecognitionDetailPage() {
                     postId={post.id}
                     setComments={setComments}
                     setEditingComment={setEditingComment}
+                    onCancel={() => setEditingComment(null)}
                   />
                 </div>
               ) : (

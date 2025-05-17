@@ -5,7 +5,7 @@ function ConfirmDeleteModal({
   show,
   onHide,
   onConfirm,
-  message = "Are you sure you want to delete this post?",
+  message = "Are you sure you want to delete this?",
 }) {
   return (
     <Modal show={show} onHide={onHide} centered>
