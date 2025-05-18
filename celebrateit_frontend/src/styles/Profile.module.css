@@ -1,3 +1,4 @@
+/* ----------- Header for Post cards ----------- */
 .PostHeaderWrapper {
   display: flex;
   justify-content: space-between;
@@ -18,4 +19,87 @@
   object-fit: cover;
   border-radius: 50%;
   margin-right: 0.8rem;
+}
+
+/* ----------- Profile Page ----------- */
+.ProfileWrapper {
+  border-radius: 5px;
+  overflow: hidden;
+  max-width: 700px;
+  margin: 0 auto;
+  border: 1px solid #e0e0e0;
+  background-color: #fff;
+  padding-bottom: 2rem;
+}
+
+.Banner {
+  background: linear-gradient(to right, #300e82, #586bbe, #9b6b82, #decd62);
+  height: 100px;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.CompanyName {
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  color: white;
+  justify-content: flex-start;
+}
+
+.EditIcon {
+  color: #333;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.AvatarWrapper {
+  position: relative;
+  top: -75px;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 1.5rem;
+  z-index: 1;
+}
+
+.ProfileAvatar {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid white;
+  background-color: white;
+}
+
+.NameRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.ProfileDetails h3 {
+  margin: 0;
+}
+
+.ProfileDetails {
+  text-align: left;
+  margin-top: -40px; /* pull content up after avatar spacing */
+  padding: 0 1.5rem;
+}
+
+.Department {
+  font-weight: 500;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+  color: #444;
+}
+
+.Bio {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.4;
 }

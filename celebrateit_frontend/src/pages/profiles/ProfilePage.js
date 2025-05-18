@@ -3,6 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { axiosReq } from "../../api/axiosDefaults";
+import styles from "../../styles/Profile.module.css";
 
 const ProfilePage = () => {
   const { id } = useParams();
@@ -22,29 +23,44 @@ const ProfilePage = () => {
     fetchProfile();
   }, [id]);
 
+  console.log("is_user_profile:", profile?.is_user_profile); // DEBUG: check is_user
+
   return (
     <Container>
       <Row>
         {/* Left Column - User Profile Info */}
         <Col md={8}>
           {profile && (
-            <>
-              <img
-                src={profile.profile_image}
-                alt={`${profile.first_name} ${profile.last_name}`}
-                style={{
-                  width: "80px",
-                  height: "80px",
-                  objectFit: "cover",
-                  borderRadius: "50%",
-                  marginBottom: "1rem",
-                }}
-              />
-              <h2>
-                {profile.first_name} {profile.last_name}
-              </h2>
-              <p>{profile.presentation || "No bio yet."}</p>
-            </>
+            <div className={styles.ProfileWrapper}>
+              <div className={styles.Banner} />
+
+              {/* Avatar overlaps banner */}
+              <div className={styles.AvatarWrapper}>
+                <img
+                  src={profile.profile_image}
+                  alt={`${profile.first_name} ${profile.last_name}`}
+                  className={styles.ProfileAvatar}
+                />
+              </div>
+
+              {/* Profile info + edit icon */}
+              <div className={styles.ProfileDetails}>
+                <div className={styles.NameRow}>
+                  <h3>
+                    {profile.first_name} {profile.last_name}
+                  </h3>
+                  {profile.is_user_profile && (
+                    <span className={styles.EditIcon}>
+                      <i className="fa-solid fa-pen" />
+                    </span>
+                  )}
+                </div>
+                <p className={styles.Department}>{profile.department}</p>
+                <p className={styles.Bio}>
+                  {profile.presentation || "No bio yet."}
+                </p>
+              </div>
+            </div>
           )}
         </Col>
 
