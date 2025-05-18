@@ -14,7 +14,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
     last_name = serializers.ReadOnlyField(source='user.last_name')
     is_user_profile = serializers.SerializerMethodField()
     department = serializers.StringRelatedField()
-    image = serializers.SerializerMethodField()
+    profile_image = serializers.SerializerMethodField()
 
     def get_is_user_profile(self, obj):
         request = self.context['request']
