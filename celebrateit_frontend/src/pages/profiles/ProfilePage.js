@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -55,45 +55,42 @@ const ProfilePage = () => {
 
   return (
     <Container>
-      <Row>
-        {/* Left Column - User Profile Info */}
-        <Col md={6}>
-          {profile && (
-            <div className={styles.ProfileWrapper}>
-              <div className={styles.Banner} />
+      {/* User Profile Info */}
+      {profile && (
+        <div className={styles.ProfileWrapper}>
+          <div className={styles.Banner} />
 
-              {/* Avatar overlaps banner */}
-              <div className={styles.AvatarWrapper}>
-                <img
-                  src={profile.profile_image}
-                  alt={`${profile.first_name} ${profile.last_name}`}
-                  className={styles.ProfileAvatar}
-                />
-              </div>
+          {/* Avatar overlaps banner */}
+          <div className={styles.AvatarWrapper}>
+            <img
+              src={profile.profile_image}
+              alt={`${profile.first_name} ${profile.last_name}`}
+              className={styles.ProfileAvatar}
+            />
+          </div>
 
-              {/* Profile info + edit icon */}
-              <div className={styles.ProfileDetails}>
-                <div className={styles.NameRow}>
-                  <h3>
-                    {profile.first_name} {profile.last_name}
-                  </h3>
-                  {profile.is_user_profile && (
-                    <span className={styles.EditIcon}>
-                      <i className="fa-solid fa-pen" />
-                    </span>
-                  )}
-                </div>
-                <p className={styles.Department}>{profile.department}</p>
-                <p className={styles.Bio}>
-                  {profile.presentation || "No bio yet."}
-                </p>
-              </div>
+          {/* Profile info + edit icon */}
+          <div className={styles.ProfileDetails}>
+            <div className={styles.NameRow}>
+              <h3>
+                {profile.first_name} {profile.last_name}
+              </h3>
+              {profile.is_user_profile && (
+                <span className={styles.EditIcon}>
+                  <i className="fa-solid fa-pen" />
+                </span>
+              )}
             </div>
-          )}
-        </Col>
-
-        {/* Right Column - User Posts & Nominations */}
-        <Col md={6}>
+            <p className={styles.Department}>{profile.department}</p>
+            <p className={styles.Bio}>
+              {profile.presentation || "No bio yet."}
+            </p>
+          </div>
+        </div>
+      )}
+      <div className={styles.TwoColumnFeed}>
+        <div className={styles.FeedColumn}>
+          <h4>Your Recognitions</h4>
           {recognitions.map((post) => (
             <RecognitionCard
               key={`post-${post.id}`}
@@ -106,7 +103,9 @@ const ProfilePage = () => {
               }
             />
           ))}
-
+        </div>
+        <div className={styles.FeedColumn}>
+          <h4>Your Nominations</h4>
           {nominations.map((nom) => (
             <NominationCard
               key={`nom-${nom.id}`}
@@ -119,8 +118,8 @@ const ProfilePage = () => {
               }
             />
           ))}
-        </Col>
-      </Row>
+        </div>
+      </div>
     </Container>
   );
 };
