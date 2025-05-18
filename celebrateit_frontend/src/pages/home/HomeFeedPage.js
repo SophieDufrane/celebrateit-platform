@@ -100,7 +100,7 @@ const HomeFeedPage = () => {
                       <RecognitionCard
                         key={`post-${post.id}`}
                         {...post}
-                        setPosts={setRecognitions}
+                        setRecognitions={setRecognitions}
                         onPostDelete={(deletedId) =>
                           setRecognitions((prev) =>
                             prev.filter((r) => r.id !== deletedId)
