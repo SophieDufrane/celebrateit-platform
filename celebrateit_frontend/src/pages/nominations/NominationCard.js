@@ -13,6 +13,7 @@ const NominationCard = (props) => {
     title,
     content,
     display_name,
+    profile_image,
     created_at,
     is_user,
     nominee_display_name: nominee,
@@ -63,6 +64,7 @@ const NominationCard = (props) => {
         title={title}
         content={truncatedContent}
         display_name={display_name}
+        profile_image={profile_image}
         created_at={created_at}
         renderDropdown={
           is_user && (

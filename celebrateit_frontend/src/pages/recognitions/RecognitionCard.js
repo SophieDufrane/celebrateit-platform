@@ -16,6 +16,7 @@ const RecognitionCard = (props) => {
     content,
     image,
     display_name,
+    profile_image,
     created_at,
     likes_count,
     comments_count,
@@ -157,6 +158,7 @@ const RecognitionCard = (props) => {
         title={title}
         content={truncatedContent}
         display_name={display_name}
+        profile_image={profile_image}
         created_at={created_at}
         likes_count={likes_count}
         comments_count={comments_count}

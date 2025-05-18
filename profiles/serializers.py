@@ -14,16 +14,26 @@ class UserProfileSerializer(serializers.ModelSerializer):
     last_name = serializers.ReadOnlyField(source='user.last_name')
     is_user_profile = serializers.SerializerMethodField()
     department = serializers.StringRelatedField()
+    image = serializers.SerializerMethodField()
 
     def get_is_user_profile(self, obj):
         request = self.context['request']
         return request.user == obj.user
 
+    def get_profile_image(self, obj):
+        if obj.image and hasattr(obj.image, 'url'):
+            return obj.image.url
+        # fallback image
+        return (
+            "https://res.cloudinary.com/dupxlk3kb/"
+            "image/upload/v1/default_profile.png"
+        )
+
     class Meta:
         model = UserProfile
         fields = [
             'id', 'user', 'first_name', 'last_name', 'created_at',
-            'updated_at', 'presentation', 'department', 'image',
+            'updated_at', 'presentation', 'department', 'profile_image',
             'is_user_profile',
         ]
 

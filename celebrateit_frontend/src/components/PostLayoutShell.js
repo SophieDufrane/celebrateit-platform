@@ -9,6 +9,7 @@ const PostLayoutShell = (props) => {
     title,
     content,
     display_name,
+    profile_image,
     created_at,
     renderDropdown,
     postActions,
@@ -22,6 +23,7 @@ const PostLayoutShell = (props) => {
     <Card.Body>
       <PostHeader
         display_name={display_name}
+        profile_image={profile_image}
         created_at={created_at}
         renderDropdown={renderDropdown}
       />

@@ -89,6 +89,7 @@ function NominationDetailPage() {
         title={nomination.title}
         content={nomination.content}
         display_name={nomination.display_name}
+        profile_image={nomination.profile_image}
         created_at={nomination.created_at}
         renderDropdown={dropdownMenu}
         metaTop={

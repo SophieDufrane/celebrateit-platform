@@ -34,7 +34,8 @@ class UserProfile(models.Model):
     )
     image = models.ImageField(
         upload_to='images/',
-        default='../default_profile_vjekwr',
+        blank=True,
+        null=True,
         verbose_name="Profile picture",
         help_text="Upload a square image for best results."
     )
