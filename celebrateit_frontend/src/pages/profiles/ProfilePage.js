@@ -12,7 +12,7 @@ const ProfilePage = () => {
     const fetchProfile = async () => {
       try {
         const { data } = await axiosReq.get(`/user-profiles/${id}/`);
-        console.log("Fetched profile:", data);
+        console.log("Profile image:", data.profile_image);
         setProfile(data);
       } catch (err) {
         console.error("Error fetching profile:", err);
@@ -27,10 +27,25 @@ const ProfilePage = () => {
       <Row>
         {/* Left Column - User Profile Info */}
         <Col md={8}>
-          <h2>
-            {profile.first_name} {profile.last_name}
-          </h2>
-          <p>{profile.presentation || "No bio yet."}</p>
+          {profile && (
+            <>
+              <img
+                src={profile.profile_image}
+                alt={`${profile.first_name} ${profile.last_name}`}
+                style={{
+                  width: "80px",
+                  height: "80px",
+                  objectFit: "cover",
+                  borderRadius: "50%",
+                  marginBottom: "1rem",
+                }}
+              />
+              <h2>
+                {profile.first_name} {profile.last_name}
+              </h2>
+              <p>{profile.presentation || "No bio yet."}</p>
+            </>
+          )}
         </Col>
 
         {/* Right Column - User Posts & Nominations */}
