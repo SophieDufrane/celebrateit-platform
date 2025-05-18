@@ -6,13 +6,7 @@ import styles from "../styles/Profile.module.css";
  * Includes avatar placeholder, display name, date, and optional dropdown.
  */
 function PostHeader(props) {
-  const {
-    profile_image,
-    display_name,
-    presentation,
-    created_at,
-    renderDropdown,
-  } = props;
+  const { profile_image, display_name, created_at, renderDropdown } = props;
 
   console.log("Profile image src:", profile_image);
 

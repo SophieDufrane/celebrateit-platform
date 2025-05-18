@@ -63,7 +63,7 @@ function App() {
           />
 
           {/* User Profile */}
-          <Route exact path="/profile" component={ProfilePage} />
+          <Route exact path="/profiles/:id" component={ProfilePage} />
 
           {/* Auth */}
           <Route exact path="/login" component={SignInForm} />
