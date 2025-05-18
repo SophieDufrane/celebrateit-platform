@@ -1,5 +1,4 @@
 import React from "react";
-// import styles from "../styles/PostCard.module.css";
 import styles from "../styles/Profile.module.css";
 
 /**
@@ -18,18 +17,13 @@ function PostHeader(props) {
   console.log("Profile image src:", profile_image);
 
   return (
-    <div className="d-flex justify-content-between mb-3">
-      <div className="d-flex align-items-center">
+    <div className={styles.PostHeaderWrapper}>
+      <div className={styles.HeaderLeft}>
         <img src={profile_image} alt={display_name} className={styles.Avatar} />
-        <div className="ms-3">
-          <strong className="d-block">{display_name}</strong>
-          {presentation && (
-            <div className="text-muted small">{presentation}</div>
-          )}
-        </div>
+        <strong>{display_name}</strong>
       </div>
-      <div className="d-flex align-items-start">
-        {created_at && <small className="text-muted me-2">{created_at}</small>}
+      <div className="d-flex align-items-center">
+        <small className="text-muted me-2">{created_at}</small>
         {renderDropdown}
       </div>
     </div>

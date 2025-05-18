@@ -1,7 +1,21 @@
+.PostHeaderWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 1rem;
+}
+
+.HeaderLeft {
+  display: flex;
+  align-items: center;
+}
+
 .Avatar {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   object-fit: cover;
   border-radius: 50%;
-  border: 1px solid #ccc;
+  margin-right: 0.8rem;
 }
