@@ -76,8 +76,6 @@ CelebrateIt is designed for:
 
 To plan the project development, I adopted an Agile methodology centered on user experience. By using user stories grouped into EPICs, the project is broken down into smaller, manageable pieces, ensuring a structured and user-focused approach.
 
----
-
 #### **EPIC – Getting Started & Joining the Platform**
 
 | **ID**                                                          | **Theme**                | **User Story**                                                                       | **Prioritisation** |
@@ -131,7 +129,6 @@ To plan the project development, I adopted an Agile methodology centered on user
 
 User experience was prioritized by keeping the interface clean, predictable, and intuitive. The dual-feed layout, clear form feedback, dropdown menus, and use of color were guided by accessibility and usability best practices. The decision to split recognitions and nominations into distinct components also stems from a UX-first mindset: each content type needed to be readable, skimmable, and visually distinct.
 
-
 ### 2.2 Scope
 
 All features listed above are prioritised using the **MoSCoW Framework** to guide development focus and ensure a successful MVP.
@@ -148,7 +145,7 @@ The current breakdown is:
 
 This distribution ensures alignment with project constraints and focus, while still allowing space for polish and stretch goals where appropriate.
 
-### Entity Relationship Diagram (ERD)
+#### Entity Relationship Diagram (ERD)
 
 The ERD provides a high-level overview of the database structure, including the relationships between key models such as users, profiles, recognitions, nominations, tags, comments, and likes. It was designed early in the planning phase to ensure consistent field usage and API compatibility.
 
@@ -159,8 +156,6 @@ The ERD provides a high-level overview of the database structure, including the 
 This section provides a visual representation of the user navigation flow within CelebrateIt. The flowchart captures how users interact with the platform, including key actions such as logging in, browsing stories, creating recognition posts, and navigating between profile pages.
 
 ![Flowchart](documentation/flowchart_celebrateit.png)
-
----
 
 ### 2.3 System Architecture
 
@@ -175,8 +170,6 @@ CelebrateIt follows a decoupled architecture, separating the backend and fronten
   - Both frontend and backend are deployed via **Heroku** using a single monorepo setup, ensuring a unified deployment pipeline and simplified maintenance.
 
 This architecture supports scalability and flexibility.
-
----
 
 ### 2.4 Skeleton
 
@@ -201,10 +194,10 @@ The following wireframes outline the structure and layout of the main screens in
 </details>
 
 <details>
-   <summary>Recognition / Nomination Detail View</summary>
+   <summary>Recognition / Nomination Detail Page</summary>
 
    <p>
-      <img src="documentation/frontend/wireframe/.png" alt="Recognition and Nomination Detail View" />
+      <img src="documentation/frontend/wireframe/.png" alt="Recognition and Nomination Detail Page" />
    </p>
 </details>
 
@@ -294,8 +287,6 @@ Below are the final implementations of the main pages, which evolved from the or
    </p>
 </details>
 
----
-
 ### 2.5 Surface
 
 #### Typography & Colour Scheme
@@ -349,10 +340,23 @@ The colour palette echoes tech industry trends while adding warmth to reflect hu
 
 ### Potential Future Enhancements
 
-- Profile feed: view your own recognitions and nominations
-- ....
-- ....
-- ....
+- **Comment and Like Functionality on Nominations**  
+  Extend the interactive features available on recognition posts to nominations, allowing users to express appreciation or share supportive comments on nomination cards.
+
+- **Quick Nomination Button from People Sidebar**  
+  Allow users to click a “Nominate” button directly next to a coworker’s name in the sidebar search results, pre-filling the nominee field on the nomination form.
+
+- **Tag-Based Visual Filters**  
+  Replace the current tag dropdown with a horizontal tag bar featuring colored badges/icons for each tag. Clicking a tag would visually filter the nominations feed by category (e.g., Innovation, Leadership, Teamwork).
+
+- **Department-Based Feed Filters**  
+  Introduce a filter system to view recognitions and nominations by department, helping teams focus on their own group’s stories and achievements.
+
+- **Saved Filters or Personal Feed Preferences**  
+  Allow users to set preferred filters (e.g., tags, people, or departments) that persist between sessions for a more personalized experience.
+
+- **Admin Dashboard (HR/Team Leads)**  
+  A potential admin-level view to analyze engagement, tag frequency, or most recognized employees for internal reporting or performance reviews.
 
 ---
 
@@ -368,8 +372,6 @@ The backend API was developed using Django and the Django REST Framework:
 - **PostgreSQL** – Relational database hosted on Heroku via automatic provisioning.
 - **Cloudinary** – Handles media uploads and delivery, especially for user-submitted images.
 
----
-
 ### 4.2 Frontend
 
 The frontend of CelebrateIt was built using the following technologies:
@@ -383,8 +385,6 @@ The frontend of CelebrateIt was built using the following technologies:
 #### React Hooks & Architecture
 
 CelebrateIt relies heavily on React functional components with hooks for local state and side effects. `useState` manages form inputs, toggle states, and like/comment data. `useEffect` is used for fetching API data and syncing profile updates. The component structure emphasizes separation of concerns: shared layout (`PostLayoutShell`), interaction elements (`PostForm`), and containers provide clarity and reusability across the app.
-
----
 
 ### 4.3 Deployment & Tools
 
@@ -435,8 +435,6 @@ The backend is organised into feature-based Django apps:
 
 Each app follows the same structure: `models.py`, `serializers.py`, `views.py`, and `urls.py`. Common permissions are stored in the main `celebrateit_api/permissions.py`.
 
----
-
 ### 5.3 Frontend Component Structure
 
 #### Refactoring & Naming Decisions
@@ -457,15 +455,11 @@ Despite the naming mismatch, internal consistency was maintained, and the API fu
 
 The frontend originally aimed to reuse as many components as possible by treating both **recognitions** and **nominations** under a shared structure. However, the visual and behavioral differences between these two types gradually made this strategy unsustainable.
 
----
-
 #### Key Challenges:
 
 - **Component Naming Confusion**: Because recognitions were tied to the `Post` model, the frontend component that handled recognitions was also named `Post`. Meanwhile, a generic shared component also used the name `Post`, leading to frequent confusion during development.
 - **Layout Divergence**: Recognitions contain optional images, likes, and comments, while nominations include unique elements like nominee name and tag (with styling).
 - **Conditional Logic Overload**: `PostCard` initially handled both types through conditional rendering, which became hard to maintain and error-prone.
-
----
 
 #### Refactor Strategy & Results
 
@@ -483,8 +477,6 @@ This refactor provided:
 - Clear separation of concerns between recognitions and nominations
 - Better maintainability and scalability for future features
 - Improved readability of both JSX and CSS modules
-
----
 
 #### Component Tree
 
@@ -545,6 +537,8 @@ ProfilePage (container)
 ├── ProfileFeedSection (container)
 
 ```
+
+---
 
 ## 6. Testing
 
@@ -933,6 +927,8 @@ Each section below corresponds to a model and includes the tested endpoint, HTTP
 
 </details>
 
+---
+
 ### 6.2 Front-End Application Testing
 
 All manual testing was performed on the deployed frontend using a real user account. Each user story was tested with expected interactions and outcomes, covering both positive and negative cases.
@@ -998,7 +994,6 @@ Testing included:
 
 </details>
 
----
 
 #### **Recognition CRUD**
 
@@ -1052,7 +1047,6 @@ Testing included:
 
 </details>
 
----
 
 #### **Nomination CRUD**
 
@@ -1120,7 +1114,6 @@ Testing included:
 
 </details>
 
----
 
 #### **Engaging with People & Posts**
 
@@ -1189,9 +1182,10 @@ Create Nomination – Dropdown Requires Double Click:
 
 - **Bug**: In the nominee search field, clicking a user's name doesn't collapse the dropdown unless clicked twice.
 - **Status**: Still unresolved.
-- **Observation**: 
-- **Planned Fix**: 
+- **Observation**:
+- **Planned Fix**:
 
+---
 
 ## 7. Deployment
 
@@ -1429,8 +1423,6 @@ WHITENOISE_ROOT = BASE_DIR / 'staticfiles_build' / 'build'
    psycopg2==2.9.9
    ```
 
----
-
 ### Heroku Config Vars (Final Fullstack)
 
 | Key                     | Value                            |
@@ -1442,7 +1434,6 @@ WHITENOISE_ROOT = BASE_DIR / 'staticfiles_build' / 'build'
 | `CLOUDINARY_URL`        | From Cloudinary dashboard        |
 | `DISABLE_COLLECTSTATIC` | `1` (optional during setup)      |
 
----
 
 ### Final Deployment Steps
 
@@ -1497,6 +1488,8 @@ Follow these steps to fork, clone, and work on the project:
 - CORS was restricted via `CLIENT_ORIGIN` and `CORS_ALLOW_CREDENTIALS` to allow only known origins.
 
 These precautions were followed to prevent security vulnerabilities and meet best practices for cloud deployment.
+
+---
 
 ## 8. Credit
 
