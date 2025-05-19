@@ -92,7 +92,7 @@ const ProfilePage = () => {
         <div className={styles.FeedColumn}>
           <h4>Your Recognitions</h4>
           {recognitions
-            .filter((post) => post.is_user)
+            .filter((post) => post.user === profile.user)
             .map((post) => (
               <RecognitionCard
                 key={`post-${post.id}`}
@@ -108,18 +108,24 @@ const ProfilePage = () => {
         </div>
         <div className={styles.FeedColumn}>
           <h4>Your Nominations</h4>
-          {nominations.map((nom) => (
-            <NominationCard
-              key={`nom-${nom.id}`}
-              {...nom}
-              setPosts={setNominations}
-              onPostDelete={(deletedId) =>
-                setNominations((prevNoms) =>
-                  prevNoms.filter((n) => n.id !== deletedId)
-                )
-              }
-            />
-          ))}
+          {nominations
+            .filter(
+              (nom) =>
+                nom.nominator === profile.user ||
+                nom.nominee_username === profile.user
+            )
+            .map((nom) => (
+              <NominationCard
+                key={`nom-${nom.id}`}
+                {...nom}
+                setPosts={setNominations}
+                onPostDelete={(deletedId) =>
+                  setNominations((prevNoms) =>
+                    prevNoms.filter((n) => n.id !== deletedId)
+                  )
+                }
+              />
+            ))}
         </div>
       </div>
     </Container>

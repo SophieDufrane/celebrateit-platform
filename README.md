@@ -181,7 +181,7 @@ The following wireframes outline the structure and layout of the main screens in
    <summary>Authentification Form</summary>
 
    <p>
-      <img src="documentation/frontend/wireframe/.png" alt="Authentification Form" />
+      <img src="documentation/frontend/wireframe/auth.png" alt="Authentification Form" />
    </p>
 </details>
 
@@ -189,7 +189,7 @@ The following wireframes outline the structure and layout of the main screens in
    <summary>Home Feed Page</summary>
 
    <p>
-      <img src="documentation/frontend/wireframe/.png" alt="Home Feed Page" />
+      <img src="documentation/frontend/wireframe/home_feed.png" alt="Home Feed Page" />
    </p>
 </details>
 
@@ -197,7 +197,7 @@ The following wireframes outline the structure and layout of the main screens in
    <summary>Recognition / Nomination Detail Page</summary>
 
    <p>
-      <img src="documentation/frontend/wireframe/.png" alt="Recognition and Nomination Detail Page" />
+      <img src="documentation/frontend/wireframe/detail_page.png" alt="Recognition and Nomination Detail Page" />
    </p>
 </details>
 
@@ -205,10 +205,9 @@ The following wireframes outline the structure and layout of the main screens in
    <summary>User Profile Page</summary>
 
    <p>
-      <img src="documentation/frontend/wireframe/.png" alt="User Profile Page" />
+      <img src="documentation/frontend/wireframe/profile.png" alt="User Profile Page" />
    </p>
 </details>
-
 
 #### Final UI Screenshots
 
@@ -222,7 +221,6 @@ Below are the final implementations of the main pages, which evolved from the or
    </p>
 </details>
 
-   
 <details>
    <summary>Log in to an existing Account</summary>
 
@@ -419,8 +417,6 @@ A **Kanban-style** board was implemented using **GitHub Projects** to visually m
       <img src="documentation/" alt=">User Story detail" />
    </p>
 </details>
-
-
 
 ### 5.2 Backend Code Structure
 
@@ -994,7 +990,6 @@ Testing included:
 
 </details>
 
-
 #### **Recognition CRUD**
 
 | **Priority** | **User Story**          | **Page(s)**            | **Test Scenario / Action**            | **Expected Result**                                 | Actual | **Screenshot** |
@@ -1046,7 +1041,6 @@ Testing included:
 ![6](documentation/frontend/testing/recognition/recognition_delete_successful.png)
 
 </details>
-
 
 #### **Nomination CRUD**
 
@@ -1114,7 +1108,6 @@ Testing included:
 
 </details>
 
-
 #### **Engaging with People & Posts**
 
 | **Priority** | **User Story**         | **Page(s)**     | **Test Scenario / Action**            | **Expected Result**                                   | Actual | **Screenshot** |
@@ -1162,7 +1155,6 @@ Testing included:
 - **Python**
 
 - **Lighthouse Performance & Best Practices Testing**
-
 
 ### 6.4 Bugs and Fixes
 
@@ -1433,7 +1425,6 @@ WHITENOISE_ROOT = BASE_DIR / 'staticfiles_build' / 'build'
 | `SECRET_KEY`            | Django secret                    |
 | `CLOUDINARY_URL`        | From Cloudinary dashboard        |
 | `DISABLE_COLLECTSTATIC` | `1` (optional during setup)      |
-
 
 ### Final Deployment Steps
 
