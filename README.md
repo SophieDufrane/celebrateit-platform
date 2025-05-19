@@ -25,11 +25,9 @@
 
 5. [Development & Project Planning](#5-development--project-planning)
 
-   - [5.1 Frontend Evolution of Component Structure](#51-frontend-evolution-of-component-structure)
-   - [5.2 Code Structure (Backend)](#52-code-structure-backend)
-   - [Pages & Containers Overview](#pages--containers-overview)
-   - [Component Tree](#component-tree)
-   - [Key Planning Decisions](#key-planning-decisions)
+   - [5.1 Agile methodology]()
+   - [5.2 Backend Code Structure]()
+   - [5.3 Frontend Component Structure]()
 
 6. [Testing](#6-testing)
 
@@ -356,49 +354,72 @@ The frontend of CelebrateIt was built using the following technologies:
 
 ## 5. Development & Project Planning
 
-### 5.1 Frontend Evolution of Component Structure
+### 5.1 Agile methodology
 
-#### Initial Structure
+- Kanban, or other approaches used
 
-CelebrateIt was built with a focus on reusability and clean structure from the start (DRY):
 
-- A shared layout wrapper, `PostLayoutShell`, was created to handle common elements between recognitions and nominations (avatar, title, content, dropdown, etc.) as well as children for specific elements.
-- This shell was initially used inside a single component: `PostCard`, which handled both recognitions and nominations in the feed.
-- Nomination-specific logic (e.g. nominee name and tag) was conditionally rendered inside `PostCard`.
+### 5.2 Backend Code Structure
 
-As development progressed:
+The backend is organised into feature-based Django apps:
 
-- Conditional rendering became harder to manage.
-- Post and Nomination diverged in layout (image for Post only; nominee/tag for Nominations).
-- Code readability and maintainability suffered.
+- `posts/` – Recognition stories with optional image
+- `nominations/` – Peer nominations with required tag and nominee selection
+- `profiles/` – User profile extensions with department
+- `likes/` and `comments/` – Interactions for recognition stories
+- `tags/` – Used to categorize nominations
+- `department/` – Departments available for user filtering and classification
 
-**Decision:** Refactor into two separate components.
-
-#### Refactor Outcome
-
-- `PostLayoutShell`: the shared layout wrapper for both Post and Nomination cards was cleaned of any specific elements.
-- `PostHeader`: The header portion with avatar, name, time stamp, and dropdown menu, was extracted into its own component for even greater clarity and reuse.
-- `PostCard`: Now focused solely on recognition posts, includes image and likes/comments.
-- `NominationCard`: A dedicated component for nominations was created, injecting nominee and tag via `extraContent` prop.
-- `extraContent` prop: Enables layout flexibility without bloating shared structure.
-
-This refactor improved clarity, maintainability, and scalability.
+Each app follows the same structure: `models.py`, `serializers.py`, `views.py`, and `urls.py`. Common permissions are stored in the main `celebrateit_api/permissions.py`.
 
 ---
 
-#### Pages & Containers Overview
+### 5.3 Frontend Component Structure
 
-| Page (File)                 | Purpose                                                            |
-| --------------------------- | ------------------------------------------------------------------ |
-| `SignInForm` / `SignUpForm` | Handles login and registration forms                               |
-| `LoggedInHomePage`          | Displays recognition + nomination feed snippets and people sidebar |
-| `PostDetailPage`            | Renders a full recognition story with comments                     |
-| `NominationDetailPage`      | Renders a full nomination with nominee and tag                     |
-| `CreatePostPage`            | Form to submit a new recognition post                              |
-| `UpdatePostPage`            | Form to edit an existing recognition post                          |
-| `CreateNominationPage`      | Form to submit a new nomination (with nominee and tag)             |
-| `UpdateNominationPage`      | Form to edit an existing nomination (content and tag-not nominee)  |
-| `ProfilePage`               | Displays user profile, recognitions, and nominations               |
+#### Refactoring & Naming Decisions
+
+- **Backend Naming: Recognition vs. Nomination**
+
+At the beginning of development, the term **“post”** was used in the backend to represent a **recognition** entry. This naming choice made sense during the early phases, especially given the social-media style feed, but as the project grew to include **nominations** as a distinct content type, this naming led to confusion.
+
+In hindsight:
+
+- The model representing a recognition story should have been named `Recognition` instead of `Post`.
+- The use of `post` throughout serializers, views, and URLs became semantically ambiguous once nominations were introduced.
+- This naming limitation was preserved to avoid heavy refactoring and potential migration issues close to the project deadline.
+
+Despite the naming mismatch, internal consistency was maintained, and the API functionality remained clear and testable.
+
+- **Frontend Refactor: From Shared Logic to Dedicated Components**
+
+The frontend originally aimed to reuse as many components as possible by treating both **recognitions** and **nominations** under a shared structure. However, the visual and behavioral differences between these two types gradually made this strategy unsustainable.
+
+---
+
+#### Key Challenges:
+
+- **Component Naming Confusion**: Because recognitions were tied to the `Post` model, the frontend component that handled recognitions was also named `Post`. Meanwhile, a generic shared component also used the name `Post`, leading to frequent confusion during development.
+- **Layout Divergence**: Recognitions contain optional images, likes, and comments, while nominations include unique elements like nominee name and tag (with styling).
+- **Conditional Logic Overload**: `PostCard` initially handled both types through conditional rendering, which became hard to maintain and error-prone.
+
+---
+
+#### Refactor Strategy & Results
+
+To address these issues, a structured refactor was implemented:
+
+| Component         | Purpose                                                                 |
+| ----------------- | ----------------------------------------------------------------------- |
+| `PostLayoutShell` | Shared structural wrapper for both types (title, content, header, etc.) |
+| `PostHeader`      | Extracted component for avatar, name, timestamp, and dropdown menu      |
+| `PostCard`        | Focused solely on recognitions, includes image, like/comment logic      |
+| `NominationCard`  | Handles nominations; renders nominee + tag via `extraContent` prop      |
+
+This refactor provided:
+
+- Clear separation of concerns between recognitions and nominations
+- Better maintainability and scalability for future features
+- Improved readability of both JSX and CSS modules
 
 ---
 
@@ -409,16 +430,15 @@ This refactor improved clarity, maintainability, and scalability.
 Navbar (component)
 ├── NavLinks (Home, Recognise, Nominate, Profile, Logout)
 
-LoggedInHomePage (container)
+HomeFeedPage (container)
 ├── FeedSection
 │     ├── FeedToggleButtons
 │     ├── FeedList
-│     │     ├── PostCard → PostLayoutShell
+│     │     ├── RecognitionCard → PostLayoutShell
 │     │     └── NominationCard → PostLayoutShell
 ├── PeopleSidebar
 │     ├── SearchField
 │     └── PeopleList
-│           └── PersonCard → NominateButton
 
 PostLayoutShell
 ├── PostHeader (shared header)
@@ -431,7 +451,7 @@ PostLayoutShell
 ├── extraContent (optional – e.g. 'View full post' or tag block)
 └── children (optional – image, comments, etc.)
 
-PostDetailPage (container)
+RecognitionDetailPage (container)
 ├── PostLayoutShell
 │     └── children
 │           ├── PostImage (optional)
@@ -444,7 +464,7 @@ NominationDetailPage (container)
 │     └── metaTop (nominee info + tag badge)
 ├── ConfirmDeleteModal
 
-CreatePostPage / UpdatePostPage (container)
+CreateRecognitionPage / UpdateRecognitionPage (container)
 └── PostForm
       └── Image upload (optional)
 
@@ -462,34 +482,6 @@ ProfilePage (container)
 ├── ProfileFeedSection (container)
 
 ```
-
-#### Key Planning Decisions
-
-- **Start DRY, then refactor:** Initially reused `PostCard` for both types.
-- **Split when complexity grew:** Introduced `NominationCard` to separate logic and layout.
-- **Centralised layout wrapper:** Used `PostLayoutShell` with `extraContent` prop for flexibility.
-- **Deadline-first logic:** Skipped advanced filters to stay on track.
-- **Backend alignment:** Ensured API compatibility throughout (fields, validation).
-- **Embedded comment sections:** Avoided separate routes for commenting for simplicity.
-
----
-
-- Agile methodology, Kanban, or other approaches used
-
-### 5.2 Code Structure (Backend)
-
-The backend is organised into feature-based Django apps:
-
-- `posts/` – Recognition stories and related logic
-- `nominations/` – Peer nominations with required tag selection
-- `profiles/` – User profile extensions with department links
-- `likes/` and `comments/` – Interactions for recognition stories
-- `tags/` – Used to categorize nominations
-- `department/` – Departments available for user filtering and classification
-
-Each app follows the same structure: `models.py`, `serializers.py`, `views.py`, and `urls.py`. Common permissions are stored in the main `celebrateit_api/permissions.py`.
-
----
 
 ## 6. Testing
 
