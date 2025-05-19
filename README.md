@@ -54,7 +54,7 @@
 
 [CelebrateIt](https://celebrateit-866641373084.herokuapp.com/) is a mock employee recognition platform inspired by the solutions offered by [Workhuman](https://www.workhuman.com). It allows employees to share recognition stories, nominate colleagues for their achievements, and engage with content through likes and comments. By fostering a sense of appreciation and collaboration, CelebrateIt mirrors the functionality and purpose of modern social recognition platforms.
 
-Built using Django REST for the backend and React for the frontend, this project serves as a learning and portfolio exercise, demonstrating full-stack development skills in designing a scalable, functional, and user-friendly web application.
+The project was built with the goal of designing a full-stack, token-authenticated web application using Django REST (backend) and React (frontend). It serves as a learning and portfolio project to demonstrate key development skills, including CRUD operations, component-based design, RESTful API integration, and deployment to Heroku.
 
 ### Target Audience
 
@@ -127,6 +127,11 @@ To plan the project development, I adopted an Agile methodology centered on user
 
 ---
 
+#### UX Design Principles
+
+User experience was prioritized by keeping the interface clean, predictable, and intuitive. The dual-feed layout, clear form feedback, dropdown menus, and use of color were guided by accessibility and usability best practices. The decision to split recognitions and nominations into distinct components also stems from a UX-first mindset: each content type needed to be readable, skimmable, and visually distinct.
+
+
 ### 2.2 Scope
 
 All features listed above are prioritised using the **MoSCoW Framework** to guide development focus and ensure a successful MVP.
@@ -181,33 +186,35 @@ The following wireframes outline the structure and layout of the main screens in
 
 <details>
    <summary>Authentification Form</summary>
-   
-   ![Authentification](documentation/frontend/wireframe/.png)
-   
+
+   <p>
+      <img src="documentation/frontend/wireframe/.png" alt="Authentification Form" />
+   </p>
 </details>
 
-
-   <details>
+<details>
    <summary>Home Feed Page</summary>
-   
-   ![Home](documentation/frontend/wireframe/.png)
-   
-   </details>
 
-   <details>
+   <p>
+      <img src="documentation/frontend/wireframe/.png" alt="Home Feed Page" />
+   </p>
+</details>
+
+<details>
    <summary>Recognition / Nomination Detail View</summary>
 
-   ![Detail View](documentation/frontend/wireframe/.png)
+   <p>
+      <img src="documentation/frontend/wireframe/.png" alt="Recognition and Nomination Detail View" />
+   </p>
+</details>
 
-   </details>
-
-
-   <details>
+<details>
    <summary>User Profile Page</summary>
 
-   ![Profile](documentation/frontend/wireframe/.png)
-
-   </details>
+   <p>
+      <img src="documentation/frontend/wireframe/.png" alt="User Profile Page" />
+   </p>
+</details>
 
 
 #### Final UI Screenshots
@@ -310,8 +317,11 @@ The colour palette echoes tech industry trends while adding warmth to reflect hu
 ![Colour Inspiration](documentation/color_scheme.png)
 
 <details>
-  <summary>Click to view inspiration from Workhuman</summary>
-  <img src="documentation/colours_inspiration_from_workhuman.png">
+  <summary>Inspiration from Workhuman</summary>
+
+   <p>
+      <img src="documentation/colours_inspiration_from_workhuman.png" alt="Inspiration from Workhuman" />
+   </p>
 </details>
 
 ### Typography
@@ -370,6 +380,10 @@ The frontend of CelebrateIt was built using the following technologies:
 - **Bootstrap** – Provides a responsive layout foundation and base UI components.
 - **CSS Modules** – Used for scoped styling of components and to prevent class name collisions.
 
+#### React Hooks & Architecture
+
+CelebrateIt relies heavily on React functional components with hooks for local state and side effects. `useState` manages form inputs, toggle states, and like/comment data. `useEffect` is used for fetching API data and syncing profile updates. The component structure emphasizes separation of concerns: shared layout (`PostLayoutShell`), interaction elements (`PostForm`), and containers provide clarity and reusability across the app.
+
 ---
 
 ### 4.3 Deployment & Tools
@@ -390,7 +404,21 @@ The frontend of CelebrateIt was built using the following technologies:
 
 A **Kanban-style** board was implemented using **GitHub Projects** to visually manage tasks, organize development phases, and track progress through user stories and acceptance criteria.
 
+<details>
+  <summary>Kaban Board</summary>
 
+   <p>
+      <img src="documentation/" alt="Kaban Board" />
+   </p>
+</details>
+
+<details>
+  <summary>User Story with Acceptance Criteria and tasks</summary>
+
+   <p>
+      <img src="documentation/" alt=">User Story detail" />
+   </p>
+</details>
 
 
 
@@ -1142,13 +1170,28 @@ Testing included:
 
 - **Lighthouse Performance & Best Practices Testing**
 
-### 6.3 Bugs and Fixes
 
-- List known bugs
+### 6.4 Bugs and Fixes
 
-- Unresolved issues
+Profile Avatar Not Rendering:
 
----
+- **Bug**: User avatars were not displaying in PostCards, NominationCards, or the profile header.
+- **Cause**: The serializer output did not include the `profile_image` field, and the frontend components were not prepared to receive it.
+- **Fix**: Added `profile_image` to the relevant serializers (Posts, Nominations, Profiles) and updated frontend components (`PostHeader`, `RecognitionCard`, `NominationCard`) to fetch and display the image.
+
+Auth State Not Syncing After Login/Logout:
+
+- **Bug**: After logging in or out, the UI would occasionally show outdated user info or delay updates in the navbar and post ownership checks.
+- **Cause**: The token handling logic didn’t consistently clean up or refresh the current user state across sessions.
+- **Fix**: Improved the token timestamp logic (`removeTokenTimestamp`) and refined how the `CurrentUserContext` handles state during login/logout. The app now reliably reflects auth state throughout all pages.
+
+Create Nomination – Dropdown Requires Double Click:
+
+- **Bug**: In the nominee search field, clicking a user's name doesn't collapse the dropdown unless clicked twice.
+- **Status**: Still unresolved.
+- **Observation**: 
+- **Planned Fix**: 
+
 
 ## 7. Deployment
 
@@ -1425,8 +1468,6 @@ WHITENOISE_ROOT = BASE_DIR / 'staticfiles_build' / 'build'
 - Confirm Django API at `/api/...`
 - Test login, form submissions, image upload, etc.
 
----
-
 ### 7.3 Forking and Cloning
 
 Forking the repository creates a copy of this project, allowing modifications without affecting the original code. Once the repository is forked, it can be cloned to a local machine for development.</br>
@@ -1446,6 +1487,16 @@ Follow these steps to fork, clone, and work on the project:
   - Type `git clone`, then paste the copied URL.
   - Press `Enter`.
   - Navigate to the newly cloned repository directory: `cd` and the repository name.
+
+### 7.4 Security Considerations
+
+- **Secrets and keys** were stored in environment variables and never committed to the repository.
+- **.env** files were added to `.gitignore` to prevent leakage of credentials and config values.
+- The application was deployed with `DEBUG = False` to ensure a secure production environment.
+- Sensitive variables used include `SECRET_KEY`, `CLOUDINARY_URL`, and database credentials.
+- CORS was restricted via `CLIENT_ORIGIN` and `CORS_ALLOW_CREDENTIALS` to allow only known origins.
+
+These precautions were followed to prevent security vulnerabilities and meet best practices for cloud deployment.
 
 ## 8. Credit
 
