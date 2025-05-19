@@ -169,91 +169,112 @@ CelebrateIt follows a decoupled architecture, separating the backend and fronten
   - User-uploaded images are stored on **Cloudinary**
   - Both frontend and backend are deployed via **Heroku** using a single monorepo setup, ensuring a unified deployment pipeline and simplified maintenance.
 
-This architecture supports scalability and flexibility, allowing future iterations such as mobile apps or third-party integrations to use the same backend API.
+This architecture supports scalability and flexibility.
 
 ---
 
 ### 2.4 Skeleton
 
-#### Wireframes for Key Screens or Pages
+#### Wireframes & Final Page Layouts
 
 The following wireframes outline the structure and layout of the main screens in CelebrateIt:
 
-- **Secure Authentication**
+   <details>
+   <summary>Authentification Form</summary>
+   
+   ![Authentification](documentation/frontend/wireframe/.png)
+   
+   </details>
 
-  - Employees register, log in and out securely using **Django Allauth**.
+   <details>
+   <summary>Home Feed Page</summary>
+   
+   ![Home](documentation/frontend/wireframe/.png)
+   
+   </details>
 
-      <details>
-      <summary> Register an Account </summary>
+   <details>
+   <summary>Recognition / Nomination Detail View</summary>
 
-    ![Register](documentation/frontend/skeleton/register_form.png)
+   ![Detail View](documentation/frontend/wireframe/.png)
 
-      </details>
+   </details>
 
-      <details>
-      <summary> Log in to an existing Account </summary>
 
-    ![Log in](documentation/frontend/skeleton/login_form.png)
+   <details>
+   <summary>User Profile Page</summary>
 
-      </details>
+   ![Profile](documentation/frontend/wireframe/.png)
 
-- **Home Feed**
+   </details>
 
-  - Users land on a clean feed displaying recognition stories and nominations with toggle option.
 
-    <details>
-    <summary>Feed Layout</summary>
+#### Final UI Screenshots
 
-    ![Feed](documentation/frontend/skeleton/feed.png)
+Below are the final implementations of the main pages, which evolved from the original wireframes.
 
-    </details>
+   <details>
+   <summary>Register a new account</summary>
+   
+   ![Register](documentation/frontend/skeleton/register_form.png)
+   
+   </details>
+   
+   <details>
+   <summary>Log in to an existing Account</summary>
+      
+   ![Log in](documentation/frontend/skeleton/login_form.png)
+      
+   </details>
 
-- **Create Post / Nomination**
+   <details>
+   <summary>Home Feed Page</summary>
+   
+   ![Home](documentation/frontend/skeleton/.png)
+   
+   </details>
 
-  - Users can create a recognition story or nominate a colleague with a simple form.
+   <details>
+   <summary>Create Recognition Form</summary>
+   
+   ![Create Recognition](documentation/frontend/skeleton/recognition_create.png)
+   
+   </details>
+   
+   <details>
+   <summary>Create Nomination Form</summary>
+   
+   ![Create Nomination](documentation/frontend/skeleton/nomination_create.png)
+   
+   </details>
 
-    <details>
-    <summary>Create Recognition Form</summary>
+   <details>
+   <summary>Recognition Detail Page</summary>
+   
+   ![Recognition Detail](documentation/frontend/skeleton/.png)
+   
+   </details>
 
-    ![Create Post](documentation/frontend/skeleton/recognition_create.png)
+   <details>
+   <summary>Nomination Detail Page</summary>
+   
+   ![Nomination Detail](documentation/frontend/skeleton/.png)
+   
+   </details>
 
-    </details>
+   <details>
+   <summary>User Profile Page</summary>
+   
+   ![Profile](documentation/frontend/skeleton/.png)
+   
+   </details>
 
-    <details>
-    <summary>Create Nomination Form</summary>
-
-    ![Create Nomination](documentation/frontend/skeleton/nomination_create.png)
-
-    </details>
-
-- **Recognition / Nomination Detail View**
-
-  - Users can read full stories, like, and comment on recognitions.
-
-    <details>
-    <summary>Recognition Detail</summary>
-
-    ![Recognition Detail](documentation/frontend/skeleton/recognition_detail.png)
-
-    </details>
-
-    <details>
-    <summary>Nomination Detail</summary>
-
-    ![Nomination Detail](documentation/frontend/skeleton/nomination_detail.png)
-
-    </details>
-
-- **User Profile Page**
-
-  - Displays user's info with avatar, name, bio, department and user's contributions.
-
-    <details>
-    <summary>Profile</summary>
-
-    ![Profile](documentation/frontend/skeleton/profile.png)
-
-    </details>
+   <details>
+   <summary>Edit User Profile</summary>
+   
+   ![Edit Profile](documentation/frontend/skeleton/.png)
+   
+   </details>
 
 ---
 
