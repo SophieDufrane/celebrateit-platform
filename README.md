@@ -179,12 +179,13 @@ This architecture supports scalability and flexibility.
 
 The following wireframes outline the structure and layout of the main screens in CelebrateIt:
 
-   <details>
+<details>
    <summary>Authentification Form</summary>
    
    ![Authentification](documentation/frontend/wireframe/.png)
    
-   </details>
+</details>
+
 
    <details>
    <summary>Home Feed Page</summary>
@@ -213,68 +214,78 @@ The following wireframes outline the structure and layout of the main screens in
 
 Below are the final implementations of the main pages, which evolved from the original wireframes.
 
-   <details>
+<details>
    <summary>Register a new account</summary>
+
+   <p>
+      <img src="documentation/frontend/skeleton/register_form.png" alt="Register Form" />
+   </p>
+</details>
+
    
-   ![Register](documentation/frontend/skeleton/register_form.png)
-   
-   </details>
-   
-   <details>
+<details>
    <summary>Log in to an existing Account</summary>
-      
-   ![Log in](documentation/frontend/skeleton/login_form.png)
-      
-   </details>
 
-   <details>
+   <p>
+      <img src="documentation/frontend/skeleton/login_form.png" alt="Log in form" />
+   </p>
+</details>
+
+<details>
    <summary>Home Feed Page</summary>
-   
-   ![Home](documentation/frontend/skeleton/.png)
-   
-   </details>
 
-   <details>
+   <p>
+      <img src="documentation/frontend/skeleton/.png" alt="Home Feed Page" />
+   </p>
+</details>
+
+<details>
    <summary>Create Recognition Form</summary>
-   
-   ![Create Recognition](documentation/frontend/skeleton/recognition_create.png)
-   
-   </details>
-   
-   <details>
+
+   <p>
+      <img src="documentation/frontend/skeleton/recognition_create.png" alt="Create Recognition Form" />
+   </p>
+</details>
+
+<details>
    <summary>Create Nomination Form</summary>
-   
-   ![Create Nomination](documentation/frontend/skeleton/nomination_create.png)
-   
-   </details>
 
-   <details>
+   <p>
+      <img src="documentation/frontend/skeleton/nomination_create.png" alt="Create Nomination Form" />
+   </p>
+</details>
+
+<details>
    <summary>Recognition Detail Page</summary>
-   
-   ![Recognition Detail](documentation/frontend/skeleton/.png)
-   
-   </details>
 
-   <details>
+   <p>
+      <img src="documentation/frontend/skeleton/nomination_create.png" alt="Recognition Detail Page" />
+   </p>
+</details>
+
+<details>
    <summary>Nomination Detail Page</summary>
-   
-   ![Nomination Detail](documentation/frontend/skeleton/.png)
-   
-   </details>
 
-   <details>
+   <p>
+      <img src="documentation/frontend/skeleton/nomination_create.png" alt="Nomination Detail Page" />
+   </p>
+</details>
+
+<details>
    <summary>User Profile Page</summary>
-   
-   ![Profile](documentation/frontend/skeleton/.png)
-   
-   </details>
 
-   <details>
-   <summary>Edit User Profile</summary>
-   
-   ![Edit Profile](documentation/frontend/skeleton/.png)
-   
-   </details>
+   <p>
+      <img src="documentation/frontend/skeleton/nomination_create.png" alt="User Profile Page" />
+   </p>
+</details>
+
+<details>
+   <summary>Edit User Profile Form</summary>
+
+   <p>
+      <img src="documentation/frontend/skeleton/nomination_create.png" alt="Edit User Profile Form" />
+   </p>
+</details>
 
 ---
 
@@ -377,7 +388,10 @@ The frontend of CelebrateIt was built using the following technologies:
 
 ### 5.1 Agile methodology
 
-- Kanban, or other approaches used
+A **Kanban-style** board was implemented using **GitHub Projects** to visually manage tasks, organize development phases, and track progress through user stories and acceptance criteria.
+
+
+
 
 
 ### 5.2 Backend Code Structure
