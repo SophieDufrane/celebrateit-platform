@@ -65,7 +65,7 @@ ROOT_URLCONF = 'celebrateit_api.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'staticfiles_build')],
+        'DIRS': [os.path.join(BASE_DIR, 'staticfiles' / 'build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
