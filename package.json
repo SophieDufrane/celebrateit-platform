@@ -1,0 +1,7 @@
+{
+  "name": "celebrateit-root",
+  "version": "1.0.0",
+  "scripts": {
+    "heroku-postbuild": "cp -r celebrateit_api/staticfiles_build /app/staticfiles_build"
+  }
+}
