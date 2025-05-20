@@ -129,10 +129,10 @@ USE_TZ = True
 # STATIC FILES
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    BASE_DIR / 'staticfiles_build',
+    BASE_DIR / 'staticfiles' / 'build',
 ]
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-WHITENOISE_ROOT = BASE_DIR / 'staticfiles_build'
+WHITENOISE_ROOT = BASE_DIR / 'staticfiles' / 'build'
 
 # MEDIA FILES
 MEDIA_URL = '/media/'
