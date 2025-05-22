@@ -167,7 +167,21 @@ const HomeFeedPage = () => {
             )
             .map((person) => (
               <ListGroup.Item key={person.id} className={feedStyles.PersonItem}>
-                {person.first_name} {person.last_name}
+                <div className="d-flex align-items-center">
+                  <img
+                    src={person.profile_image}
+                    alt={`${person.first_name}'s avatar`}
+                    className="rounded-circle me-2"
+                    style={{
+                      width: "32px",
+                      height: "32px",
+                      objectFit: "cover",
+                    }}
+                  />
+                  <span>
+                    {person.first_name} {person.last_name}
+                  </span>
+                </div>
               </ListGroup.Item>
             ))}
         </Col>
