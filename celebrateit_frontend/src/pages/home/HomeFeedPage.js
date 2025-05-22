@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import axios from "axios";
 import { Button, Container, Row, Col, ListGroup, Alert } from "react-bootstrap";
 import RecognitionCard from "../recognitions/RecognitionCard";
@@ -11,6 +11,7 @@ const HomeFeedPage = () => {
   const location = useLocation();
   const isDeleted =
     new URLSearchParams(location.search).get("deleted") === "true";
+  const history = useHistory();
 
   // UI State
   const [showDeleted, setShowDeleted] = useState(isDeleted);
@@ -166,7 +167,12 @@ const HomeFeedPage = () => {
                 .includes(searchTerm.toLowerCase())
             )
             .map((person) => (
-              <ListGroup.Item key={person.id} className={feedStyles.PersonItem}>
+              <ListGroup.Item
+                key={person.id}
+                className={feedStyles.PersonItem}
+                onClick={() => history.push(`/profiles/${person.id}`)}
+                style={{ cursor: "pointer" }}
+              >
                 <div className="d-flex align-items-center">
                   <img
                     src={person.profile_image}
