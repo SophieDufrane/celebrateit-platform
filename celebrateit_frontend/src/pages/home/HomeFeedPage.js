@@ -149,7 +149,7 @@ const HomeFeedPage = () => {
         </Col>
 
         {/* Right Column - Sidebar */}
-        <Col md={4} className={feedStyles.PeopleSidebar}>
+        <Col md={4}>
           {/* Search field placeholder */}
           <input
             type="text"
@@ -173,16 +173,10 @@ const HomeFeedPage = () => {
                 onClick={() => history.push(`/profiles/${person.id}`)}
                 style={{ cursor: "pointer" }}
               >
-                <div className="d-flex align-items-center">
+                <div className={feedStyles.PersonContent}>
                   <img
                     src={person.profile_image}
                     alt={`${person.first_name}'s avatar`}
-                    className="rounded-circle me-2"
-                    style={{
-                      width: "32px",
-                      height: "32px",
-                      objectFit: "cover",
-                    }}
                   />
                   <span>
                     {person.first_name} {person.last_name}
