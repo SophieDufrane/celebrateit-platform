@@ -10,11 +10,14 @@ const EditProfileForm = () => {
   const { id } = useParams();
   const history = useHistory();
 
-  // Profile State
+  // Profile State - basic fields
   const [profile, setProfile] = useState(null);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [presentation, setPresentation] = useState("");
+
+  // Profile State - image handling
+  const [imageFile, setImageFile] = useState(null);
 
   // Fetch Profile on Mount
   useEffect(() => {
@@ -66,7 +69,7 @@ const EditProfileForm = () => {
           >
             <OverlayTrigger
               placement="top"
-              overlay={<Tooltip>Update your first name</Tooltip>}
+              overlay={<Tooltip>Update your last name</Tooltip>}
             >
               <Form.Control
                 type="text"
@@ -83,7 +86,7 @@ const EditProfileForm = () => {
           >
             <OverlayTrigger
               placement="top"
-              overlay={<Tooltip>Update your first name</Tooltip>}
+              overlay={<Tooltip>Write something about yourself</Tooltip>}
             >
               <Form.Control
                 as="textarea"
@@ -94,6 +97,22 @@ const EditProfileForm = () => {
               />
             </OverlayTrigger>
           </Form.Group>
+          <Form.Group className={formStyles.FormGroupSpacing}>
+            {/* Preview current image if exists and not marked for removal */}
+            {profile.profile_image && (
+              <img
+                src={profile.profile_image}
+                alt="Current profile"
+                className={formStyles.FormImagePreview}
+              />
+            )}
+            <Form.Control
+              type="file"
+              name="profile_image"
+              onChange={(e) => setImageFile(e.target.files[0])}
+            />
+          </Form.Group>
+
           <FormFooter submitText="Update" onCancel={() => history.goBack()} />
         </Form>
       ) : (
