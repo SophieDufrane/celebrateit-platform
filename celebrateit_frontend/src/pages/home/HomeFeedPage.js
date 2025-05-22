@@ -7,16 +7,21 @@ import NominationCard from "../nominations/NominationCard";
 import feedStyles from "../../styles/HomeFeedPage.module.css";
 
 const HomeFeedPage = () => {
+  // Routing and Location
   const location = useLocation();
   const isDeleted =
     new URLSearchParams(location.search).get("deleted") === "true";
-  const [showDeleted, setShowDeleted] = useState(isDeleted);
 
+  // UI State
+  const [showDeleted, setShowDeleted] = useState(isDeleted);
+  const [showNominations, setShowNominations] = useState(false);
+  const [hasLoaded, setHasLoaded] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // Data State
   const [recognitions, setRecognitions] = useState([]);
   const [nominations, setNominations] = useState([]);
-  const [showNominations, setShowNominations] = useState(false);
-
-  const [hasLoaded, setHasLoaded] = useState(false);
+  const [people, setPeople] = useState([]);
 
   // Handle URL query param to trigger alert
   useEffect(() => {
@@ -48,6 +53,14 @@ const HomeFeedPage = () => {
       .get("/nominations/")
       .then((res) => setNominations(res.data.results))
       .catch((err) => console.error("Error fetching nominations:", err));
+  }, []);
+
+  // Fetch People/Profiles
+  useEffect(() => {
+    axios
+      .get("/user-profiles/")
+      .then((res) => setPeople(res.data.results || res.data))
+      .catch((err) => console.error("Error fetching people:", err));
   }, []);
 
   return (
@@ -141,21 +154,22 @@ const HomeFeedPage = () => {
             type="text"
             className="form-control mb-3"
             placeholder="Search people..."
-            disabled
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
 
           {/* People list placeholder */}
-          <ListGroup>
-            <ListGroup.Item className={feedStyles.PersonItem}>
-              Person 1
-            </ListGroup.Item>
-            <ListGroup.Item className={feedStyles.PersonItem}>
-              Person 2
-            </ListGroup.Item>
-            <ListGroup.Item className={feedStyles.PersonItem}>
-              Person 3
-            </ListGroup.Item>
-          </ListGroup>
+          {people
+            .filter((person) =>
+              `${person.first_name} ${person.last_name}`
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase())
+            )
+            .map((person) => (
+              <ListGroup.Item key={person.id} className={feedStyles.PersonItem}>
+                {person.first_name} {person.last_name}
+              </ListGroup.Item>
+            ))}
         </Col>
       </Row>
     </Container>
