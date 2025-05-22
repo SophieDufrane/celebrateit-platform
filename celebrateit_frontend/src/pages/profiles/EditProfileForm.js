@@ -37,9 +37,30 @@ const EditProfileForm = () => {
   }, [id]);
 
   // Handle Form Submit
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitted first name:", firstName);
+
+    // Prepare form data
+    const formData = new FormData();
+    formData.append("first_name", firstName);
+    formData.append("last_name", lastName);
+    formData.append("presentation", presentation);
+
+    if (imageFile) {
+      formData.append("profile_image", imageFile);
+    }
+
+    // Submit to API
+    try {
+      const { data } = await axiosReq.patch(
+        `/user-profiles/${profile.id}/`,
+        formData
+      );
+      setProfile(data);
+      history.goBack();
+    } catch (err) {
+      console.error("Error updating profile:", err);
+    }
   };
 
   return (
@@ -53,13 +74,18 @@ const EditProfileForm = () => {
           >
             <OverlayTrigger
               placement="top"
-              overlay={<Tooltip>Update your first name</Tooltip>}
+              overlay={
+                <Tooltip>
+                  To update your first name, please contact your HR
+                  representative
+                </Tooltip>
+              }
             >
               <Form.Control
                 type="text"
                 value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                placeholder="Enter your first name"
+                readOnly
+                placeholder="First Name"
               />
             </OverlayTrigger>
           </Form.Group>
@@ -69,13 +95,18 @@ const EditProfileForm = () => {
           >
             <OverlayTrigger
               placement="top"
-              overlay={<Tooltip>Update your last name</Tooltip>}
+              overlay={
+                <Tooltip>
+                  To update your last name, please contact your HR
+                  representative
+                </Tooltip>
+              }
             >
               <Form.Control
                 type="text"
                 value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                placeholder="Enter your last name"
+                readOnly
+                placeholder="Last Name"
               />
             </OverlayTrigger>
           </Form.Group>
@@ -86,7 +117,7 @@ const EditProfileForm = () => {
           >
             <OverlayTrigger
               placement="top"
-              overlay={<Tooltip>Write something about yourself</Tooltip>}
+              overlay={<Tooltip>Write a short bio about yourself</Tooltip>}
             >
               <Form.Control
                 as="textarea"
