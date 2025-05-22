@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { axiosReq } from "../../api/axiosDefaults";
 import RecognitionCard from "../recognitions/RecognitionCard";
 import NominationCard from "../nominations/NominationCard";
+import EditProfileForm from "./EditProfileForm";
 import styles from "../../styles/Profile.module.css";
 
 const ProfilePage = () => {
@@ -16,6 +17,9 @@ const ProfilePage = () => {
   // User-related posts
   const [recognitions, setRecognitions] = useState([]);
   const [nominations, setNominations] = useState([]);
+
+  // UI State
+  const [showEditForm, setShowEditForm] = useState(false);
 
   // Fetch user profile
   useEffect(() => {
@@ -57,36 +61,50 @@ const ProfilePage = () => {
     <Container>
       {/* User Profile Info */}
       {profile && (
-        <div className={styles.ProfileWrapper}>
-          <div className={styles.Banner} />
+        <>
+          <div className={styles.ProfileWrapper}>
+            <div className={styles.Banner} />
 
-          {/* Avatar overlaps banner */}
-          <div className={styles.AvatarWrapper}>
-            <img
-              src={profile.profile_image}
-              alt={`${profile.first_name} ${profile.last_name}`}
-              className={styles.ProfileAvatar}
-            />
-          </div>
-
-          {/* Profile info + edit icon */}
-          <div className={styles.ProfileDetails}>
-            <div className={styles.NameRow}>
-              <h3>
-                {profile.first_name} {profile.last_name}
-              </h3>
-              {profile.is_user_profile && (
-                <span className={styles.EditIcon}>
-                  <i className="fa-solid fa-pen" />
-                </span>
-              )}
+            {/* Avatar overlaps banner */}
+            <div className={styles.AvatarWrapper}>
+              <img
+                src={profile.profile_image}
+                alt={`${profile.first_name} ${profile.last_name}`}
+                className={styles.ProfileAvatar}
+              />
             </div>
-            <p className={styles.Department}>{profile.department}</p>
-            <p className={styles.Bio}>
-              {profile.presentation || "No bio yet."}
-            </p>
+
+            {/* Profile info + edit icon */}
+            <div className={styles.ProfileDetails}>
+              <div className={styles.NameRow}>
+                <h3>
+                  {profile.first_name} {profile.last_name}
+                </h3>
+                {profile.is_user_profile && (
+                  <span
+                    className={styles.EditIcon}
+                    onClick={() => setShowEditForm(true)}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <i className="fa-solid fa-pen" />
+                  </span>
+                )}
+              </div>
+              <p className={styles.Department}>{profile.department}</p>
+              <p className={styles.Bio}>
+                {profile.presentation || "No bio yet."}
+              </p>
+            </div>
           </div>
-        </div>
+          {/* Edit form appears below profile card */}
+          {showEditForm && (
+            <EditProfileForm
+              profile={profile}
+              setProfile={setProfile}
+              setShowEditForm={setShowEditForm}
+            />
+          )}
+        </>
       )}
       <div className={styles.TwoColumnFeed}>
         <div className={styles.FeedColumn}>
