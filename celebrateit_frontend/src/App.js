@@ -13,6 +13,7 @@ import CreateNominationPage from "./pages/nominations/CreateNominationPage";
 import NominationDetailPage from "./pages/nominations/NominationDetailPage";
 import UpdateNominationPage from "./pages/nominations/UpdateNominationPage";
 import ProfilePage from "./pages/profiles/ProfilePage";
+import EditProfileForm from "./pages/profiles/EditProfileForm";
 import SignInForm from "./pages/auth/SignInForm";
 import SignUpForm from "./pages/auth/SignUpForm";
 
@@ -64,6 +65,7 @@ function App() {
 
           {/* User Profile */}
           <Route exact path="/profiles/:id" component={ProfilePage} />
+          <Route exact path="/profiles/:id/edit" component={EditProfileForm} />
 
           {/* Auth */}
           <Route exact path="/login" component={SignInForm} />
