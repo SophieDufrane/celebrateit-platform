@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
+import { Form, OverlayTrigger, Tooltip } from "react-bootstrap";
 import FormFooter from "../../components/FormFooter";
-import { Form } from "react-bootstrap";
+import formStyles from "../../styles/PostForm.module.css";
 
 const EditProfileForm = () => {
   // Routing
@@ -12,6 +13,8 @@ const EditProfileForm = () => {
   // Profile State
   const [profile, setProfile] = useState(null);
   const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [presentation, setPresentation] = useState("");
 
   // Fetch Profile on Mount
   useEffect(() => {
@@ -20,6 +23,8 @@ const EditProfileForm = () => {
         const { data } = await axiosReq.get(`/user-profiles/${id}/`);
         setProfile(data);
         setFirstName(data.first_name);
+        setLastName(data.last_name);
+        setPresentation(data.presentation || "");
       } catch (err) {
         console.error("Error fetching profile:", err);
       }
@@ -39,16 +44,57 @@ const EditProfileForm = () => {
       <h2>Edit your profile</h2>
       {profile ? (
         <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="firstName">
-            <Form.Label>First Name</Form.Label>
-            <Form.Control
-              type="text"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-              placeholder="Enter your first name"
-            />
+          <Form.Group
+            controlId="firstName"
+            className={formStyles.FormGroupSpacing}
+          >
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip>Update your first name</Tooltip>}
+            >
+              <Form.Control
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                placeholder="Enter your first name"
+              />
+            </OverlayTrigger>
           </Form.Group>
-          <FormFooter submitText="Save" onCancel={() => history.goBack()} />
+          <Form.Group
+            controlId="lastName"
+            className={formStyles.FormGroupSpacing}
+          >
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip>Update your first name</Tooltip>}
+            >
+              <Form.Control
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                placeholder="Enter your last name"
+              />
+            </OverlayTrigger>
+          </Form.Group>
+
+          <Form.Group
+            controlId="presentation"
+            className={formStyles.FormGroupSpacing}
+          >
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip>Update your first name</Tooltip>}
+            >
+              <Form.Control
+                as="textarea"
+                rows={3}
+                value={presentation}
+                onChange={(e) => setPresentation(e.target.value)}
+                placeholder="Write something about yourself"
+              />
+            </OverlayTrigger>
+          </Form.Group>
+          <FormFooter submitText="Update" onCancel={() => history.goBack()} />
         </Form>
       ) : (
         <p>Loading profile...</p>
