@@ -18,6 +18,9 @@ const ProfilePage = () => {
   // User-related posts
   const [recognitions, setRecognitions] = useState([]);
   const [nominations, setNominations] = useState([]);
+
+  // UI State
+  const [hasLoadedProfile, setHasLoadedProfile] = useState(false);
   const [hasLoadedRecognitions, setHasLoadedRecognitions] = useState(false);
   const [hasLoadedNominations, setHasLoadedNominations] = useState(false);
 
@@ -27,6 +30,7 @@ const ProfilePage = () => {
       try {
         const { data } = await axiosReq.get(`/user-profiles/${id}/`);
         setProfile(data);
+        setHasLoadedProfile(true);
       } catch (err) {
         console.error("Error fetching profile:", err);
       }
@@ -55,7 +59,7 @@ const ProfilePage = () => {
       .finally(() => setHasLoadedNominations(true));
   }, [id]);
 
-  return (
+  return hasLoadedProfile && hasLoadedRecognitions && hasLoadedNominations ? (
     <Container>
       {/* User Profile Info */}
       {profile && (
@@ -94,51 +98,49 @@ const ProfilePage = () => {
           </div>
         </div>
       )}
-      {hasLoadedRecognitions && hasLoadedNominations ? (
-        <div className={styles.TwoColumnFeed}>
-          <div className={styles.FeedColumn}>
-            <h4>Your Recognitions</h4>
-            {recognitions
-              .filter((post) => post.user === profile.user)
-              .map((post) => (
-                <RecognitionCard
-                  key={`post-${post.id}`}
-                  {...post}
-                  setRecognitions={setRecognitions}
-                  onPostDelete={(deletedId) =>
-                    setRecognitions((prev) =>
-                      prev.filter((r) => r.id !== deletedId)
-                    )
-                  }
-                />
-              ))}
-          </div>
-          <div className={styles.FeedColumn}>
-            <h4>Your Nominations</h4>
-            {nominations
-              .filter(
-                (nom) =>
-                  nom.nominator === profile.user ||
-                  nom.nominee_username === profile.user
-              )
-              .map((nom) => (
-                <NominationCard
-                  key={`nom-${nom.id}`}
-                  {...nom}
-                  setPosts={setNominations}
-                  onPostDelete={(deletedId) =>
-                    setNominations((prevNoms) =>
-                      prevNoms.filter((n) => n.id !== deletedId)
-                    )
-                  }
-                />
-              ))}
-          </div>
+      <div className={styles.TwoColumnFeed}>
+        <div className={styles.FeedColumn}>
+          <h4>Your Recognitions</h4>
+          {recognitions
+            .filter((post) => post.user === profile.user)
+            .map((post) => (
+              <RecognitionCard
+                key={`post-${post.id}`}
+                {...post}
+                setRecognitions={setRecognitions}
+                onPostDelete={(deletedId) =>
+                  setRecognitions((prev) =>
+                    prev.filter((r) => r.id !== deletedId)
+                  )
+                }
+              />
+            ))}
         </div>
-      ) : (
-        <div className="text-center my-5">Loading...</div>
-      )}
+        <div className={styles.FeedColumn}>
+          <h4>Your Nominations</h4>
+          {nominations
+            .filter(
+              (nom) =>
+                nom.nominator === profile.user ||
+                nom.nominee_username === profile.user
+            )
+            .map((nom) => (
+              <NominationCard
+                key={`nom-${nom.id}`}
+                {...nom}
+                setPosts={setNominations}
+                onPostDelete={(deletedId) =>
+                  setNominations((prevNoms) =>
+                    prevNoms.filter((n) => n.id !== deletedId)
+                  )
+                }
+              />
+            ))}
+        </div>
+      </div>
     </Container>
+  ) : (
+    <div className="text-center my-5">Loading...</div>
   );
 };
 
