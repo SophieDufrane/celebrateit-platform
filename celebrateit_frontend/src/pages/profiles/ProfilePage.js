@@ -1,12 +1,13 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import { Container, Button } from "react-bootstrap";
 import { useParams, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { axiosReq } from "../../api/axiosDefaults";
 import RecognitionCard from "../recognitions/RecognitionCard";
 import NominationCard from "../nominations/NominationCard";
 import LoadingIndicator from "../../components/LoadingIndicator";
-import styles from "../../styles/Profile.module.css";
+import profileStyles from "../../styles/Profile.module.css";
+import styles from "../../App.module.css";
 
 const ProfilePage = () => {
   // Routing and Params
@@ -64,43 +65,57 @@ const ProfilePage = () => {
     <Container>
       {/* User Profile Info */}
       {profile && (
-        <div className={styles.ProfileWrapper}>
-          <div className={styles.Banner} />
+        <div className={profileStyles.ProfileWrapper}>
+          <div className={profileStyles.Banner} />
 
           {/* Avatar overlaps banner */}
-          <div className={styles.AvatarWrapper}>
+          <div className={profileStyles.AvatarWrapper}>
             <img
               src={profile.profile_image}
               alt={`${profile.first_name} ${profile.last_name}`}
-              className={styles.ProfileAvatar}
+              className={profileStyles.ProfileAvatar}
             />
           </div>
 
           {/* Profile info + edit icon */}
-          <div className={styles.ProfileDetails}>
-            <div className={styles.NameRow}>
-              <h3>
-                {profile.first_name} {profile.last_name}
-              </h3>
-              {profile.is_user_profile && (
-                <span
-                  className={styles.EditIcon}
-                  onClick={() => history.push(`/profiles/${profile.id}/edit`)}
-                  style={{ cursor: "pointer" }}
-                >
-                  <i className="fa-solid fa-pen" />
-                </span>
-              )}
+          <div className={profileStyles.ProfileDetails}>
+            <div className={profileStyles.NameRow}>
+              <div className={profileStyles.NameRow}>
+                <h3>
+                  {profile.first_name} {profile.last_name}
+                </h3>
+
+                {profile.is_user_profile ? (
+                  <span
+                    className={profileStyles.EditIcon}
+                    onClick={() => history.push(`/profiles/${profile.id}/edit`)}
+                  >
+                    <i className="fa-solid fa-pen" />
+                  </span>
+                ) : (
+                  <Button
+                    className={styles.YellowButton}
+                    onClick={() =>
+                      history.push(
+                        `/nominations/create?nominee=${profile.user}` +
+                          `&name=${profile.first_name} ${profile.last_name}`
+                      )
+                    }
+                  >
+                    Nominate
+                  </Button>
+                )}
+              </div>
             </div>
-            <p className={styles.Department}>{profile.department}</p>
-            <p className={styles.Bio}>
+            <p className={profileStyles.Department}>{profile.department}</p>
+            <p className={profileStyles.Bio}>
               {profile.presentation || "No bio yet."}
             </p>
           </div>
         </div>
       )}
-      <div className={styles.TwoColumnFeed}>
-        <div className={styles.FeedColumn}>
+      <div className={profileStyles.TwoColumnFeed}>
+        <div className={profileStyles.FeedColumn}>
           <h4>Your Recognitions</h4>
           {recognitions
             .filter((post) => post.user === profile.user)
@@ -117,7 +132,7 @@ const ProfilePage = () => {
               />
             ))}
         </div>
-        <div className={styles.FeedColumn}>
+        <div className={profileStyles.FeedColumn}>
           <h4>Your Nominations</h4>
           {nominations
             .filter(
