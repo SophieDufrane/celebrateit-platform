@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { axiosReq } from "../../api/axiosDefaults";
 import RecognitionCard from "../recognitions/RecognitionCard";
 import NominationCard from "../nominations/NominationCard";
+import LoadingIndicator from "../../components/LoadingIndicator";
 import styles from "../../styles/Profile.module.css";
 
 const ProfilePage = () => {
@@ -140,7 +141,7 @@ const ProfilePage = () => {
       </div>
     </Container>
   ) : (
-    <div className="text-center my-5">Loading...</div>
+    <LoadingIndicator message="Loading profile..." />
   );
 };
 
