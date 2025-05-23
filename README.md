@@ -149,13 +149,13 @@ This distribution ensures alignment with project constraints and focus, while st
 
 The ERD provides a high-level overview of the database structure, including the relationships between key models such as users, profiles, recognitions, nominations, tags, comments, and likes. It was designed early in the planning phase to ensure consistent field usage and API compatibility.
 
-![ERD](documentation/erd_celebrateit.png)
+![ERD](documentation/other/erd_celebrateit.png)
 
 #### Flowchart for User Navigation
 
 This section provides a visual representation of the user navigation flow within CelebrateIt. The flowchart captures how users interact with the platform, including key actions such as logging in, browsing stories, creating recognition posts, and navigating between profile pages.
 
-![Flowchart](documentation/flowchart_celebrateit.png)
+![Flowchart](documentation/other/flowchart_celebrateit.png)
 
 ### 2.3 System Architecture
 
@@ -303,13 +303,13 @@ The colour palette echoes tech industry trends while adding warmth to reflect hu
 | `#DECD62`  | Citron           |
 | `#484848`  | Davy's Grey      |
 
-![Colour Inspiration](documentation/color_scheme.png)
+![Colour Inspiration](documentation/other/color_scheme.png)
 
 <details>
   <summary>Inspiration from Workhuman</summary>
 
    <p>
-      <img src="documentation/colours_inspiration_from_workhuman.png" alt="Inspiration from Workhuman" />
+      <img src="documentation/other/colours_inspiration_from_workhuman.png" alt="Inspiration from Workhuman" />
    </p>
 </details>
 
@@ -406,7 +406,7 @@ A **Kanban-style** board was implemented using **GitHub Projects** to visually m
   <summary>Kaban Board</summary>
 
    <p>
-      <img src="documentation/" alt="Kaban Board" />
+      <img src="documentation/other/kaban.png" alt="Kaban Board" />
    </p>
 </details>
 
@@ -414,7 +414,7 @@ A **Kanban-style** board was implemented using **GitHub Projects** to visually m
   <summary>User Story with Acceptance Criteria and tasks</summary>
 
    <p>
-      <img src="documentation/" alt=">User Story detail" />
+      <img src="documentation/other/issue.png" alt=">User Story detail" />
    </p>
 </details>
 
@@ -1003,14 +1003,14 @@ Testing included:
 <details>
 <summary> 1/ Create Recognition – Successful message </summary>
 
-![1](documentation/frontend/testing/recognition/recognition_create_successful.png)
+![1](documentation/frontend/testing/recognition/recognition_create.png)
 
 </details>
 
 <details>
 <summary> 2/ Edit Recognition – Dropdown feed </summary>
 
-![2](documentation/frontend/testing/recognition/dropdown_feed.png)
+![2](documentation/frontend/testing/recognition/recognition_edit_feed.png)
 
 </details>
 
@@ -1024,7 +1024,7 @@ Testing included:
 <details>
 <summary> 4/ Edit Recognition – Successful message </summary>
 
-![4](documentation/frontend/testing/recognition/recognition_edit_successful.png)
+![4](documentation/frontend/testing/recognition/recognition_edit_confirmation.png)
 
 </details>
 
@@ -1038,7 +1038,7 @@ Testing included:
 <details>
 <summary> 6/ Delete Recognition > Successful message </summary>
 
-![6](documentation/frontend/testing/recognition/recognition_delete_successful.png)
+![6](documentation/frontend/testing/recognition/recognition_delete_confirmation.png)
 
 </details>
 
@@ -1110,41 +1110,84 @@ Testing included:
 
 #### **Engaging with People & Posts**
 
-| **Priority** | **User Story**         | **Page(s)**     | **Test Scenario / Action**            | **Expected Result**                                   | Actual | **Screenshot** |
-| ------------ | ---------------------- | --------------- | ------------------------------------- | ----------------------------------------------------- | ------ | -------------- |
-| Must Have    | Comment on Recognition | Detail Page     | Submit valid comment                  | Comment appears below post                            |        | 1              |
-| Should Have  | Like a Recognition     | Feed / Detail   | Click like and unlike                 | Count updates and button toggles correctly            |        | 2 - 3          |
-| Should Have  | Edit/Delete My Comment | Detail Page     | Click edit or delete on owned comment | Comment updates or disappears as expected             |        |                |
-| Should Have  | Search for Colleagues  | Feed Search Bar | Type partial name                     | Matching users show with avatar + \"Nominate\" button |        |                |
+| **Priority** | **User Story**                | **Page(s)**     | **Test Scenario / Action**            | **Expected Result**                        | Actual | **Screenshot** |
+| ------------ | ----------------------------- | --------------- | ------------------------------------- | ------------------------------------------ | ------ | -------------- |
+| Must Have    | Comment on Recognition        | Detail Page     | Submit valid comment                  | Comment appears below post                 | ✅     | 1              |
+| Should Have  | Like someone else Recognition | Feed / Detail   | Click like and unlike                 | Count updates and button toggles correctly | ✅     | 2 - 3          |
+| Should Have  | Edit/Delete My Comment        | Detail Page     | Click edit or delete on owned comment | Comment updates or disappears as expected  | ✅     | 4 - 5          |
+| Should Have  | Search for Colleagues         | Feed Search Bar | Type partial name                     | Matching users show with avatar            |        |                |
 
 <details>
-<summary> 1/ Comment on Recognition </summary>
+  <summary>1/ Comment on Recognition</summary>
 
-![1](documentation/frontend/testing/comment/.png)
-
+   <p>
+      <img src="documentation/frontend/testing/comment/comment_form.png" alt="Comment on Recognition" />
+   </p>
 </details>
 
 <details>
-<summary> 2/ Like/Unlike on Recognition from the feed </summary>
+  <summary>2/ Like/Unlike on Recognition</summary>
 
-![2](documentation/frontend/testing/like_feed/.png)
-
+   <p>
+      <img src="documentation/frontend/testing/like/like.png" alt="Like/Unlike on Recognition from the feed" />
+   </p>
 </details>
 
 <details>
-<summary> 3/ Like/Unlike on Recognition from the detail page </summary>
+  <summary>3/ Can't like your own post - message</summary>
 
-![3](documentation/frontend/testing/like_detail_page/.png)
+   <p>
+      <img src="documentation/frontend/testing/like/like_own_post.png" alt="Can't like your own post" />
+   </p>
+</details>
 
+<details>
+  <summary>4/ Edit/Delete comment - dropdown</summary>
+
+   <p>
+      <img src="documentation/frontend/testing/comment/comment_edit_dropdown.png" alt="Edit/Delete comment - dropdown" />
+   </p>
+</details>
+
+<details>
+  <summary>5/ Delete comment - Confirmation prompt</summary>
+
+   <p>
+      <img src="documentation/frontend/testing/comment/comment_delete_prompt.png" alt="Delete comment - Confirmation prompt" />
+   </p>
+</details>
+
+<details>
+  <summary>6/ Search for Colleagues</summary>
+
+   <p>
+      <img src="documentation/frontend/testing/profile/search_people_filter.png" alt="Search for Colleagues" />
+   </p>
 </details>
 
 #### **Managing My Profile & Network**
 
 | **Priority** | **User Story**       | **Page(s)**            | **Test Scenario / Action**                          | **Expected Result**                           | Actual | **Screenshot** |
 | ------------ | -------------------- | ---------------------- | --------------------------------------------------- | --------------------------------------------- | ------ | -------------- |
-| Should Have  | Edit My Profile      | Profile Edit Page      | Change avatar or bio and save                       | Profile updates and info reflects new data    |        |
-| Must Have    | View Public Profiles | Feed / Detail > Author | Click username/avatar of another user               | Public profile loads with bio + list of posts |        |
+| Should Have  | Edit My Profile      | Profile Edit Page      | Change avatar or bio and save                       | Profile updates and info reflects new data    | ✅     | 1 - 2          |
+| Must Have    | View Public Profiles | Feed / Detail > Author | Click username/avatar of another user               | Public profile loads with bio + list of posts | ✅     |
 | Could Have   | View My Own Posts    | My Profile Page        | Visit profile and review recognitions + nominations | All user-created posts appear with preview    |        |
+
+<details>
+  <summary>1/ Edit My Profile - edit button for owner only</summary>
+
+   <p>
+      <img src="documentation/frontend/testing/profile/profile_edit.png" alt="Edit My Profile - edit button for owner only" />
+   </p>
+</details>
+
+<details>
+  <summary>2/ Edit My Profile - pre-filled form with read only fields</summary>
+
+   <p>
+      <img src="documentation/frontend/testing/profile/profile_edit_form.png" alt="Edit My Profile - pre-filled form with read only fields" />
+   </p>
+</details>
 
 ### 6.3 Validators
 
