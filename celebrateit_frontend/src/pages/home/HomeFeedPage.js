@@ -4,6 +4,7 @@ import axios from "axios";
 import { Button, Container, Row, Col, ListGroup, Alert } from "react-bootstrap";
 import RecognitionCard from "../recognitions/RecognitionCard";
 import NominationCard from "../nominations/NominationCard";
+import LoadingIndicator from "../../components/LoadingIndicator";
 import feedStyles from "../../styles/HomeFeedPage.module.css";
 
 const HomeFeedPage = () => {
@@ -143,7 +144,7 @@ const HomeFeedPage = () => {
                 )}
               </>
             ) : (
-              <div>Loading...</div>
+              <LoadingIndicator message="Loading feed..." />
             )}
           </div>
         </Col>
