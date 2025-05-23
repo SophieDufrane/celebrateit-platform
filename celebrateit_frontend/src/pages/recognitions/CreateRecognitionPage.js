@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { Container, Form, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import { axiosReq } from "../../api/axiosDefaults";
+import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import PostForm from "../../components/PostForm";
 import formStyles from "../../styles/PostForm.module.css";
 
@@ -19,6 +20,7 @@ function CreateRecognitionPage() {
 
   // Navigation
   const history = useHistory();
+  const setCurrentUser = useSetCurrentUser(); // Refresh user after creation
 
   // Handle input changes (text & file upload)
   const handleChange = (event) => {
@@ -54,6 +56,9 @@ function CreateRecognitionPage() {
 
     try {
       const { data } = await axiosReq.post("/posts/", formData);
+      setCurrentUser(
+        await axiosRes.get("/dj-rest-auth/user/").then((res) => res.data)
+      );
       history.push(`/recognitions/${data.id}?created=true`);
     } catch (err) {
       if (err.response?.status !== 401) {
