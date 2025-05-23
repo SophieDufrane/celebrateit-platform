@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { useParams, useHistory } from "react-router-dom";
-import { axiosReq } from "../../api/axiosDefaults";
+import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import { Form, OverlayTrigger, Tooltip } from "react-bootstrap";
 import FormFooter from "../../components/FormFooter";
 import formStyles from "../../styles/PostForm.module.css";
@@ -9,6 +10,7 @@ const EditProfileForm = () => {
   // Routing
   const { id } = useParams();
   const history = useHistory();
+  const setCurrentUser = useSetCurrentUser();
 
   // Profile State - basic fields
   const [profile, setProfile] = useState(null);
@@ -57,6 +59,9 @@ const EditProfileForm = () => {
         formData
       );
       setProfile(data);
+      setCurrentUser(
+        await axiosRes.get("/dj-rest-auth/user/").then((res) => res.data)
+      );
       history.goBack();
     } catch (err) {
       console.error("Error updating profile:", err);
