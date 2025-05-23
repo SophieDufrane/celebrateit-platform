@@ -18,4 +18,4 @@ env.py
 
 **node_modules/
 
-staticfiles_build/
+# staticfiles_build/
