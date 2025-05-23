@@ -1115,7 +1115,7 @@ Testing included:
 | Must Have    | Comment on Recognition        | Detail Page     | Submit valid comment                  | Comment appears below post                 | ✅     | 1              |
 | Should Have  | Like someone else Recognition | Feed / Detail   | Click like and unlike                 | Count updates and button toggles correctly | ✅     | 2 - 3          |
 | Should Have  | Edit/Delete My Comment        | Detail Page     | Click edit or delete on owned comment | Comment updates or disappears as expected  | ✅     | 4 - 5          |
-| Should Have  | Search for Colleagues         | Feed Search Bar | Type partial name                     | Matching users show with avatar            |        |                |
+| Should Have  | Search for Colleagues         | Feed Search Bar | Type partial name                     | Matching users show with avatar            | ✅     | 6              |
 
 <details>
   <summary>1/ Comment on Recognition</summary>
