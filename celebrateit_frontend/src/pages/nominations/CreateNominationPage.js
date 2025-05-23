@@ -12,6 +12,7 @@ function CreateNominationPage() {
     content: "",
     tag: "",
   });
+  const { title, content, tag } = nominationData;
 
   // Nominee search & selection
   const [nomineeInput, setNomineeInput] = useState("");
@@ -21,14 +22,13 @@ function CreateNominationPage() {
   // Tag dropdown
   const [tags, setTags] = useState([]);
 
+  // Error state
+  const [errors, setErrors] = useState({});
+
   // Navigation
   const history = useHistory();
 
-  // Destructure data for cleaner access
-  const { title, content, tag } = nominationData;
-
-  const [errors, setErrors] = useState({});
-
+  // Fetch tag options for dropdown
   useEffect(() => {
     const fetchTags = async () => {
       try {
@@ -43,6 +43,7 @@ function CreateNominationPage() {
     fetchTags();
   }, []);
 
+  // Search users as nominee input changes
   useEffect(() => {
     if (nomineeInput) {
       axiosReq
@@ -59,6 +60,7 @@ function CreateNominationPage() {
     }
   }, [nomineeInput]);
 
+  // Handle input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -73,6 +75,7 @@ function CreateNominationPage() {
     }
   };
 
+  // Handle form submit
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -93,10 +96,12 @@ function CreateNominationPage() {
     }
   };
 
+  // Handle cancel button
   const handleCancel = () => {
     history.push("/");
   };
 
+  // Handle nominee selection from search results
   const handleNomineeSelect = (user) => {
     setSelectedNomineeId(user.id);
     setNomineeInput(`${user.first_name} ${user.last_name}`);
@@ -112,6 +117,7 @@ function CreateNominationPage() {
         handleSubmit={handleSubmit}
         submitText="Create"
         onCancel={handleCancel}
+        errors={errors}
       >
         <Form.Group controlId="nominee" className={formStyles.FormMediaWrapper}>
           <div className="mb-3">
@@ -129,6 +135,13 @@ function CreateNominationPage() {
                 onChange={handleChange}
               />
             </OverlayTrigger>
+            {/* Validation error for nominee */}
+            {errors?.nominee?.map((message, idx) => (
+              <div key={idx} className="text-danger mt-1">
+                {message}
+              </div>
+            ))}
+
             {nomineeResults.length > 0 && (
               <div className={formStyles.SuggestionBox}>
                 {nomineeResults.map((user) => (

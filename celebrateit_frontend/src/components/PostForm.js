@@ -12,6 +12,7 @@ const PostForm = ({
   children,
   submitText = "Submit",
   onCancel,
+  errors,
 }) => {
   return (
     <Form onSubmit={handleSubmit} className={styles.FormWrapper}>
@@ -28,6 +29,12 @@ const PostForm = ({
             onChange={handleChange}
           />
         </OverlayTrigger>
+        {/* Validation error */}
+        {errors?.title?.map((message, idx) => (
+          <div key={idx} className="text-danger mt-1">
+            {message}
+          </div>
+        ))}
       </Form.Group>
 
       <Form.Group controlId="content" className={styles.FormGroupSpacing}>
@@ -44,6 +51,11 @@ const PostForm = ({
             onChange={handleChange}
           />
         </OverlayTrigger>
+        {errors?.content?.map((message, idx) => (
+          <div key={idx} className="text-danger mt-1">
+            {message}
+          </div>
+        ))}
       </Form.Group>
       {children}
       <FormFooter submitText={submitText} onCancel={onCancel} />

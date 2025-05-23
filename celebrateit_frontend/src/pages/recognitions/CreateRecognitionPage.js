@@ -6,14 +6,21 @@ import PostForm from "../../components/PostForm";
 import formStyles from "../../styles/PostForm.module.css";
 
 function CreateRecognitionPage() {
+  // Form fields
   const [recognitionData, setRecognitionData] = useState({
     title: "",
     content: "",
     image: null,
   });
   const { title, content, image } = recognitionData;
+
+  // Error state
+  const [errors, setErrors] = useState({});
+
+  // Navigation
   const history = useHistory();
 
+  // Handle input changes (text & file upload)
   const handleChange = (event) => {
     const { name, value, files } = event.target;
     if (name === "image") {
@@ -34,6 +41,7 @@ function CreateRecognitionPage() {
     }
   };
 
+  // Handle form submit
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -48,6 +56,9 @@ function CreateRecognitionPage() {
       const { data } = await axiosReq.post("/posts/", formData);
       history.push(`/recognitions/${data.id}?created=true`);
     } catch (err) {
+      if (err.response?.status !== 401) {
+        setErrors(err.response?.data);
+      }
       console.error(err.response?.data);
     }
   };
@@ -61,6 +72,7 @@ function CreateRecognitionPage() {
         handleSubmit={handleSubmit}
         submitText="Create"
         onCancel={() => history.push("/")}
+        errors={errors}
       >
         <Form.Group controlId="image" className={formStyles.FormMediaWrapper}>
           <OverlayTrigger
