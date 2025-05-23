@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { Container, Form, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useHistory, useLocation } from "react-router-dom";
-import { axiosReq } from "../../api/axiosDefaults";
+import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import PostForm from "../../components/PostForm";
 import formStyles from "../../styles/PostForm.module.css";
 
@@ -25,9 +26,10 @@ function CreateNominationPage() {
   // Error state
   const [errors, setErrors] = useState({});
 
-  // Routing
+  // Navigation
   const history = useHistory();
   const location = useLocation();
+  const setCurrentUser = useSetCurrentUser(); // Refresh user after creation
 
   // Fetch tag options for dropdown
   useEffect(() => {
@@ -100,6 +102,9 @@ function CreateNominationPage() {
 
     try {
       const { data } = await axiosReq.post("/nominations/", formData);
+      setCurrentUser(
+        await axiosRes.get("/dj-rest-auth/user/").then((res) => res.data)
+      );
       history.push(`/nominations/${data.id}?created=true`);
     } catch (err) {
       if (err.response?.status !== 401) {
