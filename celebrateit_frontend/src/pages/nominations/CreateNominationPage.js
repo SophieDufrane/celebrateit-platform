@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, Form, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import PostForm from "../../components/PostForm";
 import formStyles from "../../styles/PostForm.module.css";
@@ -25,8 +25,9 @@ function CreateNominationPage() {
   // Error state
   const [errors, setErrors] = useState({});
 
-  // Navigation
+  // Routing
   const history = useHistory();
+  const location = useLocation();
 
   // Fetch tag options for dropdown
   useEffect(() => {
@@ -59,6 +60,18 @@ function CreateNominationPage() {
       setNomineeResults([]);
     }
   }, [nomineeInput]);
+
+  // Prefill nominee name and ID (when navigated from ProfilePage)
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const prefillName = queryParams.get("name");
+    const prefillId = queryParams.get("nominee");
+
+    if (prefillName && prefillId) {
+      setNomineeInput(prefillName);
+      setSelectedNomineeId(prefillId);
+    }
+  }, [location.search]);
 
   // Handle input changes
   const handleChange = (event) => {
