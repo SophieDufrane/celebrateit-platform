@@ -62,7 +62,7 @@ const EditProfileForm = () => {
       setCurrentUser(
         await axiosRes.get("/dj-rest-auth/user/").then((res) => res.data)
       );
-      history.goBack();
+      history.push(`/profiles/${profile.id}?updated=true`);
     } catch (err) {
       console.error("Error updating profile:", err);
     }
