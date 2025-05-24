@@ -3,6 +3,7 @@ import { Container, Button } from "react-bootstrap";
 import { useParams, useHistory, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { axiosReq } from "../../api/axiosDefaults";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import RecognitionCard from "../recognitions/RecognitionCard";
 import NominationCard from "../nominations/NominationCard";
 import LoadingIndicator from "../../components/LoadingIndicator";
@@ -17,6 +18,9 @@ const ProfilePage = () => {
   const [showUpdated, setShowUpdated] = useState(
     new URLSearchParams(location.search).get("updated")
   );
+
+  // Context
+  const { currentUser } = useCurrentUser();
 
   // Profile info
   const [profile, setProfile] = useState(null);
@@ -71,6 +75,10 @@ const ProfilePage = () => {
       .finally(() => setHasLoadedNominations(true));
   }, [id]);
 
+  console.log("currentUser =", currentUser);
+  console.log("profile.user =", profile?.user);
+  console.log("profile.is_user_profile =", profile?.is_user_profile);
+
   return hasLoadedProfile && hasLoadedRecognitions && hasLoadedNominations ? (
     <>
       {showUpdated && (
@@ -101,28 +109,30 @@ const ProfilePage = () => {
                     {profile.first_name} {profile.last_name}
                   </h3>
 
-                  {profile.is_user_profile ? (
-                    <span
-                      className={profileStyles.EditIcon}
-                      onClick={() =>
-                        history.push(`/profiles/${profile.id}/edit`)
-                      }
-                    >
-                      <i className="fa-solid fa-pen" />
-                    </span>
-                  ) : (
-                    <Button
-                      className={styles.YellowButton}
-                      onClick={() =>
-                        history.push(
-                          `/nominations/create?nominee=${profile.user}` +
-                            `&name=${profile.first_name} ${profile.last_name}`
-                        )
-                      }
-                    >
-                      Nominate
-                    </Button>
-                  )}
+                  {currentUser ? (
+                    profile.is_user_profile ? (
+                      <span
+                        className={profileStyles.EditIcon}
+                        onClick={() =>
+                          history.push(`/profiles/${profile.id}/edit`)
+                        }
+                      >
+                        <i className="fa-solid fa-pen" />
+                      </span>
+                    ) : (
+                      <Button
+                        className={styles.YellowButton}
+                        onClick={() =>
+                          history.push(
+                            `/nominations/create?nominee=${profile.user}` +
+                              `&name=${profile.first_name} ${profile.last_name}`
+                          )
+                        }
+                      >
+                        Nominate
+                      </Button>
+                    )
+                  ) : null}
                 </div>
               </div>
               <p className={profileStyles.Department}>{profile.department}</p>
