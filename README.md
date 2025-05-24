@@ -233,7 +233,7 @@ Below are the final implementations of the main pages, which evolved from the or
    <summary>Home Feed Page</summary>
 
    <p>
-      <img src="documentation/frontend/skeleton/.png" alt="Home Feed Page" />
+      <img src="documentation/frontend/skeleton/home_feed_page.png" alt="Home Feed Page" />
    </p>
 </details>
 
@@ -257,7 +257,7 @@ Below are the final implementations of the main pages, which evolved from the or
    <summary>Recognition Detail Page</summary>
 
    <p>
-      <img src="documentation/frontend/skeleton/nomination_create.png" alt="Recognition Detail Page" />
+      <img src="documentation/frontend/skeleton/recognition_detail_page.png" alt="Recognition Detail Page" />
    </p>
 </details>
 
@@ -265,7 +265,7 @@ Below are the final implementations of the main pages, which evolved from the or
    <summary>Nomination Detail Page</summary>
 
    <p>
-      <img src="documentation/frontend/skeleton/nomination_create.png" alt="Nomination Detail Page" />
+      <img src="documentation/frontend/skeleton/nomination_detail_page.png" alt="Nomination Detail Page" />
    </p>
 </details>
 
@@ -273,7 +273,7 @@ Below are the final implementations of the main pages, which evolved from the or
    <summary>User Profile Page</summary>
 
    <p>
-      <img src="documentation/frontend/skeleton/nomination_create.png" alt="User Profile Page" />
+      <img src="documentation/frontend/skeleton/user_profile.png" alt="User Profile Page" />
    </p>
 </details>
 
@@ -281,7 +281,7 @@ Below are the final implementations of the main pages, which evolved from the or
    <summary>Edit User Profile Form</summary>
 
    <p>
-      <img src="documentation/frontend/skeleton/nomination_create.png" alt="Edit User Profile Form" />
+      <img src="documentation/frontend/skeleton/edit_user_profile.png" alt="Edit User Profile Form" />
    </p>
 </details>
 
@@ -941,251 +941,376 @@ Testing included:
 
 #### **Getting Started & Joining the Platform**
 
-| **Priority** | **User Story**           | **Page(s)**       | **Test Scenario / Action**                      | **Expected Result**                                                                | Actual | **Screenshot** |
-| ------------ | ------------------------ | ----------------- | ----------------------------------------------- | ---------------------------------------------------------------------------------- | ------ | -------------- |
-| Must Have    | Register an Account      | Register Page     | Fill out form with valid inputs and submit      | Redirected to login, message confirms successful registration                      | ✅     | 1 - 2          |
-| Must Have    | Login to Account         | Login Page        | Enter valid credentials and submit              | Redirected to feed with user menu visible                                          | ✅     | 3              |
-| Must Have    | Logout                   | Any Page (Navbar) | Click logout                                    | User is logged out and redirected to login, message confirms successful logged out | ✅     | 4              |
-| Must Have    | Conditional Menu Options | All Pages         | Login and check navbar / Logout and check again | Menu adapts based on login status                                                  | ✅     | 5 - 6          |
+| **Priority** | **User Story**           | **Page(s)**       | **Test Scenario / Action**                          | **Expected Result**                                                                                   | Actual | **Screenshot** |
+| ------------ | ------------------------ | ----------------- | --------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ------ | -------------- |
+| Must Have    | Register an Account      | Register Page     | Fill out form with invalid and valid inputs, submit | Invalid inputs trigger validation messages; valid inputs redirect to login with success confirmation  | ✅     | 1a, 1b         |
+| Must Have    | Login to Account         | Login Page        | Enter invalid and valid credentials, submit         | Invalid credentials trigger error messages; valid credentials redirect to feed with user menu visible | ✅     | 2              |
+| Must Have    | Logout                   | Any Page (Navbar) | Click logout                                        | User is logged out and redirected to login, message confirms successful logged out                    | ✅     | 3              |
+| Must Have    | Conditional Menu Options | All Pages         | Login and check navbar / Logout and check again     | Navbar displays user-specific links when logged in, and generic links when logged out.                | ✅     | 4a, 4b         |
 
 <details>
-<summary> 1/ Register – Validation Errors Display </summary>
+  <summary>1a. Register – Validation Errors Display</summary>
 
-![1](documentation/frontend/testing/auth/register_form_messages.png)
-
+   <p>
+      <img src="documentation/frontend/testing/auth/register_form_messages.png" alt="1a. Register – Validation Errors Display" />
+   </p>
 </details>
 
 <details>
-<summary> 2/ Register - Successful message </summary>
+  <summary>1b. Register - Successful message</summary>
 
-![2](documentation/frontend/testing/auth/registration_successful.png)
-
+   <p>
+      <img src="documentation/frontend/testing/auth/registration_successful.png" alt="1b. Register - Successful message" />
+   </p>
 </details>
 
 <details>
-<summary> 3/ Log In - Validation Errors Display </summary>
+  <summary>2. Log In - Validation Errors Display</summary>
 
-![3](documentation/frontend/testing/auth/login_wrong_credentials.png)
-
+   <p>
+      <img src="documentation/frontend/testing/auth/login_wrong_credentials.png" alt="2. Log In - Validation Errors Display" />
+   </p>
 </details>
 
 <details>
-<summary> 4/ Logged out - Successful message </summary>
+  <summary>3. Logged out - Successful message</summary>
 
-![4](documentation/frontend/testing/auth/logged_out_successful.png)
-
+   <p>
+      <img src="documentation/frontend/testing/auth/logged_out_successful.png" alt="3. Logged out - Successful message" />
+   </p>
 </details>
 
 <details>
-<summary> 5/ Conditional Menu Options when logged out </summary>
+  <summary>4a. Conditional Menu Options when logged out</summary>
 
-![5](documentation/frontend/testing/auth/navbar_logged_out.png)
-
+   <p>
+      <img src="documentation/frontend/testing/auth/navbar_logged_out.png" alt="4a. Conditional Menu Options when logged out" />
+   </p>
 </details>
 
 <details>
-<summary> 6/ Conditional Menu Options when logged in </summary>
+  <summary>4b. Conditional Menu Options when logged in</summary>
 
-![6](documentation/frontend/testing/auth/navbar_logged_in.png)
-
+   <p>
+      <img src="documentation/frontend/testing/auth/navbar_logged_in.png" alt="4b. Conditional Menu Options when logged in" />
+   </p>
 </details>
 
 #### **Recognition CRUD**
 
-| **Priority** | **User Story**          | **Page(s)**            | **Test Scenario / Action**            | **Expected Result**                                 | Actual | **Screenshot** |
-| ------------ | ----------------------- | ---------------------- | ------------------------------------- | --------------------------------------------------- | ------ | -------------- |
-| Must Have    | Create Recognition      | Post Create Page       | Fill out form with content and submit | Redirected to detail, new post shows in feed        | ✅     | 1              |
-| Must Have    | Edit Recognition        | Feed > Edit Dropdown   | Change title or content and save      | Updated post appears in feed and detail             | ✅     | 2 - 3 - 4      |
-| Must Have    | Delete Recognition      | Feed > Delete Dropdown | Click delete and confirm              | Post is removed from feed and not accessible by URL | ✅     | 5 - 6          |
-| Must Have    | View Recognition Detail | Feed > Click Card      | Click post preview in feed            | Full post loads with correct data                   | ✅     |                |
-| Must Have    | View Recognition Feed   | Homepage               | Open homepage                         | Feed shows latest recognitions, ordered by date     | ✅     |                |
+| **Priority** | **User Story**     | **Page(s)**      | **Test Scenario / Action**              | **Expected Result**                                                                                                                       | Actual | **Screenshot** |
+| ------------ | ------------------ | ---------------- | --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------------- |
+| Must Have    | Create Recognition | Post Create Page | Fill out form with content, submit form | Redirected to detail page with success message; new post appears in feed; required fields trigger “This field may not be blank.” if empty | ✅     | 1a, 1b         |
+
+| Must Have | Edit Recognition | Feed / Detail Page > Dropdown > Edit | Click edit from dropdown, verify form is prefilled, submit updates | Success message shown; updated content appears in feed and detail page | ✅ | 2a, 2b, 2c |
+| Must Have | Delete Recognition | Feed / Detail Page > Dropdown > Delete | Click delete from dropdown, confirm deletion in modal | Confirmation prompt appears; post removed from feed with success message and no longer accessible via URL | ✅ | 3a, 3b |
+| Must Have | View Recognition Detail | Feed > "View full post" | Click "View full post" button on card | Full post loads with correct title, content, author, date, and comments; if logged in → comment form is visible; if logged out → prompt to log in to leave a comment | ✅ | 4a, 4b |
+
+| Must Have | View Recognition Feed | Homepage | Visit homepage | Feed shows latest recognitions in reverse chronological order | ✅ | |
 
 <details>
-<summary> 1/ Create Recognition – Successful message </summary>
+  <summary>1a. Create Recognition – Successful message</summary>
 
-![1](documentation/frontend/testing/recognition/recognition_create.png)
-
+   <p>
+      <img src="documentation/frontend/testing/recognition/recognition_create.png" alt="1a. Create Recognition – Successful message" />
+   </p>
 </details>
 
 <details>
-<summary> 2/ Edit Recognition – Dropdown feed </summary>
+  <summary>1b. Create Recognition – Blank fields error</summary>
 
-![2](documentation/frontend/testing/recognition/recognition_edit_feed.png)
-
+   <p>
+      <img src="documentation/frontend/testing/recognition/recognition_create_blank_field.png" alt="1b. Create Recognition – Blank fields error" />
+   </p>
 </details>
 
 <details>
-<summary> 3/ Edit Recognition – Form pre-filled </summary>
+  <summary>2a. Edit Recognition – Dropdown feed</summary>
 
-![3](documentation/frontend/testing/recognition/recognition_edit.png)
-
+   <p>
+      <img src="documentation/frontend/testing/recognition/recognition_edit_feed.png" alt="2a. Edit Recognition – Dropdown feed" />
+   </p>
 </details>
 
 <details>
-<summary> 4/ Edit Recognition – Successful message </summary>
+  <summary>2b. Edit Recognition – Form pre-filled</summary>
 
-![4](documentation/frontend/testing/recognition/recognition_edit_confirmation.png)
-
+   <p>
+      <img src="documentation/frontend/testing/recognition/recognition_edit.png" alt="2b. Edit Recognition – Form pre-filled" />
+   </p>
 </details>
 
 <details>
-<summary> 5/ Delete Recognition - Confirmation prompt </summary>
+  <summary>2c. Edit Recognition – Successful message</summary>
 
-![5](documentation/frontend/testing/recognition/recognition_delete_prompt.png)
-
+   <p>
+      <img src="documentation/frontend/testing/recognition/recognition_edit_confirmation.png" alt="2c. Edit Recognition – Successful message" />
+   </p>
 </details>
 
 <details>
-<summary> 6/ Delete Recognition > Successful message </summary>
+  <summary>3a. Delete Recognition - Confirmation prompt</summary>
 
-![6](documentation/frontend/testing/recognition/recognition_delete_confirmation.png)
+   <p>
+      <img src="documentation/frontend/testing/recognition/recognition_delete_prompt.png" alt="3a. Delete Recognition - Confirmation prompt" />
+   </p>
+</details>
 
+<details>
+  <summary>3b. Delete Recognition > Successful message</summary>
+
+   <p>
+      <img src="documentation/frontend/testing/recognition/recognition_delete_confirmation.png" alt="3b. Delete Recognition > Successful message" />
+   </p>
+</details>
+
+<details>
+  <summary>4a. View Recognition Detail > Logged in</summary>
+
+   <p>
+      <img src="documentation/frontend/testing/recognition/recognition_detail_logged_in.png" alt="4a. View Recognition Detail > Logged in" />
+   </p>
+</details>
+
+<details>
+  <summary>4b. View Recognition Detail > Logged out</summary>
+
+   <p>
+      <img src="documentation/frontend/testing/recognition/recognition_detail_logged_out.png" alt="4b. View Recognition Detail > Logged out" />
+   </p>
 </details>
 
 #### **Nomination CRUD**
 
-| **Priority** | **User Story**         | **Page(s)**            | **Test Scenario / Action**             | **Expected Result**                                 | Actual | **Screenshot** |
-| ------------ | ---------------------- | ---------------------- | -------------------------------------- | --------------------------------------------------- | ------ | -------------- |
-| Must Have    | Create Nomination      | Nomination Create Page | Submit valid form with nominee and tag | Redirect to detail, nomination shows in feed        | ✅     | 1 - 2 - 3 - 4  |
-| Must Have    | Edit Nomination        | Feed > Edit Dropdown   | Update text or tags                    | Updated nomination shown in feed and detail         | ✅     | 5 - 6          |
-| Must Have    | Delete Nomination      | Feed > Delete Dropdown | Delete a nomination and confirm        | Nomination disappears from feed and is inaccessible | ✅     | 7 - 8          |
-| Must Have    | View Nomination Detail | Feed > Click Card      | Click on nomination preview            | Full nomination loads with correct data             | ✅     |                |
-| Must Have    | View Nomination Feed   | Toggle in Homepage     | Use toggle to switch feed type         | Feed updates to show only nominations               | ✅     |                |
+| **Priority** | **User Story**    | **Page(s)**            | **Test Scenario / Action**                       | **Expected Result**                                                                                                                         | Actual | **Screenshot** |
+| ------------ | ----------------- | ---------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------------- |
+| Must Have    | Create Nomination | Nomination Create Page | Fill form with nominee, tag, and message; submit | Redirected to detail page with success message; nomination appears in feed; required fields trigger “This field may not be blank.” if empty | ✅     | 1a, 1b, 1c, 1d |
+
+| Must Have | Edit Nomination | Feed / Detail Page > Dropdown > Edit | Click edit from dropdown, update content or tag | Form is prefilled; after submit, success message shown; changes reflected in feed | ✅ | 2a, 2b |
+| Must Have | Delete Nomination | Feed / Detail Page > Dropdown > Delete | Click delete from dropdown, confirm prompt | Confirmation modal appears; after confirm, success message shown; nomination removed | ✅ | 3a, 3b |
+| Must Have | View Nomination Detail | Feed > Click Card | Click nomination card preview in feed | Full nomination loads with correct nominee, tag, content, and date | ✅ | |
+| Must Have | View Nomination Feed | Homepage > Toggle | Click “Nominations” toggle in homepage feed | Feed updates to show only nominations in reverse chronological order | ✅ | |
 
 <details>
-<summary> 1/ Create Nomination – Successful message </summary>
+  <summary>1a. Create Nomination – Successful message</summary>
 
-![1](documentation/frontend/testing/nomination/nomination_create_successful.png)
-
+   <p>
+      <img src="documentation/frontend/testing/nomination/nomination_create_successful.png" alt="1a. Create Nomination – Successful message" />
+   </p>
 </details>
 
 <details>
-<summary> 2/ Create Nomination – tag dropdwon </summary>
+  <summary>1b. Create Nomination – Blank fields error</summary>
 
-![2](documentation/frontend/testing/nomination/nomination_create_tag.png)
-
+   <p>
+      <img src="documentation/frontend/testing/nomination/nomination_create_blank_field.png" alt="1b. Create Nomination – Blank fields error" />
+   </p>
 </details>
 
 <details>
-<summary> 3/ Create Nomination – search people by name </summary>
+  <summary>1c. Create Nomination – Search people by name</summary>
 
-![3](documentation/frontend/testing/nomination/nomination_create_name.png)
-
+   <p>
+      <img src="documentation/frontend/testing/nomination/nomination_create_name.png" alt="1c. Create Nomination – Search people by name" />
+   </p>
 </details>
 
 <details>
-<summary> 4/ Create Nomination – tag mandatory </summary>
+  <summary>1d. Create Nomination – Tag dropdwon</summary>
 
-![4](documentation/frontend/testing/nomination/nomination_create_tag_mandatory.png)
-
+   <p>
+      <img src="documentation/frontend/testing/nomination/nomination_create_tag.png" alt="1d. Create Nomination – Tag dropdwon" />
+   </p>
 </details>
 
 <details>
-<summary> 5/ Edit Nomination – Dropdown feed </summary>
+  <summary>2a. Edit Nomination – Dropdown feed</summary>
 
-![5](documentation/frontend/testing/nomination/nomination_edit_feed.png)
-
+   <p>
+      <img src="documentation/frontend/testing/nomination/nomination_edit_feed.png" alt="2a. Edit Nomination – Dropdown feed" />
+   </p>
 </details>
 
 <details>
-<summary> 6/ Edit Nomination – Successful message </summary>
+  <summary>2b. Edit Nomination – Successful message</summary>
 
-![6](documentation/frontend/testing/nomination/nomination_edit_successful.png)
-
+   <p>
+      <img src="documentation/frontend/testing/nomination/nomination_edit_successful.png" alt="2b. Edit Nomination – Successful message" />
+   </p>
 </details>
 
 <details>
-<summary> 7/ Delete Nomination - Confirmation prompt </summary>
+  <summary>3a. Delete Nomination - Confirmation prompt</summary>
 
-![7](documentation/frontend/testing/nomination/nomination_delete_prompt.png)
-
+   <p>
+      <img src="documentation/frontend/testing/nomination/nomination_delete_prompt.png" alt="3a. Delete Nomination - Confirmation prompt" />
+   </p>
 </details>
 
 <details>
-<summary> 8/ Delete Nomination > Successful message </summary>
+  <summary>3b. Delete Nomination - Successful message</summary>
 
-![8](documentation/frontend/testing/nomination/nomination_delete_successful.png)
-
+   <p>
+      <img src="documentation/frontend/testing/nomination/nomination_delete_successful.png" alt="3b. Delete Nomination - Successful message" />
+   </p>
 </details>
 
 #### **Engaging with People & Posts**
 
-| **Priority** | **User Story**                | **Page(s)**     | **Test Scenario / Action**            | **Expected Result**                        | Actual | **Screenshot** |
-| ------------ | ----------------------------- | --------------- | ------------------------------------- | ------------------------------------------ | ------ | -------------- |
-| Must Have    | Comment on Recognition        | Detail Page     | Submit valid comment                  | Comment appears below post                 | ✅     | 1              |
-| Should Have  | Like someone else Recognition | Feed / Detail   | Click like and unlike                 | Count updates and button toggles correctly | ✅     | 2 - 3          |
-| Should Have  | Edit/Delete My Comment        | Detail Page     | Click edit or delete on owned comment | Comment updates or disappears as expected  | ✅     | 4 - 5          |
-| Should Have  | Search for Colleagues         | Feed Search Bar | Type partial name                     | Matching users show with avatar            | ✅     | 6              |
+| **Priority** | **User Story**         | **Page(s)** | **Test Scenario / Action**           | **Expected Result**                                                                                                                                                 | Actual | **Screenshot** |
+| ------------ | ---------------------- | ----------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------------- |
+| Must Have    | Comment on Recognition | Detail Page | Submit valid comment while logged in | Comment form is visible; post button is disabled when input is empty and enabled once content is entered; submitted comment appears below post with success message | ✅     | 1a, 1b, 1c     |
+
+| Must Have | Guest View of Comment Section | Detail Page | Visit post detail page while logged out | Comment form is hidden; message appears prompting user to log in to leave a comment | ✅ | 2 |
+| Should Have | Edit/Delete My Comment | Detail Page | Click edit or delete on comment authored by user | Dropdown is visible; editing opens prefilled form; delete prompts confirmation; success message shown after either action | ✅ | 3a, 3b, 3c, 3d |
+| Should Have | Like someone else Recognition | Feed / Detail Page | Click like/unlike while logged | Like count updates and icon toggles when liking someone else's post while logged in; own posts show disabled icon with tooltip | ✅ | 4a, 4b |
+
+| Should Have | Guest View of Like Button | Feed / Detail Page | Hover over like icon while logged out | Like icon is inactive with “Log in to like” tooltip; cursor shows not-allowed style | ✅ | 5 |
+| Must Have | Search for Colleagues | Feed Sidebar | Type full or partial name into search input | Matching users appear in real time with avatar and full name | ✅ |6 |
+| Should Have | Filter Colleagues by Dept | Feed Sidebar | Select department from dropdown | List updates to show only users from selected department; works in combination with name search | ✅ | 7|
 
 <details>
-  <summary>1/ Comment on Recognition</summary>
+  <summary>1a. Comment on Recognition - Post Button Disabled</summary>
 
    <p>
-      <img src="documentation/frontend/testing/comment/comment_form.png" alt="Comment on Recognition" />
+      <img src="documentation/frontend/testing/comment/comment_submit_disabled.png" alt="1a. Comment on Recognition - Post Button Disabled" />
    </p>
 </details>
 
 <details>
-  <summary>2/ Like/Unlike on Recognition</summary>
+  <summary>1b. Comment on Recognition - Post Button Enabled</summary>
 
    <p>
-      <img src="documentation/frontend/testing/like/like.png" alt="Like/Unlike on Recognition from the feed" />
+      <img src="documentation/frontend/testing/comment/comment_submit_enabled.png" alt="1b. Comment on Recognition - Post Button Enabled" />
    </p>
 </details>
 
 <details>
-  <summary>3/ Can't like your own post - message</summary>
+  <summary>1c. Comment on Recognition - Successful message</summary>
 
    <p>
-      <img src="documentation/frontend/testing/like/like_own_post.png" alt="Can't like your own post" />
+      <img src="documentation/frontend/testing/comment/comment_successful.png" alt="1c. Comment on Recognition - Successful message" />
    </p>
 </details>
 
 <details>
-  <summary>4/ Edit/Delete comment - dropdown</summary>
+  <summary>2. Comment - Guest View</summary>
 
    <p>
-      <img src="documentation/frontend/testing/comment/comment_edit_dropdown.png" alt="Edit/Delete comment - dropdown" />
+      <img src="documentation/frontend/testing/comment/comment_logged_out.png" alt="2. Comment - Guest View" />
    </p>
 </details>
 
 <details>
-  <summary>5/ Delete comment - Confirmation prompt</summary>
+  <summary>3a. Edit/Delete comment - dropdown</summary>
 
    <p>
-      <img src="documentation/frontend/testing/comment/comment_delete_prompt.png" alt="Delete comment - Confirmation prompt" />
+      <img src="documentation/frontend/testing/comment/comment_edit_dropdown.png" alt="3a. Edit/Delete comment - dropdown" />
    </p>
 </details>
 
 <details>
-  <summary>6/ Search for Colleagues</summary>
+  <summary>3b. Delete comment - Confirmation prompt</summary>
 
    <p>
-      <img src="documentation/frontend/testing/profile/search_people_filter.png" alt="Search for Colleagues" />
+      <img src="documentation/frontend/testing/comment/comment_delete_prompt.png" alt="3b. Delete comment - Confirmation prompt" />
+   </p>
+</details>
+
+<details>
+  <summary>3c. Edit comment - Successful Message</summary>
+
+   <p>
+      <img src="documentation/frontend/testing/comment/comment_edit_successful.png" alt="3c. Edit comment - Successful Message" />
+   </p>
+</details>
+
+<details>
+  <summary>3d. Delete comment - Successful Message</summary>
+
+   <p>
+      <img src="documentation/frontend/testing/comment/comment_delete_successful.png" alt="3d. Delete comment - Successful Message" />
+   </p>
+</details>
+
+<details>
+  <summary>4a. Like - Someone else Recognition</summary>
+
+   <p>
+      <img src="documentation/frontend/testing/like/liked_not_liked.png" alt="4a. Like - Someone else Recognition" />
+   </p>
+</details>
+
+<details>
+  <summary>4b. Like - Own Posts disabled</summary>
+
+   <p>
+      <img src="documentation/frontend/testing/like/like_own.png" alt="4b. Like - Own Posts disabled" />
+   </p>
+</details>
+
+<details>
+  <summary>5. Like - Guest View</summary>
+
+   <p>
+      <img src="documentation/frontend/testing/like/like_logged_out.png" alt="5. Like - Guest View" />
+   </p>
+</details>
+
+<details>
+  <summary>6. Search for Colleagues</summary>
+
+   <p>
+      <img src="documentation/frontend/testing/profile/search_people_name.png" alt="Search for Colleagues" />
+   </p>
+</details>
+
+<details>
+  <summary>7. Filter Colleagues by Dept</summary>
+
+   <p>
+      <img src="documentation/frontend/testing/profile/filter_department.png" alt="Filter Colleagues by Dept" />
    </p>
 </details>
 
 #### **Managing My Profile & Network**
 
-| **Priority** | **User Story**       | **Page(s)**            | **Test Scenario / Action**                          | **Expected Result**                           | Actual | **Screenshot** |
-| ------------ | -------------------- | ---------------------- | --------------------------------------------------- | --------------------------------------------- | ------ | -------------- |
-| Should Have  | Edit My Profile      | Profile Edit Page      | Change avatar or bio and save                       | Profile updates and info reflects new data    | ✅     | 1 - 2          |
-| Must Have    | View Public Profiles | Feed / Detail > Author | Click username/avatar of another user               | Public profile loads with bio + list of posts | ✅     |
-| Could Have   | View My Own Posts    | My Profile Page        | Visit profile and review recognitions + nominations | All user-created posts appear with preview    |        |
+| **Priority** | **User Story**              | **Page(s)**                  | **Test Scenario / Action**                | **Expected Result**                                                                                                                                                                     | Actual | **Screenshot** |
+| ------------ | --------------------------- | ---------------------------- | ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------------- |
+| Should Have  | Edit My Profile             | Profile Edit Page            | Change avatar or bio and save             | Form is prefilled with current values; first name and last name fields are disabled with note to contact HR; after submit, success message is shown and updated info appears in profile | ✅     | 1a, 1b         |
+| Should Have  | Conditional Profile Actions | Public / My Profile Page     | View any profile page while logged in     | If viewing own profile → edit icon appears; if viewing another user → “Nominate” button is visible                                                                                      | ✅     | 2a, 2b         |
+| Must Have    | View Public Profiles        | Feed > Sidebar > Search List | Click username/avatar from search results | Public profile page loads with user avatar, bio, and their recognitions and nominations                                                                                                 | ✅     |                |
+| Could Have   | View My Own Posts           | My Profile Page              | Visit profile while logged in             | User sees recognitions and nominations they created, grouped by type                                                                                                                    | ✅     |                |
 
 <details>
-  <summary>1/ Edit My Profile - edit button for owner only</summary>
+  <summary>1a. Edit My Profile - Form prefilled with read only fields</summary>
 
    <p>
-      <img src="documentation/frontend/testing/profile/profile_edit.png" alt="Edit My Profile - edit button for owner only" />
+      <img src="documentation/frontend/testing/profile/profile_edit_fields.png" alt="1a. Edit My Profile - Form prefilled with read only fields" />
    </p>
 </details>
 
 <details>
-  <summary>2/ Edit My Profile - pre-filled form with read only fields</summary>
+  <summary>1b. Edit My Profile - Successful message</summary>
 
    <p>
-      <img src="documentation/frontend/testing/profile/profile_edit_form.png" alt="Edit My Profile - pre-filled form with read only fields" />
+      <img src="documentation/frontend/testing/profile/profile_edit_successful.png" alt="1b. Edit My Profile - Successful message" />
+   </p>
+</details>
+
+<details>
+  <summary>2a. Conditional Profile Actions - Owner view</summary>
+
+   <p>
+      <img src="documentation/frontend/testing/profile/colleague_profile.png" alt="2a. Conditional Profile Actions - Owner view" />
+   </p>
+</details>
+
+<details>
+  <summary>2b. Conditional Profile Actions - Colleagues view</summary>
+
+   <p>
+      <img src="documentation/frontend/testing/profile/owner_profile.png" alt="2b. Conditional Profile Actions - Colleagues view" />
    </p>
 </details>
 
