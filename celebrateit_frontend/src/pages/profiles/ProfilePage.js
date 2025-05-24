@@ -144,7 +144,7 @@ const ProfilePage = () => {
         )}
         <div className={profileStyles.TwoColumnFeed}>
           <div className={profileStyles.FeedColumn}>
-            <h4>Your Recognitions</h4>
+            <div className={profileStyles.SectionTitlePurple}>Recognitions</div>
             {recognitions
               .filter((post) => post.user === profile.user)
               .map((post) => (
@@ -161,7 +161,7 @@ const ProfilePage = () => {
               ))}
           </div>
           <div className={profileStyles.FeedColumn}>
-            <h4>Your Nominations</h4>
+            <div className={profileStyles.SectionTitleYellow}>Nominations</div>
             {nominations
               .filter(
                 (nom) =>
