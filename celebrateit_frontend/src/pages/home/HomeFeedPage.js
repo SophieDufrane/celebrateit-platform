@@ -152,28 +152,31 @@ const HomeFeedPage = () => {
 
         {/* Right Column - Sidebar */}
         <Col md={4}>
-          {/* Search field placeholder */}
-          <input
-            type="text"
-            className="form-control mb-3"
-            placeholder="Search people..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <select
-            className="form-select mb-3"
-            value={selectedDepartment}
-            onChange={(e) => setSelectedDepartment(e.target.value)}
-          >
-            <option value="">All Departments</option>
-            {[...new Set(people.map((p) => p.department).filter(Boolean))].map(
-              (dept) => (
+          <div className={feedStyles.SearchFilterBlock}>
+            {/* Search field placeholder */}
+            <input
+              type="text"
+              className={feedStyles.FilterInput}
+              placeholder="Search people..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            {/* Department filter */}
+            <select
+              className={feedStyles.FilterSelect}
+              value={selectedDepartment}
+              onChange={(e) => setSelectedDepartment(e.target.value)}
+            >
+              <option value="">All Departments</option>
+              {[
+                ...new Set(people.map((p) => p.department).filter(Boolean)),
+              ].map((dept) => (
                 <option key={dept} value={dept}>
                   {dept}
                 </option>
-              )
-            )}
-          </select>
+              ))}
+            </select>
+          </div>
 
           {/* People list placeholder */}
           {people

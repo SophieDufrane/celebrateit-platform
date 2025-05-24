@@ -82,3 +82,23 @@
   display: flex;
   align-items: center;
 }
+
+.SearchFilterBlock {
+  background-color: #f7f7f7;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.FilterInput,
+.FilterSelect {
+  font-family: inherit !important;
+  font-size: 0.9rem !important;
+  color: inherit !important;
+  border: 1px solid #ccc;
+  border-radius: 0.3rem;
+  padding: 0.6rem;
+}
