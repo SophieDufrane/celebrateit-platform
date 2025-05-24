@@ -252,7 +252,9 @@ function RecognitionDetailPage() {
               }}
             />
           ) : (
-            <p className="text-muted px-3">Log in to leave a comment.</p>
+            <p className={styles.LoginToComment}>
+              <i className="far fa-comment" /> Log in to leave a comment.
+            </p>
           )}
 
           <div className={commentStyles.CommentSection} />
