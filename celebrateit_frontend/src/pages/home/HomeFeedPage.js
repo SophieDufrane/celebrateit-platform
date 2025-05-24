@@ -19,6 +19,7 @@ const HomeFeedPage = () => {
   const [showNominations, setShowNominations] = useState(false);
   const [hasLoaded, setHasLoaded] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedDepartment, setSelectedDepartment] = useState("");
 
   // Data State
   const [recognitions, setRecognitions] = useState([]);
@@ -159,14 +160,31 @@ const HomeFeedPage = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
+          <select
+            className="form-select mb-3"
+            value={selectedDepartment}
+            onChange={(e) => setSelectedDepartment(e.target.value)}
+          >
+            <option value="">All Departments</option>
+            {[...new Set(people.map((p) => p.department).filter(Boolean))].map(
+              (dept) => (
+                <option key={dept} value={dept}>
+                  {dept}
+                </option>
+              )
+            )}
+          </select>
 
           {/* People list placeholder */}
           {people
-            .filter((person) =>
-              `${person.first_name} ${person.last_name}`
-                .toLowerCase()
-                .includes(searchTerm.toLowerCase())
-            )
+            .filter((person) => {
+              const fullName =
+                `${person.first_name} ${person.last_name}`.toLowerCase();
+              const matchesName = fullName.includes(searchTerm.toLowerCase());
+              const matchesDepartment =
+                !selectedDepartment || person.department === selectedDepartment;
+              return matchesName && matchesDepartment;
+            })
             .map((person) => (
               <ListGroup.Item
                 key={person.id}
