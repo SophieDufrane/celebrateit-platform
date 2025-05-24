@@ -18,7 +18,7 @@ function RecognitionDetailPage() {
   const { id } = useParams();
   const history = useHistory();
   const location = useLocation();
-  const currentUser = useCurrentUser();
+  const { currentUser } = useCurrentUser();
 
   // State
   const [recognition, setRecognition] = useState(null);
@@ -143,7 +143,6 @@ function RecognitionDetailPage() {
 
   // Fetch comments
   useEffect(() => {
-    if (!currentUser) return;
     axios
       .get(`/comments/?post=${id}`)
       .then((response) => {
@@ -240,18 +239,21 @@ function RecognitionDetailPage() {
               />
             </div>
           )}
-          <CommentForm
-            postId={recognition.id}
-            disabled={!currentUser}
-            onCommentSubmit={(newComment) => {
-              setComments((prevComments) => [newComment, ...prevComments]);
-              setRecognition((prev) => ({
-                ...prev,
-                comments_count: prev.comments_count + 1,
-              }));
-              setShowCommentSuccess(true);
-            }}
-          />
+          {currentUser ? (
+            <CommentForm
+              postId={recognition.id}
+              onCommentSubmit={(newComment) => {
+                setComments((prevComments) => [newComment, ...prevComments]);
+                setRecognition((prev) => ({
+                  ...prev,
+                  comments_count: prev.comments_count + 1,
+                }));
+                setShowCommentSuccess(true);
+              }}
+            />
+          ) : (
+            <p className="text-muted px-3">Log in to leave a comment.</p>
+          )}
 
           <div className={commentStyles.CommentSection} />
 
