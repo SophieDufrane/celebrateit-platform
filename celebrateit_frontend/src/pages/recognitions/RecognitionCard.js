@@ -107,12 +107,12 @@ const RecognitionCard = (props) => {
           <OverlayTrigger
             placement="top"
             overlay={
-              <Tooltip id={`tooltip-self-like`}>
+              <Tooltip id={`tooltip-self-like-${id}`}>
                 Can't like your own recognition!
               </Tooltip>
             }
           >
-            <span style={{ cursor: "not-allowed" }}>
+            <span className={styles.DisabledIcon}>
               <i className="far fa-thumbs-up" />
             </span>
           </OverlayTrigger>
@@ -135,10 +135,18 @@ const RecognitionCard = (props) => {
             />
           </span>
         ) : (
-          <i
-            className="far fa-thumbs-up"
-            title="Log in to like recognitions!"
-          />
+          <OverlayTrigger
+            placement="top"
+            overlay={
+              <Tooltip id={`tooltip-login-like-${id}`}>
+                Log in to like recognitions!
+              </Tooltip>
+            }
+          >
+            <span className={styles.DisabledIcon}>
+              <i className="far fa-thumbs-up" />
+            </span>
+          </OverlayTrigger>
         )}
         <span>{likes_count}</span>
       </div>
