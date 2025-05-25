@@ -30,9 +30,35 @@ function RecognitionDetailPage() {
 
   // Derived/computed values
   const isNomination = !!recognition?.nominee;
-
-  // Temporary values
   let dropdownMenu = null;
+
+  // Check URL query params for success messages (post or comment actions)
+  const searchParams = new URLSearchParams(location.search);
+  const isCreated = searchParams.get("created") === "true";
+  const isUpdated = searchParams.get("updated") === "true";
+  const commentEdited = searchParams.get("comment_edited") === "true";
+  const commentDeleted = searchParams.get("comment_deleted") === "true";
+
+  // Unified flag for displaying success alerts (posts or comments)
+  const showSuccess =
+    isCreated ||
+    isUpdated ||
+    commentEdited ||
+    commentDeleted ||
+    showCommentSuccess;
+
+  // Determine appropriate success message based on URL or state
+  const successMessage = isCreated
+    ? "Your recognition has been published!"
+    : isUpdated
+    ? "Your recognition has been updated!"
+    : commentEdited
+    ? "Comment updated successfully!"
+    : commentDeleted
+    ? "Comment deleted successfully!"
+    : showCommentSuccess
+    ? "Comment posted successfully!"
+    : "";
 
   // Handlers - Like / Unlike
   const handleLike = async () => {
@@ -93,6 +119,7 @@ function RecognitionDetailPage() {
         ...prev,
         comments_count: prev.comments_count - 1,
       }));
+      history.replace(`${location.pathname}?comment_deleted=true`);
     } catch (err) {
       // console.log('Error deleting comment:', err);
       // TODO: add user feedback on error
@@ -101,37 +128,16 @@ function RecognitionDetailPage() {
     }
   };
 
-  // Check URL for post or update to show success message
-  const searchParams = new URLSearchParams(location.search);
-  const isCreated = searchParams.get("created") === "true";
-  const isUpdated = searchParams.get("updated") === "true";
-
-  const showSuccess = isCreated || isUpdated;
-  const successMessage = isCreated
-    ? "Your recognition has been published!"
-    : isUpdated
-    ? "Your recognition has been updated!"
-    : "";
-
-  // Effects
   // Effect: auto-hide success alert and clean up URL
   useEffect(() => {
     if (showSuccess) {
       const timer = setTimeout(() => {
-        const cleanUrl = location.pathname;
-        history.replace(cleanUrl);
-      }, 4000);
+        setShowCommentSuccess(false);
+        history.replace(location.pathname);
+      }, 3000);
       return () => clearTimeout(timer);
     }
   }, [showSuccess, history, location.pathname]);
-
-  // Effect: auto-hide comment success alert
-  useEffect(() => {
-    if (showCommentSuccess) {
-      const timer = setTimeout(() => setShowCommentSuccess(false), 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [showCommentSuccess]);
 
   // Effect: fetch post details
   useEffect(() => {
@@ -210,15 +216,9 @@ function RecognitionDetailPage() {
 
   return (
     <Container>
-      {showSuccess && (
+      {showSuccess && successMessage && (
         <Alert variant="success" dismissible>
           {successMessage}
-        </Alert>
-      )}
-
-      {showCommentSuccess && (
-        <Alert variant="success" dismissible>
-          Comment posted successfully!
         </Alert>
       )}
 

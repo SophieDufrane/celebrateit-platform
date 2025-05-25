@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
+import { useHistory, useLocation } from "react-router-dom";
 import styles from "../../styles/Comment.module.css";
 import FormFooter from "../../components/FormFooter";
 
 function CommentEditForm(props) {
   // Props from parent
   const { comment, setComments, setEditingComment, onCancel } = props;
+
+  // Routing
+  const history = useHistory();
+  const location = useLocation();
 
   // Local state
   const [content, setContent] = useState(comment.content);
@@ -27,6 +32,7 @@ function CommentEditForm(props) {
         prevComments.map((c) => (c.id === comment.id ? data : c))
       );
       setEditingComment(null);
+      history.replace(`${location.pathname}?comment_edited=true`);
     } catch (err) {
       // console.error('Update failed:', err);
       // TODO: add user feedback on error
