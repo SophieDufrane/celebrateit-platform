@@ -96,13 +96,11 @@ function NominationCard(props) {
           )
         }
         extraContent={
-          content.length > 150 && (
-            <div className={styles.ViewFullPostWrapper}>
-              <Link to={detailUrl} className={styles.ViewFullPostLink}>
-                View full post
-              </Link>
-            </div>
-          )
+          <div className={styles.ViewFullPostWrapper}>
+            <Link to={detailUrl} className={styles.ViewFullPostLink}>
+              View full nomination
+            </Link>
+          </div>
         }
       />
 

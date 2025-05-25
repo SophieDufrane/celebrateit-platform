@@ -180,7 +180,7 @@ function RecognitionCard(props) {
         extraContent={
           <div className={styles.ViewFullPostWrapper}>
             <Link to={detailUrl} className={styles.ViewFullPostLink}>
-              View full post
+              View full recognition
             </Link>
           </div>
         }
