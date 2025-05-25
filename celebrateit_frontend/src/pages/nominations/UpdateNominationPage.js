@@ -64,7 +64,12 @@ function UpdateNominationPage() {
     formData.append("tag", tag);
 
     try {
-      await axiosReq.patch(`/nominations/${id}/`, formData);
+      await axiosReq.patch(`/nominations/${id}/`, formData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          "Content-Type": "multipart/form-data",
+        },
+      });
       history.push(`/nominations/${id}?updated=true`);
     } catch (err) {
       // console.error("Submission error:", err.response?.data);
