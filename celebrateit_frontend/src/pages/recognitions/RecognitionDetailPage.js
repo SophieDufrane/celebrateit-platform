@@ -190,16 +190,27 @@ function RecognitionDetailPage() {
               </Tooltip>
             }
           >
-            <span style={{ cursor: "not-allowed" }}>
+            <span
+              style={{ cursor: "not-allowed" }}
+              aria-label="You can't like your own recognition"
+            >
               <i className="far fa-thumbs-up" />
             </span>
           </OverlayTrigger>
         ) : recognition.like_id ? (
-          <span onClick={handleUnlike} style={{ cursor: "pointer" }}>
+          <span
+            onClick={handleUnlike}
+            style={{ cursor: "pointer" }}
+            aria-label="Unlike this recognition"
+          >
             <i className={`fas fa-thumbs-up ${styles.Heart}`} />
           </span>
         ) : currentUser ? (
-          <span onClick={handleLike} style={{ cursor: "pointer" }}>
+          <span
+            onClick={handleLike}
+            style={{ cursor: "pointer" }}
+            aria-label="Like this recognition"
+          >
             <i className={`far fa-thumbs-up ${styles.HeartOutline}`} />
           </span>
         ) : (
@@ -211,7 +222,10 @@ function RecognitionDetailPage() {
               </Tooltip>
             }
           >
-            <span className={styles.DisabledIcon}>
+            <span
+              className={styles.DisabledIcon}
+              aria-label="Log in to like this recognition"
+            >
               <i className="far fa-thumbs-up" />
             </span>
           </OverlayTrigger>

@@ -99,6 +99,7 @@ function EditProfileForm() {
                 value={firstName}
                 readOnly
                 placeholder="First Name"
+                aria-label="First Name (read-only)"
               />
             </OverlayTrigger>
           </Form.Group>
@@ -120,6 +121,7 @@ function EditProfileForm() {
                 value={lastName}
                 readOnly
                 placeholder="Last Name"
+                aria-label="Last Name (read-only)"
               />
             </OverlayTrigger>
           </Form.Group>
@@ -138,6 +140,7 @@ function EditProfileForm() {
                 value={presentation}
                 onChange={(e) => setPresentation(e.target.value)}
                 placeholder="Write something about yourself"
+                aria-label="Short bio about yourself"
               />
             </OverlayTrigger>
           </Form.Group>
@@ -154,6 +157,7 @@ function EditProfileForm() {
               type="file"
               name="profile_image"
               onChange={(e) => setImageFile(e.target.files[0])}
+              aria-label="Upload new profile image"
             />
           </Form.Group>
 

@@ -110,7 +110,10 @@ function RecognitionCard(props) {
               </Tooltip>
             }
           >
-            <span className={styles.DisabledIcon}>
+            <span
+              className={styles.DisabledIcon}
+              aria-label="You can't like your own recognition"
+            >
               <i className="far fa-thumbs-up" />
             </span>
           </OverlayTrigger>
@@ -118,6 +121,7 @@ function RecognitionCard(props) {
           <span
             onClick={handleUnlike}
             className={`${styles.ActionItem} ${styles.Clickable}`}
+            aria-label="Unlike this recognition"
           >
             <i
               className={`fas fa-thumbs-up ${styles.Heart} ${styles.Clickable}`}
@@ -127,6 +131,7 @@ function RecognitionCard(props) {
           <span
             onClick={handleLike}
             className={`${styles.ActionItem} ${styles.Clickable}`}
+            aria-label="Like this recognition"
           >
             <i
               className={`far fa-thumbs-up ${styles.HeartOutline} ${styles.Clickable}`}
@@ -141,7 +146,10 @@ function RecognitionCard(props) {
               </Tooltip>
             }
           >
-            <span className={styles.DisabledIcon}>
+            <span
+              className={styles.DisabledIcon}
+              aria-label="Log in to like this recognition"
+            >
               <i className="far fa-thumbs-up" />
             </span>
           </OverlayTrigger>

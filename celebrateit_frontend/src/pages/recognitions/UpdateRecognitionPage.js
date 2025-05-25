@@ -94,6 +94,7 @@ function UpdateRecognitionPage() {
                   type="checkbox"
                   id="remove-image"
                   label=""
+                  aria-label="Remove image"
                   checked={removeImage}
                   onChange={(e) => setRemoveImage(e.target.checked)}
                 />
@@ -107,7 +108,12 @@ function UpdateRecognitionPage() {
             placement="top"
             overlay={<Tooltip>Upload an image (optional)</Tooltip>}
           >
-            <Form.Control type="file" name="image" onChange={handleChange} />
+            <Form.Control
+              type="file"
+              name="image"
+              onChange={handleChange}
+              aria-label="Upload an image (optional)"
+            />
           </OverlayTrigger>
         </Form.Group>
       </PostForm>

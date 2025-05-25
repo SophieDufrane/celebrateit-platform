@@ -89,7 +89,12 @@ function CreateRecognitionPage() {
             placement="top"
             overlay={<Tooltip>Upload an image (optional)</Tooltip>}
           >
-            <Form.Control type="file" name="image" onChange={handleChange} />
+            <Form.Control
+              type="file"
+              name="image"
+              onChange={handleChange}
+              aria-label="Upload an optional image"
+            />
           </OverlayTrigger>
         </Form.Group>
       </PostForm>

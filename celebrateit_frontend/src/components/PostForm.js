@@ -24,6 +24,7 @@ function PostForm({
             type="text"
             placeholder="Enter title"
             name="title"
+            aria-label="Enter a short, clear post title"
             value={title}
             onChange={handleChange}
           />
@@ -46,6 +47,7 @@ function PostForm({
             rows={10}
             placeholder="Write your story..."
             name="content"
+            aria-label="Write the story you want to share"
             value={content}
             onChange={handleChange}
           />

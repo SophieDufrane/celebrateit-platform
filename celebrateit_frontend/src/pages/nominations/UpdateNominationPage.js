@@ -103,6 +103,7 @@ function UpdateNominationPage() {
               as="select"
               name="tag"
               value={tag}
+              aria-label="Select a new tag if needed"
               onChange={handleChange}
             >
               <option value="">Select a tag</option>

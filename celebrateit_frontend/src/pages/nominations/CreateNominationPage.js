@@ -175,6 +175,7 @@ function CreateNominationPage() {
                 type="text"
                 name="nominee"
                 placeholder="Start typing a name..."
+                aria-label="Search for a teammate by first or last name"
                 value={nomineeInput}
                 onChange={handleChange}
               />
@@ -208,6 +209,7 @@ function CreateNominationPage() {
               as="select"
               name="tag"
               value={tag}
+              aria-label="Pick a tag that reflects the nomination"
               onChange={handleChange}
             >
               <option value="">Select a tag</option>
