@@ -531,6 +531,7 @@ ProfilePage (container)
 |     ├── Department
 |     └── Bio / Presentation text
 ├── ProfileFeedSection (container)
+└── EditProfileForm (container)
 
 ```
 
