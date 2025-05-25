@@ -57,7 +57,13 @@ function EditProfileForm() {
     try {
       const { data } = await axiosReq.patch(
         `/user-profiles/${profile.id}/`,
-        formData
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
       setProfile(data);
       setCurrentUser(
