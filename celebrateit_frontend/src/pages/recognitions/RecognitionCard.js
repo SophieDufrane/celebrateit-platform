@@ -26,7 +26,7 @@ function RecognitionCard(props) {
     onPostDelete,
     detailUrl = `/recognitions/${id}`,
     editUrl = `/recognitions/${id}/edit`,
-    deleteUrl = `/posts/${id}`, // API uses /posts/
+    deleteUrl = `/posts/${id}/`,
   } = props;
 
   // User & Navigation

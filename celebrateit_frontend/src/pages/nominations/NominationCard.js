@@ -22,7 +22,7 @@ function NominationCard(props) {
     onPostDelete,
     detailUrl = `/nominations/${id}`,
     editUrl = `/nominations/${id}/edit`,
-    deleteUrl = `/nominations/${id}`,
+    deleteUrl = `/nominations/${id}/`,
   } = props;
 
   // User & Navigation
