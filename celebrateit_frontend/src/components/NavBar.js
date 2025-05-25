@@ -26,6 +26,8 @@ function NavBar() {
     }
   };
 
+  console.log("Navbar currentUser:", currentUser); // DEBUG
+
   return (
     <Navbar className={styles.Navbar} expand="md" fixed="top">
       <Container>
