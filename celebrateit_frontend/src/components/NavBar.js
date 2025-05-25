@@ -1,7 +1,7 @@
 import React from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
-import styles from "../styles/NavBar.module.css";
 import { NavLink, useHistory } from "react-router-dom";
+import styles from "../styles/NavBar.module.css";
 import {
   useCurrentUser,
   useSetCurrentUser,
@@ -9,7 +9,7 @@ import {
 import { axiosReq } from "../api/axiosDefaults";
 import { removeTokenTimestamp } from "../utils/utils";
 
-const NavBar = () => {
+function NavBar() {
   const { currentUser, currentUserLoaded } = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   const history = useHistory();
@@ -21,7 +21,8 @@ const NavBar = () => {
       removeTokenTimestamp();
       history.push("/login?loggedOut=true");
     } catch (err) {
-      console.error("Logout failed:", err);
+      // console.error('Logout failed:', err);
+      // TODO: add user feedback on error
     }
   };
 
@@ -74,6 +75,6 @@ const NavBar = () => {
       </Container>
     </Navbar>
   );
-};
+}
 
 export default NavBar;

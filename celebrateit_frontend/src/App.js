@@ -1,21 +1,21 @@
-import styles from "./App.module.css";
-import NavBar from "./components/NavBar";
-import Container from "react-bootstrap/Container";
-import { Route, Switch } from "react-router-dom";
-import { useCurrentUser } from "./contexts/CurrentUserContext";
+import Container from 'react-bootstrap/Container';
+import { Route, Switch } from 'react-router-dom';
+import styles from './App.module.css';
+import NavBar from './components/NavBar';
+import { useCurrentUser } from './contexts/CurrentUserContext';
 
 // Pages
-import HomeFeedPage from "./pages/home/HomeFeedPage";
-import CreateRecognitionPage from "./pages/recognitions/CreateRecognitionPage";
-import RecognitionDetailPage from "./pages/recognitions/RecognitionDetailPage";
-import UpdateRecognitionPage from "./pages/recognitions/UpdateRecognitionPage";
-import CreateNominationPage from "./pages/nominations/CreateNominationPage";
-import NominationDetailPage from "./pages/nominations/NominationDetailPage";
-import UpdateNominationPage from "./pages/nominations/UpdateNominationPage";
-import ProfilePage from "./pages/profiles/ProfilePage";
-import EditProfileForm from "./pages/profiles/EditProfileForm";
-import SignInForm from "./pages/auth/SignInForm";
-import SignUpForm from "./pages/auth/SignUpForm";
+import HomeFeedPage from './pages/home/HomeFeedPage';
+import CreateRecognitionPage from './pages/recognitions/CreateRecognitionPage';
+import RecognitionDetailPage from './pages/recognitions/RecognitionDetailPage';
+import UpdateRecognitionPage from './pages/recognitions/UpdateRecognitionPage';
+import CreateNominationPage from './pages/nominations/CreateNominationPage';
+import NominationDetailPage from './pages/nominations/NominationDetailPage';
+import UpdateNominationPage from './pages/nominations/UpdateNominationPage';
+import ProfilePage from './pages/profiles/ProfilePage';
+import EditProfileForm from './pages/profiles/EditProfileForm';
+import SignInForm from './pages/auth/SignInForm';
+import SignUpForm from './pages/auth/SignUpForm';
 
 function App() {
   const { currentUserLoaded } = useCurrentUser();

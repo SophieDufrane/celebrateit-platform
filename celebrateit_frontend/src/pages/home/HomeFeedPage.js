@@ -7,7 +7,7 @@ import NominationCard from "../nominations/NominationCard";
 import LoadingIndicator from "../../components/LoadingIndicator";
 import feedStyles from "../../styles/HomeFeedPage.module.css";
 
-const HomeFeedPage = () => {
+function HomeFeedPage() {
   // Routing and Location
   const location = useLocation();
   const isDeleted =
@@ -46,7 +46,10 @@ const HomeFeedPage = () => {
     axios
       .get("/posts/")
       .then((res) => setRecognitions(res.data.results))
-      .catch((err) => console.error(err))
+      .catch((err) => {
+        // console.log(err);
+        // TODO: add user feedback on error
+      })
       .finally(() => setHasLoaded(true));
   }, []);
 
@@ -55,7 +58,10 @@ const HomeFeedPage = () => {
     axios
       .get("/nominations/")
       .then((res) => setNominations(res.data.results))
-      .catch((err) => console.error("Error fetching nominations:", err));
+      .catch((err) => {
+        // console.log('Error fetching nominations:', err);
+        // TODO: add user feedback on error
+      });
   }, []);
 
   // Fetch People/Profiles
@@ -63,7 +69,10 @@ const HomeFeedPage = () => {
     axios
       .get("/user-profiles/")
       .then((res) => setPeople(res.data.results || res.data))
-      .catch((err) => console.error("Error fetching people:", err));
+      .catch((err) => {
+        // console.log('Error fetching people:', err);
+        // TODO: add user feedback on error
+      });
   }, []);
 
   return (
@@ -210,6 +219,6 @@ const HomeFeedPage = () => {
       </Row>
     </Container>
   );
-};
+}
 
 export default HomeFeedPage;

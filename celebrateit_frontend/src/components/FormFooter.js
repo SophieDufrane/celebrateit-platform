@@ -1,14 +1,14 @@
-import React from "react";
-import { Button } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
-import sharedStyles from "../App.module.css";
-import formStyles from "../styles/PostForm.module.css";
+import React from 'react';
+import { Button } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
+import sharedStyles from '../App.module.css';
+import formStyles from '../styles/PostForm.module.css';
 
 function FormFooter(props) {
   const history = useHistory();
 
   const {
-    submitText = "Submit",
+    submitText = 'Submit',
     onCancel,
     disabled = false,
     showCancel = true,

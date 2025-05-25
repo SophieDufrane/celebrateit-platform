@@ -1333,15 +1333,35 @@ The website's stylesheet was tested using the [W3C CSS Validation Service](https
 
 #### **JavaScript**
 
-To ensure JavaScript code quality and compliance, I tested the file using [JSHint](https://jshint.com/).  
-Since I used **ES6 features** such as `const` and arrow functions (`=>`), I also updated the JSHint configuration to **support ES6** by adding `esversion: 6`.
+To ensure JavaScript and React code quality, **ESLint** was installed and configured using the widely adopted **Airbnb style guide**. In addition, **Prettier** was used via the VS Code “Format on Save” feature to automatically apply consistent formatting.
 
-Results indicate that the JavaScript file maintains **low complexity and readability**, ensuring better maintainability and performance.
+- **Tools and Setup**
 
-<details>
-  <summary>JSHint</summary>
-  <img src="documentation//validators/jshint.png">
-</details>
+  - ESLint was initialised with:
+
+  ```bash
+  npx eslint --init
+  ```
+
+  - A customised `.eslintrc.json` file was created to prioritise meaningful warnings (e.g., undefined variables, unused imports) while suppressing overly strict formatting rules.
+  - A `.eslintignore` file was added to exclude folders such as `node_modules`, `build`, and `static`.
+
+- **Linting Process**
+
+  - The frontend was linted using:
+
+  ```bash
+  npx eslint . --ext .js,.jsx
+  ```
+
+  - Key issues were resolved, including:
+    - Commenting out `console.log()` statements and adding // TODO: notes for future user feedback
+    - Elimination of unused variables and imports
+    - Verification of JSX syntax and component structure
+
+Non-critical warnings (such as `prop-types` or camelCase from API data) were selectively addressed based on their relevance to functionality and clarity.
+
+> This setup ensured clean, readable, and production-ready code without unnecessary overhead during development.
 
 #### **Python**
 

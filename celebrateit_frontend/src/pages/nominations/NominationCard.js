@@ -7,7 +7,7 @@ import ConfirmDeleteModal from "../../components/ConfirmDeleteModal";
 import styles from "../../styles/PostCard.module.css";
 import PostLayoutShell from "../../components/PostLayoutShell";
 
-const NominationCard = (props) => {
+function NominationCard(props) {
   const {
     id,
     title,
@@ -38,7 +38,7 @@ const NominationCard = (props) => {
   // Derived display content
   const truncatedContent =
     content.length > 150
-      ? content.slice(0, content.slice(0, 150).lastIndexOf(" ")) + "..."
+      ? `${content.slice(0, content.slice(0, 150).lastIndexOf(" "))}...`
       : content;
 
   // Event Handlers
@@ -52,7 +52,8 @@ const NominationCard = (props) => {
       }
       history.push("/?deleted=true");
     } catch (err) {
-      console.error("Delete failed:", err);
+      // console.error('Delete failed:', err);
+      // TODO: add user feedback on error
     } finally {
       setShowConfirm(false);
     }
@@ -112,6 +113,6 @@ const NominationCard = (props) => {
       />
     </>
   );
-};
+}
 
 export default NominationCard;

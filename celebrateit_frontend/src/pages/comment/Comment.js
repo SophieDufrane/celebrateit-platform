@@ -1,6 +1,6 @@
-import React from "react";
-import MoreDropdown from "../../components/MoreDropdown";
-import styles from "../../styles/Comment.module.css";
+import React from 'react';
+import MoreDropdown from '../../components/MoreDropdown';
+import styles from '../../styles/Comment.module.css';
 
 function Comment(props) {
   const { comment, setEditingComment, setShowDeleteModal } = props;

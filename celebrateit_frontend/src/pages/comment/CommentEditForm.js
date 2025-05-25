@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { axiosReq } from "../../api/axiosDefaults";
 import { Form } from "react-bootstrap";
+import { axiosReq } from "../../api/axiosDefaults";
 import styles from "../../styles/Comment.module.css";
 import FormFooter from "../../components/FormFooter";
 
@@ -28,7 +28,8 @@ function CommentEditForm(props) {
       );
       setEditingComment(null);
     } catch (err) {
-      console.error("Update failed:", err);
+      // console.error('Update failed:', err);
+      // TODO: add user feedback on error
     }
   };
   return (

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
+import { Container, Alert, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Container, Alert, OverlayTrigger, Tooltip } from "react-bootstrap";
 import PostLayoutShell from "../../components/PostLayoutShell";
 import MoreDropdown from "../../components/MoreDropdown";
 import ConfirmDeleteModal from "../../components/ConfirmDeleteModal";
@@ -46,7 +46,8 @@ function RecognitionDetailPage() {
         like_id: data.id,
       }));
     } catch (err) {
-      console.log(err);
+      // console.log('Error liking recognition:', err);
+      // TODO: add user feedback on error
     }
   };
 
@@ -59,7 +60,8 @@ function RecognitionDetailPage() {
         like_id: null,
       }));
     } catch (err) {
-      console.log(err);
+      // console.log('Error unliking recognition:', err);
+      // TODO: add user feedback on error
     }
   };
 
@@ -73,7 +75,8 @@ function RecognitionDetailPage() {
       await axiosReq.delete(`/posts/${recognition.id}/`);
       history.push("/?deleted=true");
     } catch (err) {
-      console.error("Delete failed:", err);
+      // console.error('Error deleting recognition:', err);
+      // TODO: add user feedback on error
     } finally {
       setShowConfirm(false);
     }
@@ -91,7 +94,8 @@ function RecognitionDetailPage() {
         comments_count: prev.comments_count - 1,
       }));
     } catch (err) {
-      console.error("Error deleting comment:", err);
+      // console.log('Error deleting comment:', err);
+      // TODO: add user feedback on error
     } finally {
       setShowDeleteModal(null);
     }
@@ -137,7 +141,8 @@ function RecognitionDetailPage() {
         setRecognition(response.data);
       })
       .catch((error) => {
-        console.error("Error fetching recognitions details:", error);
+        // console.log('Error fetching recognitions details:', error);
+        // TODO: add user feedback on error
       });
   }, [id]);
 
@@ -174,7 +179,7 @@ function RecognitionDetailPage() {
           <OverlayTrigger
             placement="top"
             overlay={
-              <Tooltip id={`tooltip-self-like`}>
+              <Tooltip id="tooltip-self-like">
                 Can't like your own recognition!
               </Tooltip>
             }
@@ -197,7 +202,7 @@ function RecognitionDetailPage() {
         <span>{recognition.likes_count}</span>
       </div>
       <div className={styles.ActionItem}>
-        <i className="far fa-comment"></i>
+        <i className="far fa-comment" />
         <span>{recognition.comments_count}</span>
       </div>
     </div>
@@ -260,8 +265,8 @@ function RecognitionDetailPage() {
           <div className={commentStyles.CommentSection} />
 
           {comments.length ? (
-            comments.map((comment) => {
-              return editingComment?.id === comment.id ? (
+            comments.map((comment) =>
+              editingComment?.id === comment.id ? (
                 <div key={comment.id} className={styles.CommentBlock}>
                   <CommentEditForm
                     comment={comment}
@@ -278,8 +283,8 @@ function RecognitionDetailPage() {
                   setEditingComment={setEditingComment}
                   setShowDeleteModal={setShowDeleteModal}
                 />
-              );
-            })
+              )
+            )
           ) : (
             <p className="text-muted px-3">No comments yet.</p>
           )}

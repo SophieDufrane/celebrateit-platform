@@ -1,6 +1,6 @@
-import React from "react";
-import { Dropdown } from "react-bootstrap";
-import styles from "../styles/MoreDropdown.module.css";
+import React from 'react';
+import { Dropdown } from 'react-bootstrap';
+import styles from '../styles/MoreDropdown.module.css';
 
 const ThreeDots = React.forwardRef(({ onClick }, ref) => (
   <i
@@ -15,7 +15,7 @@ const ThreeDots = React.forwardRef(({ onClick }, ref) => (
   />
 ));
 
-const MoreDropdown = ({ handleEdit, handleDelete }) => {
+function MoreDropdown({ handleEdit, handleDelete }) {
   return (
     <Dropdown align="end">
       <Dropdown.Toggle as={ThreeDots} />
@@ -36,6 +36,6 @@ const MoreDropdown = ({ handleEdit, handleDelete }) => {
       </Dropdown.Menu>
     </Dropdown>
   );
-};
+}
 
 export default MoreDropdown;

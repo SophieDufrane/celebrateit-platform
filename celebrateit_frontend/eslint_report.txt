@@ -1,0 +1,259 @@
+
+C:\Development\PP5-celebrateit\celebrateit_frontend\src\App.test.js
+  4:1  error  'test' is not defined    no-undef
+  7:3  error  'expect' is not defined  no-undef
+
+C:\Development\PP5-celebrateit\celebrateit_frontend\src\components\ConfirmDeleteModal.js
+  5:3  warning  'show' is missing in props validation       react/prop-types
+  6:3  warning  'onHide' is missing in props validation     react/prop-types
+  7:3  warning  'onConfirm' is missing in props validation  react/prop-types
+  8:3  warning  'message' is missing in props validation    react/prop-types
+
+C:\Development\PP5-celebrateit\celebrateit_frontend\src\components\FormFooter.js
+  11:5  warning  'submitText' is missing in props validation  react/prop-types
+  12:5  warning  'onCancel' is missing in props validation    react/prop-types
+  13:5  warning  'disabled' is missing in props validation    react/prop-types
+  14:5  warning  'showCancel' is missing in props validation  react/prop-types
+
+C:\Development\PP5-celebrateit\celebrateit_frontend\src\components\LoadingIndicator.js
+  4:29  warning  'message' is missing in props validation  react/prop-types
+
+C:\Development\PP5-celebrateit\celebrateit_frontend\src\components\MoreDropdown.js
+   5:39  warning  'onClick' is missing in props validation                                                        react/prop-types
+   6:3   error    Visible, non-interactive elements with click handlers must have at least one keyboard listener  jsx-a11y/click-events-have-key-events
+   6:3   error    Elements with the 'button' interactive role must be focusable                                   jsx-a11y/interactive-supports-focus
+  18:25  warning  'handleEdit' is missing in props validation                                                     react/prop-types
+  18:37  warning  'handleDelete' is missing in props validation                                                   react/prop-types
+
+C:\Development\PP5-celebrateit\celebrateit_frontend\src\components\NavBar.js
+  24:7   warning  Unexpected console statement     no-console
+  45:14  warning  Do not nest ternary expressions  no-nested-ternary
+
+C:\Development\PP5-celebrateit\celebrateit_frontend\src\components\PostForm.js
+   1:19  error    Strings must use singlequote                         quotes
+   2:47  error    Strings must use singlequote                         quotes
+   3:24  error    Strings must use singlequote                         quotes
+   4:20  error    Strings must use singlequote                         quotes
+   7:3   warning  'title' is missing in props validation               react/prop-types
+   8:3   warning  'content' is missing in props validation             react/prop-types
+   9:3   warning  'handleChange' is missing in props validation        react/prop-types
+  10:3   warning  'handleSubmit' is missing in props validation        react/prop-types
+  11:3   warning  'children' is missing in props validation            react/prop-types
+  12:3   warning  'submitText' is missing in props validation          react/prop-types
+  12:16  error    Strings must use singlequote                         quotes
+  13:3   warning  'onCancel' is missing in props validation            react/prop-types
+  14:3   warning  'errors' is missing in props validation              react/prop-types
+  32:18  warning  'errors.title' is missing in props validation        react/prop-types
+  32:25  warning  'errors.title.map' is missing in props validation    react/prop-types
+  33:21  error    Do not use Array index in keys                       react/no-array-index-key
+  53:18  warning  'errors.content' is missing in props validation      react/prop-types
+  53:27  warning  'errors.content.map' is missing in props validation  react/prop-types
+  54:21  error    Do not use Array index in keys                       react/no-array-index-key
+
+C:\Development\PP5-celebrateit\celebrateit_frontend\src\components\PostHeader.js
+  10:5   warning  'profile_image' is missing in props validation   react/prop-types
+  10:20  warning  'display_name' is missing in props validation    react/prop-types
+  10:34  warning  'created_at' is missing in props validation      react/prop-types
+  10:46  warning  'renderDropdown' is missing in props validation  react/prop-types
+  13:3   warning  Unexpected console statement                     no-console
+
+C:\Development\PP5-celebrateit\celebrateit_frontend\src\components\PostLayoutShell.js
+   9:5  warning  'title' is missing in props validation           react/prop-types
+  10:5  warning  'content' is missing in props validation         react/prop-types
+  11:5  warning  'display_name' is missing in props validation    react/prop-types
+  12:5  warning  'profile_image' is missing in props validation   react/prop-types
+  13:5  warning  'created_at' is missing in props validation      react/prop-types
+  14:5  warning  'renderDropdown' is missing in props validation  react/prop-types
+  15:5  warning  'postActions' is missing in props validation     react/prop-types
+  16:5  warning  'children' is missing in props validation        react/prop-types
+  17:5  warning  'extraContent' is missing in props validation    react/prop-types
+  18:5  warning  'linkTo' is missing in props validation          react/prop-types
+  19:5  warning  'metaTop' is missing in props validation         react/prop-types
+
+C:\Development\PP5-celebrateit\celebrateit_frontend\src\contexts\CurrentUserContext.js
+   5:1   error    'react-router' should be listed in the project's dependencies. Run 'npm i -S react-router' to add it                                               import/no-extraneous-dependencies
+  15:39  warning  'children' is missing in props validation                                                                                                          react/prop-types
+  64:20  error    'err' is already declared in the upper scope on line 60 column 14                                                                                  no-shadow
+  81:41  error    The object passed as the value prop to the Context provider (at line 81) changes every render. To fix this consider wrapping it in a useMemo hook  react/jsx-no-constructed-context-values
+
+C:\Development\PP5-celebrateit\celebrateit_frontend\src\pages\auth\SignInForm.js
+  23:16  error  Expected to return a value at the end of arrow function  consistent-return
+  93:36  error  Do not use Array index in keys                           react/no-array-index-key
+
+C:\Development\PP5-celebrateit\celebrateit_frontend\src\pages\auth\SignUpForm.js
+  50:36  error  Do not use Array index in keys  react/no-array-index-key
+
+C:\Development\PP5-celebrateit\celebrateit_frontend\src\pages\comment\Comment.js
+   6:11  warning  'comment' is missing in props validation               react/prop-types
+   6:20  warning  'setEditingComment' is missing in props validation     react/prop-types
+   6:39  warning  'setShowDeleteModal' is missing in props validation    react/prop-types
+  11:59  warning  'comment.display_name' is missing in props validation  react/prop-types
+  13:18  warning  'comment.is_user' is missing in props validation       react/prop-types
+  16:60  warning  'comment.id' is missing in props validation            react/prop-types
+  20:50  warning  'comment.content' is missing in props validation       react/prop-types
+  21:54  warning  'comment.created_at' is missing in props validation    react/prop-types
+
+C:\Development\PP5-celebrateit\celebrateit_frontend\src\pages\comment\CommentEditForm.js
+  10:5   warning  'comment' is missing in props validation            react/prop-types
+  10:14  warning  'setComments' is missing in props validation        react/prop-types
+  10:27  warning  'setEditingComment' is missing in props validation  react/prop-types
+  10:46  warning  'onCancel' is missing in props validation           react/prop-types
+  14:50  warning  'comment.content' is missing in props validation    react/prop-types
+  25:66  warning  'comment.id' is missing in props validation         react/prop-types
+  28:79  warning  'comment.id' is missing in props validation         react/prop-types
+  31:7   warning  Unexpected console statement                        no-console
+
+C:\Development\PP5-celebrateit\celebrateit_frontend\src\pages\comment\CommentForm.js
+  7:24  warning  'postId' is missing in props validation           react/prop-types
+  7:32  warning  'onCommentSubmit' is missing in props validation  react/prop-types
+  7:49  warning  'disabled' is missing in props validation         react/prop-types
+
+C:\Development\PP5-celebrateit\celebrateit_frontend\src\pages\home\HomeFeedPage.js
+   37:16  error    Expected to return a value at the end of arrow function                                          consistent-return
+   49:23  warning  Unexpected console statement                                                                     no-console
+   58:23  warning  Unexpected console statement                                                                     no-console
+   66:23  warning  Unexpected console statement                                                                     no-console
+  112:15  error    Fragments should contain more than one child - otherwise, there’s no need for a Fragment at all  react/jsx-no-useless-fragment
+  113:18  warning  Do not nest ternary expressions                                                                  no-nested-ternary
+  132:1   warning  This line has a length of 124. Maximum allowed is 120                                            max-len
+
+C:\Development\PP5-celebrateit\celebrateit_frontend\src\pages\nominations\CreateNominationPage.js
+   41:9   warning  Unexpected console statement                                                                                                                                                                       no-console
+   44:9   warning  Unexpected console statement                                                                                                                                                                       no-console
+   58:11  warning  Unexpected console statement                                                                                                                                                                       no-console
+   61:11  warning  Unexpected console statement                                                                                                                                                                       no-console
+  115:7   warning  Unexpected console statement                                                                                                                                                                       no-console
+  160:25  error    Do not use Array index in keys                                                                                                                                                                     react/no-array-index-key
+  168:19  error    Visible, non-interactive elements with click handlers must have at least one keyboard listener                                                                                                     jsx-a11y/click-events-have-key-events
+  168:19  error    Avoid non-native interactive elements. If using native HTML is not possible, add an appropriate role and support for tabbing, mouse, keyboard, and touch inputs to an interactive content element  jsx-a11y/no-static-element-interactions
+  200:23  error    Do not use Array index in keys                                                                                                                                                                     react/no-array-index-key
+
+C:\Development\PP5-celebrateit\celebrateit_frontend\src\pages\nominations\NominationCard.js
+   12:5   warning  'id' is missing in props validation                    react/prop-types
+   13:5   warning  'title' is missing in props validation                 react/prop-types
+   14:5   warning  'content' is missing in props validation               react/prop-types
+   15:5   warning  'display_name' is missing in props validation          react/prop-types
+   16:5   warning  'profile_image' is missing in props validation         react/prop-types
+   17:5   warning  'created_at' is missing in props validation            react/prop-types
+   18:5   warning  'is_user' is missing in props validation               react/prop-types
+   19:5   warning  'nominee_display_name' is missing in props validation  react/prop-types
+   20:5   warning  'tag' is missing in props validation                   react/prop-types
+   21:5   warning  'tag_color' is missing in props validation             react/prop-types
+   22:5   warning  'onPostDelete' is missing in props validation          react/prop-types
+   23:5   warning  'detailUrl' is missing in props validation             react/prop-types
+   24:5   warning  'editUrl' is missing in props validation               react/prop-types
+   25:5   warning  'deleteUrl' is missing in props validation             react/prop-types
+   39:36  warning  'content.length' is missing in props validation        react/prop-types
+   40:18  warning  'content.slice' is missing in props validation         react/prop-types
+   40:35  warning  'content.slice' is missing in props validation         react/prop-types
+   54:7   warning  Unexpected console statement                           no-console
+  101:19  warning  'content.length' is missing in props validation        react/prop-types
+
+C:\Development\PP5-celebrateit\celebrateit_frontend\src\pages\nominations\NominationDetailPage.js
+  27:26  warning  Do not nest ternary expressions                          no-nested-ternary
+  42:7   warning  Unexpected console statement                             no-console
+  48:16  error    Expected to return a value at the end of arrow function  consistent-return
+  65:9   warning  Unexpected console statement                             no-console
+
+C:\Development\PP5-celebrateit\celebrateit_frontend\src\pages\nominations\UpdateNominationPage.js
+  30:11  error    'title' is already declared in the upper scope on line 20 column 5                  no-shadow
+  30:18  error    'content' is already declared in the upper scope on line 20 column 12               no-shadow
+  30:27  error    'nominee_display_name' is already declared in the upper scope on line 20 column 21  no-shadow
+  30:49  error    'tag' is already declared in the upper scope on line 20 column 43                   no-shadow
+  37:9   warning  Unexpected console statement                                                        no-console
+  47:9   warning  Unexpected console statement                                                        no-console
+  71:7   warning  Unexpected console statement                                                        no-console
+
+C:\Development\PP5-celebrateit\celebrateit_frontend\src\pages\profiles\EditProfileForm.js
+  34:9  warning  Unexpected console statement  no-console
+  67:7  warning  Unexpected console statement  no-console
+
+C:\Development\PP5-celebrateit\celebrateit_frontend\src\pages\profiles\ProfilePage.js
+   36:16  error    Expected to return a value at the end of arrow function                                                                                                                                            consistent-return
+   51:9   warning  Unexpected console statement                                                                                                                                                                       no-console
+   64:23  warning  Unexpected console statement                                                                                                                                                                       no-console
+   74:23  warning  Unexpected console statement                                                                                                                                                                       no-console
+   78:3   warning  Unexpected console statement                                                                                                                                                                       no-console
+   79:3   warning  Unexpected console statement                                                                                                                                                                       no-console
+   80:3   warning  Unexpected console statement                                                                                                                                                                       no-console
+  114:20  warning  Do not nest ternary expressions                                                                                                                                                                    no-nested-ternary
+  116:23  error    Visible, non-interactive elements with click handlers must have at least one keyboard listener                                                                                                     jsx-a11y/click-events-have-key-events
+  116:23  error    Avoid non-native interactive elements. If using native HTML is not possible, add an appropriate role and support for tabbing, mouse, keyboard, and touch inputs to an interactive content element  jsx-a11y/no-static-element-interactions
+
+C:\Development\PP5-celebrateit\celebrateit_frontend\src\pages\recognitions\CreateRecognitionPage.js
+  33:9  warning  Unexpected alert              no-alert
+  69:7  warning  Unexpected console statement  no-console
+
+C:\Development\PP5-celebrateit\celebrateit_frontend\src\pages\recognitions\RecognitionCard.js
+   14:5   warning  'id' is missing in props validation                                                                                                                                                                react/prop-types
+   15:5   warning  'title' is missing in props validation                                                                                                                                                             react/prop-types
+   16:5   warning  'content' is missing in props validation                                                                                                                                                           react/prop-types
+   17:5   warning  'image' is missing in props validation                                                                                                                                                             react/prop-types
+   18:5   warning  'display_name' is missing in props validation                                                                                                                                                      react/prop-types
+   19:5   warning  'profile_image' is missing in props validation                                                                                                                                                     react/prop-types
+   20:5   warning  'created_at' is missing in props validation                                                                                                                                                        react/prop-types
+   21:5   warning  'likes_count' is missing in props validation                                                                                                                                                       react/prop-types
+   22:5   warning  'comments_count' is missing in props validation                                                                                                                                                    react/prop-types
+   23:5   warning  'is_user' is missing in props validation                                                                                                                                                           react/prop-types
+   24:5   warning  'like_id' is missing in props validation                                                                                                                                                           react/prop-types
+   25:5   warning  'setRecognitions' is missing in props validation                                                                                                                                                   react/prop-types
+   26:5   warning  'onPostDelete' is missing in props validation                                                                                                                                                      react/prop-types
+   27:5   warning  'detailUrl' is missing in props validation                                                                                                                                                         react/prop-types
+   28:5   warning  'editUrl' is missing in props validation                                                                                                                                                           react/prop-types
+   29:5   warning  'deleteUrl' is missing in props validation                                                                                                                                                         react/prop-types
+   43:36  warning  'content.length' is missing in props validation                                                                                                                                                    react/prop-types
+   44:18  warning  'content.slice' is missing in props validation                                                                                                                                                     react/prop-types
+   44:35  warning  'content.slice' is missing in props validation                                                                                                                                                     react/prop-types
+   53:7   warning  Unexpected console statement                                                                                                                                                                       no-console
+   58:7   warning  Unexpected console statement                                                                                                                                                                       no-console
+   60:7   warning  Unexpected console statement                                                                                                                                                                       no-console
+   66:7   warning  Unexpected console statement                                                                                                                                                                       no-console
+   73:7   warning  Unexpected console statement                                                                                                                                                                       no-console
+   87:7   warning  Unexpected console statement                                                                                                                                                                       no-console
+   97:10  warning  Do not nest ternary expressions                                                                                                                                                                    no-nested-ternary
+  102:20  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                                                                                                    react/no-unescaped-entities
+  110:13  warning  Do not nest ternary expressions                                                                                                                                                                    no-nested-ternary
+  111:11  error    Visible, non-interactive elements with click handlers must have at least one keyboard listener                                                                                                     jsx-a11y/click-events-have-key-events
+  111:11  error    Avoid non-native interactive elements. If using native HTML is not possible, add an appropriate role and support for tabbing, mouse, keyboard, and touch inputs to an interactive content element  jsx-a11y/no-static-element-interactions
+  120:11  error    Visible, non-interactive elements with click handlers must have at least one keyboard listener                                                                                                     jsx-a11y/click-events-have-key-events
+  120:11  error    Avoid non-native interactive elements. If using native HTML is not possible, add an appropriate role and support for tabbing, mouse, keyboard, and touch inputs to an interactive content element  jsx-a11y/no-static-element-interactions
+
+C:\Development\PP5-celebrateit\celebrateit_frontend\src\pages\recognitions\RecognitionDetailPage.js
+   51:7   warning  Unexpected console statement                                                                                                                                                                       no-console
+   64:7   warning  Unexpected console statement                                                                                                                                                                       no-console
+   78:7   warning  Unexpected console statement                                                                                                                                                                       no-console
+   94:7   warning  Unexpected console statement                                                                                                                                                                       no-console
+  106:26  warning  Do not nest ternary expressions                                                                                                                                                                    no-nested-ternary
+  114:16  error    Expected to return a value at the end of arrow function                                                                                                                                            consistent-return
+  125:16  error    Expected to return a value at the end of arrow function                                                                                                                                            consistent-return
+  140:9   warning  Unexpected console statement                                                                                                                                                                       no-console
+  152:9   warning  Unexpected console statement                                                                                                                                                                       no-console
+  173:10  warning  Do not nest ternary expressions                                                                                                                                                                    no-nested-ternary
+  178:20  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                                                                                                    react/no-unescaped-entities
+  186:13  warning  Do not nest ternary expressions                                                                                                                                                                    no-nested-ternary
+  187:11  error    Visible, non-interactive elements with click handlers must have at least one keyboard listener                                                                                                     jsx-a11y/click-events-have-key-events
+  187:11  error    Avoid non-native interactive elements. If using native HTML is not possible, add an appropriate role and support for tabbing, mouse, keyboard, and touch inputs to an interactive content element  jsx-a11y/no-static-element-interactions
+  191:11  error    Visible, non-interactive elements with click handlers must have at least one keyboard listener                                                                                                     jsx-a11y/click-events-have-key-events
+  191:11  error    Avoid non-native interactive elements. If using native HTML is not possible, add an appropriate role and support for tabbing, mouse, keyboard, and touch inputs to an interactive content element  jsx-a11y/no-static-element-interactions
+
+C:\Development\PP5-celebrateit\celebrateit_frontend\src\pages\recognitions\UpdateRecognitionPage.js
+  26:17  error    'title' is already declared in the upper scope on line 20 column 11    no-shadow
+  26:24  error    'content' is already declared in the upper scope on line 20 column 18  no-shadow
+  26:33  error    'image' is already declared in the upper scope on line 20 column 27    no-shadow
+  30:9   warning  Unexpected console statement                                           no-console
+  66:7   warning  Unexpected console statement                                           no-console
+
+C:\Development\PP5-celebrateit\celebrateit_frontend\src\utils\utils.js
+  14:17  error    Empty block statement                   no-empty
+  17:73  warning  Do not nest ternary expressions         no-nested-ternary
+  18:3   error    Bad line breaking before and after '?'  operator-linebreak
+  26:5   error    Bad line breaking before and after '?'  operator-linebreak
+  29:5   error    Bad line breaking before and after ':'  operator-linebreak
+  33:61  warning  Do not nest ternary expressions         no-nested-ternary
+  34:3   error    Bad line breaking before and after '?'  operator-linebreak
+  42:5   error    Bad line breaking before and after '?'  operator-linebreak
+  45:5   error    Bad line breaking before and after ':'  operator-linebreak
+
+✖ 201 problems (53 errors, 148 warnings)
+  5 errors and 0 warnings potentially fixable with the `--fix` option.
+

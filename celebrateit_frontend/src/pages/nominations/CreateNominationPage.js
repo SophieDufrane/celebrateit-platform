@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { Container, Form, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useHistory, useLocation } from "react-router-dom";
+import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import PostForm from "../../components/PostForm";
 import formStyles from "../../styles/PostForm.module.css";
@@ -36,10 +36,11 @@ function CreateNominationPage() {
     const fetchTags = async () => {
       try {
         const { data } = await axiosReq.get("/tags/");
-        console.log("Fetched tags:", data);
+        // console.log('Fetched tags:', data);
         setTags(data.results);
       } catch (err) {
-        console.error("Error fetching tags:", err);
+        // console.log('Error fetching tags:', err);
+        // TODO: add user feedback on error
       }
     };
 
@@ -53,10 +54,11 @@ function CreateNominationPage() {
         .get(`/users/?search=${nomineeInput}`)
         .then((res) => {
           setNomineeResults(res.data.results);
-          console.log("Nominee results:", res.data);
+          // console.log("Nominee results:", res.data);
         })
         .catch((err) => {
-          console.error("Error fetching nominees:", err);
+          // console.error("Error fetching nominees:", err);
+          // TODO: add user feedback on error
         });
     } else {
       setNomineeResults([]);
@@ -109,8 +111,9 @@ function CreateNominationPage() {
     } catch (err) {
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
+        // TODO: add global error feedback if needed
       }
-      console.error(err.response?.data);
+      // console.log('Error during form submission:', err.response?.data);
     }
   };
 

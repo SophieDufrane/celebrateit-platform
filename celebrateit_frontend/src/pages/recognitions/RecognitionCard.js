@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import MoreDropdown from "../../components/MoreDropdown";
 import ConfirmDeleteModal from "../../components/ConfirmDeleteModal";
 import styles from "../../styles/PostCard.module.css";
 import PostLayoutShell from "../../components/PostLayoutShell";
 
-const RecognitionCard = (props) => {
+function RecognitionCard(props) {
   // Use frontend naming for routing, but backend naming for delete endpoint
   const {
     id,
@@ -42,7 +42,7 @@ const RecognitionCard = (props) => {
   // Derived display content
   const truncatedContent =
     content.length > 150
-      ? content.slice(0, content.slice(0, 150).lastIndexOf(" ")) + "..."
+      ? `${content.slice(0, content.slice(0, 150).lastIndexOf(" "))}...`
       : content;
 
   // Event Handlers
@@ -51,7 +51,6 @@ const RecognitionCard = (props) => {
       const { data } = await axiosRes.post("/likes/", {
         post: id,
       });
-      console.log("Like API response:", data);
 
       setRecognitions((prev) =>
         prev.map((item) =>
@@ -60,15 +59,13 @@ const RecognitionCard = (props) => {
             : item
         )
       );
-      console.log("Recognition updated with new like_id:", data.id);
     } catch (err) {
-      console.log(err);
+      // TODO: handle like failure (e.g., notify user)
     }
   };
 
   const handleUnlike = async () => {
     try {
-      console.log("Trying to unlike with like_id:", like_id);
       await axiosRes.delete(`/likes/${like_id}/`);
 
       setRecognitions((prev) =>
@@ -79,7 +76,7 @@ const RecognitionCard = (props) => {
         )
       );
     } catch (err) {
-      console.log(err);
+      // TODO: handle unlike failure (e.g., notify user)
     }
   };
 
@@ -93,7 +90,8 @@ const RecognitionCard = (props) => {
       }
       history.push("/?deleted=true");
     } catch (err) {
-      console.error("Delete failed:", err);
+      // console.error("Delete failed:", err);
+      // TODO: add user feedback on error
     } finally {
       setShowConfirm(false);
     }
@@ -201,6 +199,6 @@ const RecognitionCard = (props) => {
       />
     </>
   );
-};
+}
 
 export default RecognitionCard;

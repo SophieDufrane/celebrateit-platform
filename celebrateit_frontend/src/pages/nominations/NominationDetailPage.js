@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
-import { axiosReq } from "../../api/axiosDefaults";
 import { Container, Alert } from "react-bootstrap";
+import { axiosReq } from "../../api/axiosDefaults";
 import PostLayoutShell from "../../components/PostLayoutShell";
 import MoreDropdown from "../../components/MoreDropdown";
 import ConfirmDeleteModal from "../../components/ConfirmDeleteModal";
@@ -39,7 +39,8 @@ function NominationDetailPage() {
       await axiosReq.delete(`/nominations/${nomination.id}/`);
       history.push("/?deleted=true");
     } catch (err) {
-      console.error("Error deleting nomination:", err);
+      // console.error('Error deleting nomination:', err);
+      // TODO: add user feedback on error
     } finally {
       setShowConfirm(false);
     }
@@ -62,7 +63,8 @@ function NominationDetailPage() {
         setNomination(response.data);
       })
       .catch((error) => {
-        console.error("Error fetching nomination details:", error);
+        // console.error("Error fetching nomination details:", error);
+        // TODO: add user feedback on error
       });
   }, [id]);
 
@@ -97,7 +99,8 @@ function NominationDetailPage() {
           nomination.tag && (
             <p className={styles.NominationMeta}>
               <strong>{nomination.nominee_display_name}</strong> was nominated
-              by <strong>{nomination.display_name}</strong>{" "}
+              by
+              <strong>{nomination.display_name}</strong>{" "}
               <span
                 style={{
                   backgroundColor: nomination.tag_color,

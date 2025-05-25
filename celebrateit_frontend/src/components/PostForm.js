@@ -1,10 +1,9 @@
 import React from "react";
-import { Form } from "react-bootstrap";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Form, OverlayTrigger, Tooltip } from "react-bootstrap";
 import FormFooter from "./FormFooter";
 import styles from "../styles/PostForm.module.css";
 
-const PostForm = ({
+function PostForm({
   title,
   content,
   handleChange,
@@ -13,7 +12,7 @@ const PostForm = ({
   submitText = "Submit",
   onCancel,
   errors,
-}) => {
+}) {
   return (
     <Form onSubmit={handleSubmit} className={styles.FormWrapper}>
       <Form.Group controlId="title" className={styles.FormGroupSpacing}>
@@ -61,6 +60,6 @@ const PostForm = ({
       <FormFooter submitText={submitText} onCancel={onCancel} />
     </Form>
   );
-};
+}
 
 export default PostForm;

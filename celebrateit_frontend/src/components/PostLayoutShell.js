@@ -1,10 +1,10 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Card } from "react-bootstrap";
-import styles from "../styles/PostCard.module.css";
-import PostHeader from "./PostHeader";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Card } from 'react-bootstrap';
+import styles from '../styles/PostCard.module.css';
+import PostHeader from './PostHeader';
 
-const PostLayoutShell = (props) => {
+function PostLayoutShell(props) {
   const {
     title,
     content,
@@ -47,7 +47,7 @@ const PostLayoutShell = (props) => {
   return (
     <Card className={`mb-3 ${styles.CardWrapper}`}>
       {linkTo ? (
-        <Link to={linkTo} style={{ textDecoration: "none", color: "inherit" }}>
+        <Link to={linkTo} style={{ textDecoration: 'none', color: 'inherit' }}>
           {cardBody}
         </Link>
       ) : (
@@ -58,6 +58,6 @@ const PostLayoutShell = (props) => {
       {postActions}
     </Card>
   );
-};
+}
 
 export default PostLayoutShell;

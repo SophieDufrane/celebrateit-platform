@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { useParams, useHistory } from "react-router-dom";
-import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import { Form, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
+import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import FormFooter from "../../components/FormFooter";
 import formStyles from "../../styles/PostForm.module.css";
 
-const EditProfileForm = () => {
+function EditProfileForm() {
   // Routing
   const { id } = useParams();
   const history = useHistory();
@@ -31,7 +31,8 @@ const EditProfileForm = () => {
         setLastName(data.last_name);
         setPresentation(data.presentation || "");
       } catch (err) {
-        console.error("Error fetching profile:", err);
+        // console.error('Error fetching profile:', err);
+        // TODO: add user feedback on error
       }
     };
 
@@ -64,7 +65,8 @@ const EditProfileForm = () => {
       );
       history.push(`/profiles/${profile.id}?updated=true`);
     } catch (err) {
-      console.error("Error updating profile:", err);
+      // console.error("Error updating profile:", err);
+      // TODO: add user feedback on error
     }
   };
 
@@ -156,6 +158,6 @@ const EditProfileForm = () => {
       )}
     </div>
   );
-};
+}
 
 export default EditProfileForm;

@@ -8,8 +8,6 @@ import styles from "../styles/Profile.module.css";
 function PostHeader(props) {
   const { profile_image, display_name, created_at, renderDropdown } = props;
 
-  console.log("Profile image src:", profile_image);
-
   return (
     <div className={styles.PostHeaderWrapper}>
       <div className={styles.HeaderLeft}>

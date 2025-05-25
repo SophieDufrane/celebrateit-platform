@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { Form, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { axiosReq } from "../../api/axiosDefaults";
-import FormFooter from "../../components/FormFooter";
-import styles from "../../styles/PostForm.module.css";
+import React, { useState } from 'react';
+import { Form, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { axiosReq } from '../../api/axiosDefaults';
+import FormFooter from '../../components/FormFooter';
+import styles from '../../styles/PostForm.module.css';
 
 function CommentForm({ postId, onCommentSubmit, disabled = false }) {
   // State
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState('');
   const [errors, setErrors] = useState({});
 
   // Derived/computed values
@@ -21,11 +21,11 @@ function CommentForm({ postId, onCommentSubmit, disabled = false }) {
     event.preventDefault();
 
     try {
-      const { data } = await axiosReq.post("/comments/", {
+      const { data } = await axiosReq.post('/comments/', {
         content,
         post: postId,
       });
-      setContent("");
+      setContent('');
       setErrors({});
       if (onCommentSubmit) {
         onCommentSubmit(data);

@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
-import { axiosReq } from "../../api/axiosDefaults";
-import { Container, Form, OverlayTrigger, Tooltip } from "react-bootstrap";
-import PostForm from "../../components/PostForm";
-import formStyles from "../../styles/PostForm.module.css";
+import React, { useEffect, useState } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
+import {
+  Container, Form, OverlayTrigger, Tooltip,
+} from 'react-bootstrap';
+import { axiosReq } from '../../api/axiosDefaults';
+import PostForm from '../../components/PostForm';
+import formStyles from '../../styles/PostForm.module.css';
 
 function UpdateRecognitionPage() {
   const { id } = useParams();
   const history = useHistory();
   const [recognitionData, setRecognitionData] = useState({
-    title: "",
-    content: "",
+    title: '',
+    content: '',
     image: null,
   });
   const [removeImage, setRemoveImage] = useState(false);
@@ -25,14 +27,14 @@ function UpdateRecognitionPage() {
         setRecognitionData({ title, content, image });
       })
       .catch((err) => {
-        console.error("Error fetching recognition:", err);
-        history.push("/");
+        console.error('Error fetching recognition:', err);
+        history.push('/');
       });
   }, [id, history]);
 
   const handleChange = (event) => {
     const { name, value, files } = event.target;
-    if (name === "image") {
+    if (name === 'image') {
       setRecognitionData({
         ...recognitionData,
         image: files[0],
@@ -49,19 +51,19 @@ function UpdateRecognitionPage() {
     event.preventDefault();
 
     const formData = new FormData();
-    formData.append("title", title);
-    formData.append("content", content);
+    formData.append('title', title);
+    formData.append('content', content);
     if (removeImage) {
-      formData.append("image", ""); // sends an empty value to clear it
-    } else if (image && typeof image !== "string") {
-      formData.append("image", image);
+      formData.append('image', ''); // sends an empty value to clear it
+    } else if (image && typeof image !== 'string') {
+      formData.append('image', image);
     }
 
     try {
       await axiosReq.patch(`/posts/${id}/`, formData);
       history.push(`/recognitions/${id}?updated=true`);
     } catch (err) {
-      console.error("Submission error:", err.response?.data);
+      console.error('Submission error:', err.response?.data);
     }
   };
 
@@ -77,7 +79,7 @@ function UpdateRecognitionPage() {
         onCancel={() => history.push(`/recognitions/${id}`)}
       >
         <Form.Group className={formStyles.FormMediaWrapper}>
-          {typeof image === "string" && (
+          {typeof image === 'string' && (
             <>
               <img
                 src={image}

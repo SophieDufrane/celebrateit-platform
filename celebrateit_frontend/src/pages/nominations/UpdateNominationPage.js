@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { axiosReq } from "../../api/axiosDefaults";
 import { Container, Form, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { axiosReq } from "../../api/axiosDefaults";
 import PostForm from "../../components/PostForm";
 import formStyles from "../../styles/PostForm.module.css";
 
@@ -23,10 +23,16 @@ function UpdateNominationPage() {
       .get(`/nominations/${id}/`)
       .then((response) => {
         const { title, content, nominee_display_name, tag } = response.data;
-        setPostData({ title, content, nominee_display_name, tag });
+        setPostData({
+          title,
+          content,
+          nominee_display_name,
+          tag,
+        });
       })
       .catch((err) => {
-        console.error("Error fetching nominations:", err);
+        // console.log('Error fetching nominations:', err);
+        // TODO: add user feedback on error
         history.push("/");
       });
   }, [id, history]);
@@ -36,7 +42,8 @@ function UpdateNominationPage() {
       .get("/tags/")
       .then((response) => setTags(response.data.results))
       .catch((err) => {
-        console.error("Error fetching tags:", err);
+        // console.error("Error fetching tags:", err);
+        // TODO: add user feedback on error
       });
   }, []);
 
@@ -60,7 +67,8 @@ function UpdateNominationPage() {
       await axiosReq.patch(`/nominations/${id}/`, formData);
       history.push(`/nominations/${id}?updated=true`);
     } catch (err) {
-      console.error("Submission error:", err.response?.data);
+      // console.error("Submission error:", err.response?.data);
+      // TODO: add user feedback on error
     }
   };
 

@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Button } from "react-bootstrap";
 import { useParams, useHistory, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+
 import { axiosReq } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import RecognitionCard from "../recognitions/RecognitionCard";
@@ -10,7 +10,7 @@ import LoadingIndicator from "../../components/LoadingIndicator";
 import profileStyles from "../../styles/Profile.module.css";
 import styles from "../../App.module.css";
 
-const ProfilePage = () => {
+function ProfilePage() {
   // Routing and Params
   const { id } = useParams();
   const history = useHistory();
@@ -48,7 +48,8 @@ const ProfilePage = () => {
         setProfile(data);
         setHasLoadedProfile(true);
       } catch (err) {
-        console.error("Error fetching profile:", err);
+        // console.error('Error fetching profile:', err);
+        // TODO: add user feedback on error
       }
     };
 
@@ -61,7 +62,10 @@ const ProfilePage = () => {
     axiosReq
       .get(`/posts/?user__profile=${id}`)
       .then((res) => setRecognitions(res.data.results))
-      .catch((err) => console.error("Error fetching recognitions:", err))
+      .catch((err) => {
+        // console.log('Error fetching recognitions:', err);
+        // TODO: add user feedback on error
+      })
       .finally(() => setHasLoadedRecognitions(true));
   }, [id]);
 
@@ -71,13 +75,14 @@ const ProfilePage = () => {
     axiosReq
       .get(`/nominations/?nominator__profile=${id}`)
       .then((res) => setNominations(res.data.results))
-      .catch((err) => console.error("Error fetching nominations:", err))
+      .catch((err) => {
+        // console.log('Error fetching nominations:', err);
+        // TODO: add user feedback on error
+      })
       .finally(() => setHasLoadedNominations(true));
   }, [id]);
 
-  console.log("currentUser =", currentUser);
-  console.log("profile.user =", profile?.user);
-  console.log("profile.is_user_profile =", profile?.is_user_profile);
+  // console.log("currentUser =", currentUser); // Useful for auth debugging
 
   return hasLoadedProfile && hasLoadedRecognitions && hasLoadedNominations ? (
     <>
@@ -187,6 +192,6 @@ const ProfilePage = () => {
   ) : (
     <LoadingIndicator message="Loading profile..." />
   );
-};
+}
 
 export default ProfilePage;

@@ -1,11 +1,11 @@
-import React from "react";
-import { Modal, Button } from "react-bootstrap";
+import React from 'react';
+import { Modal, Button } from 'react-bootstrap';
 
 function ConfirmDeleteModal({
   show,
   onHide,
   onConfirm,
-  message = "Are you sure you want to delete this?",
+  message = 'Are you sure you want to delete this?',
 }) {
   return (
     <Modal show={show} onHide={onHide} centered>

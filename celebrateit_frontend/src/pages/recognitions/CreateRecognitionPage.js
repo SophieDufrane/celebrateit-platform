@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { Container, Form, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
+import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import PostForm from "../../components/PostForm";
 import formStyles from "../../styles/PostForm.module.css";
@@ -63,8 +63,8 @@ function CreateRecognitionPage() {
     } catch (err) {
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
+        // console.log('Submission error:', err.response?.data);
       }
-      console.error(err.response?.data);
     }
   };
 
