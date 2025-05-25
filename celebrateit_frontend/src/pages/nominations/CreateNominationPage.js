@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Container, Form, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useHistory, useLocation } from "react-router-dom";
-import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
+import {
+  useSetCurrentUser,
+  useCurrentUser,
+} from "../../contexts/CurrentUserContext";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import PostForm from "../../components/PostForm";
 import formStyles from "../../styles/PostForm.module.css";
@@ -29,7 +32,8 @@ function CreateNominationPage() {
   // Navigation
   const history = useHistory();
   const location = useLocation();
-  const setCurrentUser = useSetCurrentUser(); // Refresh user after creation
+  const setCurrentUser = useSetCurrentUser();
+  const currentUser = useCurrentUser();
 
   // Fetch tag options for dropdown
   useEffect(() => {
@@ -73,7 +77,7 @@ function CreateNominationPage() {
 
     if (prefillName && prefillId) {
       setNomineeInput(prefillName);
-      setSelectedNomineeId(prefillId);
+      setSelectedNomineeId(parseInt(prefillId));
     }
   }, [location.search]);
 
@@ -96,6 +100,15 @@ function CreateNominationPage() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    // Prevents self nomination
+    if (parseInt(selectedNomineeId) === currentUser?.currentUser?.pk) {
+      setErrors({ nominee: ["You can't nominate yourself."] });
+      setNomineeInput("");
+      setSelectedNomineeId("");
+      setNomineeResults([]);
+      return;
+    }
+
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
@@ -115,10 +128,12 @@ function CreateNominationPage() {
       history.push(`/nominations/${data.id}?created=true`);
     } catch (err) {
       if (err.response?.status !== 401) {
-        setErrors(err.response?.data);
-        // TODO: add global error feedback if needed
+        setErrors({
+          nominee: ["Authentication required or unauthorized action."],
+        });
+      } else {
+        setErrors(err.response?.data || { nominee: ["Something went wrong."] });
       }
-      // console.log('Error during form submission:', err.response?.data);
     }
   };
 
@@ -150,7 +165,10 @@ function CreateNominationPage() {
             <OverlayTrigger
               placement="top"
               overlay={
-                <Tooltip>Search for a teammate by first or last name</Tooltip>
+                <Tooltip>
+                  Search for a teammate by first or last name (you can't
+                  nominate yourself)
+                </Tooltip>
               }
             >
               <Form.Control
