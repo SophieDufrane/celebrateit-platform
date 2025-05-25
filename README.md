@@ -1311,8 +1311,9 @@ Testing included:
 
 ### 6.3 Validators
 
-- **CSS - HTML**
-  To ensure the website's **HTML** and **CSS** follow web standards and best practices, I tested the code using the **W3C validation tools**.
+#### **CSS - HTML**
+
+To ensure the website's **HTML** and **CSS** follow web standards and best practices, I tested the code using the **W3C validation tools**.
 
 The [W3C HTML Validator](https://validator.w3.org/) was used to check for syntax errors and compliance with HTML5 standards. The validation returned **no errors**, ensuring that the HTML code is well-structured and correctly formatted.
 
@@ -1330,9 +1331,10 @@ The website's stylesheet was tested using the [W3C CSS Validation Service](https
   <img src="documentation/validators/css_validator.png">
 </details>
 
-- **JavaScript**
-  To ensure JavaScript code quality and compliance, I tested the file using [JSHint](https://jshint.com/).  
-  Since I used **ES6 features** such as `const` and arrow functions (`=>`), I also updated the JSHint configuration to **support ES6** by adding `esversion: 6`.
+#### **JavaScript**
+
+To ensure JavaScript code quality and compliance, I tested the file using [JSHint](https://jshint.com/).  
+Since I used **ES6 features** such as `const` and arrow functions (`=>`), I also updated the JSHint configuration to **support ES6** by adding `esversion: 6`.
 
 Results indicate that the JavaScript file maintains **low complexity and readability**, ensuring better maintainability and performance.
 
@@ -1341,19 +1343,49 @@ Results indicate that the JavaScript file maintains **low complexity and readabi
   <img src="documentation//validators/jshint.png">
 </details>
 
-- **Python**
-  To ensure that all Python files follow best coding practices, I used **Flake8** for linting. This tool checks for **PEP 8 compliance** like syntax errors or formatting inconsistencies across the project.
+#### **Python**
 
-All identified issues—mostly related to **trailing spaces and minor formatting inconsistencies**—were fixed to ensure full compliance with PEP 8.
+To ensure that all Python files follow best coding practices, I used **Flake8** for linting. This tool checks for [PEP 8](https://pep8.org/) compliance, such as formatting inconsistencies or syntax issues.
 
-To use flake8, I ran the command `flake8` followed by each python file, example below:
+1. Install flake8 (if not already installed):
 
+   ```bash
+   pip install flake8
+   ```
+
+2. At the root of the project, create a `.flake8` config file with the following content:
+
+   ```ini
+   [flake8]
+   exclude =
+       migrations,
+       __pycache__,
+       manage.py,
+       settings.py,
+       env,
+       venv,
+       staticfiles_build
+   max-line-length = 88
+   ```
+
+Once set up, run the following command from the project root to lint the entire project:
+
+```bash
+flake8
 ```
-flake8 nominations/serializers.py
-```
 
-- **Lighthouse Performance & Best Practices Testing**
-  To assess web performance, accessibility, and best practices, I used **Google Lighthouse**.
+This will check all Python files in the project (excluding the listed folders/files) and highlight any issues that need to be addressed.
+
+> All identified issues—mostly trailing whitespace and formatting inconsistencies—were fixed to ensure full compliance with PEP 8.
+
+Some warnings were intentionally ignored:
+
+- Warnings from installed packages (e.g. `node_modules` or installed dependencies like `flatted.py`) were left untouched, as they are not part of the core codebase.
+- Unused imports in test files (e.g. `TestCase` in `tests.py`) were kept in place as placeholders to maintain Django's testing structure and support future test development.
+
+#### **Lighthouse Performance & Best Practices Testing**
+
+To assess web performance, accessibility, and best practices, I used **Google Lighthouse**.
 
 - **Performance** of home page background image initially scored below **80%**, but after optimizing compression and caching, performance improved.
 - **Best Practices** score was below **60%** due to HTTP links, which I updated to HTTPS, significantly improving the score.
