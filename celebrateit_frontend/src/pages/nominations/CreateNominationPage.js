@@ -103,7 +103,12 @@ function CreateNominationPage() {
     if (tag) formData.append("tag", tag);
 
     try {
-      const { data } = await axiosReq.post("/nominations/", formData);
+      const { data } = await axiosReq.post("/nominations/", formData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          "Content-Type": "multipart/form-data",
+        },
+      });
       setCurrentUser(
         await axiosRes.get("/dj-rest-auth/user/").then((res) => res.data)
       );

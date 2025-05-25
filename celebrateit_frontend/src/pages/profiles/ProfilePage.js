@@ -114,6 +114,17 @@ function ProfilePage() {
                     {profile.first_name} {profile.last_name}
                   </h3>
 
+                  {console.log("Debug Info:")}
+                  {console.log(
+                    "currentUser?.username =",
+                    currentUser?.username
+                  )}
+                  {console.log("profile.user =", profile.user)}
+                  {console.log(
+                    "profile.is_user_profile =",
+                    profile.is_user_profile
+                  )}
+
                   {currentUser ? (
                     profile.is_user_profile ? (
                       <span
