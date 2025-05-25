@@ -998,15 +998,13 @@ Testing included:
 
 #### **Recognition CRUD**
 
-| **Priority** | **User Story**     | **Page(s)**      | **Test Scenario / Action**              | **Expected Result**                                                                                                                       | Actual | **Screenshot** |
-| ------------ | ------------------ | ---------------- | --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------------- |
-| Must Have    | Create Recognition | Post Create Page | Fill out form with content, submit form | Redirected to detail page with success message; new post appears in feed; required fields trigger “This field may not be blank.” if empty | ✅     | 1a, 1b         |
-
-| Must Have | Edit Recognition | Feed / Detail Page > Dropdown > Edit | Click edit from dropdown, verify form is prefilled, submit updates | Success message shown; updated content appears in feed and detail page | ✅ | 2a, 2b, 2c |
-| Must Have | Delete Recognition | Feed / Detail Page > Dropdown > Delete | Click delete from dropdown, confirm deletion in modal | Confirmation prompt appears; post removed from feed with success message and no longer accessible via URL | ✅ | 3a, 3b |
-| Must Have | View Recognition Detail | Feed > "View full post" | Click "View full post" button on card | Full post loads with correct title, content, author, date, and comments; if logged in → comment form is visible; if logged out → prompt to log in to leave a comment | ✅ | 4a, 4b |
-
-| Must Have | View Recognition Feed | Homepage | Visit homepage | Feed shows latest recognitions in reverse chronological order | ✅ | |
+| **Priority** | **User Story**          | **Page(s)**                            | **Test Scenario / Action**                                         | **Expected Result**                                                                                                                                                  | Actual | **Screenshot** |
+| ------------ | ----------------------- | -------------------------------------- | ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------------- |
+| Must Have    | Create Recognition      | Post Create Page                       | Fill out form with content, submit form                            | Redirected to detail page with success message; new post appears in feed; required fields trigger “This field may not be blank.” if empty                            | ✅     | 1a, 1b         |
+| Must Have    | Edit Recognition        | Feed / Detail Page > Dropdown > Edit   | Click edit from dropdown, verify form is prefilled, submit updates | Success message shown; updated content appears in feed and detail page                                                                                               | ✅     | 2a, 2b, 2c     |
+| Must Have    | Delete Recognition      | Feed / Detail Page > Dropdown > Delete | Click delete from dropdown, confirm deletion in modal              | Confirmation prompt appears; post removed from feed with success message and no longer accessible via URL                                                            | ✅     | 3a, 3b         |
+| Must Have    | View Recognition Detail | Feed > "View full post"                | Click "View full post" button on card                              | Full post loads with correct title, content, author, date, and comments; if logged in → comment form is visible; if logged out → prompt to log in to leave a comment | ✅     | 4a, 4b         |
+| Must Have    | View Recognition Feed   | Homepage                               | Visit homepage                                                     | Feed shows latest recognitions in reverse chronological order                                                                                                        | ✅     |                |
 
 <details>
   <summary>1a. Create Recognition – Successful message</summary>
@@ -1082,14 +1080,13 @@ Testing included:
 
 #### **Nomination CRUD**
 
-| **Priority** | **User Story**    | **Page(s)**            | **Test Scenario / Action**                       | **Expected Result**                                                                                                                         | Actual | **Screenshot** |
-| ------------ | ----------------- | ---------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------------- |
-| Must Have    | Create Nomination | Nomination Create Page | Fill form with nominee, tag, and message; submit | Redirected to detail page with success message; nomination appears in feed; required fields trigger “This field may not be blank.” if empty | ✅     | 1a, 1b, 1c, 1d |
-
-| Must Have | Edit Nomination | Feed / Detail Page > Dropdown > Edit | Click edit from dropdown, update content or tag | Form is prefilled; after submit, success message shown; changes reflected in feed | ✅ | 2a, 2b |
-| Must Have | Delete Nomination | Feed / Detail Page > Dropdown > Delete | Click delete from dropdown, confirm prompt | Confirmation modal appears; after confirm, success message shown; nomination removed | ✅ | 3a, 3b |
-| Must Have | View Nomination Detail | Feed > Click Card | Click nomination card preview in feed | Full nomination loads with correct nominee, tag, content, and date | ✅ | |
-| Must Have | View Nomination Feed | Homepage > Toggle | Click “Nominations” toggle in homepage feed | Feed updates to show only nominations in reverse chronological order | ✅ | |
+| **Priority** | **User Story**         | **Page(s)**                            | **Test Scenario / Action**                       | **Expected Result**                                                                                                                         | Actual | **Screenshot** |
+| ------------ | ---------------------- | -------------------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------------- |
+| Must Have    | Create Nomination      | Nomination Create Page                 | Fill form with nominee, tag, and message; submit | Redirected to detail page with success message; nomination appears in feed; required fields trigger “This field may not be blank.” if empty | ✅     | 1a, 1b, 1c, 1d |
+| Must Have    | Edit Nomination        | Feed / Detail Page > Dropdown > Edit   | Click edit from dropdown, update content or tag  | Form is prefilled; after submit, success message shown; changes reflected in feed                                                           | ✅     | 2a, 2b         |
+| Must Have    | Delete Nomination      | Feed / Detail Page > Dropdown > Delete | Click delete from dropdown, confirm prompt       | Confirmation modal appears; after confirm, success message shown; nomination removed                                                        | ✅     | 3a, 3b         |
+| Must Have    | View Nomination Detail | Feed > Click Card                      | Click nomination card preview in feed            | Full nomination loads with correct nominee, tag, content, and date                                                                          | ✅     |                |
+| Must Have    | View Nomination Feed   | Homepage > Toggle                      | Click “Nominations” toggle in homepage feed      | Feed updates to show only nominations in reverse chronological order                                                                        | ✅     |                |
 
 <details>
   <summary>1a. Create Nomination – Successful message</summary>
@@ -1157,17 +1154,15 @@ Testing included:
 
 #### **Engaging with People & Posts**
 
-| **Priority** | **User Story**         | **Page(s)** | **Test Scenario / Action**           | **Expected Result**                                                                                                                                                 | Actual | **Screenshot** |
-| ------------ | ---------------------- | ----------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------------- |
-| Must Have    | Comment on Recognition | Detail Page | Submit valid comment while logged in | Comment form is visible; post button is disabled when input is empty and enabled once content is entered; submitted comment appears below post with success message | ✅     | 1a, 1b, 1c     |
-
-| Must Have | Guest View of Comment Section | Detail Page | Visit post detail page while logged out | Comment form is hidden; message appears prompting user to log in to leave a comment | ✅ | 2 |
-| Should Have | Edit/Delete My Comment | Detail Page | Click edit or delete on comment authored by user | Dropdown is visible; editing opens prefilled form; delete prompts confirmation; success message shown after either action | ✅ | 3a, 3b, 3c, 3d |
-| Should Have | Like someone else Recognition | Feed / Detail Page | Click like/unlike while logged | Like count updates and icon toggles when liking someone else's post while logged in; own posts show disabled icon with tooltip | ✅ | 4a, 4b |
-
-| Should Have | Guest View of Like Button | Feed / Detail Page | Hover over like icon while logged out | Like icon is inactive with “Log in to like” tooltip; cursor shows not-allowed style | ✅ | 5 |
-| Must Have | Search for Colleagues | Feed Sidebar | Type full or partial name into search input | Matching users appear in real time with avatar and full name | ✅ |6 |
-| Should Have | Filter Colleagues by Dept | Feed Sidebar | Select department from dropdown | List updates to show only users from selected department; works in combination with name search | ✅ | 7|
+| **Priority** | **User Story**                | **Page(s)**        | **Test Scenario / Action**                       | **Expected Result**                                                                                                                                                 | Actual | **Screenshot** |
+| ------------ | ----------------------------- | ------------------ | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------------- |
+| Must Have    | Comment on Recognition        | Detail Page        | Submit valid comment while logged in             | Comment form is visible; post button is disabled when input is empty and enabled once content is entered; submitted comment appears below post with success message | ✅     | 1a, 1b, 1c     |
+| Must Have    | Guest View of Comment Section | Detail Page        | Visit post detail page while logged out          | Comment form is hidden; message appears prompting user to log in to leave a comment                                                                                 | ✅     | 2              |
+| Should Have  | Edit/Delete My Comment        | Detail Page        | Click edit or delete on comment authored by user | Dropdown is visible; editing opens prefilled form; delete prompts confirmation; success message shown after either action                                           | ✅     | 3a, 3b, 3c, 3d |
+| Should Have  | Like someone else Recognition | Feed / Detail Page | Click like/unlike while logged                   | Like count updates and icon toggles when liking someone else's post while logged in; own posts show disabled icon with tooltip                                      | ✅     | 4a, 4b         |
+| Should Have  | Guest View of Like Button     | Feed / Detail Page | Hover over like icon while logged out            | Like icon is inactive with “Log in to like” tooltip; cursor shows not-allowed style                                                                                 | ✅     | 5              |
+| Must Have    | Search for Colleagues         | Feed Sidebar       | Type full or partial name into search input      | Matching users appear in real time with avatar and full name                                                                                                        | ✅     | 6              |
+| Should Have  | Filter Colleagues by Dept     | Feed Sidebar       | Select department from dropdown                  | List updates to show only users from selected department; works in combination with name search                                                                     | ✅     | 7              |
 
 <details>
   <summary>1a. Comment on Recognition - Post Button Disabled</summary>
@@ -1317,12 +1312,63 @@ Testing included:
 ### 6.3 Validators
 
 - **CSS - HTML**
+  To ensure the website's **HTML** and **CSS** follow web standards and best practices, I tested the code using the **W3C validation tools**.
+
+The [W3C HTML Validator](https://validator.w3.org/) was used to check for syntax errors and compliance with HTML5 standards. The validation returned **no errors**, ensuring that the HTML code is well-structured and correctly formatted.
+
+<details>
+  <summary>HTML Validator Results</summary>
+  <img src="documentation/validators/html_validator.png">
+</details>
+
+</br>
+
+The website's stylesheet was tested using the [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/) to verify CSS compliance. The validation report confirmed **no issues**, indicating that the styles are correctly implemented and follow CSS best practices.
+
+<details>
+  <summary>CSS Validator Results</summary>
+  <img src="documentation/validators/css_validator.png">
+</details>
 
 - **JavaScript**
+  To ensure JavaScript code quality and compliance, I tested the file using [JSHint](https://jshint.com/).  
+  Since I used **ES6 features** such as `const` and arrow functions (`=>`), I also updated the JSHint configuration to **support ES6** by adding `esversion: 6`.
+
+Results indicate that the JavaScript file maintains **low complexity and readability**, ensuring better maintainability and performance.
+
+<details>
+  <summary>JSHint</summary>
+  <img src="documentation//validators/jshint.png">
+</details>
 
 - **Python**
+  To ensure that all Python files follow best coding practices, I used **Flake8** for linting. This tool checks for **PEP 8 compliance** like syntax errors or formatting inconsistencies across the project.
+
+All identified issues—mostly related to **trailing spaces and minor formatting inconsistencies**—were fixed to ensure full compliance with PEP 8.
+
+To use flake8, I ran the command `flake8` followed by each python file, example below:
+
+```
+flake8 nominations/serializers.py
+```
 
 - **Lighthouse Performance & Best Practices Testing**
+  To assess web performance, accessibility, and best practices, I used **Google Lighthouse**.
+
+- **Performance** of home page background image initially scored below **80%**, but after optimizing compression and caching, performance improved.
+- **Best Practices** score was below **60%** due to HTTP links, which I updated to HTTPS, significantly improving the score.
+- **Accessibility** improvements, such as adding ARIA labels and refining header hierarchy, helped achieve a **100%** accessibility score.
+
+However, pages containing images stored on **Cloudinary** received a **Best Practices score of 78%** due to a a third-party cookie warning:
+
+> "Chrome is moving towards a new experience that allows users to choose to browse without third-party cookies."
+
+Since this is related to Cloudinary's external content delivery, I could not find a way to fully mitigate this issue without affecting functionality. Despite this, all other performance aspects, including **accessibility and loading speed**, were optimised.
+
+<details>
+  <summary>Lighthouse Home Page</summary>
+  <img src="documentation/validators/lighthouse_home.png">
+</details>
 
 ### 6.4 Bugs and Fixes
 
