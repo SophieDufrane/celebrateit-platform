@@ -203,7 +203,18 @@ function RecognitionDetailPage() {
             <i className={`far fa-thumbs-up ${styles.HeartOutline}`} />
           </span>
         ) : (
-          <i className="far fa-thumbs-up" title="Log in to like posts!" />
+          <OverlayTrigger
+            placement="top"
+            overlay={
+              <Tooltip id={`tooltip-login-like-${recognition.id}`}>
+                Log in to like recognitions!
+              </Tooltip>
+            }
+          >
+            <span className={styles.DisabledIcon}>
+              <i className="far fa-thumbs-up" />
+            </span>
+          </OverlayTrigger>
         )}
         <span>{recognition.likes_count}</span>
       </div>
