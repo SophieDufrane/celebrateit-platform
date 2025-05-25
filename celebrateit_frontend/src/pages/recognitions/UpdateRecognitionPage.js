@@ -52,7 +52,7 @@ function UpdateRecognitionPage() {
     formData.append("title", title);
     formData.append("content", content);
     if (removeImage) {
-      formData.append("image", ""); // sends an empty value to clear it
+      formData.append("image", "");
     } else if (image && typeof image !== "string") {
       formData.append("image", image);
     }

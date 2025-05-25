@@ -20,9 +20,7 @@ export function CurrentUserProvider({ children }) {
     try {
       const { data } = await axiosRes.get("dj-rest-auth/user/");
       setCurrentUser(data);
-      console.log("CurrentUserProvider: user loaded", data); // DEBUG
     } catch (err) {
-      console.log("CurrentUserProvider: no user authenticated"); // DEBUG
     } finally {
       setCurrentUserLoaded(true); // mark auth check complete
     }
@@ -57,17 +55,10 @@ export function CurrentUserProvider({ children }) {
     axiosRes.interceptors.response.use(
       (response) => response,
       async (err) => {
-        console.log("axios response error:", err.response?.status); // DEBUG
         if (err.response?.status === 401) {
-          console.log(
-            new Date().toLocaleTimeString(),
-            "Token expired, refreshing..."
-          ); // DEBUG
           try {
             await axios.post("/dj-rest-auth/token/refresh/");
-            console.log("Token refresh succeeded"); // DEBUG
           } catch (err) {
-            console.log("Token refresh failed"); // DEBUG
             setCurrentUser((prevCurrentUser) => {
               if (prevCurrentUser) {
                 history.push("/signin");
