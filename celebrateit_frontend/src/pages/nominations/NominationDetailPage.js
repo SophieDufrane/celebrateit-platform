@@ -104,8 +104,7 @@ function NominationDetailPage() {
           nomination.tag && (
             <p className={styles.NominationMeta}>
               <strong>{nomination.nominee_display_name}</strong> was nominated
-              by
-              <strong>{nomination.display_name}</strong>{" "}
+              by <strong>{nomination.display_name}</strong>{" "}
               <span
                 style={{
                   backgroundColor: nomination.tag_color,

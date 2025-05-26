@@ -45,10 +45,10 @@ function ProfilePage() {
       try {
         const { data } = await axiosReq.get(`/user-profiles/${id}/`);
         setProfile(data);
-        setHasLoadedProfile(true);
       } catch (err) {
-        // console.error('Error fetching profile:', err);
-        // TODO: add user feedback on error
+        // console.error("Error fetching profile:", err);
+      } finally {
+        setHasLoadedProfile(true);
       }
     };
 

@@ -73,7 +73,7 @@ function HomeFeedPage() {
 
   // Fetch People/Profiles
   useEffect(() => {
-    axios
+    axiosReq
       .get("/user-profiles/")
       .then((res) => setPeople(res.data.results || res.data))
       .catch((err) => {
