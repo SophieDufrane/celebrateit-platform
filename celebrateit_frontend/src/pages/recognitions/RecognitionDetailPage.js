@@ -11,6 +11,7 @@ import Comment from "../comment/Comment";
 import CommentEditForm from "../comment/CommentEditForm";
 import styles from "../../styles/PostCard.module.css";
 import commentStyles from "../../styles/Comment.module.css";
+import LoadingIndicator from "../../components/LoadingIndicator";
 
 function RecognitionDetailPage() {
   // Routing & context
@@ -165,7 +166,11 @@ function RecognitionDetailPage() {
 
   // Early return: loading state
   if (!recognition) {
-    return <Container>Loading...</Container>;
+    return (
+      <Container className="d-flex justify-content-center py-5">
+        <LoadingIndicator message="Loading recognition..." />
+      </Container>
+    );
   }
 
   // Render helpers

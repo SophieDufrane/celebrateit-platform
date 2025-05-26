@@ -68,6 +68,7 @@ function NominationDetailPage() {
       });
   }, [id]);
 
+  // Early return: loading state
   if (!nomination) {
     return (
       <Container className="d-flex justify-content-center py-5">

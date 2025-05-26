@@ -4,10 +4,14 @@ import { Container, Form, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
 import PostForm from "../../components/PostForm";
 import formStyles from "../../styles/PostForm.module.css";
+import LoadingIndicator from "../../components/LoadingIndicator";
 
 function UpdateRecognitionPage() {
+  // Routing & Navigation
   const { id } = useParams();
   const history = useHistory();
+
+  // Data State
   const [recognitionData, setRecognitionData] = useState({
     title: "",
     content: "",
@@ -17,12 +21,16 @@ function UpdateRecognitionPage() {
 
   const { title, content, image } = recognitionData;
 
+  // UI State
+  const [hasLoaded, setHasLoaded] = useState(false);
+
   useEffect(() => {
     axiosReq
       .get(`/posts/${id}/`)
       .then((response) => {
         const { title, content, image } = response.data;
         setRecognitionData({ title, content, image });
+        setHasLoaded(true);
       })
       .catch((err) => {
         console.error("Error fetching recognition:", err);
@@ -71,6 +79,13 @@ function UpdateRecognitionPage() {
     }
   };
 
+  if (!hasLoaded) {
+    return (
+      <Container className="d-flex justify-content-center py-5">
+        <LoadingIndicator message="Loading recognition..." />
+      </Container>
+    );
+  }
   return (
     <Container>
       <PostForm
