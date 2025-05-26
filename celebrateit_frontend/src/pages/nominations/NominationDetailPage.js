@@ -6,6 +6,7 @@ import PostLayoutShell from "../../components/PostLayoutShell";
 import MoreDropdown from "../../components/MoreDropdown";
 import ConfirmDeleteModal from "../../components/ConfirmDeleteModal";
 import styles from "../../styles/PostCard.module.css";
+import LoadingIndicator from "../../components/LoadingIndicator";
 
 function NominationDetailPage() {
   const { id } = useParams();
@@ -68,7 +69,11 @@ function NominationDetailPage() {
   }, [id]);
 
   if (!nomination) {
-    return <Container>Loading...</Container>;
+    return (
+      <Container className="d-flex justify-content-center py-5">
+        <LoadingIndicator message="Loading nomination..." />
+      </Container>
+    );
   }
 
   dropdownMenu = nomination.is_user ? (

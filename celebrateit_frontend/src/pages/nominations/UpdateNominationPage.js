@@ -4,10 +4,14 @@ import { Container, Form, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
 import PostForm from "../../components/PostForm";
 import formStyles from "../../styles/PostForm.module.css";
+import LoadingIndicator from "../../components/LoadingIndicator";
 
 function UpdateNominationPage() {
+  // Routing & Navigation
   const { id } = useParams();
   const history = useHistory();
+
+  // Data State
   const [postData, setPostData] = useState({
     title: "",
     content: "",
@@ -17,6 +21,9 @@ function UpdateNominationPage() {
   const { title, content, nominee_display_name, tag } = postData;
 
   const [tags, setTags] = useState([]);
+
+  // UI State
+  const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
     axiosReq
@@ -29,6 +36,7 @@ function UpdateNominationPage() {
           nominee_display_name,
           tag,
         });
+        setHasLoaded(true);
       })
       .catch((err) => {
         // console.log('Error fetching nominations:', err);
@@ -77,6 +85,10 @@ function UpdateNominationPage() {
       // TODO: add user feedback on error
     }
   };
+
+  if (!hasLoaded) {
+    return <LoadingIndicator message="Loading nomination..." />;
+  }
 
   return (
     <Container>
