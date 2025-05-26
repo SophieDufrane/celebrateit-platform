@@ -15,10 +15,10 @@ function NominationCard(props) {
     display_name,
     profile_image,
     created_at,
-    is_user,
     nominee_display_name: nominee,
     tag,
     tag_color,
+    nominator,
     onPostDelete,
     detailUrl = `/nominations/${id}`,
     editUrl = `/nominations/${id}/edit`,
@@ -26,7 +26,7 @@ function NominationCard(props) {
   } = props;
 
   // User & Navigation
-  const { currentUserLoaded } = useCurrentUser();
+  const { currentUser, currentUserLoaded } = useCurrentUser();
   const history = useHistory();
 
   // Local UI State
@@ -68,7 +68,7 @@ function NominationCard(props) {
         profile_image={profile_image}
         created_at={created_at}
         renderDropdown={
-          is_user && (
+          currentUser?.username === nominator && (
             <MoreDropdown
               handleEdit={() => history.push(editUrl)}
               handleDelete={handleDelete}

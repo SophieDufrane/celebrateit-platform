@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useHistory } from "react-router-dom";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import axios from "axios";
 import { Button, Container, Row, Col, ListGroup, Alert } from "react-bootstrap";
 import RecognitionCard from "../recognitions/RecognitionCard";
@@ -10,12 +11,17 @@ import feedStyles from "../../styles/HomeFeedPage.module.css";
 function HomeFeedPage() {
   // Routing and Location
   const location = useLocation();
-  const isDeleted =
-    new URLSearchParams(location.search).get("deleted") === "true";
   const history = useHistory();
 
+  // PATCH 8: Consume auth context to trigger re-render after refresh
+  const { currentUser, currentUserLoaded } = useCurrentUser();
+  // PATCH 8: Optional console for debugging
+  useEffect(() => {
+    console.log("HomeFeedPage re-evaluated currentUser:", currentUser);
+  }, [currentUser]);
+
   // UI State
-  const [showDeleted, setShowDeleted] = useState(isDeleted);
+  const [showDeleted, setShowDeleted] = useState(false);
   const [showNominations, setShowNominations] = useState(false);
   const [hasLoaded, setHasLoaded] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -74,6 +80,9 @@ function HomeFeedPage() {
         // TODO: add user feedback on error
       });
   }, []);
+
+  // PATCH 8: Prevent premature rendering
+  if (!currentUserLoaded) return <LoadingIndicator message="Loading..." />;
 
   return (
     <Container>
@@ -141,6 +150,7 @@ function HomeFeedPage() {
                     <NominationCard
                       key={`nom-${nom.id}`}
                       {...nom}
+                      nominator={nom.nominator}
                       setPosts={setNominations}
                       onPostDelete={(deletedId) =>
                         setNominations((prevNoms) =>

@@ -1,23 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import {
-  Form, Button, Container, Alert,
-} from 'react-bootstrap';
-import { Link, useHistory, useLocation } from 'react-router-dom';
-import { axiosReq } from '../../api/axiosDefaults';
-import { useSetCurrentUser } from '../../contexts/CurrentUserContext';
-import authStyles from '../../styles/AuthForm.module.css';
-import sharedStyles from '../../App.module.css';
-import authPic from '../../assets/auth_pic.jpeg';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Form, Button, Container, Alert } from "react-bootstrap";
+import { Link, useHistory, useLocation } from "react-router-dom";
+import { axiosReq } from "../../api/axiosDefaults";
+import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
+import { setTokenTimestamp } from "../../utils/utils";
+import authStyles from "../../styles/AuthForm.module.css";
+import sharedStyles from "../../App.module.css";
+import authPic from "../../assets/auth_pic.jpeg";
 
 function SignInForm() {
   const location = useLocation();
   const [showSuccess, setShowSuccess] = useState(
-    new URLSearchParams(location.search).get('registered'),
+    new URLSearchParams(location.search).get("registered")
   );
 
   const [showLogout, setShowLogout] = useState(
-    new URLSearchParams(location.search).get('loggedOut'),
+    new URLSearchParams(location.search).get("loggedOut")
   );
 
   useEffect(() => {
@@ -32,8 +31,8 @@ function SignInForm() {
 
   const setCurrentUser = useSetCurrentUser();
   const [signInData, setSignInData] = useState({
-    username: '',
-    password: '',
+    username: "",
+    password: "",
   });
   const [loginErrors, setLoginErrors] = useState({});
   const { username, password } = signInData;
@@ -49,18 +48,20 @@ function SignInForm() {
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-      const { data } = await axios.post('/dj-rest-auth/login/', signInData);
+      const { data } = await axios.post("/dj-rest-auth/login/", signInData);
 
       // Store the tokens
-      localStorage.setItem('access_token', data.access_token);
-      localStorage.setItem('refresh_token', data.refresh_token);
+      localStorage.setItem("access_token", data.access_token);
+      localStorage.setItem("refresh_token", data.refresh_token);
+      // TOKEN FIX PATCH 5: Store refresh token expiry timestamp
+      setTokenTimestamp(data);
 
       // Refetch user using token
-      const { data: userData } = await axiosReq.get('/dj-rest-auth/user/');
+      const { data: userData } = await axiosReq.get("/dj-rest-auth/user/");
       setCurrentUser(userData);
 
       // Redirect
-      history.push('/');
+      history.push("/");
     } catch (err) {
       setLoginErrors(err.response?.data || {});
     }
