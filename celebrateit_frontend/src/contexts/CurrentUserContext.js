@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router";
 import { axiosReq, axiosRes } from "../api/axiosDefaults";
@@ -41,7 +41,7 @@ export function CurrentUserProvider({ children }) {
     return () => clearInterval(interval); // clean up
   }, []);
 
-  useMemo(() => {
+  useEffect(() => {
     // PATCH 1: Attach access token to all axiosReq requests
     axiosReq.interceptors.request.use(
       (config) => {
@@ -65,11 +65,13 @@ export function CurrentUserProvider({ children }) {
               "Authorization"
             ] = `Bearer ${data.access}`;
 
-            // PATCH 7: Rehydrate user after silent refresh (no 401 triggered)
-            const { data: userData } = await axiosRes.get(
-              "/dj-rest-auth/user/"
-            );
-            setCurrentUser(userData);
+            // PATCH 7: Skip rehydration if already loaded to avoid repeat loops
+            if (!currentUser) {
+              const { data: userData } = await axiosRes.get(
+                "/dj-rest-auth/user/"
+              );
+              setCurrentUser(userData);
+            }
           } catch (err) {
             // PATCH 3: Refresh token failed during request — force logout
             setCurrentUser((prevUser) => {
@@ -127,7 +129,7 @@ export function CurrentUserProvider({ children }) {
         return Promise.reject(err); // other non-401 errors (e.g., 403, 500)
       }
     );
-  }, [history]);
+  }, [history, currentUser]);
 
   return (
     <CurrentUserContext.Provider value={{ currentUser, currentUserLoaded }}>
