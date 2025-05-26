@@ -1,25 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { Form, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Container, Form, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import FormFooter from "../../components/FormFooter";
 import formStyles from "../../styles/PostForm.module.css";
+import LoadingIndicator from "../../components/LoadingIndicator";
 
 function EditProfileForm() {
-  // Routing
+  // Routing & Navigation
   const { id } = useParams();
   const history = useHistory();
+
+  // Context
   const setCurrentUser = useSetCurrentUser();
 
-  // Profile State - basic fields
+  // Data State - Profile info
   const [profile, setProfile] = useState(null);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [presentation, setPresentation] = useState("");
 
-  // Profile State - image handling
+  // Data State - Image
   const [imageFile, setImageFile] = useState(null);
+
+  // UI State
+  const [hasLoaded, setHasLoaded] = useState(false);
 
   // Fetch Profile on Mount
   useEffect(() => {
@@ -30,6 +36,7 @@ function EditProfileForm() {
         setFirstName(data.first_name);
         setLastName(data.last_name);
         setPresentation(data.presentation || "");
+        setHasLoaded(true);
       } catch (err) {
         // console.error('Error fetching profile:', err);
         // TODO: add user feedback on error
@@ -76,6 +83,14 @@ function EditProfileForm() {
       // TODO: add user feedback on error
     }
   };
+
+  if (!hasLoaded) {
+    return (
+      <Container className="d-flex justify-content-center py-5">
+        <LoadingIndicator message="Loading profile..." />
+      </Container>
+    );
+  }
 
   return (
     <div className="container mt-4">

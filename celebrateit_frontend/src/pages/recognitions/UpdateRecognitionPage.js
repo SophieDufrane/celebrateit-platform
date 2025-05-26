@@ -86,6 +86,7 @@ function UpdateRecognitionPage() {
       </Container>
     );
   }
+
   return (
     <Container>
       <PostForm

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container, Button } from "react-bootstrap";
 import { useParams, useHistory, useLocation } from "react-router-dom";
-
 import { axiosReq } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import RecognitionCard from "../recognitions/RecognitionCard";
