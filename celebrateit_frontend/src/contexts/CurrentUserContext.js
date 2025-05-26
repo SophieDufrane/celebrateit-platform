@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useHistory } from "react-router";
 import { axiosReq, axiosRes } from "../api/axiosDefaults";
@@ -14,6 +14,10 @@ export function CurrentUserProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
   const [currentUserLoaded, setCurrentUserLoaded] = useState(false);
   const history = useHistory();
+
+  // PATCH 8: Track interceptor IDs so we can eject them on cleanup
+  const requestInterceptorRef = useRef(null);
+  const responseInterceptorRef = useRef(null);
 
   // PATCH 0: Initial fetch of current user
   const handleMount = async () => {
@@ -55,9 +59,10 @@ export function CurrentUserProvider({ children }) {
     );
 
     // PATCH 2: Refresh token before protected requests if timestamp exists
-    axiosReq.interceptors.request.use(
+    requestInterceptorRef.current = axiosReq.interceptors.request.use(
       async (config) => {
-        if (shouldRefreshToken()) {
+        const isRefreshing = config._isRefreshing; // prevent recursion
+        if (shouldRefreshToken() && !isRefreshing) {
           try {
             const { data } = await axios.post("/dj-rest-auth/token/refresh/");
             localStorage.setItem("access_token", data.access);
@@ -90,7 +95,7 @@ export function CurrentUserProvider({ children }) {
     );
 
     // PATCH 4 + 6: On response 401, try to refresh and rehydrate user context
-    axiosRes.interceptors.response.use(
+    responseInterceptorRef.current = axiosRes.interceptors.response.use(
       (response) => response,
       async (err) => {
         if (err.response?.status === 401) {
@@ -129,6 +134,15 @@ export function CurrentUserProvider({ children }) {
         return Promise.reject(err); // other non-401 errors (e.g., 403, 500)
       }
     );
+    // PATCH 9: Eject interceptors on cleanup to avoid duplicate setups
+    return () => {
+      if (requestInterceptorRef.current !== null) {
+        axiosReq.interceptors.request.eject(requestInterceptorRef.current);
+      }
+      if (responseInterceptorRef.current !== null) {
+        axiosRes.interceptors.response.eject(responseInterceptorRef.current);
+      }
+    };
   }, [history, currentUser]);
 
   return (

@@ -1432,19 +1432,33 @@ Profile Avatar Not Rendering:
 - **Cause**: The serializer output did not include the `profile_image` field, and the frontend components were not prepared to receive it.
 - **Fix**: Added `profile_image` to the relevant serializers (Posts, Nominations, Profiles) and updated frontend components (`PostHeader`, `RecognitionCard`, `NominationCard`) to fetch and display the image.
 
+---
+
 Auth State Not Syncing After Login/Logout:
 
 - **Bug**: After logging in or out, the UI would occasionally show outdated user info or delay updates in the navbar and post ownership checks.
 - **Cause**: The token handling logic didn’t consistently clean up or refresh the current user state across sessions.
 - **Fix**: Improved the token timestamp logic (`removeTokenTimestamp`) and refined how the `CurrentUserContext` handles state during login/logout. The app now reliably reflects auth state throughout all pages.
 
+---
+
 Token Refresh Not Rehydrating Auth State After Idle:
 
 - **Bug**: After 5 minutes of inactivity, users lost access to protected features (like editing posts or liking others’), even though valid tokens remained in localStorage.
 - **Cause**: The token refresh succeeded silently, but the frontend did not update the `currentUser` context, causing the UI to show a stale, unauthenticated state.
-- **Fix**: Added multiple patches in `CurrentUserContext.js` to inject tokens, refresh tokens before requests, handle refresh failures, retry requests after refresh, and rehydrate the user context regularly. Also updated `HomeFeedPage.js` to consume `currentUser` from context and trigger re-renders.  
-  Updated `RecognitionCard.js` and `NominationCard.js` to derive ownership from `currentUser` instead of relying on stale API flags.  
-  Ensured all authenticated API calls use the `axiosReq` instance to include tokens consistently, especially in recognition and nomination create/update pages.
+- **Fix**: Added multiple patches in `CurrentUserContext.js`:
+  - Always attach tokens to API requests
+  - Refresh the token before each request if it's expired
+  - Retry failed requests after refreshing the token (e.g. after a 401 error)
+  - Rehydrate the user context after silent refreshes to sync frontend state
+  - Use a `setInterval` to ping the user endpoint every 5 minutes as a fallback
+  - Switched axios interceptor setup from `useMemo()` to `useEffect()` to avoid stale dependencies and make cleanup easier
+    Also:
+  - `HomeFeedPage.js` now listens to the live `currentUser` from context
+  - `RecognitionCard.js` and `NominationCard.js` check ownership using `currentUser` instead of the API flag
+  - All create and update forms now use `axiosReq` to make sure tokens are included in every request
+
+---
 
 Create Nomination – Dropdown Requires Double Click:
 
