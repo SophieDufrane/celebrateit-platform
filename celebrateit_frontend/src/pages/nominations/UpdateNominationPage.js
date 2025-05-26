@@ -87,7 +87,11 @@ function UpdateNominationPage() {
   };
 
   if (!hasLoaded) {
-    return <LoadingIndicator message="Loading nomination..." />;
+    return (
+      <Container className="d-flex justify-content-center py-5">
+        <LoadingIndicator message="Loading nomination..." />
+      </Container>
+    );
   }
 
   return (
