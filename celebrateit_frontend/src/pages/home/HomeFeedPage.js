@@ -135,6 +135,7 @@ function HomeFeedPage() {
                       <RecognitionCard
                         key={`post-${post.id}`}
                         {...post}
+                        user={post.user}
                         setRecognitions={setRecognitions}
                         onPostDelete={(deletedId) =>
                           setRecognitions((prev) =>

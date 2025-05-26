@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory, useLocation } from "react-router-dom";
-import axios from "axios";
 import { Container, Alert, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
@@ -141,7 +140,7 @@ function RecognitionDetailPage() {
 
   // Effect: fetch post details
   useEffect(() => {
-    axios
+    axiosReq
       .get(`/posts/${id}/`)
       .then((response) => {
         setRecognition(response.data);
@@ -154,7 +153,7 @@ function RecognitionDetailPage() {
 
   // Fetch comments
   useEffect(() => {
-    axios
+    axiosReq
       .get(`/comments/?post=${id}`)
       .then((response) => {
         setComments(response.data.results || response.data);

@@ -64,6 +64,7 @@ function UpdateNominationPage() {
     formData.append("tag", tag);
 
     try {
+      // PATCH 9: Explicit token header for nomination updates
       await axiosReq.patch(`/nominations/${id}/`, formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory, useLocation } from "react-router-dom";
-import axios from "axios";
 import { Container, Alert } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
 import PostLayoutShell from "../../components/PostLayoutShell";
@@ -57,7 +56,7 @@ function NominationDetailPage() {
   }, [showSuccess, history, location.pathname]);
 
   useEffect(() => {
-    axios
+    axiosReq
       .get(`/nominations/${id}/`)
       .then((response) => {
         setNomination(response.data);

@@ -59,6 +59,7 @@ function EditProfileForm() {
         `/user-profiles/${profile.id}/`,
         formData,
         {
+          // PATCH 9: Explicit token header for profile update
           headers: {
             Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             "Content-Type": "multipart/form-data",

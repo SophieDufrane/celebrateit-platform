@@ -122,6 +122,7 @@ function CreateNominationPage() {
           "Content-Type": "multipart/form-data",
         },
       });
+      // PATCH 9: Rehydrate user context after creation
       setCurrentUser(
         await axiosRes.get("/dj-rest-auth/user/").then((res) => res.data)
       );

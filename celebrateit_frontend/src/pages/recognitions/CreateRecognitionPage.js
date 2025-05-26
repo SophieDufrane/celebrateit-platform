@@ -55,12 +55,14 @@ function CreateRecognitionPage() {
     }
 
     try {
+      // PATCH 9: Explicit token for POST request (prevent refresh desync)
       const { data } = await axiosReq.post("/posts/", formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
           "Content-Type": "multipart/form-data",
         },
       });
+      // PATCH 9: Rehydrate user context after creation
       setCurrentUser(
         await axiosRes.get("/dj-rest-auth/user/").then((res) => res.data)
       );

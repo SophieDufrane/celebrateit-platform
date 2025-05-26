@@ -58,6 +58,7 @@ function UpdateRecognitionPage() {
     }
 
     try {
+      // PATCH 9: Add Authorization header to avoid stale token issues
       await axiosReq.patch(`/posts/${id}/`, formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
