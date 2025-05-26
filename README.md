@@ -34,7 +34,7 @@
    - [6.1 Back-End Application Testing](#61-back-end-application-testing)
    - [6.2 Front-End Application Testing](#62-front-end-application-testing)
    - [6.3 Validators](#63-validators)
-   - [6.3 Bugs and Fixes](#63-bugs-and-fixes)
+   - [6.4 Bugs and Fixes](#64-bugs-and-fixes)
 
 7. [Deployment](#7-deployment)
 
@@ -1437,6 +1437,14 @@ Auth State Not Syncing After Login/Logout:
 - **Bug**: After logging in or out, the UI would occasionally show outdated user info or delay updates in the navbar and post ownership checks.
 - **Cause**: The token handling logic didn’t consistently clean up or refresh the current user state across sessions.
 - **Fix**: Improved the token timestamp logic (`removeTokenTimestamp`) and refined how the `CurrentUserContext` handles state during login/logout. The app now reliably reflects auth state throughout all pages.
+
+Token Refresh Not Rehydrating Auth State After Idle:
+
+- **Bug**: After 5 minutes of inactivity, users lost access to protected features (like editing posts or liking others’), even though valid tokens remained in localStorage.
+- **Cause**: The token refresh succeeded silently, but the frontend did not update the `currentUser` context, causing the UI to show a stale, unauthenticated state.
+- **Fix**: Added multiple patches in `CurrentUserContext.js` to inject tokens, refresh tokens before requests, handle refresh failures, retry requests after refresh, and rehydrate the user context regularly. Also updated `HomeFeedPage.js` to consume `currentUser` from context and trigger re-renders.  
+  Updated `RecognitionCard.js` and `NominationCard.js` to derive ownership from `currentUser` instead of relying on stale API flags.  
+  Ensured all authenticated API calls use the `axiosReq` instance to include tokens consistently, especially in recognition and nomination create/update pages.
 
 Create Nomination – Dropdown Requires Double Click:
 
