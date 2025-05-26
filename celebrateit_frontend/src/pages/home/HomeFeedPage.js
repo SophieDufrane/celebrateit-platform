@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { axiosReq } from "../../api/axiosDefaults";
 import axios from "axios";
 import { Button, Container, Row, Col, ListGroup, Alert } from "react-bootstrap";
 import RecognitionCard from "../recognitions/RecognitionCard";
@@ -49,7 +50,7 @@ function HomeFeedPage() {
 
   // Fetch Posts data
   useEffect(() => {
-    axios
+    axiosReq
       .get("/posts/")
       .then((res) => setRecognitions(res.data.results))
       .catch((err) => {
@@ -61,7 +62,7 @@ function HomeFeedPage() {
 
   // Fetch Nomiations data
   useEffect(() => {
-    axios
+    axiosReq
       .get("/nominations/")
       .then((res) => setNominations(res.data.results))
       .catch((err) => {
