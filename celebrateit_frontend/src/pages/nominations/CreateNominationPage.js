@@ -128,13 +128,7 @@ function CreateNominationPage() {
       );
       history.push(`/nominations/${data.id}?created=true`);
     } catch (err) {
-      if (err.response?.status !== 401) {
-        setErrors({
-          nominee: ["Authentication required or unauthorized action."],
-        });
-      } else {
-        setErrors(err.response?.data || { nominee: ["Something went wrong."] });
-      }
+      setErrors(err.response?.data || { nominee: ["Something went wrong."] });
     }
   };
 
