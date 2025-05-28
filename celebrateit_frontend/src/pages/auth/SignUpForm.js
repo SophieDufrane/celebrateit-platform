@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import { Form, Button, Container } from 'react-bootstrap';
-import { Link, useHistory } from 'react-router-dom';
-import { axiosReq } from '../../api/axiosDefaults';
-import authStyles from '../../styles/AuthForm.module.css';
-import sharedStyles from '../../App.module.css';
-import registerPic from '../../assets/register_pic.jpg';
+import React, { useState } from "react";
+import { Form, Button, Container } from "react-bootstrap";
+import { Link, useHistory } from "react-router-dom";
+import { axiosReq } from "../../api/axiosDefaults";
+import authStyles from "../../styles/AuthForm.module.css";
+import sharedStyles from "../../App.module.css";
+import registerPic from "../../assets/register_pic.jpg";
 
 function SignUpForm() {
   const [signUpData, setSignUpData] = useState({
-    username: '',
-    password1: '',
-    password2: '',
+    username: "",
+    password1: "",
+    password2: "",
   });
   const [errors, setErrors] = useState({});
   const { username, password1, password2 } = signUpData;
@@ -26,8 +26,8 @@ function SignUpForm() {
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-      await axiosReq.post('/dj-rest-auth/registration/', signUpData);
-      history.push('/login?registered=true');
+      await axiosReq.post("/dj-rest-auth/registration/", signUpData);
+      history.push("/login?registered=true");
     } catch (err) {
       setErrors(err.response?.data || {});
     }
