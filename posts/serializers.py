@@ -16,7 +16,7 @@ class PostSerializer(serializers.ModelSerializer):
         source='user.profile.display_name'
     )
     profile_image = serializers.SerializerMethodField()
-    likes_count = serializers.ReadOnlyField()
+    likes_count = serializers.ReadOnlyField(source='likes.count')
     comments_count = serializers.ReadOnlyField()
     like_id = serializers.SerializerMethodField()
 

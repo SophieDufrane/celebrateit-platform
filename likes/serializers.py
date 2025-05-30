@@ -14,7 +14,6 @@ class LikeSerializer(serializers.ModelSerializer):
     display_name = serializers.ReadOnlyField(
         source='user.profile.display_name'
     )
-    profile_image = serializers.ReadOnlyField(source='user.profile.image.url')
 
     def get_is_user(self, obj):
         request = self.context.get('request')
@@ -45,6 +44,6 @@ class LikeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Like
         fields = [
-            'id', 'user', 'is_user', 'display_name',
-            'profile_image', 'post', 'nomination', 'created_at',
+            'id', 'user', 'is_user', 'display_name', 'post', 
+            'nomination', 'created_at',
         ]
