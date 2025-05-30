@@ -26,6 +26,7 @@ function NavBar() {
     }
   };
 
+  console.log("currentUser =", currentUser); //DEBUG
   return (
     <Navbar className={styles.Navbar} expand="md" fixed="top">
       <Container>
@@ -50,12 +51,14 @@ function NavBar() {
                 <NavLink to="/nominations/create" className="nav-link">
                   Nominate
                 </NavLink>
-                <NavLink
-                  to={`/profiles/${currentUser?.profile_id}`}
-                  className="nav-link"
-                >
-                  Profile
-                </NavLink>
+                {currentUser.profile_id && (
+                  <NavLink
+                    to={`/profiles/${currentUser.profile_id}`}
+                    className="nav-link"
+                  >
+                    Profile
+                  </NavLink>
+                )}
                 <Nav.Link as={NavLink} to="/" onClick={handleSignOut}>
                   Logout
                 </Nav.Link>

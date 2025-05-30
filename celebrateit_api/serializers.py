@@ -3,8 +3,14 @@ from rest_framework import serializers
 
 
 class CurrentUserSerializer(UserDetailsSerializer):
-    profile_id = serializers.ReadOnlyField(source='profile.id')
+    profile_id = serializers.SerializerMethodField()
     profile_image = serializers.SerializerMethodField()
+
+    def get_profile_id(self, obj):
+        try:
+            return obj.profile.id
+        except:
+            return None
 
     def get_profile_image(self, obj):
         image_field = getattr(obj.profile, 'image', None)

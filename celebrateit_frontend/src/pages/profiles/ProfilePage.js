@@ -13,6 +13,7 @@ import styles from "../../App.module.css";
 function ProfilePage() {
   // Routing and Params
   const { id } = useParams();
+  console.log("ProfilePage loaded with id =", id); // DEBUG
   const history = useHistory();
   const location = useLocation();
   const [showUpdated, setShowUpdated] = useState(
@@ -42,6 +43,7 @@ function ProfilePage() {
 
   // Fetch user profile
   useEffect(() => {
+    if (id === "undefined") return;
     const fetchProfile = async () => {
       try {
         const { data } = await axiosReq.get(`/user-profiles/${id}/`);
@@ -58,33 +60,35 @@ function ProfilePage() {
 
   // Fetch recognitions by user
   useEffect(() => {
-    if (!id) return;
+    if (id === "undefined") return;
     axiosReq
       .get(`/posts/?user__profile=${id}`)
       .then((res) => setRecognitions(res.data.results))
-      .catch((err) => {
-        // console.log('Error fetching recognitions:', err);
-        // TODO: add user feedback on error
-      })
+      .catch(() => {})
       .finally(() => setHasLoadedRecognitions(true));
   }, [id]);
 
   // Fetch nominations by user
   useEffect(() => {
-    if (!id) return;
+    if (id === "undefined") return;
     axiosReq
       .get(`/nominations/?nominator__profile=${id}`)
       .then((res) => setNominations(res.data.results))
-      .catch((err) => {
-        // console.log('Error fetching nominations:', err);
-        // TODO: add user feedback on error
-      })
+      .catch(() => {})
       .finally(() => setHasLoadedNominations(true));
   }, [id]);
 
+  if (id === "undefined") {
+    return <LoadingIndicator message="Preparing your profile..." />;
+  }
+
+  if (!hasLoadedProfile || !hasLoadedRecognitions || !hasLoadedNominations) {
+    return <LoadingIndicator message="Loading profile..." />;
+  }
+
   // console.log("currentUser =", currentUser); // Useful for auth debugging
 
-  return hasLoadedProfile && hasLoadedRecognitions && hasLoadedNominations ? (
+  return (
     <>
       {showUpdated && (
         <div className="alert alert-success text-center mt-3">
@@ -191,8 +195,6 @@ function ProfilePage() {
         </div>
       </Container>
     </>
-  ) : (
-    <LoadingIndicator message="Loading profile..." />
   );
 }
 
