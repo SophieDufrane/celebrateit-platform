@@ -12,9 +12,7 @@ class PostSerializer(serializers.ModelSerializer):
     display_name = serializers.ReadOnlyField(
         source='user.profile.display_name'
     )
-    profile_image = serializers.ReadOnlyField(
-        source='user.profile.image.url'
-    )
+    profile_image = serializers.SerializerMethodField()
     likes_count = serializers.ReadOnlyField()
     comments_count = serializers.ReadOnlyField()
     like_id = serializers.SerializerMethodField()
@@ -30,6 +28,15 @@ class PostSerializer(serializers.ModelSerializer):
     def get_is_user(self, obj):
         request = self.context.get('request')
         return request and request.user == obj.user
+
+    def get_profile_image(self, obj):
+        image_field = getattr(obj.user.profile, 'image', None)
+        if image_field and hasattr(image_field, 'url'):
+            try:
+                return image_field.url
+            except ValueError:
+                return None
+        return None
 
     def get_like_id(self, obj):
         request = self.context.get('request')
