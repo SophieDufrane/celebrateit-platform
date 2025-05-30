@@ -217,9 +217,12 @@ function HomeFeedPage() {
                 style={{ cursor: "pointer" }}
               >
                 <div className={feedStyles.PersonContent}>
-                  <img
+                  <Avatar
                     src={person.profile_image}
-                    alt={`${person.first_name}'s avatar`}
+                    first_name={person.first_name}
+                    last_name={person.last_name}
+                    username={person.username}
+                    size="sm"
                   />
                   <span>
                     {person.first_name} {person.last_name}

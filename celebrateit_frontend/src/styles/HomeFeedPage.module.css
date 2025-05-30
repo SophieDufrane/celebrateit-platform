@@ -1,4 +1,11 @@
 /* ----------- Feed Toggle ----------- */
+.FeedToggleButtons {
+  margin: 0 0 1rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
 .FeedButton {
   width: 100%;
   margin-bottom: 0.5rem;
@@ -6,13 +13,6 @@
   border-radius: 0.5rem;
   border: none;
   transition: all 0.3s ease;
-}
-
-.FeedToggleButtons {
-  margin: 0 0 1rem 0;
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
 }
 
 .FeedToggleActive {
@@ -46,7 +46,7 @@
   box-shadow: none;
 }
 
-/* ----------- Feed Content ----------- */
+/* ----------- Feed Main Content ----------- */
 .FeedContent {
   max-width: 700px;
   margin: 0 auto;
@@ -57,32 +57,6 @@
 }
 
 /* ----------- People Sidebar ----------- */
-.PersonItem {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-  margin-right: 12px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.PersonItem:hover {
-  background-color: #f8f9fa;
-}
-
-.PersonItem img {
-  width: 35px;
-  height: 35px;
-  object-fit: cover;
-  margin-right: 12px;
-  border-radius: 50%;
-}
-
-.PersonContent {
-  display: flex;
-  align-items: center;
-}
-
 .SearchFilterBlock {
   background-color: #f7f7f7;
   padding: 0.75rem;
@@ -101,4 +75,22 @@
   border: 1px solid #ccc;
   border-radius: 0.3rem;
   padding: 0.6rem;
+}
+
+.PersonItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.PersonItem:hover {
+  background-color: #f8f9fa;
+}
+
+.PersonContent {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
 }
