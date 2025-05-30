@@ -1,27 +1,4 @@
-/* ----------- Header for Post cards ----------- */
-.PostHeaderWrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #e0e0e0;
-  margin-bottom: 1rem;
-}
-
-.HeaderLeft {
-  display: flex;
-  align-items: center;
-}
-
-.Avatar {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  border-radius: 50%;
-  margin-right: 0.8rem;
-}
-
-/* ----------- Profile Page ----------- */
+/* ----------- Layout Structure ----------- */
 .ProfileWrapper {
   border-radius: 5px;
   overflow: hidden;
@@ -41,18 +18,23 @@
   position: relative;
 }
 
+.TwoColumnFeed {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.FeedColumn {
+  flex: 1;
+}
+
+/* ----------- Header Elements ----------- */
 .CompanyName {
   font-size: 1.6rem;
   text-transform: uppercase;
   color: white;
   justify-content: flex-start;
-}
-
-.EditIcon {
-  color: #444;
-  font-size: 1rem;
-  cursor: pointer;
-  padding: 0.5rem;
 }
 
 .AvatarWrapper {
@@ -71,14 +53,22 @@
   gap: 1rem;
 }
 
-.ProfileDetails h3 {
-  margin: 0;
+.EditIcon {
+  color: #444;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.5rem;
 }
 
+/* ----------- Profile Details ----------- */
 .ProfileDetails {
   text-align: left;
   margin-top: -40px; /* pull content up after avatar spacing */
   padding: 0 1.5rem;
+}
+
+.ProfileDetails h3 {
+  margin: 0;
 }
 
 .Department {
@@ -95,17 +85,7 @@
   line-height: 1.4;
 }
 
-.TwoColumnFeed {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-.FeedColumn {
-  flex: 1;
-}
-
+/* ----------- Section Titles ----------- */
 .SectionTitlePurple {
   width: 100%;
   margin: 0 0 0.8rem 0;

@@ -1,8 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Card } from 'react-bootstrap';
-import styles from '../styles/PostCard.module.css';
-import PostHeader from './PostHeader';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Card } from "react-bootstrap";
+import styles from "../styles/PostCard.module.css";
+import PostHeader from "./PostHeader";
 
 function PostLayoutShell(props) {
   const {
@@ -10,6 +10,9 @@ function PostLayoutShell(props) {
     content,
     display_name,
     profile_image,
+    first_name,
+    last_name,
+    username,
     created_at,
     renderDropdown,
     postActions,
@@ -24,6 +27,9 @@ function PostLayoutShell(props) {
       <PostHeader
         display_name={display_name}
         profile_image={profile_image}
+        first_name={first_name}
+        last_name={last_name}
+        username={username}
         created_at={created_at}
         renderDropdown={renderDropdown}
       />
@@ -47,7 +53,7 @@ function PostLayoutShell(props) {
   return (
     <Card className={`mb-3 ${styles.CardWrapper}`}>
       {linkTo ? (
-        <Link to={linkTo} style={{ textDecoration: 'none', color: 'inherit' }}>
+        <Link to={linkTo} style={{ textDecoration: "none", color: "inherit" }}>
           {cardBody}
         </Link>
       ) : (
