@@ -103,7 +103,7 @@ function ProfilePage() {
                 src={profile.profile_image}
                 first_name={profile.first_name}
                 last_name={profile.last_name}
-                username={profile.username}
+                username={profile.user}
                 size="lg"
               />
             </div>

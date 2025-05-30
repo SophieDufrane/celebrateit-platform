@@ -209,27 +209,31 @@ function HomeFeedPage() {
                 !selectedDepartment || person.department === selectedDepartment;
               return matchesName && matchesDepartment;
             })
-            .map((person) => (
-              <ListGroup.Item
-                key={person.id}
-                className={feedStyles.PersonItem}
-                onClick={() => history.push(`/profiles/${person.id}`)}
-                style={{ cursor: "pointer" }}
-              >
-                <div className={feedStyles.PersonContent}>
-                  <Avatar
-                    src={person.profile_image}
-                    first_name={person.first_name}
-                    last_name={person.last_name}
-                    username={person.username}
-                    size="sm"
-                  />
-                  <span>
-                    {person.first_name} {person.last_name}
-                  </span>
-                </div>
-              </ListGroup.Item>
-            ))}
+            .map((person) => {
+              console.log("Person profile object:", person); // DEBUG
+
+              return (
+                <ListGroup.Item
+                  key={person.id}
+                  className={feedStyles.PersonItem}
+                  onClick={() => history.push(`/profiles/${person.id}`)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <div className={feedStyles.PersonContent}>
+                    <Avatar
+                      src={person.profile_image}
+                      first_name={person.first_name}
+                      last_name={person.last_name}
+                      username={person.user}
+                      size="sm"
+                    />
+                    <span>
+                      {person.first_name} {person.last_name}
+                    </span>
+                  </div>
+                </ListGroup.Item>
+              );
+            })}
         </Col>
       </Row>
     </Container>

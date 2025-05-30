@@ -10,10 +10,15 @@ function Avatar(props) {
   const getInitials = () => {
     if (first_name && last_name) {
       return `${first_name[0]}${last_name[0]}`.toUpperCase();
-    } else if (first_name) {
+    }
+    if (first_name) {
       return first_name[0].toUpperCase();
-    } else if (username) {
-      return username[0]?.toUpperCase();
+    }
+    if (last_name) {
+      return last_name[0].toUpperCase();
+    }
+    if (username) {
+      return username[0].toUpperCase();
     }
     return "?";
   };
