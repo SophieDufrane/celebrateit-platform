@@ -2,7 +2,6 @@ from rest_framework import serializers
 from nominations.models import Nomination
 from tags.models import Tag
 from django.contrib.auth.models import User
-from profiles.serializers import SimpleUserSerializer
 
 
 class NominationSerializer(serializers.ModelSerializer):
@@ -11,7 +10,10 @@ class NominationSerializer(serializers.ModelSerializer):
     Links the nomination to a nominee and a single tag.
     Includes frontend user ownership check.
     """
-    user = SimpleUserSerializer(read_only=True)
+    user = serializers.ReadOnlyField(source='nominator.username')
+    username = serializers.ReadOnlyField(source='nominator.username')
+    first_name = serializers.ReadOnlyField(source='nominator.first_name')
+    last_name = serializers.ReadOnlyField(source='nominator.last_name')
     is_user = serializers.SerializerMethodField()
     nominator = serializers.ReadOnlyField(source='nominator.username')
     display_name = serializers.ReadOnlyField(
@@ -37,10 +39,11 @@ class NominationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Nomination
         fields = [
-            'id', 'user', 'is_user', 'nominator', 'display_name',
-            "profile_image", 'nominee', 'nominee_username',
-            'nominee_display_name', 'title', 'content', 'tag', 'tag_id',
-            'tag_color', 'created_at', 'updated_at', 'likes_count',
+            'id', 'user', 'username', 'first_name', 'last_name', 'is_user',
+            'display_name', "profile_image", 'nominator', 'nominee',
+            'nominee_username', 'nominee_display_name', 'title', 'content',
+            'tag', 'tag_id', 'tag_color', 'created_at', 'updated_at',
+            'likes_count',
             'comments_count',
         ]
 

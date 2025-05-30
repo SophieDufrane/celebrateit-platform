@@ -61,6 +61,7 @@ function NominationDetailPage() {
       .get(`/nominations/${id}/`)
       .then((response) => {
         setNomination(response.data);
+        console.log("Nomination object:", response.data); // DEBUG
       })
       .catch((error) => {
         // console.error("Error fetching nomination details:", error);
@@ -95,6 +96,10 @@ function NominationDetailPage() {
       <PostLayoutShell
         title={nomination.title}
         content={nomination.content}
+        user={nomination.user}
+        username={nomination.username}
+        first_name={nomination.first_name}
+        last_name={nomination.last_name}
         display_name={nomination.display_name}
         profile_image={nomination.profile_image}
         created_at={nomination.created_at}
@@ -104,7 +109,7 @@ function NominationDetailPage() {
           nomination.tag && (
             <p className={styles.NominationMeta}>
               <strong>{nomination.nominee_display_name}</strong> was nominated
-              by <strong>{nomination.display_name}</strong>{" "}
+              by <strong>{nomination.display_name}</strong> for{" "}
               <span
                 style={{
                   backgroundColor: nomination.tag_color,

@@ -174,12 +174,12 @@ function RecognitionCard(props) {
       <PostLayoutShell
         title={title}
         content={truncatedContent}
-        display_name={display_name}
-        profile_image={profile_image}
         user={user}
         username={username}
         first_name={first_name}
         last_name={last_name}
+        display_name={display_name}
+        profile_image={profile_image}
         created_at={created_at}
         likes_count={likes_count}
         comments_count={comments_count}

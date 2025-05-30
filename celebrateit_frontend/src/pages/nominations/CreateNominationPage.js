@@ -109,11 +109,21 @@ function CreateNominationPage() {
       return;
     }
 
+    // DEBUG
+    console.log("Selected Nominee ID:", selectedNomineeId);
+    // DEBUG
+
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
     formData.append("nominee", selectedNomineeId);
     if (tag) formData.append("tag", tag);
+
+    // DEBUG
+    for (let pair of formData.entries()) {
+      console.log(pair[0] + ": " + pair[1]);
+    }
+    // DEBUG
 
     try {
       const { data } = await axiosReq.post("/nominations/", formData, {
