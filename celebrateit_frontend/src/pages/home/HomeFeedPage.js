@@ -89,8 +89,9 @@ function HomeFeedPage() {
     <Container>
       {/* Avatar TEST */}
       <Avatar
-        src="https://via.placeholder.com/150"
-        alt="Test Avatar"
+        first_name="Alice"
+        last_name="Johnson"
+        username="alicej"
         size="md"
       />
       {showDeleted && (
