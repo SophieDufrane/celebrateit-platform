@@ -255,9 +255,12 @@ function RecognitionDetailPage() {
         title={recognition.title}
         content={recognition.content}
         image={recognition.image}
+        profile_image={recognition.profile_image}
         display_name={recognition.display_name}
         user={recognition.user}
-        profile_image={recognition.profile_image}
+        username={recognition.username}
+        first_name={recognition.first_name}
+        last_name={recognition.last_name}
         created_at={recognition.created_at}
         likes_count={recognition.likes_count}
         comments_count={recognition.comments_count}

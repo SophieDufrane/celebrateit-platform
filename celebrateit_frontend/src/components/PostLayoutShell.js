@@ -8,9 +8,12 @@ function PostLayoutShell(props) {
   const {
     title,
     content,
-    display_name,
+    user, // The username string used to check ownership (for dropdown)
+    username, // Used only for fallback avatar initials
+    first_name, // Used for fallback avatar initials
+    last_name, // Used for fallback avatar initials
+    display_name, // The public full name shown next to avatar
     profile_image,
-    user,
     created_at,
     renderDropdown,
     postActions,
@@ -26,6 +29,9 @@ function PostLayoutShell(props) {
         display_name={display_name}
         profile_image={profile_image}
         user={user}
+        username={username}
+        first_name={first_name}
+        last_name={last_name}
         created_at={created_at}
         renderDropdown={renderDropdown}
       />

@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from posts.models import Post
-from profiles.serializers import SimpleUserSerializer
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -8,7 +7,10 @@ class PostSerializer(serializers.ModelSerializer):
     Serializer for the Post (Recognition Story) model.
     Includes user info, ownership check.
     """
-    user = SimpleUserSerializer(read_only=True)
+    user = serializers.ReadOnlyField(source='user.username')
+    username = serializers.ReadOnlyField(source='user.username')
+    first_name = serializers.ReadOnlyField(source='user.first_name')
+    last_name = serializers.ReadOnlyField(source='user.last_name')
     is_user = serializers.SerializerMethodField()
     display_name = serializers.ReadOnlyField(
         source='user.profile.display_name'
@@ -21,7 +23,8 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = [
-            'id', 'user', 'display_name', 'is_user', "profile_image", 'title',
+            'id', 'user', 'username', 'first_name', 'last_name', 'is_user',
+            'display_name', "profile_image", 'title',
             'content', 'image', 'created_at', 'updated_at',
             'likes_count', 'comments_count', 'like_id',
         ]

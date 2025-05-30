@@ -15,9 +15,11 @@ function RecognitionCard(props) {
     title,
     content,
     image,
-    display_name,
-    user,
-    username,
+    user, // The username string used to check ownership (for dropdown)
+    username, // Used only for fallback avatar initials
+    first_name, // Used for fallback avatar initials
+    last_name, // Used for fallback avatar initials
+    display_name, // The public full name shown next to avatar
     profile_image,
     created_at,
     likes_count,
@@ -173,8 +175,11 @@ function RecognitionCard(props) {
         title={title}
         content={truncatedContent}
         display_name={display_name}
-        user={user}
         profile_image={profile_image}
+        user={user}
+        username={username}
+        first_name={first_name}
+        last_name={last_name}
         created_at={created_at}
         likes_count={likes_count}
         comments_count={comments_count}
