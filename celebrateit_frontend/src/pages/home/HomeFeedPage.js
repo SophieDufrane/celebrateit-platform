@@ -5,6 +5,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { Button, Container, Row, Col, ListGroup, Alert } from "react-bootstrap";
 import RecognitionCard from "../recognitions/RecognitionCard";
 import NominationCard from "../nominations/NominationCard";
+import Avatar from "../../components/Avatar";
 import LoadingIndicator from "../../components/LoadingIndicator";
 import feedStyles from "../../styles/HomeFeedPage.module.css";
 
@@ -86,6 +87,12 @@ function HomeFeedPage() {
 
   return (
     <Container>
+      {/* Avatar TEST */}
+      <Avatar
+        src="https://via.placeholder.com/150"
+        alt="Test Avatar"
+        size="md"
+      />
       {showDeleted && (
         <Alert
           variant="success"
