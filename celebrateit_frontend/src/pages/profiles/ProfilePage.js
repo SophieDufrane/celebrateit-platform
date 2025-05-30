@@ -6,6 +6,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import RecognitionCard from "../recognitions/RecognitionCard";
 import NominationCard from "../nominations/NominationCard";
 import LoadingIndicator from "../../components/LoadingIndicator";
+import Avatar from "../../components/Avatar";
 import profileStyles from "../../styles/Profile.module.css";
 import styles from "../../App.module.css";
 
@@ -98,10 +99,12 @@ function ProfilePage() {
 
             {/* Avatar overlaps banner */}
             <div className={profileStyles.AvatarWrapper}>
-              <img
+              <Avatar
                 src={profile.profile_image}
-                alt={`${profile.first_name} ${profile.last_name}`}
-                className={profileStyles.ProfileAvatar}
+                first_name={profile.first_name}
+                last_name={profile.last_name}
+                username={profile.username}
+                size="lg"
               />
             </div>
 

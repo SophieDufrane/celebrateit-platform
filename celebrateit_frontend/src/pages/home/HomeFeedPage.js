@@ -87,13 +87,6 @@ function HomeFeedPage() {
 
   return (
     <Container>
-      {/* Avatar TEST */}
-      <Avatar
-        first_name="Alice"
-        last_name="Johnson"
-        username="alicej"
-        size="md"
-      />
       {showDeleted && (
         <Alert
           variant="success"
