@@ -15,9 +15,7 @@ class NominationSerializer(serializers.ModelSerializer):
     display_name = serializers.ReadOnlyField(
         source='nominator.profile.display_name'
     )
-    profile_image = serializers.ReadOnlyField(
-        source='nominator.profile.image.url'
-    )
+    profile_image = serializers.SerializerMethodField()
     nominee = serializers.PrimaryKeyRelatedField(
         queryset=User.objects.all()
     )
@@ -47,6 +45,14 @@ class NominationSerializer(serializers.ModelSerializer):
     def get_is_user(self, obj):
         request = self.context.get('request')
         return request and request.user == obj.nominator
+    def get_profile_image(self, obj):
+        image_field = getattr(obj.nominator.profile, 'image', None)
+        if image_field and hasattr(image_field, 'url'):
+            try:
+                return image_field.url
+            except ValueError:
+                return None
+        return None
 
     def get_tag_color(self, obj):
         return obj.tag.color if obj.tag else None
