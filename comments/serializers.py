@@ -15,9 +15,7 @@ class CommentSerializer(serializers.ModelSerializer):
     display_name = serializers.ReadOnlyField(
         source='user.profile.display_name'
     )
-    profile_image = serializers.ReadOnlyField(source='user.profile.image.url')
     post_title = serializers.SerializerMethodField()
-    nomination_title = serializers.SerializerMethodField()
     created_at = serializers.SerializerMethodField()
     updated_at = serializers.SerializerMethodField()
 
@@ -27,9 +25,6 @@ class CommentSerializer(serializers.ModelSerializer):
 
     def get_post_title(self, obj):
         return obj.post.title if obj.post else None
-
-    def get_nomination_title(self, obj):
-        return obj.nomination.title if obj.nomination else None
 
     def get_created_at(self, obj):
         return naturaltime(obj.created_at)
@@ -41,6 +36,5 @@ class CommentSerializer(serializers.ModelSerializer):
         model = Comment
         fields = [
             'id', 'user', 'is_user', 'profile_id', 'display_name',
-            'profile_image', 'post', 'post_title', 'nomination',
-            'nomination_title', 'content', 'created_at', 'updated_at',
+            'post', 'post_title', 'content', 'created_at', 'updated_at',
         ]
