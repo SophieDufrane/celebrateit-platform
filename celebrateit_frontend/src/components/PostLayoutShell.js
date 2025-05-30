@@ -10,9 +10,7 @@ function PostLayoutShell(props) {
     content,
     display_name,
     profile_image,
-    first_name,
-    last_name,
-    username,
+    user,
     created_at,
     renderDropdown,
     postActions,
@@ -27,9 +25,7 @@ function PostLayoutShell(props) {
       <PostHeader
         display_name={display_name}
         profile_image={profile_image}
-        first_name={first_name}
-        last_name={last_name}
-        username={username}
+        user={user}
         created_at={created_at}
         renderDropdown={renderDropdown}
       />

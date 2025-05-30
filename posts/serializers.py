@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from posts.models import Post
+from profiles.serializers import SimpleUserSerializer
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -7,7 +8,7 @@ class PostSerializer(serializers.ModelSerializer):
     Serializer for the Post (Recognition Story) model.
     Includes user info, ownership check.
     """
-    user = serializers.ReadOnlyField(source='user.username')
+    user = SimpleUserSerializer(read_only=True)
     is_user = serializers.SerializerMethodField()
     display_name = serializers.ReadOnlyField(
         source='user.profile.display_name'

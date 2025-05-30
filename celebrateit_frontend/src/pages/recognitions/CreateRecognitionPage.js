@@ -63,9 +63,11 @@ function CreateRecognitionPage() {
         },
       });
       // PATCH 9: Rehydrate user context after creation
-      setCurrentUser(
-        await axiosRes.get("/dj-rest-auth/user/").then((res) => res.data)
-      );
+      const currentUserData = await axiosRes
+        .get("/dj-rest-auth/user/")
+        .then((res) => res.data);
+      setCurrentUser(currentUserData);
+
       history.push(`/recognitions/${data.id}?created=true`);
     } catch (err) {
       if (err.response?.status !== 401) {

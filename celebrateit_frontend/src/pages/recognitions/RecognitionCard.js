@@ -16,6 +16,8 @@ function RecognitionCard(props) {
     content,
     image,
     display_name,
+    user,
+    username,
     profile_image,
     created_at,
     likes_count,
@@ -171,6 +173,7 @@ function RecognitionCard(props) {
         title={title}
         content={truncatedContent}
         display_name={display_name}
+        user={user}
         profile_image={profile_image}
         created_at={created_at}
         likes_count={likes_count}

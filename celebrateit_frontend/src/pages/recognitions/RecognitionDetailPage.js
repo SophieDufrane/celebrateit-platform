@@ -256,6 +256,7 @@ function RecognitionDetailPage() {
         content={recognition.content}
         image={recognition.image}
         display_name={recognition.display_name}
+        user={recognition.user}
         profile_image={recognition.profile_image}
         created_at={recognition.created_at}
         likes_count={recognition.likes_count}

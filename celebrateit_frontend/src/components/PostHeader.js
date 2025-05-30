@@ -7,15 +7,8 @@ import styles from "../styles/PostCard.module.css";
  * Includes avatar placeholder, display name, date, and optional dropdown.
  */
 function PostHeader(props) {
-  const {
-    profile_image,
-    display_name,
-    first_name,
-    last_name,
-    username,
-    created_at,
-    renderDropdown,
-  } = props;
+  const { profile_image, display_name, user, created_at, renderDropdown } =
+    props;
 
   return (
     <div className={styles.PostHeaderWrapper}>
@@ -23,9 +16,9 @@ function PostHeader(props) {
         <div className={styles.AvatarWithName}>
           <Avatar
             src={profile_image}
-            first_name={first_name}
-            last_name={last_name}
-            username={username}
+            first_name={user?.first_name}
+            last_name={user?.last_name}
+            username={user?.username}
             size="md"
           />
           <strong>{display_name}</strong>
