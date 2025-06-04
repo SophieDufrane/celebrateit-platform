@@ -18,6 +18,7 @@ function NominationCard(props) {
     last_name, // Used for fallback avatar initials
     display_name, // The public full name shown next to avatar
     profile_image,
+    profile_id,
     created_at,
     nominee_display_name: nominee,
     tag,
@@ -73,6 +74,7 @@ function NominationCard(props) {
         last_name={last_name}
         display_name={display_name}
         profile_image={profile_image}
+        profile_id={profile_id}
         created_at={created_at}
         renderDropdown={
           props.is_user && (

@@ -20,6 +20,7 @@ class NominationSerializer(serializers.ModelSerializer):
         source='nominator.profile.display_name'
     )
     profile_image = serializers.SerializerMethodField()
+    profile_id = serializers.ReadOnlyField(source='nominator.profile.id')
     nominee = serializers.PrimaryKeyRelatedField(
         queryset=User.objects.all()
     )
@@ -40,11 +41,10 @@ class NominationSerializer(serializers.ModelSerializer):
         model = Nomination
         fields = [
             'id', 'user', 'username', 'first_name', 'last_name', 'is_user',
-            'display_name', "profile_image", 'nominator', 'nominee',
-            'nominee_username', 'nominee_display_name', 'title', 'content',
-            'tag', 'tag_id', 'tag_color', 'created_at', 'updated_at',
-            'likes_count',
-            'comments_count',
+            'display_name', "profile_image", 'profile_id', 'nominator',
+            'nominee', 'nominee_username', 'nominee_display_name', 'title',
+            'content', 'tag', 'tag_id', 'tag_color', 'created_at', 'updated_at',
+            'likes_count', 'comments_count',
         ]
 
     def get_is_user(self, obj):

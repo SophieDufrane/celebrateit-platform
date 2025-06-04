@@ -102,6 +102,7 @@ function NominationDetailPage() {
         last_name={nomination.last_name}
         display_name={nomination.display_name}
         profile_image={nomination.profile_image}
+        profile_id={nomination.profile_id}
         created_at={nomination.created_at}
         renderDropdown={dropdownMenu}
         metaTop={
