@@ -117,7 +117,11 @@ function ProfilePage() {
               <div className={profileStyles.NameRow}>
                 <div className={profileStyles.NameRow}>
                   <h3>
-                    {profile.first_name} {profile.last_name}
+                    {profile.first_name || profile.last_name
+                      ? `${profile.first_name || ""} ${
+                          profile.last_name || ""
+                        }`.trim()
+                      : profile.user}
                   </h3>
 
                   {currentUser ? (
