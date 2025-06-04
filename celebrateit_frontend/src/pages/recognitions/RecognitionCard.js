@@ -104,7 +104,7 @@ function RecognitionCard(props) {
   const postActions = (
     <div className={styles.PostFooter}>
       <div className={styles.ActionItem}>
-        {currentUser?.username === props.user ? (
+        {props.is_user ? (
           <OverlayTrigger
             placement="top"
             overlay={
@@ -184,7 +184,7 @@ function RecognitionCard(props) {
         likes_count={likes_count}
         comments_count={comments_count}
         renderDropdown={
-          currentUser?.username === props.user && (
+          props.is_user && (
             <MoreDropdown
               handleEdit={() => history.push(editUrl)}
               handleDelete={handleDelete}
