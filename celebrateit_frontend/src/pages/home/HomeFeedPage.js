@@ -202,9 +202,12 @@ function HomeFeedPage() {
           {/* People list placeholder */}
           {people
             .filter((person) => {
-              const fullName =
-                `${person.first_name} ${person.last_name}`.toLowerCase();
-              const matchesName = fullName.includes(searchTerm.toLowerCase());
+              const nameOrUsername = `${person.first_name || ""} ${
+                person.last_name || ""
+              } ${person.user || ""}`.toLowerCase();
+              const matchesName = nameOrUsername.includes(
+                searchTerm.toLowerCase()
+              );
               const matchesDepartment =
                 !selectedDepartment || person.department === selectedDepartment;
               return matchesName && matchesDepartment;
