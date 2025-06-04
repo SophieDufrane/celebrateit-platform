@@ -1405,13 +1405,21 @@ Some warnings were intentionally ignored:
 - Warnings from installed packages (e.g. `node_modules` or installed dependencies like `flatted.py`) were left untouched, as they are not part of the core codebase.
 - Unused imports in test files (e.g. `TestCase` in `tests.py`) were kept in place as placeholders to maintain Django's testing structure and support future test development.
 
+<details>
+  <summary>Python validator results</summary>
+
+   <p>
+      <img src="documentation/other/python_validator.png" alt="Python validator result" />
+   </p>
+</details>
+
 #### **Lighthouse Performance & Best Practices Testing**
 
 To assess web performance, accessibility, and best practices, I used **Google Lighthouse**.
 
-- **Performance** of home page background image initially scored below **80%**, but after optimizing compression and caching, performance improved.
-- **Best Practices** score was below **60%** due to HTTP links, which I updated to HTTPS, significantly improving the score.
-- **Accessibility** improvements, such as adding ARIA labels and refining header hierarchy, helped achieve a **100%** accessibility score.
+- **Performance** .
+- **Best Practices** .
+- **Accessibility** .
 
 However, pages containing images stored on **Cloudinary** received a **Best Practices score of 78%** due to a a third-party cookie warning:
 
