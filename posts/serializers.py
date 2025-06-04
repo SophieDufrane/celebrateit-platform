@@ -16,6 +16,7 @@ class PostSerializer(serializers.ModelSerializer):
         source='user.profile.display_name'
     )
     profile_image = serializers.SerializerMethodField()
+    profile_id = serializers.ReadOnlyField(source='user.profile.id')
     likes_count = serializers.ReadOnlyField(source='likes.count')
     comments_count = serializers.ReadOnlyField()
     like_id = serializers.SerializerMethodField()
@@ -24,7 +25,7 @@ class PostSerializer(serializers.ModelSerializer):
         model = Post
         fields = [
             'id', 'user', 'username', 'first_name', 'last_name', 'is_user',
-            'display_name', "profile_image", 'title',
+            'display_name', "profile_image", 'profile_id', 'title',
             'content', 'image', 'created_at', 'updated_at',
             'likes_count', 'comments_count', 'like_id',
         ]

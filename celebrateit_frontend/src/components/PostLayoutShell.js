@@ -14,6 +14,7 @@ function PostLayoutShell(props) {
     last_name, // Used for fallback avatar initials
     display_name, // The public full name shown next to avatar
     profile_image,
+    profile_id,
     created_at,
     renderDropdown,
     postActions,
@@ -26,7 +27,18 @@ function PostLayoutShell(props) {
   const cardBody = (
     <Card.Body>
       <PostHeader
-        display_name={display_name}
+        display_name={
+          profile_id ? (
+            <Link
+              to={`/profiles/${profile_id}`}
+              className={styles.InteractiveTextLink}
+            >
+              {display_name}
+            </Link>
+          ) : (
+            display_name
+          )
+        }
         profile_image={profile_image}
         user={user}
         username={username}
@@ -37,16 +49,13 @@ function PostLayoutShell(props) {
       />
       {/* Optional metadata above title (e.g. nominee & tag for nominations) */}
       {metaTop && <div className={styles.MetaTopWrapper}>{metaTop}</div>}
-
       {/* Always show post title and content */}
       <h5 className={styles.PostTitle}>{title}</h5>
       <p className={styles.PostContent}>{content}</p>
-
       {/* Optional extra content after main content (e.g. 'View full post' link) */}
       {extraContent && (
         <div className={styles.ViewFullWrapper}>{extraContent}</div>
       )}
-
       {/* Detail-only content (comment form + comments) */}
       {children && <div className={styles.PostChildren}>{children}</div>}
     </Card.Body>
