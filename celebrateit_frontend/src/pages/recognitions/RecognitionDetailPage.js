@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useHistory, useLocation } from "react-router-dom";
+import { useParams, useHistory, useLocation, Link } from "react-router-dom";
 import { Container, Alert, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
@@ -291,7 +291,11 @@ function RecognitionDetailPage() {
             />
           ) : (
             <p className={styles.LoginToComment}>
-              <i className="far fa-comment" /> Log in to leave a comment.
+              <i className="far fa-comment" />{" "}
+              <Link to="/login" className={styles.ViewFullPostLink}>
+                Log in
+              </Link>{" "}
+              to leave a comment.
             </p>
           )}
 
