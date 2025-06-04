@@ -261,6 +261,7 @@ function RecognitionDetailPage() {
         last_name={recognition.last_name}
         display_name={recognition.display_name}
         profile_image={recognition.profile_image}
+        profile_id={recognition.profile_id}
         created_at={recognition.created_at}
         likes_count={recognition.likes_count}
         comments_count={recognition.comments_count}
