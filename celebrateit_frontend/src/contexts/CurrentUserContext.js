@@ -52,6 +52,8 @@ export function CurrentUserProvider({ children }) {
         const token = localStorage.getItem("access_token");
         if (token) {
           config.headers["Authorization"] = `Bearer ${token}`;
+        } else {
+          delete config.headers["Authorization"]; // clean header if no token
         }
         return config;
       },
@@ -61,7 +63,10 @@ export function CurrentUserProvider({ children }) {
     // PATCH 2: Refresh token before protected requests if timestamp exists
     requestInterceptorRef.current = axiosReq.interceptors.request.use(
       async (config) => {
-        const isRefreshing = config._isRefreshing; // prevent recursion
+        const isRefreshing = config._isRefreshing;
+        if (!localStorage.getItem("refresh_token")) {
+          return config;
+        }
         if (shouldRefreshToken() && !isRefreshing) {
           try {
             const { data } = await axios.post("/dj-rest-auth/token/refresh/");
