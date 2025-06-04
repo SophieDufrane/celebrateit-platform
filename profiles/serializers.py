@@ -14,20 +14,22 @@ class UserProfileSerializer(serializers.ModelSerializer):
     last_name = serializers.ReadOnlyField(source='user.last_name')
     is_user_profile = serializers.SerializerMethodField()
     department = serializers.StringRelatedField()
-    profile_image = serializers.SerializerMethodField()
+    profile_image = serializers.ImageField(
+        source='image', required=False, allow_null=True, write_only=False
+    )
 
     def get_is_user_profile(self, obj):
         request = self.context['request']
         return request.user == obj.user
 
-    def get_profile_image(self, obj):
-        image_field = getattr(obj, 'image', None)
-        if image_field and hasattr(image_field, 'url'):
-            try:
-                return image_field.url
-            except ValueError:
-                return None
-        return None
+    # def get_profile_image(self, obj):
+    #     image_field = getattr(obj, 'image', None)
+    #     if image_field and hasattr(image_field, 'url'):
+    #         try:
+    #             return image_field.url
+    #         except ValueError:
+    #             return None
+    #     return None
 
     class Meta:
         model = UserProfile

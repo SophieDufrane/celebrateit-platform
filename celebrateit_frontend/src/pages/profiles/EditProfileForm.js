@@ -56,7 +56,7 @@ function EditProfileForm() {
     formData.append("last_name", lastName);
     formData.append("presentation", presentation);
 
-    if (imageFile) {
+    if (imageFile && typeof imageFile !== "string") {
       formData.append("profile_image", imageFile);
     }
 
@@ -73,13 +73,14 @@ function EditProfileForm() {
           },
         }
       );
+
       setProfile(data);
       setCurrentUser(
         await axiosRes.get("/dj-rest-auth/user/").then((res) => res.data)
       );
       history.push(`/profiles/${profile.id}?updated=true`);
     } catch (err) {
-      // console.error("Error updating profile:", err);
+      console.error("Error updating profile:", err); // DEBUG (will comment out after debuging)
       // TODO: add user feedback on error
     }
   };
