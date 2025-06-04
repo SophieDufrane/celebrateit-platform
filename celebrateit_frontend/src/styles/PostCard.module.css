@@ -52,7 +52,7 @@
   margin-top: 0.5rem;
 }
 
-.ViewFullPostLink {
+.InteractiveTextLink {
   font-size: 0.9rem;
   font-weight: 600;
   color: inherit;
@@ -60,7 +60,7 @@
   font-weight: 600;
 }
 
-.ViewFullPostLink:hover {
+.InteractiveTextLink:hover {
   color: #300e82;
   text-decoration: none;
 }

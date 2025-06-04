@@ -193,11 +193,9 @@ function RecognitionCard(props) {
         }
         postActions={postActions}
         extraContent={
-          <div className={styles.ViewFullPostWrapper}>
-            <Link to={detailUrl} className={styles.ViewFullPostLink}>
-              View full recognition
-            </Link>
-          </div>
+          <Link to={detailUrl} className={styles.InteractiveTextLink}>
+            View full recognition
+          </Link>
         }
       >
         {image && (

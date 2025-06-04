@@ -291,10 +291,10 @@ function RecognitionDetailPage() {
             />
           ) : (
             <p className={styles.LoginToComment}>
-              <i className="far fa-comment" />{" "}
-              <Link to="/login" className={styles.ViewFullPostLink}>
+              <i className="far fa-comment" />
+              <Link to="/login" className={styles.InteractiveTextLink}>
                 Log in
-              </Link>{" "}
+              </Link>
               to leave a comment.
             </p>
           )}

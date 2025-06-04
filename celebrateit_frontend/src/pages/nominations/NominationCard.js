@@ -103,11 +103,9 @@ function NominationCard(props) {
           )
         }
         extraContent={
-          <div className={styles.ViewFullPostWrapper}>
-            <Link to={detailUrl} className={styles.ViewFullPostLink}>
-              View full nomination
-            </Link>
-          </div>
+          <Link to={detailUrl} className={styles.InteractiveTextLink}>
+            View full nomination
+          </Link>
         }
       />
 
