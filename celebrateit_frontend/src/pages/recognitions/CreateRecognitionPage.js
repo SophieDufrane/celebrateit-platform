@@ -25,6 +25,15 @@ function CreateRecognitionPage() {
   // Handle input changes (text & file upload)
   const handleChange = (event) => {
     const { name, value, files } = event.target;
+
+    if (name) {
+      // Clear field-level error on input
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        [name]: "",
+      }));
+    }
+
     if (name === "image") {
       const file = files[0];
       if (file && file.size > 5 * 1024 * 1024) {
