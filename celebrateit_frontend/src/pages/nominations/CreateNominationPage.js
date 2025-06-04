@@ -85,6 +85,14 @@ function CreateNominationPage() {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
+    if (name) {
+      // Clear error only if the field has a name
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        [name]: "",
+      }));
+    }
+
     if (name === "nominee") {
       setNomineeInput(value);
       setSelectedNomineeId("");
@@ -109,21 +117,11 @@ function CreateNominationPage() {
       return;
     }
 
-    // DEBUG
-    console.log("Selected Nominee ID:", selectedNomineeId);
-    // DEBUG
-
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
     formData.append("nominee", selectedNomineeId);
     if (tag) formData.append("tag", tag);
-
-    // DEBUG
-    for (let pair of formData.entries()) {
-      console.log(pair[0] + ": " + pair[1]);
-    }
-    // DEBUG
 
     try {
       const { data } = await axiosReq.post("/nominations/", formData, {
@@ -186,11 +184,12 @@ function CreateNominationPage() {
               />
             </OverlayTrigger>
             {/* Validation error for nominee */}
-            {errors?.nominee?.map((message, idx) => (
-              <div key={idx} className="text-danger mt-1">
-                {message}
-              </div>
-            ))}
+            {Array.isArray(errors?.nominee) &&
+              errors.nominee.map((message, idx) => (
+                <div key={idx} className="text-danger mt-1">
+                  {message}
+                </div>
+              ))}
 
             {nomineeResults.length > 0 && (
               <div className={formStyles.SuggestionBox}>
@@ -225,11 +224,12 @@ function CreateNominationPage() {
               ))}
             </Form.Control>
           </OverlayTrigger>
-          {errors?.tag?.map((message, idx) => (
-            <div key={idx} className="text-danger mt-1">
-              {message}
-            </div>
-          ))}
+          {Array.isArray(errors?.tag) &&
+            errors.tag.map((message, idx) => (
+              <div key={idx} className="text-danger mt-1">
+                {message}
+              </div>
+            ))}
         </Form.Group>
       </PostForm>
     </Container>
