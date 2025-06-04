@@ -1,3 +1,4 @@
+/* ----------- Generic Form styles ----------- */
 .FormWrapper {
   border-radius: 5px;
   max-width: 700px;
@@ -10,25 +11,14 @@
   margin: 1.5rem;
 }
 
-.CurrentImage {
-  margin-top: 0.5rem;
-  font-size: 0.8rem;
-  color: #6c757d;
-  display: block;
-}
-
-.RemoveImageCheckbox {
-  margin-top: 0.5rem;
-}
-
 .FormButtonRow {
   display: flex;
   gap: 1.5rem;
   margin: 1.5rem;
   margin-top: 0.5rem;
-  /* justify-content: flex-start; */
 }
 
+/* ----------- Media + files input ----------- */
 .FormMediaWrapper {
   margin: 1.5rem;
 }
@@ -49,6 +39,18 @@
   margin-bottom: 1rem;
 }
 
+.CurrentImage {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: #6c757d;
+  display: block;
+}
+
+.RemoveImageCheckbox {
+  margin-top: 0.5rem;
+}
+
+/* ----------- Autocomplete / search suggestions ----------- */
 .SuggestionBox {
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -69,4 +71,23 @@
 .SuggestionItem:hover {
   background-color: #decd62;
   color: #300e82;
+}
+
+/* ----------- Profile Form ----------- */
+.ReadOnlyWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  pointer-events: auto;
+}
+
+.ReadOnlyInput {
+  pointer-events: none;
+}
+
+.ReadOnlyInput:focus {
+  outline: none;
+  box-shadow: none;
+  cursor: default;
 }

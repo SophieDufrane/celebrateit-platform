@@ -110,13 +110,17 @@ function EditProfileForm() {
                 </Tooltip>
               }
             >
-              <Form.Control
-                type="text"
-                value={firstName}
-                readOnly
-                placeholder="First Name"
-                aria-label="First Name (read-only)"
-              />
+              <div className={formStyles.ReadOnlyWrapper}>
+                <Form.Control
+                  className={formStyles.ReadOnlyInput}
+                  type="text"
+                  value={firstName}
+                  readOnly
+                  tabIndex={-1}
+                  placeholder="First Name"
+                  aria-label="First Name (read-only)"
+                />
+              </div>
             </OverlayTrigger>
           </Form.Group>
           <Form.Group
@@ -132,13 +136,17 @@ function EditProfileForm() {
                 </Tooltip>
               }
             >
-              <Form.Control
-                type="text"
-                value={lastName}
-                readOnly
-                placeholder="Last Name"
-                aria-label="Last Name (read-only)"
-              />
+              <div className={formStyles.ReadOnlyWrapper}>
+                <Form.Control
+                  className={formStyles.ReadOnlyInput}
+                  type="text"
+                  value={lastName}
+                  readOnly
+                  tabIndex={-1}
+                  placeholder="Last Name"
+                  aria-label="Last Name (read-only)"
+                />
+              </div>
             </OverlayTrigger>
           </Form.Group>
 
