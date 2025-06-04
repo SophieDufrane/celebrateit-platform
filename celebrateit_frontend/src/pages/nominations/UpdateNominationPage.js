@@ -24,6 +24,7 @@ function UpdateNominationPage() {
 
   // UI State
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     axiosReq
@@ -57,6 +58,15 @@ function UpdateNominationPage() {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
+
+    if (name) {
+      // Clear error only if the field has a name
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        [name]: "",
+      }));
+    }
+
     setPostData({
       ...postData,
       [name]: value,
@@ -81,8 +91,10 @@ function UpdateNominationPage() {
       });
       history.push(`/nominations/${id}?updated=true`);
     } catch (err) {
-      // console.error("Submission error:", err.response?.data);
-      // TODO: add user feedback on error
+      console.error("Submission error:", err.response?.data);
+      if (err.response?.status !== 401) {
+        setErrors(err.response?.data || {});
+      }
     }
   };
 
@@ -103,6 +115,7 @@ function UpdateNominationPage() {
         handleSubmit={handleSubmit}
         submitText="Update"
         onCancel={() => history.push(`/nominations/${id}`)}
+        errors={errors}
       >
         <Form.Group className={formStyles.FormMediaWrapper}>
           {/* Read-only nominee display */}
@@ -131,6 +144,13 @@ function UpdateNominationPage() {
               ))}
             </Form.Control>
           </OverlayTrigger>
+          {/* Validation error */}
+          {Array.isArray(errors?.tag) &&
+            errors.tag.map((message, idx) => (
+              <div key={idx} className="text-danger mt-1">
+                {message}
+              </div>
+            ))}
         </Form.Group>
       </PostForm>
     </Container>

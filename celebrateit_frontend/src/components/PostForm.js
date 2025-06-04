@@ -53,6 +53,7 @@ function PostForm({
             onChange={handleChange}
           />
         </OverlayTrigger>
+        {/* Validation error */}
         {Array.isArray(errors?.content) &&
           errors?.content?.map((message, idx) => (
             <div key={idx} className="text-danger mt-1">
