@@ -30,11 +30,12 @@ function PostForm({
           />
         </OverlayTrigger>
         {/* Validation error */}
-        {errors?.title?.map((message, idx) => (
-          <div key={idx} className="text-danger mt-1">
-            {message}
-          </div>
-        ))}
+        {Array.isArray(errors?.title) &&
+          errors?.title?.map((message, idx) => (
+            <div key={idx} className="text-danger mt-1">
+              {message}
+            </div>
+          ))}
       </Form.Group>
 
       <Form.Group controlId="content" className={styles.FormGroupSpacing}>
@@ -52,11 +53,12 @@ function PostForm({
             onChange={handleChange}
           />
         </OverlayTrigger>
-        {errors?.content?.map((message, idx) => (
-          <div key={idx} className="text-danger mt-1">
-            {message}
-          </div>
-        ))}
+        {Array.isArray(errors?.content) &&
+          errors?.content?.map((message, idx) => (
+            <div key={idx} className="text-danger mt-1">
+              {message}
+            </div>
+          ))}
       </Form.Group>
       {children}
       <FormFooter submitText={submitText} onCancel={onCancel} />

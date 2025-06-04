@@ -23,6 +23,7 @@ function UpdateRecognitionPage() {
 
   // UI State
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     axiosReq
@@ -40,6 +41,15 @@ function UpdateRecognitionPage() {
 
   const handleChange = (event) => {
     const { name, value, files } = event.target;
+
+    if (name) {
+      // Clear error only if the field has a name
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        [name]: "",
+      }));
+    }
+
     if (name === "image") {
       setRecognitionData({
         ...recognitionData,
@@ -76,6 +86,9 @@ function UpdateRecognitionPage() {
       history.push(`/recognitions/${id}?updated=true`);
     } catch (err) {
       console.error("Submission error:", err.response?.data);
+      if (err.response?.status !== 401) {
+        setErrors(err.response?.data || {});
+      }
     }
   };
 
@@ -97,6 +110,7 @@ function UpdateRecognitionPage() {
         handleSubmit={handleSubmit}
         submitText="Update"
         onCancel={() => history.push(`/recognitions/${id}`)}
+        errors={errors}
       >
         <Form.Group className={formStyles.FormMediaWrapper}>
           {typeof image === "string" && (
