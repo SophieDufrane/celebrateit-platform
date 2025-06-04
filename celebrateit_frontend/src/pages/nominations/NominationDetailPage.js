@@ -113,7 +113,7 @@ function NominationDetailPage() {
               {nomination.nominee_profile_id ? (
                 <Link
                   to={`/profiles/${nomination.nominee_profile_id}`}
-                  className={styles.InteractiveTextLink}
+                  className={styles.InteractiveNameLink}
                 >
                   <strong>{nomination.nominee_display_name}</strong>
                 </Link>

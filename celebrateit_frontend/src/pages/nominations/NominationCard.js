@@ -93,7 +93,7 @@ function NominationCard(props) {
               {nominee_profile_id ? (
                 <Link
                   to={`/profiles/${nominee_profile_id}`}
-                  className={styles.InteractiveTextLink}
+                  className={styles.InteractiveNameLink}
                 >
                   <strong>{nominee}</strong>
                 </Link>

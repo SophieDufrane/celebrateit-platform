@@ -31,7 +31,7 @@ function PostLayoutShell(props) {
           profile_id ? (
             <Link
               to={`/profiles/${profile_id}`}
-              className={styles.InteractiveTextLink}
+              className={styles.InteractiveNameLink}
             >
               {display_name}
             </Link>
