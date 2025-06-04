@@ -28,6 +28,7 @@ class NominationSerializer(serializers.ModelSerializer):
     nominee_display_name = serializers.ReadOnlyField(
         source='nominee.profile.display_name'
     )
+    nominee_profile_id = serializers.ReadOnlyField(source='nominee.profile.id')
     tag = serializers.SlugRelatedField(
         slug_field='name',
         queryset=Tag.objects.all()
@@ -42,8 +43,9 @@ class NominationSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'user', 'username', 'first_name', 'last_name', 'is_user',
             'display_name', "profile_image", 'profile_id', 'nominator',
-            'nominee', 'nominee_username', 'nominee_display_name', 'title',
-            'content', 'tag', 'tag_id', 'tag_color', 'created_at', 'updated_at',
+            'nominee', 'nominee_username', 'nominee_display_name',
+            'nominee_profile_id', 'title', 'content', 'tag', 'tag_id',
+            'tag_color', 'created_at', 'updated_at',
             'likes_count', 'comments_count',
         ]
 

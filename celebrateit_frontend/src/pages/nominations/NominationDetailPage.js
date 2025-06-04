@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useHistory, useLocation } from "react-router-dom";
+import { useParams, useHistory, useLocation, Link } from "react-router-dom";
 import { Container, Alert } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
 import PostLayoutShell from "../../components/PostLayoutShell";
@@ -103,14 +103,24 @@ function NominationDetailPage() {
         display_name={nomination.display_name}
         profile_image={nomination.profile_image}
         profile_id={nomination.profile_id}
+        nominee_profile_id={nomination.nominee_profile_id}
         created_at={nomination.created_at}
         renderDropdown={dropdownMenu}
         metaTop={
           nomination.nominee_display_name &&
           nomination.tag && (
             <p className={styles.NominationMeta}>
-              <strong>{nomination.nominee_display_name}</strong> was nominated
-              by <strong>{nomination.display_name}</strong> for{" "}
+              {nomination.nominee_profile_id ? (
+                <Link
+                  to={`/profiles/${nomination.nominee_profile_id}`}
+                  className={styles.InteractiveTextLink}
+                >
+                  <strong>{nomination.nominee_display_name}</strong>
+                </Link>
+              ) : (
+                <strong>{nomination.nominee_display_name}</strong>
+              )}{" "}
+              was nominated by <strong>{nomination.display_name}</strong> for{" "}
               <span
                 style={{
                   backgroundColor: nomination.tag_color,

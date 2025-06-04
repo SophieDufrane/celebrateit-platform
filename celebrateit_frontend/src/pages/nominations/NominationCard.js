@@ -19,6 +19,7 @@ function NominationCard(props) {
     display_name, // The public full name shown next to avatar
     profile_image,
     profile_id,
+    nominee_profile_id,
     created_at,
     nominee_display_name: nominee,
     tag,
@@ -75,6 +76,7 @@ function NominationCard(props) {
         display_name={display_name}
         profile_image={profile_image}
         profile_id={profile_id}
+        nominee_profile_id={nominee_profile_id}
         created_at={created_at}
         renderDropdown={
           props.is_user && (
@@ -88,8 +90,17 @@ function NominationCard(props) {
           nominee &&
           tag && (
             <p className={styles.NominationMeta}>
-              <strong>{nominee}</strong> was nominated by{" "}
-              <strong>{display_name}</strong>{" "}
+              {nominee_profile_id ? (
+                <Link
+                  to={`/profiles/${nominee_profile_id}`}
+                  className={styles.InteractiveTextLink}
+                >
+                  <strong>{nominee}</strong>
+                </Link>
+              ) : (
+                <strong>{nominee}</strong>
+              )}{" "}
+              was nominated by <strong>{display_name}</strong>{" "}
               <span
                 style={{
                   backgroundColor: tag_color,
