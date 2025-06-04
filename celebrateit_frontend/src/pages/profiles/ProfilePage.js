@@ -150,6 +150,16 @@ function ProfilePage() {
                   ) : null}
                 </div>
               </div>
+              {profile.is_user_profile &&
+                (!profile.first_name ||
+                  !profile.last_name ||
+                  !profile.department) && (
+                  <p className={profileStyles.IncompleteNote}>
+                    <i className="far fa-comment" /> Some profile details are
+                    missing. Contact HR to update your name or department. You
+                    can add your bio and picture using the edit icon.
+                  </p>
+                )}
               <p className={profileStyles.Department}>{profile.department}</p>
               <p className={profileStyles.Bio}>
                 {profile.presentation || "No bio yet."}

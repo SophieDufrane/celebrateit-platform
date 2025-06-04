@@ -71,6 +71,15 @@
   margin: 0;
 }
 
+.IncompleteNote {
+  color: #586bbe;
+  font-size: 0.85rem;
+  font-style: italic;
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
 .Department {
   text-transform: uppercase;
   font-weight: 600;
