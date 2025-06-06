@@ -13,7 +13,6 @@ import styles from "../../App.module.css";
 function ProfilePage() {
   // Routing and Params
   const { id } = useParams();
-  console.log("ProfilePage loaded with id =", id); // DEBUG
   const history = useHistory();
   const location = useLocation();
   const [showUpdated, setShowUpdated] = useState(
@@ -86,7 +85,10 @@ function ProfilePage() {
     return <LoadingIndicator message="Loading profile..." />;
   }
 
-  // console.log("currentUser =", currentUser); // Useful for auth debugging
+  // Flags to detect missing core vs optional profile info
+  const isCoreInfoMissing =
+    !profile.first_name || !profile.last_name || !profile.department;
+  const isOptionalInfoMissing = !profile.presentation || !profile.profile_image;
 
   return (
     <>
@@ -115,65 +117,65 @@ function ProfilePage() {
             {/* Profile info + edit icon */}
             <div className={profileStyles.ProfileDetails}>
               <div className={profileStyles.NameRow}>
-                <div className={profileStyles.NameRow}>
-                  <h3>
-                    {profile.first_name || profile.last_name
-                      ? `${profile.first_name || ""} ${
-                          profile.last_name || ""
-                        }`.trim()
-                      : profile.user}
-                  </h3>
+                <h3>
+                  {profile.first_name || profile.last_name
+                    ? `${profile.first_name || ""} ${
+                        profile.last_name || ""
+                      }`.trim()
+                    : profile.user}
+                </h3>
 
-                  {currentUser ? (
-                    profile.is_user_profile ? (
-                      <span
-                        className={profileStyles.EditIcon}
-                        onClick={() =>
-                          history.push(`/profiles/${profile.id}/edit`)
-                        }
-                      >
-                        <i className="fa-solid fa-pen" />
-                      </span>
-                    ) : (
-                      <Button
-                        className={styles.YellowButton}
-                        onClick={() =>
-                          history.push(
-                            `/nominations/create?nominee=${profile.user}` +
-                              `&name=${profile.first_name} ${profile.last_name}`
-                          )
-                        }
-                      >
-                        Nominate
-                      </Button>
-                    )
-                  ) : null}
-                </div>
-              </div>
-              {(!profile.first_name ||
-                !profile.last_name ||
-                !profile.department ||
-                !profile.presentation) && (
-                <p className={profileStyles.IncompleteNote}>
-                  {" "}
-                  {profile.is_user_profile ? (
-                    <>
-                      Some profile details are missing. Contact HR to update
-                      your name or department. You can add your bio and picture
-                      using the edit icon.
-                    </>
+                {currentUser ? (
+                  profile.is_user_profile ? (
+                    <span
+                      className={profileStyles.EditIcon}
+                      onClick={() =>
+                        history.push(`/profiles/${profile.id}/edit`)
+                      }
+                    >
+                      <i className="fa-solid fa-pen" />
+                    </span>
                   ) : (
-                    <>
-                      This profile is still under review and may be incomplete.
-                    </>
-                  )}
+                    <Button
+                      className={styles.YellowButton}
+                      onClick={() =>
+                        history.push(
+                          `/nominations/create?nominee=${profile.user}` +
+                            `&name=${profile.first_name} ${profile.last_name}`
+                        )
+                      }
+                    >
+                      Nominate
+                    </Button>
+                  )
+                ) : null}
+              </div>
+            </div>
+            {isCoreInfoMissing && (
+              <p className={profileStyles.IncompleteNote}>
+                {" "}
+                {profile.is_user_profile ? (
+                  <>
+                    Some profile details are missing. Contact HR to update your
+                    name or department.
+                  </>
+                ) : (
+                  <>This profile is still under review and may be incomplete.</>
+                )}
+              </p>
+            )}
+            {!isCoreInfoMissing &&
+              profile.is_user_profile &&
+              isOptionalInfoMissing && (
+                <p className={profileStyles.IncompleteNote}>
+                  You can complete your profile by adding a picture or writing a
+                  short bio using the edit icon.
                 </p>
               )}
-              <p className={profileStyles.Department}>{profile.department}</p>
-              <p className={profileStyles.Bio}>
-                {profile.presentation || "No bio yet."}
-              </p>
-            </div>
+            <p className={profileStyles.Department}>{profile.department}</p>
+            <p className={profileStyles.Bio}>
+              {profile.presentation || "No bio yet."}
+            </p>
           </div>
         )}
         <div className={profileStyles.TwoColumnFeed}>
