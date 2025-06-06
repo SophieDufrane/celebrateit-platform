@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import styles from "../styles/NavBar.module.css";
@@ -10,9 +10,14 @@ import { axiosReq } from "../api/axiosDefaults";
 import { removeTokenTimestamp } from "../utils/utils";
 
 function NavBar() {
+  // Auth context
   const { currentUser, currentUserLoaded } = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
 
+  // Navbar Toggle State
+  const [expanded, setExpanded] = useState(false);
+
+  // Handlers
   const handleSignOut = async () => {
     try {
       await axiosReq.post("/dj-rest-auth/logout/");
@@ -28,7 +33,13 @@ function NavBar() {
   };
 
   return (
-    <Navbar className={styles.Navbar} expand="md" fixed="top">
+    <Navbar
+      className={styles.Navbar}
+      expand="md"
+      fixed="top"
+      expanded={expanded}
+      onToggle={() => setExpanded((prev) => !prev)}
+    >
       <Container>
         <Navbar.Brand as={NavLink} to="/">
           CelebrateIt{" "}
@@ -42,36 +53,65 @@ function NavBar() {
         />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto text-left">
-            <Nav.Link as={NavLink} exact to="/">
+            <Nav.Link
+              as={NavLink}
+              exact
+              to="/"
+              onClick={() => setExpanded(false)}
+            >
               Home
             </Nav.Link>
 
             {currentUser && currentUser ? (
               <>
-                <NavLink to="/recognitions/create" className="nav-link">
+                <NavLink
+                  to="/recognitions/create"
+                  className="nav-link"
+                  onClick={() => setExpanded(false)}
+                >
                   Recognize
                 </NavLink>
-                <NavLink to="/nominations/create" className="nav-link">
+                <NavLink
+                  to="/nominations/create"
+                  className="nav-link"
+                  onClick={() => setExpanded(false)}
+                >
                   Nominate
                 </NavLink>
                 {currentUser.profile_id && (
                   <NavLink
                     to={`/profiles/${currentUser.profile_id}`}
                     className="nav-link"
+                    onClick={() => setExpanded(false)}
                   >
                     Profile
                   </NavLink>
                 )}
-                <Nav.Link as={NavLink} to="/" onClick={handleSignOut}>
+                <Nav.Link
+                  as={NavLink}
+                  to="/"
+                  onClick={() => {
+                    setExpanded(false);
+                    handleSignOut();
+                  }}
+                >
                   Logout
                 </Nav.Link>
               </>
             ) : currentUserLoaded ? (
               <>
-                <Nav.Link as={NavLink} to="/login">
+                <Nav.Link
+                  as={NavLink}
+                  to="/login"
+                  onClick={() => setExpanded(false)}
+                >
                   Log In
                 </Nav.Link>
-                <Nav.Link as={NavLink} to="/register">
+                <Nav.Link
+                  as={NavLink}
+                  to="/register"
+                  onClick={() => setExpanded(false)}
+                >
                   Register
                 </Nav.Link>
               </>
