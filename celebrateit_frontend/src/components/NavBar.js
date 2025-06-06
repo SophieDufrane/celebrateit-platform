@@ -1,6 +1,6 @@
 import React from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styles from "../styles/NavBar.module.css";
 import {
   useCurrentUser,
@@ -12,23 +12,21 @@ import { removeTokenTimestamp } from "../utils/utils";
 function NavBar() {
   const { currentUser, currentUserLoaded } = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
-  const history = useHistory();
 
   const handleSignOut = async () => {
     try {
       await axiosReq.post("/dj-rest-auth/logout/");
       setCurrentUser(null);
       removeTokenTimestamp();
-      localStorage.removeItem("access_token"); // TOKEN BUG
-      localStorage.removeItem("refresh_token"); // TOKEN BUG
-      history.push("/login?loggedOut=true");
+      localStorage.removeItem("access_token");
+      localStorage.removeItem("refresh_token");
+      window.location.assign("/"); // full reset to avoid ghost state
     } catch (err) {
       // console.error('Logout failed:', err);
       // TODO: add user feedback on error
     }
   };
 
-  console.log("currentUser =", currentUser); //DEBUG
   return (
     <Navbar className={styles.Navbar} expand="md" fixed="top">
       <Container>

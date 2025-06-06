@@ -26,6 +26,7 @@ function EditProfileForm() {
 
   // UI State
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [errors, setErrors] = useState({});
 
   // Fetch Profile on Mount
   useEffect(() => {
@@ -52,10 +53,7 @@ function EditProfileForm() {
 
     // Prepare form data
     const formData = new FormData();
-    formData.append("first_name", firstName);
-    formData.append("last_name", lastName);
     formData.append("presentation", presentation);
-
     if (imageFile && typeof imageFile !== "string") {
       formData.append("profile_image", imageFile);
     }
@@ -80,8 +78,7 @@ function EditProfileForm() {
       );
       history.push(`/profiles/${profile.id}?updated=true`);
     } catch (err) {
-      console.error("Error updating profile:", err); // DEBUG (will comment out after debuging)
-      // TODO: add user feedback on error
+      setErrors(err.response?.data || {});
     }
   };
 
@@ -168,6 +165,12 @@ function EditProfileForm() {
                 aria-label="Short bio about yourself"
               />
             </OverlayTrigger>
+            {Array.isArray(errors?.presentation) &&
+              errors.presentation.map((msg, idx) => (
+                <div key={idx} className="text-danger mt-1">
+                  {msg}
+                </div>
+              ))}
           </Form.Group>
           <Form.Group className={formStyles.FormGroupSpacing}>
             {/* Preview current image if exists and not marked for removal */}
@@ -184,6 +187,12 @@ function EditProfileForm() {
               onChange={(e) => setImageFile(e.target.files[0])}
               aria-label="Upload new profile image"
             />
+            {Array.isArray(errors?.profile_image) &&
+              errors.profile_image.map((msg, idx) => (
+                <div key={idx} className="text-danger mt-1">
+                  {msg}
+                </div>
+              ))}
           </Form.Group>
 
           <FormFooter submitText="Update" onCancel={() => history.goBack()} />
