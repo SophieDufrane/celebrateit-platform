@@ -22,15 +22,6 @@ class UserProfileSerializer(serializers.ModelSerializer):
         request = self.context['request']
         return request.user == obj.user
 
-    # def get_profile_image(self, obj):
-    #     image_field = getattr(obj, 'image', None)
-    #     if image_field and hasattr(image_field, 'url'):
-    #         try:
-    #             return image_field.url
-    #         except ValueError:
-    #             return None
-    #     return None
-
     class Meta:
         model = UserProfile
         fields = [

@@ -1,5 +1,6 @@
 from dj_rest_auth.serializers import UserDetailsSerializer
 from rest_framework import serializers
+from django.core.exceptions import ObjectDoesNotExist
 
 
 class CurrentUserSerializer(UserDetailsSerializer):
@@ -9,7 +10,7 @@ class CurrentUserSerializer(UserDetailsSerializer):
     def get_profile_id(self, obj):
         try:
             return obj.profile.id
-        except:
+        except (AttributeError, ObjectDoesNotExist):
             return None
 
     def get_profile_image(self, obj):

@@ -33,6 +33,7 @@ function ProfilePage() {
   const [hasLoadedProfile, setHasLoadedProfile] = useState(false);
   const [hasLoadedRecognitions, setHasLoadedRecognitions] = useState(false);
   const [hasLoadedNominations, setHasLoadedNominations] = useState(false);
+
   useEffect(() => {
     if (showUpdated) {
       const timer = setTimeout(() => setShowUpdated(false), 4000);
