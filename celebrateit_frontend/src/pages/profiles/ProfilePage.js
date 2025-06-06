@@ -151,32 +151,34 @@ function ProfilePage() {
                   )
                 ) : null}
               </div>
-            </div>
-            {isCoreInfoMissing && (
-              <p className={profileStyles.IncompleteNote}>
-                {" "}
-                {profile.is_user_profile ? (
-                  <>
-                    Some profile details are missing. Contact HR to update your
-                    name or department.
-                  </>
-                ) : (
-                  <>This profile is still under review and may be incomplete.</>
-                )}
-              </p>
-            )}
-            {!isCoreInfoMissing &&
-              profile.is_user_profile &&
-              isOptionalInfoMissing && (
+              {isCoreInfoMissing && (
                 <p className={profileStyles.IncompleteNote}>
-                  You can complete your profile by adding a picture or writing a
-                  short bio using the edit icon.
+                  {" "}
+                  {profile.is_user_profile ? (
+                    <>
+                      Some profile details are missing. Contact HR to update
+                      your name or department.
+                    </>
+                  ) : (
+                    <>
+                      This profile is still under review and may be incomplete.
+                    </>
+                  )}
                 </p>
               )}
-            <p className={profileStyles.Department}>{profile.department}</p>
-            <p className={profileStyles.Bio}>
-              {profile.presentation || "No bio yet."}
-            </p>
+              {!isCoreInfoMissing &&
+                profile.is_user_profile &&
+                isOptionalInfoMissing && (
+                  <p className={profileStyles.IncompleteNote}>
+                    You can complete your profile by adding a picture or writing
+                    a short bio using the edit icon.
+                  </p>
+                )}
+              <p className={profileStyles.Department}>{profile.department}</p>
+              <p className={profileStyles.Bio}>
+                {profile.presentation || "No bio yet."}
+              </p>
+            </div>
           </div>
         )}
         <div className={profileStyles.TwoColumnFeed}>
