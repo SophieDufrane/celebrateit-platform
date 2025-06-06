@@ -36,7 +36,10 @@ function NavBar() {
             ? `| ${currentUser.first_name || currentUser.username}`
             : ""}
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle
+          aria-controls="basic-navbar-nav"
+          className="custom-toggler"
+        />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto text-left">
             <Nav.Link as={NavLink} exact to="/">
