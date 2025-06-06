@@ -215,8 +215,6 @@ function HomeFeedPage() {
                 return matchesName && matchesDepartment;
               })
               .map((person) => {
-                console.log("Person profile object:", person); // DEBUG
-
                 return (
                   <ListGroup.Item
                     key={person.id}

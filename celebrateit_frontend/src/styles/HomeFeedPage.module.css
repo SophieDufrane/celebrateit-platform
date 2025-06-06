@@ -95,6 +95,7 @@
   gap: 0.8rem;
 }
 
+/* ----------- Responsive Layout ----------- */
 /* Responsive Layout: Move Sidebar Above Feed on Small Screens */
 @media (max-width: 768px) {
   .row {
