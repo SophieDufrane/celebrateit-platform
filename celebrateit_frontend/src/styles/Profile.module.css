@@ -116,3 +116,10 @@
   text-transform: uppercase;
   text-align: center;
 }
+
+/* ----------- Responsive Layout ----------- */
+@media (max-width: 768px) {
+  .TwoColumnFeed {
+    flex-direction: column;
+  }
+}
