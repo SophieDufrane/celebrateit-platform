@@ -15,6 +15,7 @@ function CommentEditForm(props) {
 
   // Local state
   const [content, setContent] = useState(comment.content);
+  const [errors, setErrors] = useState({});
 
   // Handlers
   const handleChange = (event) => {
@@ -34,8 +35,7 @@ function CommentEditForm(props) {
       setEditingComment(null);
       history.replace(`${location.pathname}?comment_edited=true`);
     } catch (err) {
-      // console.error('Update failed:', err);
-      // TODO: add user feedback on error
+      setErrors(err.response?.data || {});
     }
   };
   return (
@@ -48,6 +48,12 @@ function CommentEditForm(props) {
           rows={2}
           className={styles.CommentText}
         />
+        {Array.isArray(errors?.content) &&
+          errors.content.map((message, idx) => (
+            <div key={idx} className="text-danger mt-1">
+              {message}
+            </div>
+          ))}
       </Form.Group>
       <FormFooter submitText="Update" onCancel={onCancel} />
     </Form>
