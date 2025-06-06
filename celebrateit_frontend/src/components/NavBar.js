@@ -19,6 +19,8 @@ function NavBar() {
       await axiosReq.post("/dj-rest-auth/logout/");
       setCurrentUser(null);
       removeTokenTimestamp();
+      localStorage.removeItem("access_token"); // TOKEN BUG
+      localStorage.removeItem("refresh_token"); // TOKEN BUG
       history.push("/login?loggedOut=true");
     } catch (err) {
       // console.error('Logout failed:', err);

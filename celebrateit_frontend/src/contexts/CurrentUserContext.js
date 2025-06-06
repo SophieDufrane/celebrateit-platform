@@ -46,11 +46,13 @@ export function CurrentUserProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    // PATCH 1: Attach access token to all axiosReq requests
+    // PATCH 1 (updated): Attach access token only if currentUser is defined
     axiosReq.interceptors.request.use(
       (config) => {
         const token = localStorage.getItem("access_token");
-        if (token) {
+
+        // PATCH 10: Prevent ghost token usage if user is logged out
+        if (token && currentUser) {
           config.headers["Authorization"] = `Bearer ${token}`;
         } else {
           delete config.headers["Authorization"]; // clean header if no token
