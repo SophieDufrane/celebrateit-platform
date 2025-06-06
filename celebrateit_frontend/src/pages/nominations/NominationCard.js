@@ -102,13 +102,8 @@ function NominationCard(props) {
               )}{" "}
               was nominated by <strong>{display_name}</strong>{" "}
               <span
-                style={{
-                  backgroundColor: tag_color,
-                  color: "#fff",
-                  padding: "2px 8px",
-                  borderRadius: "12px",
-                  fontSize: "0.8rem",
-                }}
+                className={styles.Tag}
+                style={{ backgroundColor: tag_color }}
               >
                 {tag}
               </span>

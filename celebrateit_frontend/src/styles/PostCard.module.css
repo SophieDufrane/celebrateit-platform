@@ -131,3 +131,13 @@
 .TagSection {
   margin-bottom: 0.5rem;
 }
+
+.Tag {
+  color: #fff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.8rem;
+  font-size: 0.8rem;
+  display: inline-block;
+  line-height: 1;
+  white-space: nowrap;
+}
