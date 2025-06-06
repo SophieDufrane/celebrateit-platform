@@ -94,3 +94,19 @@
   align-items: center;
   gap: 0.8rem;
 }
+
+/* Responsive Layout: Move Sidebar Above Feed on Small Screens */
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column-reverse !important;
+  }
+
+  .SidebarWrapper {
+    order: -1;
+    margin-bottom: 1.5rem;
+  }
+
+  .PeopleList {
+    display: none;
+  }
+}
