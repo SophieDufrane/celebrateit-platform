@@ -184,41 +184,54 @@ function ProfilePage() {
         <div className={profileStyles.TwoColumnFeed}>
           <div className={profileStyles.FeedColumn}>
             <div className={profileStyles.SectionTitlePurple}>Recognitions</div>
-            {recognitions
-              .filter((post) => post.user === profile.user)
-              .map((post) => (
-                <RecognitionCard
-                  key={`post-${post.id}`}
-                  {...post}
-                  setRecognitions={setRecognitions}
-                  onPostDelete={(deletedId) =>
-                    setRecognitions((prev) =>
-                      prev.filter((r) => r.id !== deletedId)
-                    )
-                  }
-                />
-              ))}
+            {recognitions.filter((post) => post.user === profile.user).length >
+            0 ? (
+              recognitions
+                .filter((post) => post.user === profile.user)
+                .map((post) => (
+                  <RecognitionCard
+                    key={`post-${post.id}`}
+                    {...post}
+                    setRecognitions={setRecognitions}
+                    onPostDelete={(deletedId) =>
+                      setRecognitions((prev) =>
+                        prev.filter((r) => r.id !== deletedId)
+                      )
+                    }
+                  />
+                ))
+            ) : (
+              <p className="text-center text-muted">No recognitions yet.</p>
+            )}
           </div>
           <div className={profileStyles.FeedColumn}>
             <div className={profileStyles.SectionTitleYellow}>Nominations</div>
-            {nominations
-              .filter(
-                (nom) =>
-                  nom.nominator === profile.user ||
-                  nom.nominee_username === profile.user
-              )
-              .map((nom) => (
-                <NominationCard
-                  key={`nom-${nom.id}`}
-                  {...nom}
-                  setPosts={setNominations}
-                  onPostDelete={(deletedId) =>
-                    setNominations((prevNoms) =>
-                      prevNoms.filter((n) => n.id !== deletedId)
-                    )
-                  }
-                />
-              ))}
+            {nominations.filter(
+              (nom) =>
+                nom.nominator === profile.user ||
+                nom.nominee_username === profile.user
+            ).length > 0 ? (
+              nominations
+                .filter(
+                  (nom) =>
+                    nom.nominator === profile.user ||
+                    nom.nominee_username === profile.user
+                )
+                .map((nom) => (
+                  <NominationCard
+                    key={`nom-${nom.id}`}
+                    {...nom}
+                    setPosts={setNominations}
+                    onPostDelete={(deletedId) =>
+                      setNominations((prevNoms) =>
+                        prevNoms.filter((n) => n.id !== deletedId)
+                      )
+                    }
+                  />
+                ))
+            ) : (
+              <p className="text-center text-muted">No nominations yet.</p>
+            )}
           </div>
         </div>
       </Container>
