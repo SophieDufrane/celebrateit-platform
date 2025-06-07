@@ -1468,6 +1468,17 @@ Token Refresh Not Rehydrating Auth State After Idle:
 
 ---
 
+New User Registration Crashing Due to Missing Profile Image
+
+- **Bug**: Submitting the sign-up form caused a cryptic backend error, and the frontend displayed raw error codes instead of a readable message.
+- **Cause**: The `UserProfileSerializer` initially used a `SerializerMethodField` to access `.url` on the `profile_image`, which caused a crash when no image was uploaded. Since new users typically don’t add a profile image at registration, the field was often `None`, triggering an internal error.
+- **First Fix**: We added a defensive check using a `get_profile_image()` method.
+  This worked temporarily but caused other issues (e.g. accessing nested .user.profile caused confusion in ProfilePage and created inconsistencies when serializing profile data directly).
+- **Final Fix**: We replaced the method field with a correctly configured ImageField directly mapped to the model: `profile_image = serializers.ImageField(source='image', required=False, allow_null=True, write_only=False)`
+  This approach safely returns null if no image is present, works smoothly across all profile views, and avoids complex lookups.
+
+---
+
 Create Nomination – Dropdown Requires Double Click:
 
 - **Bug**: In the nominee search field, clicking a user's name doesn't collapse the dropdown unless clicked twice.
