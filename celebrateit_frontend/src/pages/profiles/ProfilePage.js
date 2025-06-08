@@ -11,6 +11,11 @@ import profileStyles from "../../styles/Profile.module.css";
 import styles from "../../App.module.css";
 
 function ProfilePage() {
+  // Ensure page scrolls to top on mount (especially important on mobile)
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // Routing and Params
   const { id } = useParams();
   const history = useHistory();
