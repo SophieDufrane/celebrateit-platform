@@ -7,9 +7,10 @@ function PeopleSearchBar({
   onUserSelect,
   className = "",
   enableSelectionDisplay = false,
+  prefillValue = "",
 }) {
   // Input state
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState(prefillValue);
   const [selectedUser, setSelectedUser] = useState(null);
 
   // Search results

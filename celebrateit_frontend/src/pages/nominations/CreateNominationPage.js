@@ -54,14 +54,12 @@ function CreateNominationPage() {
   // Prefill nominee name and ID (when navigated from ProfilePage)
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
-    const prefillName = queryParams.get("name");
     const prefillId = queryParams.get("nominee");
 
-    if (prefillName && prefillId) {
-      setNomineeInput(prefillName);
+    if (prefillId) {
       setSelectedNomineeId(parseInt(prefillId));
     }
-  }, [location.search, setNomineeInput]);
+  }, [location.search]);
 
   // Handle input changes
   const handleChange = (event) => {
@@ -152,6 +150,9 @@ function CreateNominationPage() {
                 <PeopleSearchBar
                   className={formStyles.FormMediaWrapper}
                   enableSelectionDisplay={true}
+                  prefillValue={
+                    new URLSearchParams(location.search).get("name") || ""
+                  }
                   onUserSelect={(user) => {
                     setSelectedNomineeId(user.id);
                     setNomineeInput(
