@@ -1434,23 +1434,19 @@ Since this is related to Cloudinary's external content delivery, I could not fin
 
 ### 6.4 Bugs and Fixes
 
-Profile Avatar Not Rendering:
+#### Profile Avatar Not Rendering:
 
 - **Bug**: User avatars were not displaying in PostCards, NominationCards, or the profile header.
 - **Cause**: The serializer output did not include the `profile_image` field, and the frontend components were not prepared to receive it.
 - **Fix**: Added `profile_image` to the relevant serializers (Posts, Nominations, Profiles) and updated frontend components (`PostHeader`, `RecognitionCard`, `NominationCard`) to fetch and display the image.
 
----
-
-Auth State Not Syncing After Login/Logout:
+#### Auth State Not Syncing After Login/Logout:
 
 - **Bug**: After logging in or out, the UI would occasionally show outdated user info or delay updates in the navbar and post ownership checks.
 - **Cause**: The token handling logic didn’t consistently clean up or refresh the current user state across sessions.
 - **Fix**: Improved the token timestamp logic (`removeTokenTimestamp`) and refined how the `CurrentUserContext` handles state during login/logout. The app now reliably reflects auth state throughout all pages.
 
----
-
-Token Refresh Not Rehydrating Auth State After Idle:
+#### Token Refresh Not Rehydrating Auth State After Idle:
 
 - **Bug**: After 5 minutes of inactivity, users lost access to protected features (like editing posts or liking others’), even though valid tokens remained in localStorage.
 - **Cause**: The token refresh succeeded silently, but the frontend did not update the `currentUser` context, causing the UI to show a stale, unauthenticated state.
@@ -1466,9 +1462,7 @@ Token Refresh Not Rehydrating Auth State After Idle:
   - `RecognitionCard.js` and `NominationCard.js` check ownership using `currentUser` instead of the API flag
   - All create and update forms now use `axiosReq` to make sure tokens are included in every request
 
----
-
-New User Registration Crashing Due to Missing Profile Image
+#### New User Registration Crashing Due to Missing Profile Image
 
 - **Bug**: Submitting the sign-up form caused a cryptic backend error, and the frontend displayed raw error codes instead of a readable message.
 - **Cause**: The `UserProfileSerializer` initially used a `SerializerMethodField` to access `.url` on the `profile_image`, which caused a crash when no image was uploaded. Since new users typically don’t add a profile image at registration, the field was often `None`, triggering an internal error.
@@ -1477,25 +1471,26 @@ New User Registration Crashing Due to Missing Profile Image
 - **Final Fix**: We replaced the method field with a correctly configured ImageField directly mapped to the model: `profile_image = serializers.ImageField(source='image', required=False, allow_null=True, write_only=False)`
   This approach safely returns null if no image is present, works smoothly across all profile views, and avoids complex lookups.
 
----
-
-Create Nomination – Dropdown Requires Double Click:
+#### Create Nomination – Dropdown Requires Double Click:
 
 - **Bug**: In the nominee search field, clicking a user's name doesn't collapse the dropdown unless clicked twice.
 - **Status**: Still unresolved.
 - **Observation**: This issue only appears in the `CreateNominationPage`. The same component works as expected in `HomeFeedPage`, likely because in the feed a selection immediately triggers a redirect, preventing the visual bug. In the nomination form, the selected name is filled, but the dropdown remains visible, creating confusion.
 - **Planned Fix**: Multiple approaches were tested (onMouseDown, onClick, setTimeout, input blur tracking), but none resolved the issue consistently. The current plan is to leave the logic as-is to avoid introducing more complexity.
 
----
-
-Nominee Field – Reusable Component Integration:
+#### Nominee Field – Reusable Component Integration:
 
 - **Goal**: Replace inline nominee dropdown logic with a reusable `PeopleSearchBar` component to improve mobile layout and maintainability.
 - **Change**: `CreateNominationPage` now imports and uses `PeopleSearchBar`, which already worked in `HomeFeedPage`.
 - **Outcome**: The refactor was successful in unifying layout and keeping code DRY. However, the dropdown behavior in `CreateNominationPage` remains buggy (see above), suggesting the issue is tied to layout or page structure rather than the component itself.
 - **Next Step**: Accept the visual limitation for now and continue development.
 
----
+### 6.5 UI/UX Improvements
+
+#### Notification Positioning (Planned Enhancement)
+
+- **Current Behavior**: Success messages like "Your profile has been updated!" are currently displayed in the normal page layout. This pushes the content down and affects the overall layout.
+- **Planned Improvement**: Change the notification to use absolute positioning so it appears over the page without moving other content. This should improve the user experience, especially on smaller screens.
 
 ## 7. Deployment
 
