@@ -1483,8 +1483,17 @@ Create Nomination – Dropdown Requires Double Click:
 
 - **Bug**: In the nominee search field, clicking a user's name doesn't collapse the dropdown unless clicked twice.
 - **Status**: Still unresolved.
-- **Observation**:
-- **Planned Fix**:
+- **Observation**: This issue only appears in the `CreateNominationPage`. The same component works as expected in `HomeFeedPage`, likely because in the feed a selection immediately triggers a redirect, preventing the visual bug. In the nomination form, the selected name is filled, but the dropdown remains visible, creating confusion.
+- **Planned Fix**: Multiple approaches were tested (onMouseDown, onClick, setTimeout, input blur tracking), but none resolved the issue consistently. The current plan is to leave the logic as-is to avoid introducing more complexity.
+
+---
+
+Nominee Field – Reusable Component Integration:
+
+- **Goal**: Replace inline nominee dropdown logic with a reusable `PeopleSearchBar` component to improve mobile layout and maintainability.
+- **Change**: `CreateNominationPage` now imports and uses `PeopleSearchBar`, which already worked in `HomeFeedPage`.
+- **Outcome**: The refactor was successful in unifying layout and keeping code DRY. However, the dropdown behavior in `CreateNominationPage` remains buggy (see above), suggesting the issue is tied to layout or page structure rather than the component itself.
+- **Next Step**: Accept the visual limitation for now and continue development.
 
 ---
 
