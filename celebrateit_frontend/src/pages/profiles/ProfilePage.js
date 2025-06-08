@@ -118,38 +118,39 @@ function ProfilePage() {
             {/* Profile info + edit icon */}
             <div className={profileStyles.ProfileDetails}>
               <div className={profileStyles.NameRow}>
-                <h3>
-                  {profile.first_name || profile.last_name
-                    ? `${profile.first_name || ""} ${
-                        profile.last_name || ""
-                      }`.trim()
-                    : profile.user}
-                </h3>
-
-                {currentUser ? (
-                  profile.is_user_profile ? (
-                    <span
-                      className={profileStyles.EditIcon}
-                      onClick={() =>
-                        history.push(`/profiles/${profile.id}/edit`)
-                      }
-                    >
-                      <i className="fa-solid fa-pen" />
-                    </span>
-                  ) : (
-                    <Button
-                      className={styles.YellowButton}
-                      onClick={() =>
-                        history.push(
-                          `/nominations/create?nominee=${profile.user}` +
-                            `&name=${profile.first_name} ${profile.last_name}`
-                        )
-                      }
-                    >
-                      Nominate
-                    </Button>
-                  )
-                ) : null}
+                <div className={profileStyles.NameRow}>
+                  <h3>
+                    {profile.first_name || profile.last_name
+                      ? `${profile.first_name || ""} ${
+                          profile.last_name || ""
+                        }`.trim()
+                      : profile.user}
+                  </h3>
+                  {currentUser ? (
+                    profile.is_user_profile ? (
+                      <span
+                        className={profileStyles.EditIcon}
+                        onClick={() =>
+                          history.push(`/profiles/${profile.id}/edit`)
+                        }
+                      >
+                        <i className="fa-solid fa-pen" />
+                      </span>
+                    ) : (
+                      <Button
+                        className={styles.YellowButton}
+                        onClick={() =>
+                          history.push(
+                            `/nominations/create?nominee=${profile.user}` +
+                              `&name=${profile.first_name} ${profile.last_name}`
+                          )
+                        }
+                      >
+                        Nominate
+                      </Button>
+                    )
+                  ) : null}
+                </div>
               </div>
               {isCoreInfoMissing && (
                 <p className={profileStyles.IncompleteNote}>
