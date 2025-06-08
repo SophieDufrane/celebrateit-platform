@@ -23,6 +23,7 @@ function EditProfileForm() {
 
   // Data State - Image
   const [imageFile, setImageFile] = useState(null);
+  const [removeImage, setRemoveImage] = useState(false);
 
   // UI State
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -54,7 +55,10 @@ function EditProfileForm() {
     // Prepare form data
     const formData = new FormData();
     formData.append("presentation", presentation);
-    if (imageFile && typeof imageFile !== "string") {
+
+    if (removeImage) {
+      formData.append("profile_image", "");
+    } else if (imageFile && typeof imageFile !== "string") {
       formData.append("profile_image", imageFile);
     }
 
@@ -175,11 +179,26 @@ function EditProfileForm() {
           <Form.Group className={formStyles.FormGroupSpacing}>
             {/* Preview current image if exists */}
             {profile.profile_image && (
-              <img
-                src={profile.profile_image}
-                alt="Current profile"
-                className={formStyles.FormImagePreview}
-              />
+              <>
+                <img
+                  src={profile.profile_image}
+                  alt="Current profile"
+                  className={formStyles.FormImagePreview}
+                />
+                <div className="d-flex align-items-center gap-2 mt-2 mb-3">
+                  <Form.Check
+                    type="checkbox"
+                    id="remove-profile-image"
+                    label=""
+                    aria-label="Remove profile image"
+                    checked={removeImage}
+                    onChange={(e) => setRemoveImage(e.target.checked)}
+                  />
+                  <Form.Label htmlFor="remove-profile-image" className="mb-0">
+                    Remove profile image
+                  </Form.Label>
+                </div>
+              </>
             )}
             <OverlayTrigger
               placement="top"
