@@ -1,35 +1,4 @@
-.FormWrapper {
-  border-radius: 5px;
-  overflow: hidden;
-  max-width: 700px;
-  margin: 0 auto;
-  border: 1px solid #e0e0e0;
-}
-
-.FormGroupSpacing {
-  margin: 1.5rem;
-}
-
-.CenteredButton {
-  width: 85%;
-  max-width: 300px;
-  margin: 1.5rem auto 1rem auto;
-  display: block;
-}
-
-.AuthLink {
-  color: #666;
-  text-align: center;
-  display: block;
-  margin-top: 1rem;
-}
-
-.AuthLinkHighlight {
-  color: #300e82;
-  font-weight: 500;
-  margin-left: 0.3rem;
-}
-
+/* ----------- Layout Containers ----------- */
 .gradient {
   display: flex;
   align-items: center;
@@ -61,12 +30,27 @@
   padding: 20px;
 }
 
-.AuthImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+/* ----------- Form Elements ----------- */
+.FormWrapper {
+  border-radius: 5px;
+  overflow: hidden;
+  max-width: 700px;
+  margin: 0 auto;
+  border: 1px solid #e0e0e0;
 }
 
+.FormGroupSpacing {
+  margin: 1.5rem;
+}
+
+.CenteredButton {
+  width: 85%;
+  max-width: 300px;
+  margin: 1.5rem auto 1rem auto;
+  display: block;
+}
+
+/* ----------- Typography & Text Elements ----------- */
 .AuthTitle {
   text-transform: uppercase;
   font-size: 1.5rem;
@@ -74,6 +58,20 @@
   text-align: center;
 }
 
+.AuthLink {
+  color: #666;
+  text-align: center;
+  display: block;
+  margin-top: 1rem;
+}
+
+.AuthLinkHighlight {
+  color: #300e82;
+  font-weight: 500;
+  margin-left: 0.3rem;
+}
+
+/* ----------- Error Messages ----------- */
 .ErrorBox {
   color: #842029;
   background-color: #f8d7da;
@@ -82,4 +80,27 @@
   font-size: 0.8rem;
   width: 100%;
   max-width: 700px;
+}
+
+/* ----------- Image styling ----------- */
+.AuthImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ----------- Responsive Layout ----------- */
+@media (max-width: 768px) {
+  .imageBox {
+    display: none;
+  }
+
+  .formBox {
+    width: 100%;
+  }
+
+  .gradient {
+    padding: 15px;
+    min-height: unset;
+  }
 }
