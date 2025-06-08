@@ -50,6 +50,12 @@
   margin-top: 0.5rem;
 }
 
+.AllowedFormats {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: #6c757d;
+}
+
 /* ----------- Autocomplete / search suggestions ----------- */
 .SuggestionBox {
   border: 1px solid #ccc;

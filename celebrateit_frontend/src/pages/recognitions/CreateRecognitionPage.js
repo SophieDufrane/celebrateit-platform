@@ -109,6 +109,15 @@ function CreateRecognitionPage() {
               aria-label="Upload an optional image"
             />
           </OverlayTrigger>
+          <div className={formStyles.AllowedFormats}>
+            Allowed formats: jpg, jpeg, png
+          </div>
+          {Array.isArray(errors?.image) &&
+            errors.image.map((message, idx) => (
+              <div key={idx} className="text-danger mt-1">
+                {message}
+              </div>
+            ))}
         </Form.Group>
       </PostForm>
     </Container>
