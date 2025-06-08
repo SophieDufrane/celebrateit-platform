@@ -11,7 +11,6 @@ function PeopleSearchBar({
 }) {
   // Input state
   const [input, setInput] = useState(prefillValue);
-  const [selectedUser, setSelectedUser] = useState(null);
 
   // Search results
   const [results, setResults] = useState([]);
@@ -19,7 +18,7 @@ function PeopleSearchBar({
   // Fetch users as input changes
   useEffect(() => {
     const fetchUsers = async () => {
-      if (!input.trim() || selectedUser) {
+      if (!input.trim()) {
         setResults([]);
         return;
       }
@@ -27,7 +26,6 @@ function PeopleSearchBar({
       try {
         const { data } = await axiosReq.get(`/users/?search=${input}`);
         setResults(data.results);
-        console.log("Fetched users:", data.results); // TEMP for testing
       } catch (err) {
         console.error("Error fetching users", err);
         setResults([]);
@@ -36,16 +34,23 @@ function PeopleSearchBar({
 
     const delayDebounce = setTimeout(fetchUsers, 500);
     return () => clearTimeout(delayDebounce);
-  }, [input, selectedUser]);
+  }, [input]);
 
   // Handle input changes
   const handleChange = (e) => {
-    const value = e.target.value;
     setInput(e.target.value);
+  };
 
-    if (!value.trim()) {
-      setSelectedUser(null);
+  const handleSelect = (user) => {
+    const fullName =
+      `${user.first_name} ${user.last_name}`.trim() || user.username;
+
+    if (enableSelectionDisplay) {
+      setInput(fullName);
     }
+
+    setResults([]);
+    onUserSelect(user);
   };
 
   return (
@@ -56,26 +61,14 @@ function PeopleSearchBar({
         value={input}
         onChange={handleChange}
         autoComplete="off"
-        aria-label="Search teammates"
+        aria-label="Search people"
       />
       <div className={styles.suggestionBox}>
         {results.map((user) => (
           <div
             key={user.id}
             className={styles.suggestionItem}
-            onMouseDown={() => {
-              const fullName =
-                `${user.first_name} ${user.last_name}`.trim() || user.username;
-
-              // If enabled (form), display the selected name in the input and store it
-              if (enableSelectionDisplay) {
-                setInput(fullName);
-                setSelectedUser(user);
-              }
-
-              setResults([]);
-              onUserSelect(user);
-            }}
+            onClick={() => handleSelect(user)}
           >
             {user.first_name || user.last_name
               ? `${user.first_name} ${user.last_name}`.trim()

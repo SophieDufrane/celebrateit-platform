@@ -20,7 +20,6 @@ function CreateNominationPage() {
   const { title, content, tag } = nominationData;
 
   // Nominee search & selection
-  const [, setNomineeInput] = useState("");
   const [selectedNomineeId, setSelectedNomineeId] = useState("");
 
   // Tag dropdown
@@ -51,12 +50,12 @@ function CreateNominationPage() {
     fetchTags();
   }, []);
 
-  // Prefill nominee name and ID (when navigated from ProfilePage)
+  // Prefill nominee ID from URL (when navigated from ProfilePage)
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const prefillId = queryParams.get("nominee");
 
-    if (prefillId) {
+    if (prefillId && !isNaN(prefillId)) {
       setSelectedNomineeId(parseInt(prefillId));
     }
   }, [location.search]);
@@ -64,35 +63,29 @@ function CreateNominationPage() {
   // Handle input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
-
-    if (name) {
-      // Clear error only if the field has a name
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        [name]: "",
-      }));
-    }
-
-    if (name === "nominee") {
-      setNomineeInput(value);
-      setSelectedNomineeId("");
-    } else {
-      setNominationData((prevData) => ({
-        ...prevData,
-        [name]: value,
-      }));
-    }
+    setErrors((prev) => ({
+      ...prev,
+      [name]: "",
+    }));
+    setNominationData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   // Handle form submit
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    // Prevent submission without a valid nominee ID
+    let localErrors = {};
+    if (!selectedNomineeId || isNaN(selectedNomineeId)) {
+      localErrors.nominee = ["Please select a valid teammate."];
+    }
+
     // Prevents self nomination
     if (parseInt(selectedNomineeId) === currentUser?.currentUser?.pk) {
       setErrors({ nominee: ["You can't nominate yourself."] });
-      setNomineeInput("");
-      setSelectedNomineeId("");
       return;
     }
 
@@ -115,7 +108,9 @@ function CreateNominationPage() {
       );
       history.push(`/nominations/${data.id}?created=true`);
     } catch (err) {
-      setErrors(err.response?.data || { nominee: ["Something went wrong."] });
+      // Combine backend errors with local ones
+      const serverErrors = err.response?.data || {};
+      setErrors({ ...serverErrors, ...localErrors });
     }
   };
 
@@ -155,14 +150,7 @@ function CreateNominationPage() {
                   }
                   onUserSelect={(user) => {
                     setSelectedNomineeId(user.id);
-                    setNomineeInput(
-                      `${user.first_name} ${user.last_name}`.trim() ||
-                        user.username
-                    );
-                    setErrors((prevErrors) => ({
-                      ...prevErrors,
-                      nominee: "",
-                    }));
+                    setErrors((prev) => ({ ...prev, nominee: "" }));
                   }}
                 />
               </div>
