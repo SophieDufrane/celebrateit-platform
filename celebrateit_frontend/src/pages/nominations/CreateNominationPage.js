@@ -9,6 +9,7 @@ import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import PeopleSearchBar from "../../components/PeopleSearchBar";
 import PostForm from "../../components/PostForm";
 import formStyles from "../../styles/PostForm.module.css";
+import peopleSearchStyles from "../../styles/PeopleSearchBar.module.css";
 
 function CreateNominationPage() {
   // Form fields
@@ -131,7 +132,7 @@ function CreateNominationPage() {
         errors={errors}
       >
         <Form.Group controlId="nominee" className={formStyles.FormMediaWrapper}>
-          <div className="mb-3">
+          <div className={peopleSearchStyles.FullWidthNomineeSearch}>
             <OverlayTrigger
               placement="top"
               overlay={
@@ -143,7 +144,7 @@ function CreateNominationPage() {
             >
               <div>
                 <PeopleSearchBar
-                  className={formStyles.FormMediaWrapper}
+                  className={peopleSearchStyles.FullWidthInput}
                   enableSelectionDisplay={true}
                   prefillValue={
                     new URLSearchParams(location.search).get("name") || ""
