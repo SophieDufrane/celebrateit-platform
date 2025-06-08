@@ -6,6 +6,7 @@ import {
   useCurrentUser,
 } from "../../contexts/CurrentUserContext";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
+import PeopleSearchBar from "../../components/PeopleSearchBar";
 import PostForm from "../../components/PostForm";
 import formStyles from "../../styles/PostForm.module.css";
 
@@ -21,7 +22,7 @@ function CreateNominationPage() {
   // Nominee search & selection
   const [nomineeInput, setNomineeInput] = useState("");
   const [selectedNomineeId, setSelectedNomineeId] = useState("");
-  const [nomineeResults, setNomineeResults] = useState([]);
+  // const [nomineeResults, setNomineeResults] = useState([]);
 
   // Tag dropdown
   const [tags, setTags] = useState([]);
@@ -52,22 +53,22 @@ function CreateNominationPage() {
   }, []);
 
   // Search users as nominee input changes
-  useEffect(() => {
-    if (nomineeInput) {
-      axiosReq
-        .get(`/users/?search=${nomineeInput}`)
-        .then((res) => {
-          setNomineeResults(res.data.results);
-          // console.log("Nominee results:", res.data);
-        })
-        .catch((err) => {
-          // console.error("Error fetching nominees:", err);
-          // TODO: add user feedback on error
-        });
-    } else {
-      setNomineeResults([]);
-    }
-  }, [nomineeInput]);
+  // useEffect(() => {
+  //   if (nomineeInput) {
+  //     axiosReq
+  //       .get(`/users/?search=${nomineeInput}`)
+  //       .then((res) => {
+  //         setNomineeResults(res.data.results);
+  //         // console.log("Nominee results:", res.data);
+  //       })
+  //       .catch((err) => {
+  //         // console.error("Error fetching nominees:", err);
+  //         // TODO: add user feedback on error
+  //       });
+  //   } else {
+  //     setNomineeResults([]);
+  //   }
+  // }, [nomineeInput]);
 
   // Prefill nominee name and ID (when navigated from ProfilePage)
   useEffect(() => {
@@ -113,7 +114,7 @@ function CreateNominationPage() {
       setErrors({ nominee: ["You can't nominate yourself."] });
       setNomineeInput("");
       setSelectedNomineeId("");
-      setNomineeResults([]);
+      // setNomineeResults([]);
       return;
     }
 
@@ -149,7 +150,7 @@ function CreateNominationPage() {
   const handleNomineeSelect = (user) => {
     setSelectedNomineeId(user.id);
     setNomineeInput(`${user.first_name} ${user.last_name}`);
-    setNomineeResults([]);
+    // setNomineeResults([]);
   };
 
   return (
@@ -174,14 +175,19 @@ function CreateNominationPage() {
                 </Tooltip>
               }
             >
-              <Form.Control
-                type="text"
-                name="nominee"
-                placeholder="Start typing a name..."
-                aria-label="Search for a teammate by first or last name"
-                value={nomineeInput}
-                onChange={handleChange}
-              />
+              <div>
+                <PeopleSearchBar
+                  className={formStyles.FormMediaWrapper}
+                  enableSelectionDisplay={true}
+                  onUserSelect={(user) => {
+                    setSelectedNomineeId(user.id);
+                    setNomineeInput(
+                      `${user.first_name} ${user.last_name}`.trim() ||
+                        user.username
+                    );
+                  }}
+                />
+              </div>
             </OverlayTrigger>
             {/* Validation error for nominee */}
             {Array.isArray(errors?.nominee) &&
@@ -191,7 +197,7 @@ function CreateNominationPage() {
                 </div>
               ))}
 
-            {nomineeResults.length > 0 && (
+            {/* {nomineeResults.length > 0 && (
               <div className={formStyles.SuggestionBox}>
                 {nomineeResults.map((user) => (
                   <div
@@ -203,7 +209,7 @@ function CreateNominationPage() {
                   </div>
                 ))}
               </div>
-            )}
+            )} */}
           </div>
           <OverlayTrigger
             placement="top"
