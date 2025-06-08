@@ -39,7 +39,12 @@ function PeopleSearchBar({
 
   // Handle input changes
   const handleChange = (e) => {
+    const value = e.target.value;
     setInput(e.target.value);
+
+    if (!value.trim()) {
+      setSelectedUser(null);
+    }
   };
 
   return (
