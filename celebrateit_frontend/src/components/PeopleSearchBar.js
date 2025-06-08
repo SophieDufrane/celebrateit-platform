@@ -8,6 +8,7 @@ function PeopleSearchBar({
   className = "",
   enableSelectionDisplay = false,
   prefillValue = "",
+  placeholderText = "Search people...", // default value
 }) {
   // Input state
   const [input, setInput] = useState(prefillValue);
@@ -57,11 +58,11 @@ function PeopleSearchBar({
     <div className={className}>
       <Form.Control
         type="text"
-        placeholder="Search people..."
+        placeholder={placeholderText}
         value={input}
         onChange={handleChange}
         autoComplete="off"
-        aria-label="Search people"
+        aria-label={placeholderText}
       />
       <div className={styles.suggestionBox}>
         {results.map((user) => (

@@ -148,6 +148,7 @@ function CreateNominationPage() {
                   prefillValue={
                     new URLSearchParams(location.search).get("name") || ""
                   }
+                  placeholderText="Search nominee"
                   onUserSelect={(user) => {
                     setSelectedNomineeId(user.id);
                     setErrors((prev) => ({ ...prev, nominee: "" }));
