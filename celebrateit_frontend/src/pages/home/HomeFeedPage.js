@@ -7,6 +7,7 @@ import RecognitionCard from "../recognitions/RecognitionCard";
 import NominationCard from "../nominations/NominationCard";
 import Avatar from "../../components/Avatar";
 import LoadingIndicator from "../../components/LoadingIndicator";
+import PeopleSearchBar from "../../components/PeopleSearchBar"; // NEW
 import feedStyles from "../../styles/HomeFeedPage.module.css";
 
 function HomeFeedPage() {
@@ -175,28 +176,33 @@ function HomeFeedPage() {
         <Col md={4} className={feedStyles.SidebarWrapper}>
           <div className={feedStyles.SearchFilterBlock}>
             {/* Search field placeholder */}
-            <input
-              type="text"
-              className={feedStyles.FilterInput}
-              placeholder="Search people..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            {/* Department filter */}
-            <select
-              className={feedStyles.FilterSelect}
-              value={selectedDepartment}
-              onChange={(e) => setSelectedDepartment(e.target.value)}
-            >
-              <option value="">All Departments</option>
-              {[
-                ...new Set(people.map((p) => p.department).filter(Boolean)),
-              ].map((dept) => (
-                <option key={dept} value={dept}>
-                  {dept}
-                </option>
-              ))}
-            </select>
+            <div className={feedStyles.MobileOnly}>
+              <PeopleSearchBar onUserSelect={(user) => console.log(user)} />
+            </div>
+            <div className={feedStyles.DesktopOnly}>
+              <input
+                type="text"
+                className={feedStyles.FilterInput}
+                placeholder="Search people..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              {/* Department filter */}
+              <select
+                className={feedStyles.FilterSelect}
+                value={selectedDepartment}
+                onChange={(e) => setSelectedDepartment(e.target.value)}
+              >
+                <option value="">All Departments</option>
+                {[
+                  ...new Set(people.map((p) => p.department).filter(Boolean)),
+                ].map((dept) => (
+                  <option key={dept} value={dept}>
+                    {dept}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
 
           {/* People list placeholder */}
