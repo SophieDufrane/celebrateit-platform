@@ -37,14 +37,32 @@ function PeopleSearchBar({ onUserSelect }) {
   };
 
   return (
-    <Form.Control
-      type="text"
-      placeholder="Search people..."
-      value={input}
-      onChange={handleChange}
-      autoComplete="off"
-      aria-label="Search teammates"
-    />
+    <>
+      <Form.Control
+        type="text"
+        placeholder="Search people..."
+        value={input}
+        onChange={handleChange}
+        autoComplete="off"
+        aria-label="Search teammates"
+      />
+      {results.map((user) => (
+        <div
+          key={user.id}
+          onMouseDown={() => {
+            const fullName =
+              `${user.first_name} ${user.last_name}`.trim() || user.username;
+            setInput(fullName);
+            setResults([]);
+            onUserSelect(user);
+          }}
+        >
+          {user.first_name || user.last_name
+            ? `${user.first_name} ${user.last_name}`.trim()
+            : user.username}
+        </div>
+      ))}
+    </>
   );
 }
 
