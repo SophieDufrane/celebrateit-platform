@@ -7,7 +7,7 @@ import RecognitionCard from "../recognitions/RecognitionCard";
 import NominationCard from "../nominations/NominationCard";
 import Avatar from "../../components/Avatar";
 import LoadingIndicator from "../../components/LoadingIndicator";
-import PeopleSearchBar from "../../components/PeopleSearchBar"; // NEW
+import PeopleSearchBar from "../../components/PeopleSearchBar";
 import feedStyles from "../../styles/HomeFeedPage.module.css";
 
 function HomeFeedPage() {

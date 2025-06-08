@@ -96,12 +96,12 @@
 }
 
 /* ----------- Device-Specific Visibility ----------- */
-.MobileOnly {
-  display: none;
-}
-
 .DesktopOnly {
   display: block;
+}
+
+.MobileOnly {
+  display: none;
 }
 
 /* ----------- Responsive Layout ----------- */
@@ -119,11 +119,11 @@
     display: none;
   }
 
-  .MobileOnly {
-    display: block;
-  }
-
   .DesktopOnly {
     display: none;
+  }
+
+  .MobileOnly {
+    display: block;
   }
 }

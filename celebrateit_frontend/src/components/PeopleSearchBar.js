@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Form } from "react-bootstrap";
 import { axiosReq } from "../api/axiosDefaults";
+import styles from "../styles/PeopleSearchBar.module.css";
 
-function PeopleSearchBar({ onUserSelect, enableSelectionDisplay = false }) {
+function PeopleSearchBar({
+  onUserSelect,
+  className = "",
+  enableSelectionDisplay = false,
+}) {
   // Input state
   const [input, setInput] = useState("");
   const [selectedUser, setSelectedUser] = useState(null);
@@ -38,7 +43,7 @@ function PeopleSearchBar({ onUserSelect, enableSelectionDisplay = false }) {
   };
 
   return (
-    <>
+    <div className={className}>
       <Form.Control
         type="text"
         placeholder="Search people..."
@@ -47,29 +52,32 @@ function PeopleSearchBar({ onUserSelect, enableSelectionDisplay = false }) {
         autoComplete="off"
         aria-label="Search teammates"
       />
-      {results.map((user) => (
-        <div
-          key={user.id}
-          onMouseDown={() => {
-            const fullName =
-              `${user.first_name} ${user.last_name}`.trim() || user.username;
+      <div className={styles.suggestionBox}>
+        {results.map((user) => (
+          <div
+            key={user.id}
+            className={styles.suggestionItem}
+            onMouseDown={() => {
+              const fullName =
+                `${user.first_name} ${user.last_name}`.trim() || user.username;
 
-            // If enabled (form), display the selected name in the input and store it
-            if (enableSelectionDisplay) {
-              setInput(fullName);
-              setSelectedUser(user);
-            }
+              // If enabled (form), display the selected name in the input and store it
+              if (enableSelectionDisplay) {
+                setInput(fullName);
+                setSelectedUser(user);
+              }
 
-            setResults([]);
-            onUserSelect(user);
-          }}
-        >
-          {user.first_name || user.last_name
-            ? `${user.first_name} ${user.last_name}`.trim()
-            : user.username}
-        </div>
-      ))}
-    </>
+              setResults([]);
+              onUserSelect(user);
+            }}
+          >
+            {user.first_name || user.last_name
+              ? `${user.first_name} ${user.last_name}`.trim()
+              : user.username}
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
 
