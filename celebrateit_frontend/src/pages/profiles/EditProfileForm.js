@@ -173,7 +173,7 @@ function EditProfileForm() {
               ))}
           </Form.Group>
           <Form.Group className={formStyles.FormGroupSpacing}>
-            {/* Preview current image if exists and not marked for removal */}
+            {/* Preview current image if exists */}
             {profile.profile_image && (
               <img
                 src={profile.profile_image}
@@ -181,16 +181,24 @@ function EditProfileForm() {
                 className={formStyles.FormImagePreview}
               />
             )}
-            <Form.Control
-              type="file"
-              name="profile_image"
-              onChange={(e) => setImageFile(e.target.files[0])}
-              aria-label="Upload new profile image"
-            />
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip>Upload a new profile image (optional)</Tooltip>}
+            >
+              <Form.Control
+                type="file"
+                name="profile_image"
+                onChange={(e) => setImageFile(e.target.files[0])}
+                aria-label="Upload new profile image"
+              />
+            </OverlayTrigger>
+            <div className={formStyles.AllowedFormats}>
+              Allowed formats: jpg, jpeg, png
+            </div>
             {Array.isArray(errors?.profile_image) &&
-              errors.profile_image.map((msg, idx) => (
+              errors.profile_image.map((message, idx) => (
                 <div key={idx} className="text-danger mt-1">
-                  {msg}
+                  {message}
                 </div>
               ))}
           </Form.Group>
