@@ -1271,12 +1271,13 @@ Testing included:
 
 #### **Managing My Profile & Network**
 
-| **Priority** | **User Story**              | **Page(s)**                  | **Test Scenario / Action**                | **Expected Result**                                                                                                                                                                     | Actual | **Screenshot** |
-| ------------ | --------------------------- | ---------------------------- | ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------------- |
-| Should Have  | Edit My Profile             | Profile Edit Page            | Change avatar or bio and save             | Form is prefilled with current values; first name and last name fields are disabled with note to contact HR; after submit, success message is shown and updated info appears in profile | ✅     | 1a, 1b         |
-| Should Have  | Conditional Profile Actions | Public / My Profile Page     | View any profile page while logged in     | If viewing own profile → edit icon appears; if viewing another user → “Nominate” button is visible                                                                                      | ✅     | 2a, 2b         |
-| Must Have    | View Public Profiles        | Feed > Sidebar > Search List | Click username/avatar from search results | Public profile page loads with user avatar, bio, and their recognitions and nominations                                                                                                 | ✅     |                |
-| Could Have   | View My Own Posts           | My Profile Page              | Visit profile while logged in             | User sees recognitions and nominations they created, grouped by type                                                                                                                    | ✅     |                |
+| **Priority** | **User Story**                  | **Page(s)**                  | **Test Scenario / Action**                        | **Expected Result**                                                                                                                                                                     | Actual | **Screenshot** |
+| ------------ | ------------------------------- | ---------------------------- | ------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------------- |
+| Should Have  | Edit My Profile                 | Profile Edit Page            | Change avatar or bio and save                     | Form is prefilled with current values; first name and last name fields are disabled with note to contact HR; after submit, success message is shown and updated info appears in profile | ✅     | 1a, 1b         |
+| Should Have  | Conditional Profile Actions     | Public / My Profile Page     | View any profile page while logged in             | If viewing own profile → edit icon appears; if viewing another user → “Nominate” button is visible                                                                                      | ✅     | 2a, 2b         |
+| Must Have    | View Public Profiles            | Feed > Sidebar > Search List | Click username/avatar from search results         | Public profile page loads with user avatar, bio, and their recognitions and nominations                                                                                                 | ✅     |                |
+| Must Have    | View Draft Profile After Signup | Profile Page                 | Login after registration → visit own profile page | If profile details are incomplete, user sees fallback avatar and helpful messages suggesting how and where to update name, department, bio, or profile picture.                         | ✅     | 3              |
+| Could Have   | View My Own Posts               | My Profile Page              | Visit profile while logged in                     | User sees recognitions and nominations they created, grouped by type                                                                                                                    | ✅     |                |
 
 <details>
   <summary>1a. Edit My Profile - Form prefilled with read only fields</summary>
@@ -1307,6 +1308,14 @@ Testing included:
 
    <p>
       <img src="documentation/frontend/testing/profile/owner_profile.png" alt="2b. Conditional Profile Actions - Colleagues view" />
+   </p>
+</details>
+
+<details>
+  <summary>3. View Draft Profile After Signup</summary>
+
+   <p>
+      <img src="documentation/frontend/testing/profile/profile_new_user.png" alt="3. View Draft Profile After Signup" />
    </p>
 </details>
 
