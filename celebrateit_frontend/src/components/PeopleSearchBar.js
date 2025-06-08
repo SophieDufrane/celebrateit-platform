@@ -5,6 +5,7 @@ import { axiosReq } from "../api/axiosDefaults";
 function PeopleSearchBar({ onUserSelect }) {
   // Input state
   const [input, setInput] = useState("");
+  const [selectedUser, setSelectedUser] = useState(null);
 
   // Search results
   const [results, setResults] = useState([]);
@@ -12,7 +13,7 @@ function PeopleSearchBar({ onUserSelect }) {
   // Fetch users as input changes
   useEffect(() => {
     const fetchUsers = async () => {
-      if (!input.trim()) {
+      if (!input.trim() || selectedUser) {
         setResults([]);
         return;
       }
@@ -29,7 +30,7 @@ function PeopleSearchBar({ onUserSelect }) {
 
     const delayDebounce = setTimeout(fetchUsers, 500);
     return () => clearTimeout(delayDebounce);
-  }, [input]);
+  }, [input, selectedUser]);
 
   // Handle input changes
   const handleChange = (e) => {
@@ -54,6 +55,7 @@ function PeopleSearchBar({ onUserSelect }) {
               `${user.first_name} ${user.last_name}`.trim() || user.username;
             setInput(fullName);
             setResults([]);
+            setSelectedUser(user);
             onUserSelect(user);
           }}
         >
