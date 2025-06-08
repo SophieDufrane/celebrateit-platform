@@ -22,6 +22,7 @@ function CreateNominationPage() {
 
   // Nominee search & selection
   const [selectedNomineeId, setSelectedNomineeId] = useState("");
+  const [nomineeNameParam, setNomineeNameParam] = useState("");
 
   // Tag dropdown
   const [tags, setTags] = useState([]);
@@ -55,9 +56,20 @@ function CreateNominationPage() {
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const prefillId = queryParams.get("nominee");
+    const prefillName =
+      queryParams.get("name") ||
+      queryParams.get("nominee_fullname") ||
+      queryParams.get("nominee_username") ||
+      "";
+
+    console.log("Full location.search:", location.search);
+    console.log("Parsed prefillName:", prefillName);
 
     if (prefillId && !isNaN(prefillId)) {
       setSelectedNomineeId(parseInt(prefillId));
+    }
+    if (prefillName) {
+      setNomineeNameParam(prefillName);
     }
   }, [location.search]);
 
@@ -146,9 +158,7 @@ function CreateNominationPage() {
                 <PeopleSearchBar
                   className={peopleSearchStyles.FullWidthInput}
                   enableSelectionDisplay={true}
-                  prefillValue={
-                    new URLSearchParams(location.search).get("name") || ""
-                  }
+                  prefillValue={nomineeNameParam}
                   placeholderText="Search nominee"
                   onUserSelect={(user) => {
                     setSelectedNomineeId(user.id);

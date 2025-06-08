@@ -12,6 +12,11 @@ function PeopleSearchBar({
 }) {
   // Input state
   const [input, setInput] = useState(prefillValue);
+  useEffect(() => {
+    if (enableSelectionDisplay && prefillValue) {
+      setInput(prefillValue);
+    }
+  }, [prefillValue, enableSelectionDisplay]);
 
   // Search results
   const [results, setResults] = useState([]);

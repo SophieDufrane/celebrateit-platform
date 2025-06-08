@@ -144,12 +144,24 @@ function ProfilePage() {
                     ) : (
                       <Button
                         className={styles.YellowButton}
-                        onClick={() =>
+                        onClick={() => {
+                          const hasFullName =
+                            profile.first_name || profile.last_name;
+                          const fullName = `${profile.first_name || ""} ${
+                            profile.last_name || ""
+                          }`.trim();
+                          const fallback = profile.user;
+
+                          const param = hasFullName
+                            ? `name=${encodeURIComponent(fullName)}`
+                            : `nominee_username=${encodeURIComponent(
+                                fallback
+                              )}`;
+
                           history.push(
-                            `/nominations/create?nominee=${profile.user}` +
-                              `&name=${profile.first_name} ${profile.last_name}`
-                          )
-                        }
+                            `/nominations/create?nominee=${profile.user}&${param}`
+                          );
+                        }}
                       >
                         Nominate
                       </Button>
