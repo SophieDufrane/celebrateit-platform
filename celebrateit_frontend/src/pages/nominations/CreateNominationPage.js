@@ -20,9 +20,8 @@ function CreateNominationPage() {
   const { title, content, tag } = nominationData;
 
   // Nominee search & selection
-  const [nomineeInput, setNomineeInput] = useState("");
+  const [, setNomineeInput] = useState("");
   const [selectedNomineeId, setSelectedNomineeId] = useState("");
-  // const [nomineeResults, setNomineeResults] = useState([]);
 
   // Tag dropdown
   const [tags, setTags] = useState([]);
@@ -52,24 +51,6 @@ function CreateNominationPage() {
     fetchTags();
   }, []);
 
-  // Search users as nominee input changes
-  // useEffect(() => {
-  //   if (nomineeInput) {
-  //     axiosReq
-  //       .get(`/users/?search=${nomineeInput}`)
-  //       .then((res) => {
-  //         setNomineeResults(res.data.results);
-  //         // console.log("Nominee results:", res.data);
-  //       })
-  //       .catch((err) => {
-  //         // console.error("Error fetching nominees:", err);
-  //         // TODO: add user feedback on error
-  //       });
-  //   } else {
-  //     setNomineeResults([]);
-  //   }
-  // }, [nomineeInput]);
-
   // Prefill nominee name and ID (when navigated from ProfilePage)
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
@@ -80,7 +61,7 @@ function CreateNominationPage() {
       setNomineeInput(prefillName);
       setSelectedNomineeId(parseInt(prefillId));
     }
-  }, [location.search]);
+  }, [location.search, setNomineeInput]);
 
   // Handle input changes
   const handleChange = (event) => {
@@ -114,7 +95,6 @@ function CreateNominationPage() {
       setErrors({ nominee: ["You can't nominate yourself."] });
       setNomineeInput("");
       setSelectedNomineeId("");
-      // setNomineeResults([]);
       return;
     }
 
@@ -144,13 +124,6 @@ function CreateNominationPage() {
   // Handle cancel button
   const handleCancel = () => {
     history.push("/");
-  };
-
-  // Handle nominee selection from search results
-  const handleNomineeSelect = (user) => {
-    setSelectedNomineeId(user.id);
-    setNomineeInput(`${user.first_name} ${user.last_name}`);
-    // setNomineeResults([]);
   };
 
   return (
@@ -185,6 +158,10 @@ function CreateNominationPage() {
                       `${user.first_name} ${user.last_name}`.trim() ||
                         user.username
                     );
+                    setErrors((prevErrors) => ({
+                      ...prevErrors,
+                      nominee: "",
+                    }));
                   }}
                 />
               </div>
@@ -196,20 +173,6 @@ function CreateNominationPage() {
                   {message}
                 </div>
               ))}
-
-            {/* {nomineeResults.length > 0 && (
-              <div className={formStyles.SuggestionBox}>
-                {nomineeResults.map((user) => (
-                  <div
-                    key={user.id}
-                    className={formStyles.SuggestionItem}
-                    onClick={() => handleNomineeSelect(user)}
-                  >
-                    {user.first_name} {user.last_name}
-                  </div>
-                ))}
-              </div>
-            )} */}
           </div>
           <OverlayTrigger
             placement="top"
