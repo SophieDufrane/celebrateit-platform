@@ -119,9 +119,19 @@ function UpdateNominationPage() {
       >
         <Form.Group className={formStyles.FormMediaWrapper}>
           {/* Read-only nominee display */}
-          <Form.Label className="mb-2">
-            <strong>Nominee:</strong>
-          </Form.Label>
+          <OverlayTrigger
+            placement="top"
+            overlay={
+              <Tooltip>
+                Want to change the nominee? You'll need to delete and start a
+                new nomination.
+              </Tooltip>
+            }
+          >
+            <Form.Label className="mb-2">
+              <strong>Nominee:</strong>
+            </Form.Label>
+          </OverlayTrigger>
           <div className="mb-3">{nominee_display_name}</div>
 
           {/* Editable tag dropdown */}
