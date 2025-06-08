@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Form } from "react-bootstrap";
 import { axiosReq } from "../api/axiosDefaults";
 
-function PeopleSearchBar({ onUserSelect }) {
+function PeopleSearchBar({ onUserSelect, enableSelectionDisplay = false }) {
   // Input state
   const [input, setInput] = useState("");
   const [selectedUser, setSelectedUser] = useState(null);
@@ -53,9 +53,14 @@ function PeopleSearchBar({ onUserSelect }) {
           onMouseDown={() => {
             const fullName =
               `${user.first_name} ${user.last_name}`.trim() || user.username;
-            setInput(fullName);
+
+            // If enabled (form), display the selected name in the input and store it
+            if (enableSelectionDisplay) {
+              setInput(fullName);
+              setSelectedUser(user);
+            }
+
             setResults([]);
-            setSelectedUser(user);
             onUserSelect(user);
           }}
         >

@@ -177,7 +177,11 @@ function HomeFeedPage() {
           <div className={feedStyles.SearchFilterBlock}>
             {/* Search field placeholder */}
             <div className={feedStyles.MobileOnly}>
-              <PeopleSearchBar onUserSelect={(user) => console.log(user)} />
+              <PeopleSearchBar
+                onUserSelect={(user) => {
+                  history.push(`/profiles/${user.id}`);
+                }}
+              />
             </div>
             <div className={feedStyles.DesktopOnly}>
               <input
