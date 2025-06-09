@@ -9,7 +9,9 @@ import authStyles from "../../styles/AuthForm.module.css";
 import sharedStyles from "../../App.module.css";
 import authPic from "../../assets/auth_pic.jpeg";
 
+// SignInForm: Login form with alert support for logout/registration status
 function SignInForm() {
+  // Location-based alerts
   const location = useLocation();
   const [showSuccess, setShowSuccess] = useState(
     new URLSearchParams(location.search).get("registered")
@@ -19,6 +21,7 @@ function SignInForm() {
     new URLSearchParams(location.search).get("loggedOut")
   );
 
+  // Auto-hide alerts after 4 seconds
   useEffect(() => {
     if (showSuccess || showLogout) {
       const timer = setTimeout(() => {
@@ -29,6 +32,7 @@ function SignInForm() {
     }
   }, [showSuccess, showLogout]);
 
+  // State & Context
   const setCurrentUser = useSetCurrentUser();
   const [signInData, setSignInData] = useState({
     username: "",
@@ -38,6 +42,7 @@ function SignInForm() {
   const { username, password } = signInData;
   const history = useHistory();
 
+  // Handlers
   function handleChange(event) {
     setSignInData({
       ...signInData,
@@ -50,17 +55,16 @@ function SignInForm() {
     try {
       const { data } = await axios.post("/dj-rest-auth/login/", signInData);
 
-      // Store the tokens
+      // Store the tokens in localStorage
       localStorage.setItem("access_token", data.access_token);
       localStorage.setItem("refresh_token", data.refresh_token);
-      // TOKEN FIX PATCH 5: Store refresh token expiry timestamp
       setTokenTimestamp(data);
 
       // Refetch user using token
       const { data: userData } = await axiosReq.get("/dj-rest-auth/user/");
       setCurrentUser(userData);
 
-      // Redirect
+      // Redirect to homepage
       history.push("/");
     } catch (err) {
       setLoginErrors(err.response?.data || {});
@@ -96,6 +100,7 @@ function SignInForm() {
                     </ul>
                   </div>
                 )}
+                {/* Login form */}
                 <Form
                   onSubmit={handleSubmit}
                   className={authStyles.FormWrapper}
@@ -111,6 +116,7 @@ function SignInForm() {
                       name="username"
                       value={username}
                       onChange={handleChange}
+                      aria-label="Username"
                     />
                   </Form.Group>
 
@@ -125,6 +131,7 @@ function SignInForm() {
                       name="password"
                       value={password}
                       onChange={handleChange}
+                      aria-label="Password"
                     />
                   </Form.Group>
 
@@ -135,6 +142,8 @@ function SignInForm() {
                     Submit
                   </Button>
                 </Form>
+
+                {/* Register link */}
                 <div className={authStyles.AuthLink}>
                   OR
                   <Link to="/register" className={authStyles.AuthLinkHighlight}>
@@ -142,6 +151,8 @@ function SignInForm() {
                   </Link>
                 </div>
               </div>
+
+              {/* Side image */}
               <div className={authStyles.imageBox}>
                 <img
                   src={authPic}
