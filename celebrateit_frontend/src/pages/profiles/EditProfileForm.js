@@ -7,12 +7,13 @@ import FormFooter from "../../components/FormFooter";
 import formStyles from "../../styles/PostForm.module.css";
 import LoadingIndicator from "../../components/LoadingIndicator";
 
+// EditProfileForm: Allows user to edit their profile presentation and image
 function EditProfileForm() {
   // Routing & Navigation
   const { id } = useParams();
   const history = useHistory();
 
-  // Context
+  // Context for current user
   const setCurrentUser = useSetCurrentUser();
 
   // Data State - Profile info
@@ -29,7 +30,7 @@ function EditProfileForm() {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [errors, setErrors] = useState({});
 
-  // Fetch Profile on Mount
+  // Fetch Profile data on Mount
   useEffect(() => {
     const fetchProfile = async () => {
       try {
@@ -40,7 +41,6 @@ function EditProfileForm() {
         setPresentation(data.presentation || "");
         setHasLoaded(true);
       } catch (err) {
-        // console.error('Error fetching profile:', err);
         // TODO: add user feedback on error
       }
     };
@@ -48,7 +48,7 @@ function EditProfileForm() {
     fetchProfile();
   }, [id]);
 
-  // Handle Form Submit
+  // Handlers
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -61,8 +61,6 @@ function EditProfileForm() {
     } else if (imageFile && typeof imageFile !== "string") {
       formData.append("profile_image", imageFile);
     }
-
-    // Submit to API
     try {
       const { data } = await axiosReq.patch(
         `/user-profiles/${profile.id}/`,
@@ -77,6 +75,8 @@ function EditProfileForm() {
       );
 
       setProfile(data);
+
+      // Refresh current user context after update
       setCurrentUser(
         await axiosRes.get("/dj-rest-auth/user/").then((res) => res.data)
       );
@@ -86,6 +86,7 @@ function EditProfileForm() {
     }
   };
 
+  // Show loading indicator until data is fetched
   if (!hasLoaded) {
     return (
       <Container className="d-flex justify-content-center py-5">
@@ -99,6 +100,7 @@ function EditProfileForm() {
       <h2>Edit your profile</h2>
       {profile ? (
         <Form onSubmit={handleSubmit}>
+          {/* Read-only first name with tooltip */}
           <Form.Group
             controlId="firstName"
             className={formStyles.FormGroupSpacing}
@@ -125,6 +127,8 @@ function EditProfileForm() {
               </div>
             </OverlayTrigger>
           </Form.Group>
+
+          {/* Read-only last name with tooltip */}
           <Form.Group
             controlId="lastName"
             className={formStyles.FormGroupSpacing}
@@ -152,6 +156,7 @@ function EditProfileForm() {
             </OverlayTrigger>
           </Form.Group>
 
+          {/* Editable presentation/bio field */}
           <Form.Group
             controlId="presentation"
             className={formStyles.FormGroupSpacing}
@@ -176,8 +181,9 @@ function EditProfileForm() {
                 </div>
               ))}
           </Form.Group>
+
+          {/* Profile image preview, remove checkbox, and upload */}
           <Form.Group className={formStyles.FormGroupSpacing}>
-            {/* Preview current image if exists */}
             {profile.profile_image && (
               <>
                 <img
@@ -222,6 +228,7 @@ function EditProfileForm() {
               ))}
           </Form.Group>
 
+          {/* Submit and cancel buttons */}
           <FormFooter submitText="Update" onCancel={() => history.goBack()} />
         </Form>
       ) : (
