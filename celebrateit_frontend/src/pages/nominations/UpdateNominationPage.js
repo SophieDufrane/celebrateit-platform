@@ -28,7 +28,7 @@ function UpdateNominationPage() {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [errors, setErrors] = useState({});
 
-  // Fetch nomination data on mount
+  // Fetch nomination data on mount or id change
   useEffect(() => {
     axiosReq
       .get(`/nominations/${id}/`)
@@ -92,7 +92,7 @@ function UpdateNominationPage() {
       });
       history.push(`/nominations/${id}?updated=true`);
     } catch (err) {
-      console.error("Submission error:", err.response?.data);
+      // TODO: add user feedback on error
       if (err.response?.status !== 401) {
         setErrors(err.response?.data || {});
       }

@@ -6,6 +6,7 @@ import PostForm from "../../components/PostForm";
 import formStyles from "../../styles/PostForm.module.css";
 import LoadingIndicator from "../../components/LoadingIndicator";
 
+// UpdateRecognitionPage: Form to edit an existing recognition's title, content and image
 function UpdateRecognitionPage() {
   // Routing & Navigation
   const { id } = useParams();
@@ -25,6 +26,7 @@ function UpdateRecognitionPage() {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [errors, setErrors] = useState({});
 
+  // Fetch recognition data on mount or id change
   useEffect(() => {
     axiosReq
       .get(`/posts/${id}/`)
@@ -34,16 +36,15 @@ function UpdateRecognitionPage() {
         setHasLoaded(true);
       })
       .catch((err) => {
-        console.error("Error fetching recognition:", err);
+        // TODO: add user feedback on error
         history.push("/");
       });
   }, [id, history]);
 
+  // Handlers
   const handleChange = (event) => {
     const { name, value, files } = event.target;
-
     if (name) {
-      // Clear error only if the field has a name
       setErrors((prevErrors) => ({
         ...prevErrors,
         [name]: "",
@@ -76,7 +77,7 @@ function UpdateRecognitionPage() {
     }
 
     try {
-      // PATCH 9: Add Authorization header to avoid stale token issues
+      // PATCH 9: Explicit token header for nomination updates
       await axiosReq.patch(`/posts/${id}/`, formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -85,13 +86,14 @@ function UpdateRecognitionPage() {
       });
       history.push(`/recognitions/${id}?updated=true`);
     } catch (err) {
-      console.error("Submission error:", err.response?.data);
+      // TODO: add user feedback on error
       if (err.response?.status !== 401) {
         setErrors(err.response?.data || {});
       }
     }
   };
 
+  // Show loading indicator until data is loaded
   if (!hasLoaded) {
     return (
       <Container className="d-flex justify-content-center py-5">
