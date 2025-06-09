@@ -2,11 +2,12 @@ import React from "react";
 import styles from "../styles/Avatar.module.css";
 
 function Avatar(props) {
+  // Props and defaults
   const { src, alt, size, first_name, last_name, username } = props;
-
   const avatarSize = size || "md";
   const avatarAlt = alt || "avatar";
 
+  // Helpers
   const getInitials = () => {
     if (first_name && last_name) {
       return `${first_name[0]}${last_name[0]}`.toUpperCase();
