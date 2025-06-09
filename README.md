@@ -1325,22 +1325,24 @@ Testing included:
 
 #### **CSS - HTML**
 
-To ensure the website's **HTML** and **CSS** follow web standards and best practices, I tested the code using the **W3C validation tools**.
-
-The [W3C HTML Validator](https://validator.w3.org/) was used to check for syntax errors and compliance with HTML5 standards. The validation returned **no errors**, ensuring that the HTML code is well-structured and correctly formatted.
+This project was checked with [validator.w3.org](https://validator.w3.org) for general HTML5 syntax validation.  
+Most info-level messages related to trailing slashes on void elements come from the React-generated `index.html` and do not affect rendering or functionality.
 
 <details>
   <summary>HTML Validator Results</summary>
-  <img src="documentation/validators/html_validator.png">
+  <img src="documentation/other/html_validator.png">
 </details>
 
 </br>
 
-The website's stylesheet was tested using the [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/) to verify CSS compliance. The validation report confirmed **no issues**, indicating that the styles are correctly implemented and follow CSS best practices.
+This project’s styles were checked using [The W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/) and the document passed with **no errors** and validates as **CSS level 3 + SVG**.
+
+Note: This validation applies to compiled global styles and linked stylesheets.  
+Since the app is built with React and uses modular CSS (`*.module.css`), some scoped or dynamically applied styles (via JSX or Bootstrap classes) are not evaluated by the validator. These styles were reviewed manually for responsiveness, accessibility, and cross-browser compatibility.
 
 <details>
   <summary>CSS Validator Results</summary>
-  <img src="documentation/validators/css_validator.png">
+  <img src="documentation/other/css_validator.png">
 </details>
 
 #### **JavaScript**
