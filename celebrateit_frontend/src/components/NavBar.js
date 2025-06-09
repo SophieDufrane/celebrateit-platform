@@ -9,6 +9,7 @@ import {
 import { axiosReq } from "../api/axiosDefaults";
 import { removeTokenTimestamp } from "../utils/utils";
 
+// NavBar: Top navigation bar with auth-aware links
 function NavBar() {
   // Auth context
   const { currentUser, currentUserLoaded } = useCurrentUser();
@@ -29,7 +30,6 @@ function NavBar() {
       // full reset to avoid ghost state but land on login page
       window.location.assign("/login?loggedOut=true");
     } catch (err) {
-      // console.error('Logout failed:', err);
       // TODO: add user feedback on error
     }
   };
@@ -52,6 +52,7 @@ function NavBar() {
         <Navbar.Toggle
           aria-controls="basic-navbar-nav"
           className="custom-toggler"
+          aria-label="Toggle navigation"
         />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto text-left">
