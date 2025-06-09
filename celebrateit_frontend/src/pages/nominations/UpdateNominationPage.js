@@ -6,6 +6,7 @@ import PostForm from "../../components/PostForm";
 import formStyles from "../../styles/PostForm.module.css";
 import LoadingIndicator from "../../components/LoadingIndicator";
 
+// UpdateNominationPage: Form to edit an existing nomination's title, content, and tag
 function UpdateNominationPage() {
   // Routing & Navigation
   const { id } = useParams();
@@ -20,12 +21,14 @@ function UpdateNominationPage() {
   });
   const { title, content, nominee_display_name, tag } = postData;
 
+  // Available tags for dropdown
   const [tags, setTags] = useState([]);
 
   // UI State
   const [hasLoaded, setHasLoaded] = useState(false);
   const [errors, setErrors] = useState({});
 
+  // Fetch nomination data on mount
   useEffect(() => {
     axiosReq
       .get(`/nominations/${id}/`)
@@ -40,27 +43,25 @@ function UpdateNominationPage() {
         setHasLoaded(true);
       })
       .catch((err) => {
-        // console.log('Error fetching nominations:', err);
         // TODO: add user feedback on error
         history.push("/");
       });
   }, [id, history]);
 
+  // Fetch available tags on mount
   useEffect(() => {
     axiosReq
       .get("/tags/")
       .then((response) => setTags(response.data.results))
       .catch((err) => {
-        // console.error("Error fetching tags:", err);
         // TODO: add user feedback on error
       });
   }, []);
 
+  // Handlers
   const handleChange = (event) => {
     const { name, value } = event.target;
-
     if (name) {
-      // Clear error only if the field has a name
       setErrors((prevErrors) => ({
         ...prevErrors,
         [name]: "",
@@ -98,6 +99,7 @@ function UpdateNominationPage() {
     }
   };
 
+  // Show loading indicator until data is loaded
   if (!hasLoaded) {
     return (
       <Container className="d-flex justify-content-center py-5">
@@ -154,7 +156,6 @@ function UpdateNominationPage() {
               ))}
             </Form.Control>
           </OverlayTrigger>
-          {/* Validation error */}
           {Array.isArray(errors?.tag) &&
             errors.tag.map((message, idx) => (
               <div key={idx} className="text-danger mt-1">
