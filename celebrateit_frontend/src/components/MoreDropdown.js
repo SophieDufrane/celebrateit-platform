@@ -1,7 +1,8 @@
-import React from 'react';
-import { Dropdown } from 'react-bootstrap';
-import styles from '../styles/MoreDropdown.module.css';
+import React from "react";
+import { Dropdown } from "react-bootstrap";
+import styles from "../styles/MoreDropdown.module.css";
 
+// Custom toggle icon for dropdown menu (3 vertical dots)
 const ThreeDots = React.forwardRef(({ onClick }, ref) => (
   <i
     className={`fas fa-ellipsis-v ${styles.DropdownToggle}`}
@@ -11,10 +12,11 @@ const ThreeDots = React.forwardRef(({ onClick }, ref) => (
       onClick(e);
     }}
     role="button"
-    aria-label="options"
+    aria-label="More options"
   />
 ));
 
+// MoreDropdown: shows edit/delete actions for a post or comment
 function MoreDropdown({ handleEdit, handleDelete }) {
   return (
     <Dropdown align="end">
