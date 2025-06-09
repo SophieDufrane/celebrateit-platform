@@ -6,7 +6,9 @@ import authStyles from "../../styles/AuthForm.module.css";
 import sharedStyles from "../../App.module.css";
 import registerPic from "../../assets/register_pic.jpg";
 
+// SignUpForm: Form for user registration
 function SignUpForm() {
+  // State
   const [signUpData, setSignUpData] = useState({
     username: "",
     password1: "",
@@ -16,6 +18,7 @@ function SignUpForm() {
   const { username, password1, password2 } = signUpData;
   const history = useHistory();
 
+  // Handlers
   function handleChange(event) {
     setSignUpData({
       ...signUpData,
@@ -38,9 +41,11 @@ function SignUpForm() {
       <div className={authStyles.gradient}>
         <div className={authStyles.gradientOverlay}>
           <div className={authStyles.splitBox}>
+            {/* Form section */}
             <div className={authStyles.formBox}>
               <h2 className={authStyles.AuthTitle}>Register</h2>
               <Form onSubmit={handleSubmit} className={authStyles.FormWrapper}>
+                {/* Error list */}
                 {Object.keys(errors).length > 0 && (
                   <div className={authStyles.ErrorBox}>
                     <ul className="mb-0 ps-3">
@@ -52,6 +57,8 @@ function SignUpForm() {
                     </ul>
                   </div>
                 )}
+
+                {/* Username field */}
                 <Form.Group
                   controlId="username"
                   className={authStyles.FormGroupSpacing}
@@ -63,9 +70,11 @@ function SignUpForm() {
                     name="username"
                     value={username}
                     onChange={handleChange}
+                    aria-label="Username"
                   />
                 </Form.Group>
 
+                {/* Password field */}
                 <Form.Group
                   controlId="password1"
                   className={authStyles.FormGroupSpacing}
@@ -77,6 +86,7 @@ function SignUpForm() {
                     name="password1"
                     value={password1}
                     onChange={handleChange}
+                    aria-label="Password"
                   />
                 </Form.Group>
 
@@ -91,9 +101,11 @@ function SignUpForm() {
                     name="password2"
                     value={password2}
                     onChange={handleChange}
+                    aria-label="Confirm Password"
                   />
                 </Form.Group>
 
+                {/* Submit button */}
                 <Button
                   type="submit"
                   className={`${sharedStyles.YellowButton} ${authStyles.CenteredButton}`}
@@ -101,6 +113,8 @@ function SignUpForm() {
                   Submit
                 </Button>
               </Form>
+
+              {/* Login redirect link */}
               <div className={authStyles.AuthLink}>
                 OR
                 <Link to="/login" className={authStyles.AuthLinkHighlight}>
@@ -108,6 +122,8 @@ function SignUpForm() {
                 </Link>
               </div>
             </div>
+
+            {/* Image section */}
             <div className={authStyles.imageBox}>
               <img
                 src={registerPic}
