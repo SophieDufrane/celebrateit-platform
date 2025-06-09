@@ -6,8 +6,9 @@ import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import PostForm from "../../components/PostForm";
 import formStyles from "../../styles/PostForm.module.css";
 
+// CreateRecognitionPage: Form to create a new recognition with optional image
 function CreateRecognitionPage() {
-  // Form fields
+  // State
   const [recognitionData, setRecognitionData] = useState({
     title: "",
     content: "",
@@ -18,11 +19,11 @@ function CreateRecognitionPage() {
   // Error state
   const [errors, setErrors] = useState({});
 
-  // Navigation
+  // Navigation and user context
   const history = useHistory();
   const setCurrentUser = useSetCurrentUser(); // Refresh user after creation
 
-  // Handle input changes (text & file upload)
+  // Handle input changes, including file upload with size validation
   const handleChange = (event) => {
     const { name, value, files } = event.target;
 
@@ -52,7 +53,7 @@ function CreateRecognitionPage() {
     }
   };
 
-  // Handle form submit
+  // Handlers
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -71,17 +72,17 @@ function CreateRecognitionPage() {
           "Content-Type": "multipart/form-data",
         },
       });
-      // PATCH 9: Rehydrate user context after creation
+      // Refresh current user context after creation
       const currentUserData = await axiosRes
         .get("/dj-rest-auth/user/")
         .then((res) => res.data);
       setCurrentUser(currentUserData);
 
+      // Redirect to the newly created recognition detail page
       history.push(`/recognitions/${data.id}?created=true`);
     } catch (err) {
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
-        // console.log('Submission error:', err.response?.data);
       }
     }
   };
