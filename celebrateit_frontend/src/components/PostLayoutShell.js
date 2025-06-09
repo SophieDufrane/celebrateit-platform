@@ -4,6 +4,7 @@ import { Card } from "react-bootstrap";
 import styles from "../styles/PostCard.module.css";
 import PostHeader from "./PostHeader";
 
+// PostLayoutShell: Shared layout wrapper for recognitions and nominations
 function PostLayoutShell(props) {
   const {
     title,
@@ -24,6 +25,7 @@ function PostLayoutShell(props) {
     metaTop,
   } = props;
 
+  // Main card content (used with or without wrapping <Link>)
   const cardBody = (
     <Card.Body>
       <PostHeader
@@ -49,14 +51,17 @@ function PostLayoutShell(props) {
       />
       {/* Optional metadata above title (e.g. nominee & tag for nominations) */}
       {metaTop && <div className={styles.MetaTopWrapper}>{metaTop}</div>}
-      {/* Always show post title and content */}
+
+      {/* Title and content (always shown) */}
       <h5 className={styles.PostTitle}>{title}</h5>
       <p className={styles.PostContent}>{content}</p>
-      {/* Optional extra content after main content (e.g. 'View full post' link) */}
+
+      {/* Optional extra content (e.g. 'View full post' link) */}
       {extraContent && (
         <div className={styles.ViewFullWrapper}>{extraContent}</div>
       )}
-      {/* Detail-only content (comment form + comments) */}
+
+      {/* Optional detailed content (e.g. comments section on detail page) */}
       {children && <div className={styles.PostChildren}>{children}</div>}
     </Card.Body>
   );
