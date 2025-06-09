@@ -29,11 +29,6 @@ function RecognitionDetailPage() {
   const [editingComment, setEditingComment] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(null);
 
-  // Derived values
-  const isNomination = !!recognition?.nominee;
-
-  let dropdownMenu = null;
-
   // Parse URL query params for success alerts
   const searchParams = new URLSearchParams(location.search);
   const isCreated = searchParams.get("created") === "true";
@@ -169,15 +164,15 @@ function RecognitionDetailPage() {
   }
 
   // Dropdown menu for edit/delete if user owns nomination
-  dropdownMenu = recognition.is_user ? (
+  const dropdownMenu = recognition.is_user ? (
     <MoreDropdown
       handleEdit={() => history.push(`/recognitions/${recognition.id}/edit`)}
       handleDelete={handleDelete}
     />
   ) : null;
 
-  // Prepare post footer with like/comment controls if not a nomination
-  const postActions = !isNomination ? (
+  // Footer section with likes and comments
+  const postActions = (
     <div className={styles.PostFooter}>
       <div className={styles.ActionItem}>
         {recognition.is_user ? (
@@ -224,6 +219,8 @@ function RecognitionDetailPage() {
             <span
               className={styles.DisabledIcon}
               aria-label="Log in to like this recognition"
+              role="button"
+              aria-disabled="true"
             >
               <i className="far fa-thumbs-up" />
             </span>
@@ -236,7 +233,7 @@ function RecognitionDetailPage() {
         <span>{recognition.comments_count}</span>
       </div>
     </div>
-  ) : null;
+  );
 
   return (
     <Container>
