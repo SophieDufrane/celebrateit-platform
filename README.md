@@ -281,7 +281,7 @@ Below are the final implementations of the main pages, which evolved from the or
    <summary>Edit User Profile Form</summary>
 
    <p>
-      <img src="documentation/frontend/skeleton/edit_user_profile.png" alt="Edit User Profile Form" />
+      <img src="documentation/frontend/skeleton/profile_edit.png" alt="Edit User Profile Form" />
    </p>
 </details>
 
@@ -388,7 +388,6 @@ CelebrateIt relies heavily on React functional components with hooks for local s
 
 - **Heroku** – Hosting and deployment of the Django REST API backend.
 - **GitHub** – Version control and repository management.
-- **GitHub Pages** _(optional)_ – Considered for frontend deployment (not used in final setup).
 - **Git** – Local version control with atomic commits and branching.
 - **VS Code** – Primary code editor with integrated terminal and extensions for React/Django.
 - **Browser-based API testing** – API endpoints were tested directly via browser during development using Django’s built-in dev server.
@@ -488,12 +487,15 @@ HomeFeedPage (container)
 │     │     ├── RecognitionCard → PostLayoutShell
 │     │     └── NominationCard → PostLayoutShell
 ├── PeopleSidebar
-│     ├── SearchField
+│     ├── PeopleSearchBar (shared)
 │     └── PeopleList
 
-PostLayoutShell
+PeopleSearchBar (shared)
+└── Autocomplete dropdown logic
+
+PostLayoutShell (container)
 ├── PostHeader (shared header)
-│     ├── Avatar placeholder
+│     ├── Avatar (shared)
 │     ├── Display name
 │     └── Created at + Dropdown
 ├── metaTop (optional – nominee + tag)
@@ -521,13 +523,13 @@ CreateRecognitionPage / UpdateRecognitionPage (container)
 
 CreateNominationPage / UpdateNominationPage (container)
 └── NominationForm
-      ├── Nominee selector
+      ├── PeopleSearchBar (shared) – nominee selector
       └── Tag field
 
 ProfilePage (container)
 ├── Profile Header
-|     ├── Profile Image
-|     ├── Username (First and Last name)
+|     ├── Avatar (shared)
+|     ├── Username (First and Last name OR fallback username)
 |     ├── Department
 |     └── Bio / Presentation text
 ├── ProfileFeedSection (container)
@@ -1109,7 +1111,7 @@ Testing included:
   <summary>1c. Create Nomination – Search people by name</summary>
 
    <p>
-      <img src="documentation/frontend/testing/nomination/nomination_create_name.png" alt="1c. Create Nomination – Search people by name" />
+      <img src="documentation/frontend/testing/nomination/nomination_create_nominee.png" alt="1c. Create Nomination – Search people by name" />
    </p>
 </details>
 
@@ -1299,7 +1301,7 @@ Testing included:
   <summary>2a. Conditional Profile Actions - Owner view</summary>
 
    <p>
-      <img src="documentation/frontend/testing/profile/colleague_profile.png" alt="2a. Conditional Profile Actions - Owner view" />
+      <img src="documentation/frontend/testing/profile/owner_profile.png" alt="2a. Conditional Profile Actions - Owner view" />
    </p>
 </details>
 
@@ -1307,7 +1309,7 @@ Testing included:
   <summary>2b. Conditional Profile Actions - Colleagues view</summary>
 
    <p>
-      <img src="documentation/frontend/testing/profile/owner_profile.png" alt="2b. Conditional Profile Actions - Colleagues view" />
+      <img src="documentation/frontend/testing/profile/colleague_profile.png" alt="2b. Conditional Profile Actions - Colleagues view" />
    </p>
 </details>
 
@@ -1681,22 +1683,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 WHITENOISE_ROOT = BASE_DIR / 'staticfiles_build' / 'build'
 ```
 
-2. **Build & move React app**
-
-   - From `celebrateit_frontend/`:
-
-   ```bash
-   npm run build
-   ```
-
-   - From root project folder:
-
-   ```bash
-   rm -rf staticfiles_build/build
-   mv celebrateit_frontend/build staticfiles_build/
-   ```
-
-3. **Update URLs and Axios**
+2. **Update URLs and Axios**
 
    - In `urls.py`:
 
@@ -1723,7 +1710,7 @@ WHITENOISE_ROOT = BASE_DIR / 'staticfiles_build' / 'build'
    "proxy": "http://localhost:8000"
    ```
 
-4. **Runtime & Requirements**
+3. **Runtime & Requirements**
 
    - Create `runtime.txt` in the root:
 
@@ -1737,7 +1724,43 @@ WHITENOISE_ROOT = BASE_DIR / 'staticfiles_build' / 'build'
    psycopg2==2.9.9
    ```
 
-### Heroku Config Vars (Final Fullstack)
+4. **React Build & Deployment (Repeat for Every Redeploy)**
+
+   - In `env.py`, comment out the debug override:
+
+   ```
+   # os.environ['DEBUG'] = '1'
+   ```
+
+   - In `.gitignore`, temporarily allow staticfiles to be tracked:
+
+   ```
+   # staticfiles_build/
+   ```
+
+   - From `celebrateit_frontend/`, build React App:
+
+   ```bash
+   npm run build
+   ```
+
+   - From root project `PP5-celebrateit`, remove Previous Build then move New Build to Root-Level Staticfiles:
+
+   ```bash
+   rm -rf staticfiles/build/
+   mv celebrateit_frontend/build/ staticfiles/
+   ```
+
+5. Commit and push to GitHub:
+
+   ```bash
+   git add .gitignore
+   git add -f staticfiles/build/
+   git commit -m "Rebuild frontend and move to staticfiles/build for deployment"
+   git push
+   ```
+
+6. On Heroku → Config Vars (Final Fullstack)
 
 | Key                     | Value                            |
 | ----------------------- | -------------------------------- |
@@ -1748,17 +1771,7 @@ WHITENOISE_ROOT = BASE_DIR / 'staticfiles_build' / 'build'
 | `CLOUDINARY_URL`        | From Cloudinary dashboard        |
 | `DISABLE_COLLECTSTATIC` | `1` (optional during setup)      |
 
-### Final Deployment Steps
-
-1. Commit and push to GitHub:
-
-   ```bash
-   git add .
-   git commit -m "Prepare fullstack app for Heroku deployment"
-   git push
-   ```
-
-2. On Heroku → Deploy tab:
+7. On Heroku → Deploy tab:
 
    - Select `main` branch
    - Click **Deploy Branch**
@@ -1794,13 +1807,36 @@ Follow these steps to fork, clone, and work on the project:
 
 ### 7.4 Security Considerations
 
-- **Secrets and keys** were stored in environment variables and never committed to the repository.
-- **.env** files were added to `.gitignore` to prevent leakage of credentials and config values.
-- The application was deployed with `DEBUG = False` to ensure a secure production environment.
-- Sensitive variables used include `SECRET_KEY`, `CLOUDINARY_URL`, and database credentials.
-- CORS was restricted via `CLIENT_ORIGIN` and `CORS_ALLOW_CREDENTIALS` to allow only known origins.
+- Secrets like `SECRET_KEY`, `CLOUDINARY_URL`, and `DATABASE_URL` are stored in environment variables and never committed to the repository.
+- `env.py` files are excluded via `.gitignore` to prevent leakage of credentials and config values.
+- `DEBUG` is controlled using both `env.py` and `settings.py` (`DEBUG = False` automatically in production):
 
-These precautions were followed to prevent security vulnerabilities and meet best practices for cloud deployment.
+  - In development, `env.py` includes:
+
+    ```python
+    os.environ['DEBUG'] = '1'
+    ```
+
+  - In `settings.py`, Django evaluates:
+
+    ```python
+    DEBUG = 'DEBUG' in os.environ
+    ```
+
+- `ALLOWED_HOSTS` is loaded from environment:
+
+  ```python
+  ALLOWED_HOSTS = json.loads(os.environ.get("ALLOWED_HOSTS", '["localhost"]'))
+  ```
+
+- CORS is restricted using:
+
+  ```python
+  CORS_ALLOWED_ORIGINS = [os.environ.get("CLIENT_ORIGIN")]
+  CORS_ALLOW_CREDENTIALS = True
+  ```
+
+This setup keeps secrets out of version control and ensures the app runs securely in production.
 
 ---
 
@@ -1808,4 +1844,13 @@ These precautions were followed to prevent security vulnerabilities and meet bes
 
 ### **Content & Resources**
 
+All written content in this project was created by me, with occasional refinements assisted by ChatGPT to improve clarity, tone, and consistency.
+Profile images shown across the app were generated using [This Person Does Not Exist](https://thispersondoesnotexist.com), providing AI-created portraits for demonstration purposes.
+All media assets (including avatars and post images) are hosted via Cloudinary to ensure optimized delivery and fast load times.
+Additional UI illustrations and icons were sourced from [Freepik](https://www.freepik.com), and I used [Squoosh](https://squoosh.app) to reduce file size without quality loss.
+
 ### **Acknowledgements**
+
+I would like to extend my sincere thanks to my mentor, **Julia Konovalova**, for her unwavering support, thoughtful feedback, and sharp eye throughout the development and testing of CelebrateIt. Her guidance helped shape the project into something more coherent, functional, and aligned with best practices.
+I’m also grateful to the **Code Institute** tutor team and the Slack community for being a constant source of help, especially during the long debugging sessions when nothing seemed to work and I needed a second (or third) pair of eyes.
+Finally, a heartfelt thank you to my husband, whose steady encouragement and patience carried me through the most frustrating days of bugs, rebuilds, and unexpected errors. This project wouldn’t have made it to the finish line without his support.
