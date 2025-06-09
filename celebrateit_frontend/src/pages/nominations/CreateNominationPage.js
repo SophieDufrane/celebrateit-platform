@@ -11,8 +11,9 @@ import PostForm from "../../components/PostForm";
 import formStyles from "../../styles/PostForm.module.css";
 import peopleSearchStyles from "../../styles/PeopleSearchBar.module.css";
 
+// CreateNominationPage: Form page to create a new nomination with nominee search and tagging
 function CreateNominationPage() {
-  // Form fields
+  // State
   const [nominationData, setNominationData] = useState({
     title: "",
     content: "",
@@ -20,7 +21,7 @@ function CreateNominationPage() {
   });
   const { title, content, tag } = nominationData;
 
-  // Nominee search & selection
+  // Nominee selection state
   const [selectedNomineeId, setSelectedNomineeId] = useState("");
   const [nomineeNameParam, setNomineeNameParam] = useState("");
 
@@ -30,7 +31,7 @@ function CreateNominationPage() {
   // Error state
   const [errors, setErrors] = useState({});
 
-  // Navigation
+  // Navigation and user context
   const history = useHistory();
   const location = useLocation();
   const setCurrentUser = useSetCurrentUser();
@@ -41,10 +42,8 @@ function CreateNominationPage() {
     const fetchTags = async () => {
       try {
         const { data } = await axiosReq.get("/tags/");
-        // console.log('Fetched tags:', data);
         setTags(data.results);
       } catch (err) {
-        // console.log('Error fetching tags:', err);
         // TODO: add user feedback on error
       }
     };
@@ -52,7 +51,7 @@ function CreateNominationPage() {
     fetchTags();
   }, []);
 
-  // Prefill nominee ID from URL (when navigated from ProfilePage)
+  // Prefill nominee ID and name from URL query params (when navigated from ProfilePage)
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const prefillId = queryParams.get("nominee");
@@ -73,7 +72,7 @@ function CreateNominationPage() {
     }
   }, [location.search]);
 
-  // Handle input changes
+  // Handlers
   const handleChange = (event) => {
     const { name, value } = event.target;
     setErrors((prev) => ({
@@ -86,7 +85,6 @@ function CreateNominationPage() {
     }));
   };
 
-  // Handle form submit
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -102,6 +100,7 @@ function CreateNominationPage() {
       return;
     }
 
+    // Prepare form data for multipart request
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
@@ -127,7 +126,7 @@ function CreateNominationPage() {
     }
   };
 
-  // Handle cancel button
+  // Cancel handler redirects to home
   const handleCancel = () => {
     history.push("/");
   };
@@ -143,6 +142,7 @@ function CreateNominationPage() {
         onCancel={handleCancel}
         errors={errors}
       >
+        {/* Nominee search field */}
         <Form.Group controlId="nominee" className={formStyles.FormMediaWrapper}>
           <div className={peopleSearchStyles.FullWidthNomineeSearch}>
             <OverlayTrigger
@@ -167,7 +167,6 @@ function CreateNominationPage() {
                 />
               </div>
             </OverlayTrigger>
-            {/* Validation error for nominee */}
             {Array.isArray(errors?.nominee) &&
               errors.nominee.map((message, idx) => (
                 <div key={idx} className="text-danger mt-1">
@@ -175,6 +174,8 @@ function CreateNominationPage() {
                 </div>
               ))}
           </div>
+
+          {/* Tag dropdown field */}
           <OverlayTrigger
             placement="top"
             overlay={<Tooltip>Pick a tag that reflects the nomination</Tooltip>}
