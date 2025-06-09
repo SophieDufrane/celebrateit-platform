@@ -7,6 +7,7 @@ import ConfirmDeleteModal from "../../components/ConfirmDeleteModal";
 import styles from "../../styles/PostCard.module.css";
 import PostLayoutShell from "../../components/PostLayoutShell";
 
+// NominationCard: Displays a nomination post with edit/delete options if owned
 function NominationCard(props) {
   const {
     id,
@@ -30,23 +31,23 @@ function NominationCard(props) {
     deleteUrl = `/nominations/${id}/`,
   } = props;
 
-  // User & Navigation
+  // Auth and navigation
   const { currentUserLoaded } = useCurrentUser();
   const history = useHistory();
 
   // Local UI State
   const [showConfirm, setShowConfirm] = useState(false);
 
-  // Wait until auth state is resolved to avoid false unauthenticated UI
+  // Avoid rendering before auth loads
   if (!currentUserLoaded) return null;
 
-  // Derived display content
+  // Truncate content for preview
   const truncatedContent =
     content.length > 150
       ? `${content.slice(0, content.slice(0, 150).lastIndexOf(" "))}...`
       : content;
 
-  // Event Handlers
+  // Handlers
   const handleDelete = () => setShowConfirm(true);
 
   const confirmDelete = async () => {
@@ -57,7 +58,6 @@ function NominationCard(props) {
       }
       history.push("/?deleted=true");
     } catch (err) {
-      // console.error('Delete failed:', err);
       // TODO: add user feedback on error
     } finally {
       setShowConfirm(false);
