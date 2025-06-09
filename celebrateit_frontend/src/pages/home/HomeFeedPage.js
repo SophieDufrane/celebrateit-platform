@@ -10,13 +10,15 @@ import LoadingIndicator from "../../components/LoadingIndicator";
 import PeopleSearchBar from "../../components/PeopleSearchBar";
 import feedStyles from "../../styles/HomeFeedPage.module.css";
 
+// HomeFeedPage: Displays recognition stories and nominations feed with filters and people list sidebar
 function HomeFeedPage() {
   // Routing and Location
   const location = useLocation();
   const history = useHistory();
 
-  // PATCH 8: Consume auth context to trigger re-render after refresh
+  // PATCH 8: Auth context for re-render and data access
   const { currentUser, currentUserLoaded } = useCurrentUser();
+
   // PATCH 8: Optional console for debugging
   useEffect(() => {
     console.log("HomeFeedPage re-evaluated currentUser:", currentUser);
@@ -34,7 +36,7 @@ function HomeFeedPage() {
   const [nominations, setNominations] = useState([]);
   const [people, setPeople] = useState([]);
 
-  // Handle URL query param to trigger alert
+  // Show deletion alert based on URL query param
   useEffect(() => {
     const isDeletedParam =
       new URLSearchParams(location.search).get("deleted") === "true";
@@ -49,13 +51,12 @@ function HomeFeedPage() {
     }
   }, [showDeleted]);
 
-  // Fetch Posts data
+  // Fetch Posts (recognitions) data
   useEffect(() => {
     axiosReq
       .get("/posts/")
       .then((res) => setRecognitions(res.data.results))
       .catch((err) => {
-        // console.log(err);
         // TODO: add user feedback on error
       })
       .finally(() => setHasLoaded(true));
@@ -67,7 +68,6 @@ function HomeFeedPage() {
       .get("/nominations/")
       .then((res) => setNominations(res.data.results))
       .catch((err) => {
-        // console.log('Error fetching nominations:', err);
         // TODO: add user feedback on error
       });
   }, []);
@@ -78,12 +78,11 @@ function HomeFeedPage() {
       .get("/user-profiles/")
       .then((res) => setPeople(res.data.results || res.data))
       .catch((err) => {
-        // console.log('Error fetching people:', err);
         // TODO: add user feedback on error
       });
   }, []);
 
-  // PATCH 8: Prevent premature rendering
+  // PATCH 8: Prevent rendering before currentUser is loaded
   if (!currentUserLoaded) return <LoadingIndicator message="Loading..." />;
 
   return (
@@ -99,7 +98,7 @@ function HomeFeedPage() {
       )}
 
       <Row>
-        {/* Left Column - Feed */}
+        {/* Left Column - Feed and toggle buttons */}
         <Col md={8}>
           <div className={feedStyles.FeedContent}>
             {/* Feed Toggle Buttons */}
@@ -128,6 +127,7 @@ function HomeFeedPage() {
               </Button>
             </div>
 
+            {/* Feed content */}
             {hasLoaded ? (
               <>
                 {!showNominations ? (
@@ -172,16 +172,18 @@ function HomeFeedPage() {
           </div>
         </Col>
 
-        {/* Right Column - Sidebar */}
+        {/* Right Column - Search/filter sidebar */}
         <Col md={4} className={feedStyles.SidebarWrapper}>
           <div className={feedStyles.SearchFilterBlock}>
-            {/* Search field placeholder */}
+            {/* Mobile-only PeopleSearchBar */}
             <PeopleSearchBar
               className={feedStyles.MobileOnly}
               onUserSelect={(user) => {
                 history.push(`/profiles/${user.id}`);
               }}
             />
+
+            {/* Desktop search input */}
             <input
               type="text"
               className={`${feedStyles.FilterInput} ${feedStyles.DesktopOnly}`}
@@ -189,11 +191,12 @@ function HomeFeedPage() {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            {/* Department filter */}
+            {/* Department filter dropdown */}
             <select
               className={`${feedStyles.FilterSelect} ${feedStyles.DesktopOnly}`}
               value={selectedDepartment}
               onChange={(e) => setSelectedDepartment(e.target.value)}
+              aria-label="Filter by department"
             >
               <option value="">All Departments</option>
               {[
@@ -206,7 +209,7 @@ function HomeFeedPage() {
             </select>
           </div>
 
-          {/* People list placeholder */}
+          {/* People list */}
           <div className={feedStyles.PeopleList}>
             {people
               .filter((person) => {
