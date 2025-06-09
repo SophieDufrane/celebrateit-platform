@@ -4,12 +4,13 @@ import { axiosReq } from "../../api/axiosDefaults";
 import FormFooter from "../../components/FormFooter";
 import styles from "../../styles/PostForm.module.css";
 
+// CommentForm: Controlled form to add a new comment for a post
 function CommentForm({ postId, onCommentSubmit, disabled = false }) {
   // State
   const [content, setContent] = useState("");
   const [errors, setErrors] = useState({});
 
-  // Derived/computed values
+  // Derived value: check if comment is valid (non-empty trimmed string)
   const isValidComment = content.trim().length > 0;
 
   // Handlers
