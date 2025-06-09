@@ -3,12 +3,13 @@ import { Form } from "react-bootstrap";
 import { axiosReq } from "../api/axiosDefaults";
 import styles from "../styles/PeopleSearchBar.module.css";
 
+// PeopleSearchBar: Controlled input with live user search and optional selection
 function PeopleSearchBar({
   onUserSelect,
   className = "",
   enableSelectionDisplay = false,
   prefillValue = "",
-  placeholderText = "Search people...", // default value
+  placeholderText = "Search people...",
 }) {
   // Input state
   const [input, setInput] = useState(prefillValue);
@@ -33,7 +34,7 @@ function PeopleSearchBar({
         const { data } = await axiosReq.get(`/users/?search=${input}`);
         setResults(data.results);
       } catch (err) {
-        console.error("Error fetching users", err);
+        // TODO: add user feedback on error
         setResults([]);
       }
     };
@@ -42,7 +43,7 @@ function PeopleSearchBar({
     return () => clearTimeout(delayDebounce);
   }, [input]);
 
-  // Handle input changes
+  // Handlers
   const handleChange = (e) => {
     setInput(e.target.value);
   };
@@ -67,7 +68,7 @@ function PeopleSearchBar({
         value={input}
         onChange={handleChange}
         autoComplete="off"
-        aria-label={placeholderText}
+        aria-label={placeholderText || "Search for a user by name"}
       />
       <div className={styles.suggestionBox}>
         {results.map((user) => (
