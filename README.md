@@ -1432,7 +1432,7 @@ To assess web performance, accessibility, and best practices, I used **Google Li
 
 - **Performance** from 88% to 93% (avatar images with helper to resize)
 - **Accessibility** from 85% to 100% (Arial Label + contrast)
-- **Best Practices** from 74% to %
+- **Best Practices** 74%
 - **SEO** 100%
 
 However, pages containing images stored on **Cloudinary** received a **Best Practices score of 88%** due to a a third-party cookie warning:

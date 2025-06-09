@@ -42,6 +42,8 @@ function Avatar(props) {
   return src ? (
     <img
       src={optimizeCloudinaryURL(src, dimension, dimension)}
+      loading="eager"
+      fetchpriority="high"
       alt={avatarAlt}
       width={dimension}
       height={dimension}
