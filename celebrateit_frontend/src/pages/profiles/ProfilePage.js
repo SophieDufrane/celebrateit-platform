@@ -10,8 +10,9 @@ import Avatar from "../../components/Avatar";
 import profileStyles from "../../styles/Profile.module.css";
 import styles from "../../App.module.css";
 
+// ProfilePage: displays a user's profile info and their posts (recognitions, nominations)
 function ProfilePage() {
-  // Ensure page scrolls to top on mount (especially important on mobile)
+  // Scroll to top on mount (important on mobile)
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -20,25 +21,26 @@ function ProfilePage() {
   const { id } = useParams();
   const history = useHistory();
   const location = useLocation();
+
+  // Show update success alert based on URL query param
   const [showUpdated, setShowUpdated] = useState(
     new URLSearchParams(location.search).get("updated")
   );
 
-  // Context
+  // Current authenticated user context
   const { currentUser } = useCurrentUser();
 
-  // Profile info
+  // State: profile data and posts
   const [profile, setProfile] = useState(null);
-
-  // User-related posts
   const [recognitions, setRecognitions] = useState([]);
   const [nominations, setNominations] = useState([]);
 
-  // UI State
+  // UI loading State
   const [hasLoadedProfile, setHasLoadedProfile] = useState(false);
   const [hasLoadedRecognitions, setHasLoadedRecognitions] = useState(false);
   const [hasLoadedNominations, setHasLoadedNominations] = useState(false);
 
+  // Auto-hide update success alert after 4 seconds
   useEffect(() => {
     if (showUpdated) {
       const timer = setTimeout(() => setShowUpdated(false), 4000);
@@ -54,7 +56,7 @@ function ProfilePage() {
         const { data } = await axiosReq.get(`/user-profiles/${id}/`);
         setProfile(data);
       } catch (err) {
-        // console.error("Error fetching profile:", err);
+        // TODO: add user feedback on error
       } finally {
         setHasLoadedProfile(true);
       }
@@ -63,7 +65,7 @@ function ProfilePage() {
     fetchProfile();
   }, [id]);
 
-  // Fetch recognitions by user
+  // Fetch user's recognitions
   useEffect(() => {
     if (id === "undefined") return;
     axiosReq
@@ -73,7 +75,7 @@ function ProfilePage() {
       .finally(() => setHasLoadedRecognitions(true));
   }, [id]);
 
-  // Fetch nominations by user
+  // Fetch user's nominations
   useEffect(() => {
     if (id === "undefined") return;
     axiosReq
@@ -83,6 +85,7 @@ function ProfilePage() {
       .finally(() => setHasLoadedNominations(true));
   }, [id]);
 
+  // Show loading indicator while any data is still loading
   if (id === "undefined") {
     return <LoadingIndicator message="Preparing your profile..." />;
   }
@@ -91,20 +94,22 @@ function ProfilePage() {
     return <LoadingIndicator message="Loading profile..." />;
   }
 
-  // Flags to detect missing core vs optional profile info
+  // Check for missing essential profile info
   const isCoreInfoMissing =
     !profile.first_name || !profile.last_name || !profile.department;
   const isOptionalInfoMissing = !profile.presentation || !profile.profile_image;
 
   return (
     <>
+      {/* Update success alert */}
       {showUpdated && (
         <div className="alert alert-success text-center mt-3">
           Your profile has been updated!
         </div>
       )}
+
       <Container>
-        {/* User Profile Info */}
+        {/* Profile header section */}
         {profile && (
           <div className={profileStyles.ProfileWrapper}>
             <div className={profileStyles.Banner} />
@@ -120,7 +125,7 @@ function ProfilePage() {
               />
             </div>
 
-            {/* Profile info + edit icon */}
+            {/* Profile info and actions */}
             <div className={profileStyles.ProfileDetails}>
               <div className={profileStyles.NameRow}>
                 <div className={profileStyles.NameRow}>
@@ -131,6 +136,8 @@ function ProfilePage() {
                         }`.trim()
                       : profile.user}
                   </h3>
+
+                  {/* Edit icon for own profile; Nominate button for others */}
                   {currentUser ? (
                     profile.is_user_profile ? (
                       <span
@@ -169,6 +176,8 @@ function ProfilePage() {
                   ) : null}
                 </div>
               </div>
+
+              {/* Profile completeness warnings */}
               {isCoreInfoMissing && (
                 <p className={profileStyles.IncompleteNote}>
                   {" "}
@@ -192,6 +201,8 @@ function ProfilePage() {
                     a short bio using the edit icon.
                   </p>
                 )}
+
+              {/* Department and bio */}
               <p className={profileStyles.Department}>{profile.department}</p>
               <p className={profileStyles.Bio}>
                 {profile.presentation || "No bio yet."}
@@ -199,6 +210,8 @@ function ProfilePage() {
             </div>
           </div>
         )}
+
+        {/* Posts Feed: Recognitions & Nominations in two columns */}
         <div className={profileStyles.TwoColumnFeed}>
           <div className={profileStyles.FeedColumn}>
             <div className={profileStyles.SectionTitlePurple}>Recognitions</div>
