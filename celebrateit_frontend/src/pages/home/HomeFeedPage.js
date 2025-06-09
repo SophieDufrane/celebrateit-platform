@@ -17,12 +17,7 @@ function HomeFeedPage() {
   const history = useHistory();
 
   // PATCH 8: Auth context for re-render and data access
-  const { currentUser, currentUserLoaded } = useCurrentUser();
-
-  // PATCH 8: Optional console for debugging
-  useEffect(() => {
-    console.log("HomeFeedPage re-evaluated currentUser:", currentUser);
-  }, [currentUser]);
+  const { currentUserLoaded } = useCurrentUser();
 
   // UI State
   const [showDeleted, setShowDeleted] = useState(false);

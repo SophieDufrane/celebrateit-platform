@@ -1430,7 +1430,7 @@ Some warnings were intentionally ignored:
 
 To assess web performance, accessibility, and best practices, I used **Google Lighthouse**.
 
-- **Performance** from 88% to 96% (avatar images with helper to resize)
+- **Performance** from 88% to 93% (avatar images with helper to resize)
 - **Accessibility** from 85% to 100% (Arial Label + contrast)
 - **Best Practices** from 74% to %
 - **SEO** 100%
