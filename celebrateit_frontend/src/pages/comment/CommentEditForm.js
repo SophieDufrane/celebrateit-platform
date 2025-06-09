@@ -38,6 +38,7 @@ function CommentEditForm(props) {
       setErrors(err.response?.data || {});
     }
   };
+
   return (
     <Form onSubmit={handleSubmit} className={styles.SingleComment}>
       <Form.Group>
@@ -47,6 +48,7 @@ function CommentEditForm(props) {
           onChange={handleChange}
           rows={2}
           className={styles.CommentText}
+          aria-label="Edit your comment"
         />
         {Array.isArray(errors?.content) &&
           errors.content.map((message, idx) => (
