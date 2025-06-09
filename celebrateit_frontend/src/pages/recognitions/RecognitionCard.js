@@ -8,8 +8,8 @@ import ConfirmDeleteModal from "../../components/ConfirmDeleteModal";
 import styles from "../../styles/PostCard.module.css";
 import PostLayoutShell from "../../components/PostLayoutShell";
 
+// RecognitionCard: Displays a recognition post with edit/delete options if owned
 function RecognitionCard(props) {
-  // Use frontend naming for routing, but backend naming for delete endpoint
   const {
     id,
     title,
@@ -33,23 +33,23 @@ function RecognitionCard(props) {
     deleteUrl = `/posts/${id}/`,
   } = props;
 
-  // User & Navigation
+  // Auth and navigation
   const { currentUser, currentUserLoaded } = useCurrentUser();
   const history = useHistory();
 
   // Local UI State
   const [showConfirm, setShowConfirm] = useState(false);
 
-  // Wait until auth state is resolved to avoid false unauthenticated UI
+  // Avoid rendering before auth loads
   if (!currentUserLoaded) return null;
 
-  // Derived display content
+  // Truncate content for preview
   const truncatedContent =
     content.length > 150
       ? `${content.slice(0, content.slice(0, 150).lastIndexOf(" "))}...`
       : content;
 
-  // Event Handlers
+  // Handlers
   const handleLike = async () => {
     try {
       const { data } = await axiosRes.post("/likes/", {
@@ -94,14 +94,13 @@ function RecognitionCard(props) {
       }
       history.push("/?deleted=true");
     } catch (err) {
-      // console.error("Delete failed:", err);
       // TODO: add user feedback on error
     } finally {
       setShowConfirm(false);
     }
   };
 
-  // Footer: Likes + Comments
+  // Footer section with likes and comments
   const postActions = (
     <div className={styles.PostFooter}>
       <div className={styles.ActionItem}>
@@ -160,6 +159,8 @@ function RecognitionCard(props) {
         )}
         <span>{likes_count}</span>
       </div>
+
+      {/* Link to comments section with comment count */}
       <Link
         to={`/recognitions/${id}`}
         className={`${styles.ActionItem} ${styles.Clickable}`}
@@ -200,6 +201,7 @@ function RecognitionCard(props) {
           </Link>
         }
       >
+        {/* Optional image */}
         {image && (
           <div className={styles.ImageWrapper}>
             <img src={image} alt={title} className={styles.PostImage} />
