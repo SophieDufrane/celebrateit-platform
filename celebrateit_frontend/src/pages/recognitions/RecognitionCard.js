@@ -152,6 +152,8 @@ function RecognitionCard(props) {
             <span
               className={styles.DisabledIcon}
               aria-label="Log in to like this recognition"
+              role="button"
+              aria-disabled="true"
             >
               <i className="far fa-thumbs-up" />
             </span>
