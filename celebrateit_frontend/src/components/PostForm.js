@@ -3,6 +3,7 @@ import { Form, OverlayTrigger, Tooltip } from "react-bootstrap";
 import FormFooter from "./FormFooter";
 import styles from "../styles/PostForm.module.css";
 
+// PostForm: Reusable form component for creating or editing a recognition
 function PostForm({
   title,
   content,
@@ -15,6 +16,7 @@ function PostForm({
 }) {
   return (
     <Form onSubmit={handleSubmit} className={styles.FormWrapper}>
+      {/* Title field with tooltip and error display */}
       <Form.Group controlId="title" className={styles.FormGroupSpacing}>
         <OverlayTrigger
           placement="top"
@@ -29,7 +31,6 @@ function PostForm({
             onChange={handleChange}
           />
         </OverlayTrigger>
-        {/* Validation error */}
         {Array.isArray(errors?.title) &&
           errors?.title?.map((message, idx) => (
             <div key={idx} className="text-danger mt-1">
@@ -38,6 +39,7 @@ function PostForm({
           ))}
       </Form.Group>
 
+      {/* Content field with tooltip and error display */}
       <Form.Group controlId="content" className={styles.FormGroupSpacing}>
         <OverlayTrigger
           placement="top"
@@ -53,7 +55,6 @@ function PostForm({
             onChange={handleChange}
           />
         </OverlayTrigger>
-        {/* Validation error */}
         {Array.isArray(errors?.content) &&
           errors?.content?.map((message, idx) => (
             <div key={idx} className="text-danger mt-1">
@@ -61,6 +62,7 @@ function PostForm({
             </div>
           ))}
       </Form.Group>
+
       {children}
       <FormFooter submitText={submitText} onCancel={onCancel} />
     </Form>
