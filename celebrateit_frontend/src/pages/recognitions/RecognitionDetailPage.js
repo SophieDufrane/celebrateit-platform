@@ -13,14 +13,15 @@ import styles from "../../styles/PostCard.module.css";
 import commentStyles from "../../styles/Comment.module.css";
 import LoadingIndicator from "../../components/LoadingIndicator";
 
+// RecognitionDetailPage: Display a single recognition detail with edit/delete functionality
 function RecognitionDetailPage() {
-  // Routing & context
+  // Route params, navigation and Context hooks
   const { id } = useParams();
   const history = useHistory();
   const location = useLocation();
   const { currentUser } = useCurrentUser();
 
-  // State
+  // State variables
   const [recognition, setRecognition] = useState(null);
   const [comments, setComments] = useState([]);
   const [showConfirm, setShowConfirm] = useState(false);
@@ -28,18 +29,19 @@ function RecognitionDetailPage() {
   const [editingComment, setEditingComment] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(null);
 
-  // Derived/computed values
+  // Derived values
   const isNomination = !!recognition?.nominee;
+
   let dropdownMenu = null;
 
-  // Check URL query params for success messages (post or comment actions)
+  // Parse URL query params for success alerts
   const searchParams = new URLSearchParams(location.search);
   const isCreated = searchParams.get("created") === "true";
   const isUpdated = searchParams.get("updated") === "true";
   const commentEdited = searchParams.get("comment_edited") === "true";
   const commentDeleted = searchParams.get("comment_deleted") === "true";
 
-  // Unified flag for displaying success alerts (posts or comments)
+  // Determine if any success alert should be shown
   const showSuccess =
     isCreated ||
     isUpdated ||
@@ -47,7 +49,7 @@ function RecognitionDetailPage() {
     commentDeleted ||
     showCommentSuccess;
 
-  // Determine appropriate success message based on URL or state
+  // Determine which success message to show
   const successMessage = isCreated
     ? "Your recognition has been published!"
     : isUpdated
@@ -60,7 +62,7 @@ function RecognitionDetailPage() {
     ? "Comment posted successfully!"
     : "";
 
-  // Handlers - Like / Unlike
+  // Handlers
   const handleLike = async () => {
     try {
       const { data } = await axiosRes.post("/likes/", {
@@ -72,7 +74,6 @@ function RecognitionDetailPage() {
         like_id: data.id,
       }));
     } catch (err) {
-      // console.log('Error liking recognition:', err);
       // TODO: add user feedback on error
     }
   };
@@ -86,12 +87,10 @@ function RecognitionDetailPage() {
         like_id: null,
       }));
     } catch (err) {
-      // console.log('Error unliking recognition:', err);
       // TODO: add user feedback on error
     }
   };
 
-  // Handlers - Delete Posts
   const handleDelete = () => {
     setShowConfirm(true);
   };
@@ -101,14 +100,12 @@ function RecognitionDetailPage() {
       await axiosReq.delete(`/posts/${recognition.id}/`);
       history.push("/?deleted=true");
     } catch (err) {
-      // console.error('Error deleting recognition:', err);
       // TODO: add user feedback on error
     } finally {
       setShowConfirm(false);
     }
   };
 
-  // Handlers - Delete comment
   const confirmDeleteComment = async () => {
     try {
       await axiosReq.delete(`/comments/${showDeleteModal}/`);
@@ -121,25 +118,24 @@ function RecognitionDetailPage() {
       }));
       history.replace(`${location.pathname}?comment_deleted=true`);
     } catch (err) {
-      // console.log('Error deleting comment:', err);
       // TODO: add user feedback on error
     } finally {
       setShowDeleteModal(null);
     }
   };
 
-  // Effect: auto-hide success alert and clean up URL
+  // Clear success alert after 4 seconds and clean URL
   useEffect(() => {
     if (showSuccess) {
       const timer = setTimeout(() => {
         setShowCommentSuccess(false);
         history.replace(location.pathname);
-      }, 3000);
+      }, 4000);
       return () => clearTimeout(timer);
     }
   }, [showSuccess, history, location.pathname]);
 
-  // Effect: fetch post details
+  // Fetch recognition data on mount or id change
   useEffect(() => {
     axiosReq
       .get(`/posts/${id}/`)
@@ -147,12 +143,11 @@ function RecognitionDetailPage() {
         setRecognition(response.data);
       })
       .catch((error) => {
-        // console.log('Error fetching recognitions details:', error);
         // TODO: add user feedback on error
       });
   }, [id]);
 
-  // Fetch comments
+  // Fetch comments for this post and update on id or currentUser changes
   useEffect(() => {
     axiosReq
       .get(`/comments/?post=${id}`)
@@ -164,7 +159,7 @@ function RecognitionDetailPage() {
       });
   }, [id, currentUser]);
 
-  // Early return: loading state
+  // Show loading indicator while fetching
   if (!recognition) {
     return (
       <Container className="d-flex justify-content-center py-5">
@@ -173,8 +168,7 @@ function RecognitionDetailPage() {
     );
   }
 
-  // Render helpers
-  // Temporary values
+  // Dropdown menu for edit/delete if user owns nomination
   dropdownMenu = recognition.is_user ? (
     <MoreDropdown
       handleEdit={() => history.push(`/recognitions/${recognition.id}/edit`)}
@@ -182,6 +176,7 @@ function RecognitionDetailPage() {
     />
   ) : null;
 
+  // Prepare post footer with like/comment controls if not a nomination
   const postActions = !isNomination ? (
     <div className={styles.PostFooter}>
       <div className={styles.ActionItem}>
@@ -269,6 +264,7 @@ function RecognitionDetailPage() {
         postActions={postActions}
       >
         <>
+          {/* Recognition image */}
           {recognition.image && (
             <div className={styles.ImageWrapper}>
               <img
@@ -278,6 +274,8 @@ function RecognitionDetailPage() {
               />
             </div>
           )}
+
+          {/* Comment form or login prompt */}
           {currentUser ? (
             <CommentForm
               postId={recognition.id}
@@ -300,8 +298,8 @@ function RecognitionDetailPage() {
             </p>
           )}
 
+          {/* Comments list */}
           <div className={commentStyles.CommentSection} />
-
           {comments.length ? (
             comments.map((comment) =>
               editingComment?.id === comment.id ? (
