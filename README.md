@@ -35,6 +35,7 @@
    - [6.2 Front-End Application Testing](#62-front-end-application-testing)
    - [6.3 Validators](#63-validators)
    - [6.4 Bugs and Fixes](#64-bugs-and-fixes)
+   - [6.5 UI/UX Improvements](#65-uiux-improvements)
 
 7. [Deployment](#7-deployment)
 
