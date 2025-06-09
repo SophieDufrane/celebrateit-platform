@@ -1845,12 +1845,16 @@ This setup keeps secrets out of version control and ensures the app runs securel
 ### **Content & Resources**
 
 All written content in this project was created by me, with occasional refinements assisted by ChatGPT to improve clarity, tone, and consistency.
+
 Profile images shown across the app were generated using [This Person Does Not Exist](https://thispersondoesnotexist.com), providing AI-created portraits for demonstration purposes.
 All media assets (including avatars and post images) are hosted via Cloudinary to ensure optimized delivery and fast load times.
+
 Additional UI illustrations and icons were sourced from [Freepik](https://www.freepik.com), and I used [Squoosh](https://squoosh.app) to reduce file size without quality loss.
 
 ### **Acknowledgements**
 
 I would like to extend my sincere thanks to my mentor, **Julia Konovalova**, for her unwavering support, thoughtful feedback, and sharp eye throughout the development and testing of CelebrateIt. Her guidance helped shape the project into something more coherent, functional, and aligned with best practices.
+
 I’m also grateful to the **Code Institute** tutor team and the Slack community for being a constant source of help, especially during the long debugging sessions when nothing seemed to work and I needed a second (or third) pair of eyes.
+
 Finally, a heartfelt thank you to my husband, whose steady encouragement and patience carried me through the most frustrating days of bugs, rebuilds, and unexpected errors. This project wouldn’t have made it to the finish line without his support.

@@ -25,7 +25,9 @@ function NavBar() {
       removeTokenTimestamp();
       localStorage.removeItem("access_token");
       localStorage.removeItem("refresh_token");
-      window.location.assign("/"); // full reset to avoid ghost state
+
+      // full reset to avoid ghost state but land on login page
+      window.location.assign("/login?loggedOut=true");
     } catch (err) {
       // console.error('Logout failed:', err);
       // TODO: add user feedback on error
