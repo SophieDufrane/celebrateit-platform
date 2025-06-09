@@ -1330,7 +1330,7 @@ Most info-level messages related to trailing slashes on void elements come from 
 
 <details>
   <summary>HTML Validator Results</summary>
-  <img src="documentation/other/html_validator.png">
+  <img src="documentation/validators/html_validator.png">
 </details>
 
 </br>
@@ -1342,7 +1342,7 @@ Since the app is built with React and uses modular CSS (`*.module.css`), some sc
 
 <details>
   <summary>CSS Validator Results</summary>
-  <img src="documentation/other/css_validator.png">
+  <img src="documentation/validators/css_validator.png">
 </details>
 
 #### **JavaScript**
@@ -1422,28 +1422,47 @@ Some warnings were intentionally ignored:
   <summary>Python validator results</summary>
 
    <p>
-      <img src="documentation/other/python_validator.png" alt="Python validator result" />
+      <img src="documentation/validators/python_validator.png" alt="Python validator result" />
    </p>
 </details>
 
 #### **Lighthouse Performance & Best Practices Testing**
 
-To assess web performance, accessibility, and best practices, I used **Google Lighthouse**.
+To assess web performance, accessibility, best practices and SEO, I used **Google Lighthouse** to audit multiple pages during final testing.
 
-- **Performance** from 88% to 93% (avatar images with helper to resize)
-- **Accessibility** from 85% to 100% (Arial Label + contrast)
-- **Best Practices** 74%
-- **SEO** 100%
+- **Performance:** Improved from 88% → 93%  
+  Optimized Cloudinary images using a custom helper function with size, format, and quality transformations. Added eager loading and fetch priority for avatar on profile page to reduce Largest Contentful Paint.
+- **Accessibility:** Improved from 85% → 100%  
+  Resolved missing ARIA labels, ensured consistent keyboard navigation, and improved text contrast.
+- **Best Practices:** 74% (see note below)
+- **SEO:** 100%
 
-However, pages containing images stored on **Cloudinary** received a **Best Practices score of 88%** due to a a third-party cookie warning:
-
-> "Chrome is moving towards a new experience that allows users to choose to browse without third-party cookies."
-
-Since this is related to Cloudinary's external content delivery, I could not find a way to fully mitigate this issue without affecting functionality. Despite this, all other performance aspects, including **accessibility and loading speed**, were optimised.
+**Cloudinary Cookie Warning:**  
+Pages received a **Best Practices score of 74%** due mostly to a third-party cookie warning.  
+Since this warning originates from Cloudinary's image delivery system, it cannot be fully resolved without self-hosting or proxying images. As this would negatively impact performance and development scalability, it was left in place. Functionality and user privacy are not affected.
 
 <details>
   <summary>Lighthouse Home Page</summary>
-  <img src="documentation/validators/lighthouse_home.png">
+
+   <p>
+      <img src="documentation/validators/lighthouse_home.png" alt="Lighthouse Home Page" />
+   </p>
+</details>
+
+<details>
+  <summary>Lighthouse Detail Page</summary>
+
+   <p>
+      <img src="documentation/validators/lighthouse_detail.png" alt="Lighthouse Home Page" />
+   </p>
+</details>
+
+<details>
+  <summary>Lighthouse Profile Page</summary>
+
+   <p>
+      <img src="documentation/validators/lighthouse_profile.png" alt="Lighthouse Home Page" />
+   </p>
 </details>
 
 ### 6.4 Bugs and Fixes
