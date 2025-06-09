@@ -1430,11 +1430,12 @@ Some warnings were intentionally ignored:
 
 To assess web performance, accessibility, and best practices, I used **Google Lighthouse**.
 
-- **Performance** .
-- **Best Practices** .
-- **Accessibility** .
+- **Performance** from 88% to 96% (avatar images with helper to resize)
+- **Accessibility** from 85% to 100% (Arial Label + contrast)
+- **Best Practices** from 74% to %
+- **SEO** 100%
 
-However, pages containing images stored on **Cloudinary** received a **Best Practices score of 78%** due to a a third-party cookie warning:
+However, pages containing images stored on **Cloudinary** received a **Best Practices score of 88%** due to a a third-party cookie warning:
 
 > "Chrome is moving towards a new experience that allows users to choose to browse without third-party cookies."
 
