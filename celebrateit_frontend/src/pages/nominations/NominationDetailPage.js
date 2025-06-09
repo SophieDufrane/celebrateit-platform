@@ -8,17 +8,20 @@ import ConfirmDeleteModal from "../../components/ConfirmDeleteModal";
 import styles from "../../styles/PostCard.module.css";
 import LoadingIndicator from "../../components/LoadingIndicator";
 
+// NominationDetailPage: Display a single nomination detail with edit/delete functionality
 function NominationDetailPage() {
+  // Route params & navigation
   const { id } = useParams();
   const history = useHistory();
-  const [showConfirm, setShowConfirm] = useState(false);
   const location = useLocation();
 
+  // Local state
   const [nomination, setNomination] = useState(null);
+  const [showConfirm, setShowConfirm] = useState(false);
 
   let dropdownMenu = null;
 
-  // Check URL for post or update to show success message
+  // Parse URL query params for success alerts
   const searchParams = new URLSearchParams(location.search);
   const isCreated = searchParams.get("created") === "true";
   const isUpdated = searchParams.get("updated") === "true";
@@ -30,6 +33,7 @@ function NominationDetailPage() {
     ? "Your nomination has been updated!"
     : "";
 
+  // Handlers
   const handleDelete = () => {
     setShowConfirm(true);
   };
@@ -39,13 +43,13 @@ function NominationDetailPage() {
       await axiosReq.delete(`/nominations/${nomination.id}/`);
       history.push("/?deleted=true");
     } catch (err) {
-      // console.error('Error deleting nomination:', err);
       // TODO: add user feedback on error
     } finally {
       setShowConfirm(false);
     }
   };
 
+  // Clear success alert after 4 seconds and clean URL
   useEffect(() => {
     if (showSuccess) {
       const timer = setTimeout(() => {
@@ -56,20 +60,19 @@ function NominationDetailPage() {
     }
   }, [showSuccess, history, location.pathname]);
 
+  // Fetch nomination data on mount or id change
   useEffect(() => {
     axiosReq
       .get(`/nominations/${id}/`)
       .then((response) => {
         setNomination(response.data);
-        console.log("Nomination object:", response.data); // DEBUG
       })
       .catch((error) => {
-        // console.error("Error fetching nomination details:", error);
         // TODO: add user feedback on error
       });
   }, [id]);
 
-  // Early return: loading state
+  // Show loading indicator while fetching
   if (!nomination) {
     return (
       <Container className="d-flex justify-content-center py-5">
@@ -78,6 +81,7 @@ function NominationDetailPage() {
     );
   }
 
+  // Dropdown menu for edit/delete if user owns nomination
   dropdownMenu = nomination.is_user ? (
     <MoreDropdown
       handleEdit={() => history.push(`/nominations/${nomination.id}/edit`)}
