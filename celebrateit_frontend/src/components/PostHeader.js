@@ -2,10 +2,7 @@ import React from "react";
 import Avatar from "./Avatar";
 import styles from "../styles/PostCard.module.css";
 
-/**
- * Shared header for posts/nominations.
- * Includes avatar placeholder, display name, date, and optional dropdown.
- */
+// PostHeader: Shared header for recognitions and nominations
 function PostHeader(props) {
   const {
     profile_image,
