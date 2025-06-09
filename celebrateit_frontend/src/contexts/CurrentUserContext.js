@@ -4,12 +4,15 @@ import { useHistory } from "react-router";
 import { axiosReq, axiosRes } from "../api/axiosDefaults";
 import { removeTokenTimestamp, shouldRefreshToken } from "../utils/utils";
 
+// Contexts
 export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();
 
+// Custom hooks
 export const useCurrentUser = () => useContext(CurrentUserContext);
 export const useSetCurrentUser = () => useContext(SetCurrentUserContext);
 
+// Provider component
 export function CurrentUserProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
   const [currentUserLoaded, setCurrentUserLoaded] = useState(false);
@@ -25,14 +28,15 @@ export function CurrentUserProvider({ children }) {
       const { data } = await axiosRes.get("dj-rest-auth/user/");
       setCurrentUser(data);
     } catch (err) {
+      // TODO: add user feedback on error
     } finally {
       setCurrentUserLoaded(true);
     }
   };
 
+  // PATCH 5: Soft-ping user endpoint every 5 minutes
   useEffect(() => {
     handleMount();
-    // PATCH 5: Soft-ping the user endpoint every 5 minutes to rehydrate state
     const interval = setInterval(() => {
       axiosRes
         .get("/dj-rest-auth/user/")
@@ -40,13 +44,14 @@ export function CurrentUserProvider({ children }) {
           setCurrentUser(data);
         })
         .catch(() => {});
-    }, 5 * 60 * 1000); // 5 minutes
+    }, 5 * 60 * 1000);
 
-    return () => clearInterval(interval); // clean up
+    return () => clearInterval(interval);
   }, []);
 
+  // PATCHES 1–10: Token attachment, refresh logic, auto-logout, cleanup
   useEffect(() => {
-    // PATCH 1 (updated): Attach access token only if currentUser is defined
+    // PATCH 1: Attach access token if logged in
     axiosReq.interceptors.request.use(
       (config) => {
         const token = localStorage.getItem("access_token");
@@ -55,14 +60,14 @@ export function CurrentUserProvider({ children }) {
         if (token && currentUser) {
           config.headers["Authorization"] = `Bearer ${token}`;
         } else {
-          delete config.headers["Authorization"]; // clean header if no token
+          delete config.headers["Authorization"];
         }
         return config;
       },
       (err) => Promise.reject(err)
     );
 
-    // PATCH 2: Refresh token before protected requests if timestamp exists
+    // PATCH 2: Attempt token refresh if needed
     requestInterceptorRef.current = axiosReq.interceptors.request.use(
       async (config) => {
         const isRefreshing = config._isRefreshing;
@@ -77,7 +82,7 @@ export function CurrentUserProvider({ children }) {
               "Authorization"
             ] = `Bearer ${data.access}`;
 
-            // PATCH 7: Skip rehydration if already loaded to avoid repeat loops
+            // PATCH 7: Rehydrate user context only if missing
             if (!currentUser) {
               const { data: userData } = await axiosRes.get(
                 "/dj-rest-auth/user/"
@@ -85,7 +90,7 @@ export function CurrentUserProvider({ children }) {
               setCurrentUser(userData);
             }
           } catch (err) {
-            // PATCH 3: Refresh token failed during request — force logout
+            // PATCH 3: Token refresh failed — logout user
             setCurrentUser((prevUser) => {
               if (prevUser) history.push("/signin");
               return null;
@@ -101,7 +106,7 @@ export function CurrentUserProvider({ children }) {
       (err) => Promise.reject(err)
     );
 
-    // PATCH 4 + 6: On response 401, try to refresh and rehydrate user context
+    // PATCH 4 + 6: Intercept 401s → refresh token → rehydrate → retry
     responseInterceptorRef.current = axiosRes.interceptors.response.use(
       (response) => response,
       async (err) => {
@@ -117,7 +122,6 @@ export function CurrentUserProvider({ children }) {
               Authorization: `Bearer ${data.access}`,
             };
 
-            // PATCH 6: Rehydrate user before retrying the failed request
             const { data: userData } = await axiosRes.get(
               "/dj-rest-auth/user/"
             );
@@ -126,7 +130,7 @@ export function CurrentUserProvider({ children }) {
             // Retry original request
             return axiosReq(err.config);
           } catch (err) {
-            // PATCH 3 (continued): Refresh failed on response — force logout
+            // PATCH 3 (continued): Force logout on token failure
             console.warn("TOKEN REFRESH FAILED — Forcing logout.");
             setCurrentUser((prevUser) => {
               if (prevUser) history.push("/signin");
@@ -138,10 +142,11 @@ export function CurrentUserProvider({ children }) {
             return Promise.reject(err);
           }
         }
-        return Promise.reject(err); // other non-401 errors (e.g., 403, 500)
+        return Promise.reject(err);
       }
     );
-    // PATCH 9: Eject interceptors on cleanup to avoid duplicate setups
+
+    // PATCH 9: Cleanup interceptors on unmount
     return () => {
       if (requestInterceptorRef.current !== null) {
         axiosReq.interceptors.request.eject(requestInterceptorRef.current);
