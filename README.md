@@ -97,7 +97,7 @@ To plan the project development, I adopted an Agile methodology centered on user
 | [#14](https://github.com/SophieDufrane/PP5-celebrateit/issues/14) | Delete Recognition      | Users can delete their recognition story.                              | Must Have          |
 | [#15](https://github.com/SophieDufrane/PP5-celebrateit/issues/15) | View Recognition Detail | Users can view the full content of a recognition story.                | Should Have        |
 | [#28](https://github.com/SophieDufrane/PP5-celebrateit/issues/28) | View Recognition Feed   | Users can browse all recognitions in the feed.                         | Must Have          |
-| [#27](https://github.com/SophieDufrane/PP5-celebrateit/issues/27) | Create a Nomination     | Users can nominate a colleague for recognition using tags.             | Must Have          |
+| [#27](https://github.com/SophieDufrane/PP5-celebrateit/issues/27) | Create a Nomination     | Users can nominate a colleague by selecting a relevant tag (e.g. Innovation, Teamwork).             | Must Have          |
 | [#29](https://github.com/SophieDufrane/PP5-celebrateit/issues/29) | Edit Nomination         | Users can update nomination content and tags.                          | Must Have          |
 | [#30](https://github.com/SophieDufrane/PP5-celebrateit/issues/30) | Delete Nomination       | Users can remove a nomination they previously made.                    | Must Have          |
 | [#31](https://github.com/SophieDufrane/PP5-celebrateit/issues/31) | View Nomination Detail  | Users can view full details of a nomination.                           | Should Have        |
@@ -1377,8 +1377,6 @@ To ensure JavaScript and React code quality, **ESLint** was installed and config
 
 Non-critical warnings (such as `prop-types` or camelCase from API data) were selectively addressed based on their relevance to functionality and clarity.
 
-> This setup ensured clean, readable, and production-ready code without unnecessary overhead during development.
-
 #### **Python**
 
 To ensure that all Python files follow best coding practices, I used **Flake8** for linting. This tool checks for [PEP 8](https://pep8.org/) compliance, such as formatting inconsistencies or syntax issues.
@@ -1470,7 +1468,7 @@ Since this warning originates from Cloudinary's image delivery system, it cannot
 
 #### Profile Avatar Not Rendering:
 
-- **Bug**: User avatars were not displaying in PostCards, NominationCards, or the profile header.
+- **Bug**: User avatars were not displaying in RecognitionCards, NominationCards, or the profile header.
 - **Cause**: The serializer output did not include the `profile_image` field, and the frontend components were not prepared to receive it.
 - **Fix**: Added `profile_image` to the relevant serializers (Posts, Nominations, Profiles) and updated frontend components (`PostHeader`, `RecognitionCard`, `NominationCard`) to fetch and display the image.
 
@@ -1500,9 +1498,9 @@ Since this warning originates from Cloudinary's image delivery system, it cannot
 
 - **Bug**: Submitting the sign-up form caused a cryptic backend error, and the frontend displayed raw error codes instead of a readable message.
 - **Cause**: The `UserProfileSerializer` initially used a `SerializerMethodField` to access `.url` on the `profile_image`, which caused a crash when no image was uploaded. Since new users typically don’t add a profile image at registration, the field was often `None`, triggering an internal error.
-- **First Fix**: We added a defensive check using a `get_profile_image()` method.
+- **First Fix**: Add a defensive check using a `get_profile_image()` method.
   This worked temporarily but caused other issues (e.g. accessing nested .user.profile caused confusion in ProfilePage and created inconsistencies when serializing profile data directly).
-- **Final Fix**: We replaced the method field with a correctly configured ImageField directly mapped to the model: `profile_image = serializers.ImageField(source='image', required=False, allow_null=True, write_only=False)`
+- **Final Fix**: Replace the method field with a correctly configured ImageField directly mapped to the model: `profile_image = serializers.ImageField(source='image', required=False, allow_null=True, write_only=False)`
   This approach safely returns null if no image is present, works smoothly across all profile views, and avoids complex lookups.
 
 #### Create Nomination – Dropdown Requires Double Click:
@@ -1517,14 +1515,21 @@ Since this warning originates from Cloudinary's image delivery system, it cannot
 - **Goal**: Replace inline nominee dropdown logic with a reusable `PeopleSearchBar` component to improve mobile layout and maintainability.
 - **Change**: `CreateNominationPage` now imports and uses `PeopleSearchBar`, which already worked in `HomeFeedPage`.
 - **Outcome**: The refactor was successful in unifying layout and keeping code DRY. However, the dropdown behavior in `CreateNominationPage` remains buggy (see above), suggesting the issue is tied to layout or page structure rather than the component itself.
-- **Next Step**: Accept the visual limitation for now and continue development.
 
-### 6.5 UI/UX Improvements
+### 6.5 UI/UX Improvements (Planned Enhancement)
 
-#### Notification Positioning (Planned Enhancement)
+#### Notification Positioning
 
 - **Current Behavior**: Success messages like "Your profile has been updated!" are currently displayed in the normal page layout. This pushes the content down and affects the overall layout.
 - **Planned Improvement**: Change the notification to use absolute positioning so it appears over the page without moving other content. This should improve the user experience, especially on smaller screens.
+
+#### Message Clarity & Visibility
+
+- **Generic Messaging**: Some system messages currently use generic terms like "post" instead of context-specific ones like recognition or nomination.
+- **Planned Improvement**: Tailor both success and error messages to reflect the content type and action performed, making feedback clearer and more meaningful for users.  
+
+- **Visibility on Scroll**: Success or error messages appear at the top of the page — but users don’t always see them, especially when interacting with content at the bottom (e.g. editing a comment).
+- **Planned Improvement**: Look into simpler ways to show messages (like using toast popups) that stay visible on screen, even if the user is scrolling down the page.
 
 ## 7. Deployment
 
@@ -1880,4 +1885,6 @@ I would like to extend my sincere thanks to my mentor, **Julia Konovalova**, for
 
 I’m also grateful to the **Code Institute** tutor team and the Slack community for being a constant source of help, especially during the long debugging sessions when nothing seemed to work and I needed a second (or third) pair of eyes.
 
-Finally, a heartfelt thank you to my husband, whose steady encouragement and patience carried me through the most frustrating days of bugs, rebuilds, and unexpected errors. This project wouldn’t have made it to the finish line without his support.
+Finally, a heartfelt thank you to my husband, whose steady encouragement and patience carried me through the most frustrating days of bugs, rebuilds, and unexpected errors. This project wouldn’t have made it to the finish line without his support.  
+
+A special shoutout as well to my sister (aka "Magic Lulu") for thoroughly testing the app and providing both hilarious and insightful feedback. Her recognition/nomination/comments — while slightly unconventional — helped improve the UX and confirmed that the app could spark joy, even in testing mode!
