@@ -1874,7 +1874,7 @@ This setup keeps secrets out of version control and ensures the app runs securel
 
 All written content in this project was created by me, with occasional refinements assisted by ChatGPT to improve clarity, tone, and consistency.
 
-Profile images shown across the app were generated using [This Person Does Not Exist](https://thispersondoesnotexist.com), providing AI-created portraits for demonstration purposes.
+Profile images shown across the app were generated using [AI-generated faces](https://generated.photos/faces), providing AI-created portraits for demonstration purposes.
 All media assets (including avatars and post images) are hosted via Cloudinary to ensure optimized delivery and fast load times.
 
 Additional UI illustrations and icons were sourced from [Freepik](https://www.freepik.com), and I used [Squoosh](https://squoosh.app) to reduce file size without quality loss.
