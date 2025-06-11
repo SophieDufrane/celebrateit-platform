@@ -1008,7 +1008,7 @@ Testing included:
 | Must Have    | Edit Recognition        | Feed / Detail Page > Dropdown > Edit   | Click edit from dropdown, verify form is prefilled, submit updates | Success message shown; updated content appears in feed and detail page                                                                                               | ✅     | 2a, 2b, 2c     |
 | Must Have    | Delete Recognition      | Feed / Detail Page > Dropdown > Delete | Click delete from dropdown, confirm deletion in modal              | Confirmation prompt appears; post removed from feed with success message and no longer accessible via URL                                                            | ✅     | 3a, 3b         |
 | Must Have    | View Recognition Detail | Feed > "View full post"                | Click "View full post" button on card                              | Full post loads with correct title, content, author, date, and comments; if logged in → comment form is visible; if logged out → prompt to log in to leave a comment | ✅     | 4a, 4b         |
-| Must Have    | View Recognition Feed   | Homepage                               | Visit homepage                                                     | Feed shows latest recognitions in reverse chronological order                                                                                                        | ✅     |                |
+| Must Have    | View Recognition Feed   | Homepage                               | Visit homepage                                                     | Feed shows latest recognitions in reverse chronological order                                                                                                        | ✅     | 5              |
 
 <details>
   <summary>1a. Create Recognition – Successful message</summary>
@@ -1082,6 +1082,14 @@ Testing included:
    </p>
 </details>
 
+<details>
+  <summary>5. View Recognition Feed</summary>
+
+   <p>
+      <img src="documentation/frontend/testing/recognition/recognition_feed_ordering.png" alt="5. View Recognition Feed" />
+   </p>
+</details>
+
 #### **Nomination CRUD**
 
 | **Priority** | **User Story**         | **Page(s)**                            | **Test Scenario / Action**                       | **Expected Result**                                                                                                                         | Actual | **Screenshot** |
@@ -1089,8 +1097,8 @@ Testing included:
 | Must Have    | Create Nomination      | Nomination Create Page                 | Fill form with nominee, tag, and message; submit | Redirected to detail page with success message; nomination appears in feed; required fields trigger “This field may not be blank.” if empty | ✅     | 1a, 1b, 1c, 1d |
 | Must Have    | Edit Nomination        | Feed / Detail Page > Dropdown > Edit   | Click edit from dropdown, update content or tag  | Form is prefilled; after submit, success message shown; changes reflected in feed                                                           | ✅     | 2a, 2b         |
 | Must Have    | Delete Nomination      | Feed / Detail Page > Dropdown > Delete | Click delete from dropdown, confirm prompt       | Confirmation modal appears; after confirm, success message shown; nomination removed                                                        | ✅     | 3a, 3b         |
-| Must Have    | View Nomination Detail | Feed > Click Card                      | Click nomination card preview in feed            | Full nomination loads with correct nominee, tag, content, and date                                                                          | ✅     |                |
-| Must Have    | View Nomination Feed   | Homepage > Toggle                      | Click “Nominations” toggle in homepage feed      | Feed updates to show only nominations in reverse chronological order                                                                        | ✅     |                |
+| Must Have    | View Nomination Detail | Feed > Click Card                      | Click nomination card preview in feed            | Full nomination loads with correct nominee, tag, content, and date                                                                          | ✅     | 4              |
+| Must Have    | View Nomination Feed   | Homepage > Toggle                      | Click “Nominations” toggle in homepage feed      | Feed updates to show only nominations in reverse chronological order                                                                        | ✅     | 5              |
 
 <details>
   <summary>1a. Create Nomination – Successful message</summary>
@@ -1153,6 +1161,22 @@ Testing included:
 
    <p>
       <img src="documentation/frontend/testing/nomination/nomination_delete_successful.png" alt="3b. Delete Nomination - Successful message" />
+   </p>
+</details>
+
+<details>
+  <summary>4. View Nomination Detail</summary>
+
+   <p>
+      <img src="documentation/frontend/testing/nomination/nomination_detail.png" alt="4. View Nomination Detail" />
+   </p>
+</details>
+
+<details>
+  <summary>5. VView Nomination Feed</summary>
+
+   <p>
+      <img src="documentation/frontend/testing/nomination/nomination_feed_ordering.png" alt="5. VView Nomination Feed" />
    </p>
 </details>
 
@@ -1280,7 +1304,7 @@ Testing included:
 | Should Have  | Conditional Profile Actions     | Public / My Profile Page     | View any profile page while logged in             | If viewing own profile → edit icon appears; if viewing another user → “Nominate” button is visible                                                                                      | ✅     | 2a, 2b         |
 | Must Have    | View Public Profiles            | Feed > Sidebar > Search List | Click username/avatar from search results         | Public profile page loads with user avatar, bio, and their recognitions and nominations                                                                                                 | ✅     |                |
 | Must Have    | View Draft Profile After Signup | Profile Page                 | Login after registration → visit own profile page | If profile details are incomplete, user sees fallback avatar and helpful messages suggesting how and where to update name, department, bio, or profile picture.                         | ✅     | 3              |
-| Could Have   | View My Own Posts               | My Profile Page              | Visit profile while logged in                     | User sees recognitions and nominations they created, grouped by type                                                                                                                    | ✅     |                |
+| Could Have   | View My Own Posts               | My Profile Page              | Visit profile while logged in                     | User sees recognitions and nominations they created, grouped by type                                                                                                                    | ✅     | 4              |
 
 <details>
   <summary>1a. Edit My Profile - Form prefilled with read only fields</summary>
@@ -1319,6 +1343,14 @@ Testing included:
 
    <p>
       <img src="documentation/frontend/testing/profile/profile_new_user.png" alt="3. View Draft Profile After Signup" />
+   </p>
+</details>
+
+<details>
+  <summary>4. View My Own Posts</summary>
+
+   <p>
+      <img src="documentation/frontend/testing/profile/profile_own_posts.png" alt="4. View My Own Posts" />
    </p>
 </details>
 
