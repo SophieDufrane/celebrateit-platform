@@ -1,5 +1,7 @@
 # CelebrateIt
 
+![Mockup](documentation/other/mockup_responsive.png)
+
 ## Table of Contents
 
 1. [Project Overview](#1-project-overview)
@@ -90,19 +92,19 @@ To plan the project development, I adopted an Agile methodology centered on user
 
 #### **EPIC – Recognition & Nomination CRUD**
 
-| **ID**                                                            | **Theme**               | **User Story**                                                         | **Prioritisation** |
-| ----------------------------------------------------------------- | ----------------------- | ---------------------------------------------------------------------- | ------------------ |
-| [#11](https://github.com/SophieDufrane/PP5-celebrateit/issues/11) | Create a Recognition    | Users can submit a recognition story to celebrate someone.             | Must Have          |
-| [#13](https://github.com/SophieDufrane/PP5-celebrateit/issues/13) | Edit Recognition        | Users can edit a previously shared recognition.                        | Must Have          |
-| [#14](https://github.com/SophieDufrane/PP5-celebrateit/issues/14) | Delete Recognition      | Users can delete their recognition story.                              | Must Have          |
-| [#15](https://github.com/SophieDufrane/PP5-celebrateit/issues/15) | View Recognition Detail | Users can view the full content of a recognition story.                | Should Have        |
-| [#28](https://github.com/SophieDufrane/PP5-celebrateit/issues/28) | View Recognition Feed   | Users can browse all recognitions in the feed.                         | Must Have          |
-| [#27](https://github.com/SophieDufrane/PP5-celebrateit/issues/27) | Create a Nomination     | Users can nominate a colleague by selecting a relevant tag (e.g. Innovation, Teamwork).             | Must Have          |
-| [#29](https://github.com/SophieDufrane/PP5-celebrateit/issues/29) | Edit Nomination         | Users can update nomination content and tags.                          | Must Have          |
-| [#30](https://github.com/SophieDufrane/PP5-celebrateit/issues/30) | Delete Nomination       | Users can remove a nomination they previously made.                    | Must Have          |
-| [#31](https://github.com/SophieDufrane/PP5-celebrateit/issues/31) | View Nomination Detail  | Users can view full details of a nomination.                           | Should Have        |
-| [#32](https://github.com/SophieDufrane/PP5-celebrateit/issues/32) | View Nomination Feed    | Users can browse all nominations in the feed.                          | Must Have          |
-| [#12](https://github.com/SophieDufrane/PP5-celebrateit/issues/12) | View Own Posts          | Users can view a list of recognitions and nominations they’ve created. | Could Have         |
+| **ID**                                                            | **Theme**               | **User Story**                                                                          | **Prioritisation** |
+| ----------------------------------------------------------------- | ----------------------- | --------------------------------------------------------------------------------------- | ------------------ |
+| [#11](https://github.com/SophieDufrane/PP5-celebrateit/issues/11) | Create a Recognition    | Users can submit a recognition story to celebrate someone.                              | Must Have          |
+| [#13](https://github.com/SophieDufrane/PP5-celebrateit/issues/13) | Edit Recognition        | Users can edit a previously shared recognition.                                         | Must Have          |
+| [#14](https://github.com/SophieDufrane/PP5-celebrateit/issues/14) | Delete Recognition      | Users can delete their recognition story.                                               | Must Have          |
+| [#15](https://github.com/SophieDufrane/PP5-celebrateit/issues/15) | View Recognition Detail | Users can view the full content of a recognition story.                                 | Should Have        |
+| [#28](https://github.com/SophieDufrane/PP5-celebrateit/issues/28) | View Recognition Feed   | Users can browse all recognitions in the feed.                                          | Must Have          |
+| [#27](https://github.com/SophieDufrane/PP5-celebrateit/issues/27) | Create a Nomination     | Users can nominate a colleague by selecting a relevant tag (e.g. Innovation, Teamwork). | Must Have          |
+| [#29](https://github.com/SophieDufrane/PP5-celebrateit/issues/29) | Edit Nomination         | Users can update nomination content and tags.                                           | Must Have          |
+| [#30](https://github.com/SophieDufrane/PP5-celebrateit/issues/30) | Delete Nomination       | Users can remove a nomination they previously made.                                     | Must Have          |
+| [#31](https://github.com/SophieDufrane/PP5-celebrateit/issues/31) | View Nomination Detail  | Users can view full details of a nomination.                                            | Should Have        |
+| [#32](https://github.com/SophieDufrane/PP5-celebrateit/issues/32) | View Nomination Feed    | Users can browse all nominations in the feed.                                           | Must Have          |
+| [#12](https://github.com/SophieDufrane/PP5-celebrateit/issues/12) | View Own Posts          | Users can view a list of recognitions and nominations they’ve created.                  | Could Have         |
 
 ---
 
@@ -1558,7 +1560,7 @@ Since this warning originates from Cloudinary's image delivery system, it cannot
 #### Message Clarity & Visibility
 
 - **Generic Messaging**: Some system messages currently use generic terms like "post" instead of context-specific ones like recognition or nomination.
-- **Planned Improvement**: Tailor both success and error messages to reflect the content type and action performed, making feedback clearer and more meaningful for users.  
+- **Planned Improvement**: Tailor both success and error messages to reflect the content type and action performed, making feedback clearer and more meaningful for users.
 
 - **Visibility on Scroll**: Success or error messages appear at the top of the page — but users don’t always see them, especially when interacting with content at the bottom (e.g. editing a comment).
 - **Planned Improvement**: Look into simpler ways to show messages (like using toast popups) that stay visible on screen, even if the user is scrolling down the page.
@@ -1917,6 +1919,6 @@ I would like to extend my sincere thanks to my mentor, **Julia Konovalova**, for
 
 I’m also grateful to the **Code Institute** tutor team and the Slack community for being a constant source of help, especially during the long debugging sessions when nothing seemed to work and I needed a second (or third) pair of eyes.
 
-Finally, a heartfelt thank you to my husband, whose steady encouragement and patience carried me through the most frustrating days of bugs, rebuilds, and unexpected errors. This project wouldn’t have made it to the finish line without his support.  
+Finally, a heartfelt thank you to my husband, whose steady encouragement and patience carried me through the most frustrating days of bugs, rebuilds, and unexpected errors. This project wouldn’t have made it to the finish line without his support.
 
 A special shoutout as well to my sister (aka "Magic Lulu") for thoroughly testing the app and providing both hilarious and insightful feedback. Her recognition/nomination/comments — while slightly unconventional — helped improve the UX and confirmed that the app could spark joy, even in testing mode!
