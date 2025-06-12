@@ -931,11 +931,13 @@ Each section below corresponds to a model and includes the tested endpoint, HTTP
 
 </details>
 
+> Note: While the tables above list update operations using the PUT method for clarity, the backend also supports PATCH requests, which are actively used in the frontend (e.g., to edit profiles, recognitions, nominations, and comments). Both methods have been verified to behave as expected.
+
 ---
 
 ### 6.2 Front-End Application Testing
 
-All manual testing was performed on the deployed frontend using a real user account. Each user story was tested with expected interactions and outcomes, covering both positive and negative cases.
+All manual testing was performed on the deployed frontend using several real user accounts. Each user story was tested with expected interactions and outcomes, covering both positive and negative cases.
 
 Testing included:
 
@@ -951,7 +953,7 @@ Testing included:
 
 | **Priority** | **User Story**           | **Page(s)**       | **Test Scenario / Action**                          | **Expected Result**                                                                                   | Actual | **Screenshot** |
 | ------------ | ------------------------ | ----------------- | --------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ------ | -------------- |
-| Must Have    | Register an Account      | Register Page     | Fill out form with invalid and valid inputs, submit | Invalid inputs trigger validation messages; valid inputs redirect to login with success confirmation  | ✅     | 1a, 1b         |
+| Must Have    | Register an Account      | Register Page     | Fill out form with invalid and valid inputs, submit | Invalid inputs trigger error messages; valid inputs redirect to login with success confirmation  | ✅     | 1a, 1b         |
 | Must Have    | Login to Account         | Login Page        | Enter invalid and valid credentials, submit         | Invalid credentials trigger error messages; valid credentials redirect to feed with user menu visible | ✅     | 2              |
 | Must Have    | Logout                   | Any Page (Navbar) | Click logout                                        | User is logged out and redirected to login, message confirms successful logged out                    | ✅     | 3              |
 | Must Have    | Conditional Menu Options | All Pages         | Login and check navbar / Logout and check again     | Navbar displays user-specific links when logged in, and generic links when logged out.                | ✅     | 4a, 4b         |
@@ -1008,11 +1010,11 @@ Testing included:
 
 | **Priority** | **User Story**          | **Page(s)**                            | **Test Scenario / Action**                                         | **Expected Result**                                                                                                                                                  | Actual | **Screenshot** |
 | ------------ | ----------------------- | -------------------------------------- | ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------------- |
-| Must Have    | Create Recognition      | Post Create Page                       | Fill out form with content, submit form                            | Redirected to detail page with success message; new post appears in feed; required fields trigger “This field may not be blank.” if empty                            | ✅     | 1a, 1b         |
-| Must Have    | Edit Recognition        | Feed / Detail Page > Dropdown > Edit   | Click edit from dropdown, verify form is prefilled, submit updates | Success message shown; updated content appears in feed and detail page                                                                                               | ✅     | 2a, 2b, 2c     |
-| Must Have    | Delete Recognition      | Feed / Detail Page > Dropdown > Delete | Click delete from dropdown, confirm deletion in modal              | Confirmation prompt appears; post removed from feed with success message and no longer accessible via URL                                                            | ✅     | 3a, 3b         |
-| Must Have    | View Recognition Detail | Feed > "View full post"                | Click "View full post" button on card                              | Full post loads with correct title, content, author, date, and comments; if logged in → comment form is visible; if logged out → prompt to log in to leave a comment | ✅     | 4a, 4b         |
-| Must Have    | View Recognition Feed   | Homepage                               | Visit homepage                                                     | Feed shows latest recognitions in reverse chronological order                                                                                                        | ✅     | 5              |
+| Must Have    | Create Recognition      | Recognition Create Page                       | Fill out form with content, submit form                            | Redirected to detail page with success message; new recognition appears in feed and profile page; required fields trigger error messages if empty                            | ✅     | 1a, 1b         |
+| Must Have    | Edit Recognition        | Feed / Detail Page > Dropdown > Edit   | Click edit from dropdown, update content | Form is prefilled; after submit success message shown; changes reflected in detail page, feed and profile; required fields trigger error messages if empty                                                                                              | ✅     | 2a, 2b, 2c     |
+| Must Have    | Delete Recognition      | Feed / Detail Page > Dropdown > Delete | Click delete from dropdown, confirm deletion in modal       | Confirmation modal appears; after confirm, success message shown; post removed from feed and profile with success message   | ✅     | 3a, 3b         |
+| Must Have    | View Recognition Detail | Feed / Profile                | Click "View full content" button on card                              | Full post loads with correct title, content, author, date, and comments; if logged in → comment form is visible; if logged out → prompt to log in to leave a comment (with direct link) | ✅     | 4a, 4b         |
+| Must Have    | View Recognition Feed   | Homepage > Toggle       | Visit homepage and click on Recognitions button  | Feed shows latest recognitions in reverse chronological order                                                                                                        | ✅     | 5              |
 
 <details>
   <summary>1a. Create Recognition – Successful message</summary>
@@ -1099,10 +1101,10 @@ Testing included:
 | **Priority** | **User Story**         | **Page(s)**                            | **Test Scenario / Action**                       | **Expected Result**                                                                                                                         | Actual | **Screenshot** |
 | ------------ | ---------------------- | -------------------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------------- |
 | Must Have    | Create Nomination      | Nomination Create Page                 | Fill form with nominee, tag, and message; submit | Redirected to detail page with success message; nomination appears in feed; required fields trigger “This field may not be blank.” if empty | ✅     | 1a, 1b, 1c, 1d |
-| Must Have    | Edit Nomination        | Feed / Detail Page > Dropdown > Edit   | Click edit from dropdown, update content or tag  | Form is prefilled; after submit, success message shown; changes reflected in feed                                                           | ✅     | 2a, 2b         |
-| Must Have    | Delete Nomination      | Feed / Detail Page > Dropdown > Delete | Click delete from dropdown, confirm prompt       | Confirmation modal appears; after confirm, success message shown; nomination removed                                                        | ✅     | 3a, 3b         |
-| Must Have    | View Nomination Detail | Feed > Click Card                      | Click nomination card preview in feed            | Full nomination loads with correct nominee, tag, content, and date                                                                          | ✅     | 4              |
-| Must Have    | View Nomination Feed   | Homepage > Toggle                      | Click “Nominations” toggle in homepage feed      | Feed updates to show only nominations in reverse chronological order                                                                        | ✅     | 5              |
+| Must Have    | Edit Nomination        | Feed / Detail Page > Dropdown > Edit   | Click edit from dropdown, update content | Form is prefilled; after submit success message shown; changes reflected in detail page, feed and profile; required fields trigger error messages if empty   | ✅     | 2a, 2b         |
+| Must Have    | Delete Nomination      | Feed / Detail Page > Dropdown > Delete | Click delete from dropdown, confirm deletion in modal       | Confirmation modal appears; after confirm, success message shown; post removed from feed and profile with success message                                                        | ✅     | 3a, 3b         |
+| Must Have    | View Nomination Detail | Feed / Profile                | Click "View full content" button on card  | Full post loads with correct title, content, nominee, tag, and date                                                                          | ✅     | 4              |
+| Must Have    | View Nomination Feed   | Homepage > Toggle                      | Visit homepage and click on Nominations button  | Feed shows latest recognitions in reverse chronological order  | ✅     | 5              |
 
 <details>
   <summary>1a. Create Nomination – Successful message</summary>
@@ -1177,10 +1179,10 @@ Testing included:
 </details>
 
 <details>
-  <summary>5. VView Nomination Feed</summary>
+  <summary>5. View Nomination Feed</summary>
 
    <p>
-      <img src="documentation/frontend/testing/nomination/nomination_feed_ordering.png" alt="5. VView Nomination Feed" />
+      <img src="documentation/frontend/testing/nomination/nomination_feed_ordering.png" alt="5. View Nomination Feed" />
    </p>
 </details>
 
