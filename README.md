@@ -94,17 +94,17 @@ To plan the project development, I adopted an Agile methodology centered on user
 
 | **ID**                                                            | **Theme**               | **User Story**                                                                          | **Prioritisation** |
 | ----------------------------------------------------------------- | ----------------------- | --------------------------------------------------------------------------------------- | ------------------ |
-| [#11](https://github.com/SophieDufrane/PP5-celebrateit/issues/11) | Create a Recognition    | Users can submit a recognition story to celebrate someone.                              | Must Have          |
-| [#13](https://github.com/SophieDufrane/PP5-celebrateit/issues/13) | Edit Recognition        | Users can edit a previously shared recognition.                                         | Must Have          |
-| [#14](https://github.com/SophieDufrane/PP5-celebrateit/issues/14) | Delete Recognition      | Users can delete their recognition story.                                               | Must Have          |
+| [#11](https://github.com/SophieDufrane/PP5-celebrateit/issues/11) | Create a Recognition    | Users can create a recognition story to celebrate a colleague or a team.                              | Must Have          |
+| [#13](https://github.com/SophieDufrane/PP5-celebrateit/issues/13) | Edit Recognition        | Users can edit their own recognition content.                                         | Must Have          |
+| [#14](https://github.com/SophieDufrane/PP5-celebrateit/issues/14) | Delete Recognition      | Users can delete their own recognition story.                                               | Must Have          |
 | [#15](https://github.com/SophieDufrane/PP5-celebrateit/issues/15) | View Recognition Detail | Users can view the full content of a recognition story.                                 | Should Have        |
 | [#28](https://github.com/SophieDufrane/PP5-celebrateit/issues/28) | View Recognition Feed   | Users can browse all recognitions in the feed.                                          | Must Have          |
-| [#27](https://github.com/SophieDufrane/PP5-celebrateit/issues/27) | Create a Nomination     | Users can nominate a colleague by selecting a relevant tag (e.g. Innovation, Teamwork). | Must Have          |
-| [#29](https://github.com/SophieDufrane/PP5-celebrateit/issues/29) | Edit Nomination         | Users can update nomination content and tags.                                           | Must Have          |
-| [#30](https://github.com/SophieDufrane/PP5-celebrateit/issues/30) | Delete Nomination       | Users can remove a nomination they previously made.                                     | Must Have          |
-| [#31](https://github.com/SophieDufrane/PP5-celebrateit/issues/31) | View Nomination Detail  | Users can view full details of a nomination.                                            | Should Have        |
+| [#27](https://github.com/SophieDufrane/PP5-celebrateit/issues/27) | Create a Nomination     | Users can nominate colleagues to acknowledge their work and contributions | Must Have          |
+| [#29](https://github.com/SophieDufrane/PP5-celebrateit/issues/29) | Edit Nomination         | Users can edit their own nomination content and tags.                                           | Must Have          |
+| [#30](https://github.com/SophieDufrane/PP5-celebrateit/issues/30) | Delete Nomination       | Users can delete their own nomination.                                     | Must Have          |
+| [#31](https://github.com/SophieDufrane/PP5-celebrateit/issues/31) | View Nomination Detail  | Users can view full content of a nomination.                                            | Should Have        |
 | [#32](https://github.com/SophieDufrane/PP5-celebrateit/issues/32) | View Nomination Feed    | Users can browse all nominations in the feed.                                           | Must Have          |
-| [#12](https://github.com/SophieDufrane/PP5-celebrateit/issues/12) | View Own Posts          | Users can view a list of recognitions and nominations they’ve created.                  | Could Have         |
+| [#12](https://github.com/SophieDufrane/PP5-celebrateit/issues/12) | View Own Posts          | Users can view the full list of their own recognitions and nominations on their profile page.                  | Could Have         |
 
 ---
 
@@ -112,10 +112,10 @@ To plan the project development, I adopted an Agile methodology centered on user
 
 | **ID**                                                            | **Theme**                | **User Story**                                            | **Prioritisation** |
 | ----------------------------------------------------------------- | ------------------------ | --------------------------------------------------------- | ------------------ |
-| [#16](https://github.com/SophieDufrane/PP5-celebrateit/issues/16) | Like a recognition       | Users can like a recognition to show appreciation.        | Should Have        |
-| [#17](https://github.com/SophieDufrane/PP5-celebrateit/issues/17) | Comment on a recognition | Users can comment on recognitions to engage with content. | Must Have          |
+| [#16](https://github.com/SophieDufrane/PP5-celebrateit/issues/16) | Like a recognition       | Users can like (and unlike) a recognition to show appreciation.        | Should Have        |
+| [#17](https://github.com/SophieDufrane/PP5-celebrateit/issues/17) | Comment on a recognition | Users can comment on recognitions to engage with content and colleagues. | Must Have          |
 | [#33](https://github.com/SophieDufrane/PP5-celebrateit/issues/33) | Edit/Delete Comments     | Users can edit or remove their own comments.              | Should Have        |
-| [#8](https://github.com/SophieDufrane/PP5-celebrateit/issues/8)   | Search for Colleagues    | Users can search for other people by name.                | Should Have        |
+| [#8](https://github.com/SophieDufrane/PP5-celebrateit/issues/8)   | Search for Colleagues    | Users can search for other colleagues by name, or filter by department, to access their profile page.                | Should Have        |
 
 ---
 
@@ -124,7 +124,7 @@ To plan the project development, I adopted an Agile methodology centered on user
 | **ID**                                                            | **Theme**            | **User Story**                                                      | **Prioritisation** |
 | ----------------------------------------------------------------- | -------------------- | ------------------------------------------------------------------- | ------------------ |
 | [#22](https://github.com/SophieDufrane/PP5-celebrateit/issues/22) | Edit My Profile      | Users can update their avatar and bio to personalise their profile. | Could Have         |
-| [#21](https://github.com/SophieDufrane/PP5-celebrateit/issues/21) | View Public Profiles | Users can view other users’ bios and shared posts.                  | Must Have          |
+| [#21](https://github.com/SophieDufrane/PP5-celebrateit/issues/21) | View Public Profiles | Users can view other profiles details and shared posts.                  | Must Have          |
 
 ---
 
@@ -150,7 +150,7 @@ This distribution ensures alignment with project constraints and focus, while st
 
 #### Entity Relationship Diagram (ERD)
 
-The ERD provides a high-level overview of the database structure, including the relationships between key models such as users, profiles, recognitions, nominations, tags, comments, and likes. It was designed early in the planning phase to ensure consistent field usage and API compatibility.
+The ERD provides a high-level overview of the database structure, including the relationships between key models such as users, profiles, recognitions, nominations, tags, comments, and likes. It was designed early in the planning phase to ensure consistent field usage and API compatibility, though it evolved slightly during development to reflect emerging needs and refinements.
 
 ![ERD](documentation/other/erd_celebrateit.png)
 
@@ -178,7 +178,7 @@ This architecture supports scalability and flexibility.
 
 #### Wireframes & Final Page Layouts
 
-The following wireframes outline the structure and layout of the main screens in CelebrateIt:
+The following wireframes outline the intended structure and layout of the main screens in CelebrateIt, helping to guide the user interface design and ensure a coherent navigation flow across the app.
 
 <details>
    <summary>Authentification Form</summary>
@@ -214,7 +214,7 @@ The following wireframes outline the structure and layout of the main screens in
 
 #### Final UI Screenshots
 
-Below are the final implementations of the main pages, which evolved from the original wireframes.
+Below are the final implementations of the main pages. While they were based on the original wireframes, the layouts evolved during development to improve usability, responsiveness, and overall user experience.
 
 <details>
    <summary>Register a new account</summary>
@@ -309,10 +309,10 @@ The colour palette echoes tech industry trends while adding warmth to reflect hu
 ![Colour Inspiration](documentation/other/color_scheme.png)
 
 <details>
-  <summary>Inspiration from Workhuman</summary>
+  <summary>Colours inspiration from Workhuman</summary>
 
    <p>
-      <img src="documentation/other/colours_inspiration_from_workhuman.png" alt="Inspiration from Workhuman" />
+      <img src="documentation/other/colours_inspiration_from_workhuman.png" alt="Colours inspiration from Workhuman" />
    </p>
 </details>
 
@@ -331,33 +331,34 @@ The colour palette echoes tech industry trends while adding warmth to reflect hu
 - Conditional navigation menu that adapts to auth state
 - Create, edit, delete, and view **Recognition** stories
 - Create, edit, delete, and view **Nominations** with required tags
-- Combined feed with toggle to switch between Recognition and Nominations
+- Combined feed with toggle to switch between Recognitions and Nominations
 - Detail pages for each recognition and nomination
 - Real-time **like** system for recognitions
 - **Comment** system with edit and delete options for authors
 - Public profile pages showing user's info and contributions
 - Logged-in users can **edit their avatar and bio**
-- **Search bar** to find colleagues from the feed by name
+- **Search bar** to find colleagues from the feed by name or filter by department
 
 ### Potential Future Enhancements
 
 - **Comment and Like Functionality on Nominations**  
-  Extend the interactive features available on recognition posts to nominations, allowing users to express appreciation or share supportive comments on nomination cards.
+  Extend the interactive features available on recognition to nominations, allowing users to express appreciation or share supportive comments on nomination cards. Initially, nominations were intentionally designed without these interactions to maintain a more formal tone. However, user testing revealed that enabling comments and likes significantly enhanced the sense of engagement and recognition within the platform
 
 - **Quick Nomination Button from People Sidebar**  
-  Allow users to click a “Nominate” button directly next to a coworker’s name in the sidebar search results, pre-filling the nominee field on the nomination form.
+  Allow users to click a “Nominate” button directly next to a coworker’s name in the sidebar search results, pre-filling the nominee field on the nomination form. This feature has also been implemented on user profile pages to streamline the nomination process and gently encourage users to recognize their peers more easily.
 
 - **Tag-Based Visual Filters**  
-  Replace the current tag dropdown with a horizontal tag bar featuring colored badges/icons for each tag. Clicking a tag would visually filter the nominations feed by category (e.g., Innovation, Leadership, Teamwork).
+  This enhancement would include two improvements related to tags:
+
+In the Create Nomination form, the existing dropdown could be replaced with a row of visually distinctive tag badges, making the selection process more intuitive and engaging.
+
+In the Nominations Feed, a horizontal tag bar could allow users to filter nominations by category using the same badge-style icons, helping surface posts by theme (e.g., Innovation, Leadership, Teamwork) and promoting broader engagement.
 
 - **Department-Based Feed Filters**  
   Introduce a filter system to view recognitions and nominations by department, helping teams focus on their own group’s stories and achievements.
 
 - **Saved Filters or Personal Feed Preferences**  
   Allow users to set preferred filters (e.g., tags, people, or departments) that persist between sessions for a more personalized experience.
-
-- **Admin Dashboard (HR/Team Leads)**  
-  A potential admin-level view to analyze engagement, tag frequency, or most recognized employees for internal reporting or performance reviews.
 
 ---
 
@@ -370,7 +371,7 @@ The backend API was developed using Django and the Django REST Framework:
 - **Django** – Python-based web framework for rapid development and clean architecture.
 - **Django REST Framework** – Used to build RESTful APIs consumed by the frontend.
 - **Django Allauth** – Manages user registration, login, logout, and authentication endpoints.
-- **PostgreSQL** – Relational database hosted on Heroku via automatic provisioning.
+- **PostgreSQL** – Relational database hosted on Heroku.
 - **Cloudinary** – Handles media uploads and delivery, especially for user-submitted images.
 
 ### 4.2 Frontend
@@ -385,11 +386,12 @@ The frontend of CelebrateIt was built using the following technologies:
 
 #### React Hooks & Architecture
 
-CelebrateIt relies heavily on React functional components with hooks for local state and side effects. `useState` manages form inputs, toggle states, and like/comment data. `useEffect` is used for fetching API data and syncing profile updates. The component structure emphasizes separation of concerns: shared layout (`PostLayoutShell`), interaction elements (`PostForm`), and containers provide clarity and reusability across the app.
+CelebrateIt is built with React functional components and leverages hooks extensively for state management and side effects. `useState` is used for form inputs, toggle states, and interactive features like likes and comments, while `useEffect` handles API data fetching and profile synchronization. The app also uses a `CurrentUserContext` to manage authentication state and token refresh logic globally.  
+The component architecture emphasizes separation of concerns: shared layout elements (e.g., `PostLayoutShell`), truly reusable components (`LoadingIndicator`, `MoreDropdown`), and purpose-built forms (`CommentForm`, `EditProfileForm`) help maintain clarity, consistency, and scalability across views.
 
 ### 4.3 Deployment & Tools
 
-- **Heroku** – Hosting and deployment of the Django REST API backend.
+- **Heroku** – Hosts both the Django REST API backend and the React frontend in a single full-stack deployment.
 - **GitHub** – Version control and repository management.
 - **Git** – Local version control with atomic commits and branching.
 - **VS Code** – Primary code editor with integrated terminal and extensions for React/Django.
@@ -426,7 +428,7 @@ The backend is organised into feature-based Django apps:
 
 - `posts/` – Recognition stories with optional image
 - `nominations/` – Peer nominations with required tag and nominee selection
-- `profiles/` – User profile extensions with department
+- `profiles/` – User profile extensions with department, content and profile image
 - `likes/` and `comments/` – Interactions for recognition stories
 - `tags/` – Used to categorize nominations
 - `department/` – Departments available for user filtering and classification
@@ -445,7 +447,7 @@ In hindsight:
 
 - The model representing a recognition story should have been named `Recognition` instead of `Post`.
 - The use of `post` throughout serializers, views, and URLs became semantically ambiguous once nominations were introduced.
-- This naming limitation was preserved to avoid heavy refactoring and potential migration issues close to the project deadline.
+- This naming limitation was preserved to avoid heavy refactoring and potential migration issues after the backend was deployed and development had progressed on the frontend.
 
 Despite the naming mismatch, internal consistency was maintained, and the API functionality remained clear and testable.
 
@@ -467,7 +469,7 @@ To address these issues, a structured refactor was implemented:
 | ----------------- | ----------------------------------------------------------------------- |
 | `PostLayoutShell` | Shared structural wrapper for both types (title, content, header, etc.) |
 | `PostHeader`      | Extracted component for avatar, name, timestamp, and dropdown menu      |
-| `PostCard`        | Focused solely on recognitions, includes image, like/comment logic      |
+| `RecognitionCard` (initially PostCard)        | Focused solely on recognitions, includes image, like/comment logic      |
 | `NominationCard`  | Handles nominations; renders nominee + tag via `extraContent` prop      |
 
 This refactor provided:
