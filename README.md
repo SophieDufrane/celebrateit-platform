@@ -92,30 +92,30 @@ To plan the project development, I adopted an Agile methodology centered on user
 
 #### **EPIC – Recognition & Nomination CRUD**
 
-| **ID**                                                            | **Theme**               | **User Story**                                                                          | **Prioritisation** |
-| ----------------------------------------------------------------- | ----------------------- | --------------------------------------------------------------------------------------- | ------------------ |
-| [#11](https://github.com/SophieDufrane/PP5-celebrateit/issues/11) | Create a Recognition    | Users can create a recognition story to celebrate a colleague or a team.                              | Must Have          |
-| [#13](https://github.com/SophieDufrane/PP5-celebrateit/issues/13) | Edit Recognition        | Users can edit their own recognition content.                                         | Must Have          |
-| [#14](https://github.com/SophieDufrane/PP5-celebrateit/issues/14) | Delete Recognition      | Users can delete their own recognition story.                                               | Must Have          |
-| [#15](https://github.com/SophieDufrane/PP5-celebrateit/issues/15) | View Recognition Detail | Users can view the full content of a recognition story.                                 | Should Have        |
-| [#28](https://github.com/SophieDufrane/PP5-celebrateit/issues/28) | View Recognition Feed   | Users can browse all recognitions in the feed.                                          | Must Have          |
-| [#27](https://github.com/SophieDufrane/PP5-celebrateit/issues/27) | Create a Nomination     | Users can nominate colleagues to acknowledge their work and contributions | Must Have          |
-| [#29](https://github.com/SophieDufrane/PP5-celebrateit/issues/29) | Edit Nomination         | Users can edit their own nomination content and tags.                                           | Must Have          |
-| [#30](https://github.com/SophieDufrane/PP5-celebrateit/issues/30) | Delete Nomination       | Users can delete their own nomination.                                     | Must Have          |
-| [#31](https://github.com/SophieDufrane/PP5-celebrateit/issues/31) | View Nomination Detail  | Users can view full content of a nomination.                                            | Should Have        |
-| [#32](https://github.com/SophieDufrane/PP5-celebrateit/issues/32) | View Nomination Feed    | Users can browse all nominations in the feed.                                           | Must Have          |
-| [#12](https://github.com/SophieDufrane/PP5-celebrateit/issues/12) | View Own Posts          | Users can view the full list of their own recognitions and nominations on their profile page.                  | Could Have         |
+| **ID**                                                            | **Theme**               | **User Story**                                                                                | **Prioritisation** |
+| ----------------------------------------------------------------- | ----------------------- | --------------------------------------------------------------------------------------------- | ------------------ |
+| [#11](https://github.com/SophieDufrane/PP5-celebrateit/issues/11) | Create a Recognition    | Users can create a recognition story to celebrate a colleague or a team.                      | Must Have          |
+| [#13](https://github.com/SophieDufrane/PP5-celebrateit/issues/13) | Edit Recognition        | Users can edit their own recognition content.                                                 | Must Have          |
+| [#14](https://github.com/SophieDufrane/PP5-celebrateit/issues/14) | Delete Recognition      | Users can delete their own recognition story.                                                 | Must Have          |
+| [#15](https://github.com/SophieDufrane/PP5-celebrateit/issues/15) | View Recognition Detail | Users can view the full content of a recognition story.                                       | Should Have        |
+| [#28](https://github.com/SophieDufrane/PP5-celebrateit/issues/28) | View Recognition Feed   | Users can browse all recognitions in the feed.                                                | Must Have          |
+| [#27](https://github.com/SophieDufrane/PP5-celebrateit/issues/27) | Create a Nomination     | Users can nominate colleagues to acknowledge their work and contributions                     | Must Have          |
+| [#29](https://github.com/SophieDufrane/PP5-celebrateit/issues/29) | Edit Nomination         | Users can edit their own nomination content and tags.                                         | Must Have          |
+| [#30](https://github.com/SophieDufrane/PP5-celebrateit/issues/30) | Delete Nomination       | Users can delete their own nomination.                                                        | Must Have          |
+| [#31](https://github.com/SophieDufrane/PP5-celebrateit/issues/31) | View Nomination Detail  | Users can view full content of a nomination.                                                  | Should Have        |
+| [#32](https://github.com/SophieDufrane/PP5-celebrateit/issues/32) | View Nomination Feed    | Users can browse all nominations in the feed.                                                 | Must Have          |
+| [#12](https://github.com/SophieDufrane/PP5-celebrateit/issues/12) | View Own Posts          | Users can view the full list of their own recognitions and nominations on their profile page. | Could Have         |
 
 ---
 
 #### **EPIC – Engaging with People & Posts**
 
-| **ID**                                                            | **Theme**                | **User Story**                                            | **Prioritisation** |
-| ----------------------------------------------------------------- | ------------------------ | --------------------------------------------------------- | ------------------ |
-| [#16](https://github.com/SophieDufrane/PP5-celebrateit/issues/16) | Like a recognition       | Users can like (and unlike) a recognition to show appreciation.        | Should Have        |
-| [#17](https://github.com/SophieDufrane/PP5-celebrateit/issues/17) | Comment on a recognition | Users can comment on recognitions to engage with content and colleagues. | Must Have          |
-| [#33](https://github.com/SophieDufrane/PP5-celebrateit/issues/33) | Edit/Delete Comments     | Users can edit or remove their own comments.              | Should Have        |
-| [#8](https://github.com/SophieDufrane/PP5-celebrateit/issues/8)   | Search for Colleagues    | Users can search for other colleagues by name, or filter by department, to access their profile page.                | Should Have        |
+| **ID**                                                            | **Theme**                | **User Story**                                                                                        | **Prioritisation** |
+| ----------------------------------------------------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------- | ------------------ |
+| [#16](https://github.com/SophieDufrane/PP5-celebrateit/issues/16) | Like a recognition       | Users can like (and unlike) a recognition to show appreciation.                                       | Should Have        |
+| [#17](https://github.com/SophieDufrane/PP5-celebrateit/issues/17) | Comment on a recognition | Users can comment on recognitions to engage with content and colleagues.                              | Must Have          |
+| [#33](https://github.com/SophieDufrane/PP5-celebrateit/issues/33) | Edit/Delete Comments     | Users can edit or remove their own comments.                                                          | Should Have        |
+| [#8](https://github.com/SophieDufrane/PP5-celebrateit/issues/8)   | Search for Colleagues    | Users can search for other colleagues by name, or filter by department, to access their profile page. | Should Have        |
 
 ---
 
@@ -124,7 +124,7 @@ To plan the project development, I adopted an Agile methodology centered on user
 | **ID**                                                            | **Theme**            | **User Story**                                                      | **Prioritisation** |
 | ----------------------------------------------------------------- | -------------------- | ------------------------------------------------------------------- | ------------------ |
 | [#22](https://github.com/SophieDufrane/PP5-celebrateit/issues/22) | Edit My Profile      | Users can update their avatar and bio to personalise their profile. | Could Have         |
-| [#21](https://github.com/SophieDufrane/PP5-celebrateit/issues/21) | View Public Profiles | Users can view other profiles details and shared posts.                  | Must Have          |
+| [#21](https://github.com/SophieDufrane/PP5-celebrateit/issues/21) | View Public Profiles | Users can view other profiles details and shared posts.             | Must Have          |
 
 ---
 
@@ -465,12 +465,12 @@ The frontend originally aimed to reuse as many components as possible by treatin
 
 To address these issues, a structured refactor was implemented:
 
-| Component         | Purpose                                                                 |
-| ----------------- | ----------------------------------------------------------------------- |
-| `PostLayoutShell` | Shared structural wrapper for both types (title, content, header, etc.) |
-| `PostHeader`      | Extracted component for avatar, name, timestamp, and dropdown menu      |
-| `RecognitionCard` (initially PostCard)        | Focused solely on recognitions, includes image, like/comment logic      |
-| `NominationCard`  | Handles nominations; renders nominee + tag via `extraContent` prop      |
+| Component                              | Purpose                                                                 |
+| -------------------------------------- | ----------------------------------------------------------------------- |
+| `PostLayoutShell`                      | Shared structural wrapper for both types (title, content, header, etc.) |
+| `PostHeader`                           | Extracted component for avatar, name, timestamp, and dropdown menu      |
+| `RecognitionCard` (initially PostCard) | Focused solely on recognitions, includes image, like/comment logic      |
+| `NominationCard`                       | Handles nominations; renders nominee + tag via `extraContent` prop      |
 
 This refactor provided:
 
@@ -953,7 +953,7 @@ Testing included:
 
 | **Priority** | **User Story**           | **Page(s)**       | **Test Scenario / Action**                          | **Expected Result**                                                                                   | Actual | **Screenshot** |
 | ------------ | ------------------------ | ----------------- | --------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ------ | -------------- |
-| Must Have    | Register an Account      | Register Page     | Fill out form with invalid and valid inputs, submit | Invalid inputs trigger error messages; valid inputs redirect to login with success confirmation  | ✅     | 1a, 1b         |
+| Must Have    | Register an Account      | Register Page     | Fill out form with invalid and valid inputs, submit | Invalid inputs trigger error messages; valid inputs redirect to login with success confirmation       | ✅     | 1a, 1b         |
 | Must Have    | Login to Account         | Login Page        | Enter invalid and valid credentials, submit         | Invalid credentials trigger error messages; valid credentials redirect to feed with user menu visible | ✅     | 2              |
 | Must Have    | Logout                   | Any Page (Navbar) | Click logout                                        | User is logged out and redirected to login, message confirms successful logged out                    | ✅     | 3              |
 | Must Have    | Conditional Menu Options | All Pages         | Login and check navbar / Logout and check again     | Navbar displays user-specific links when logged in, and generic links when logged out.                | ✅     | 4a, 4b         |
@@ -1008,13 +1008,13 @@ Testing included:
 
 #### **Recognition CRUD**
 
-| **Priority** | **User Story**          | **Page(s)**                            | **Test Scenario / Action**                                         | **Expected Result**                                                                                                                                                  | Actual | **Screenshot** |
-| ------------ | ----------------------- | -------------------------------------- | ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------------- |
-| Must Have    | Create Recognition      | Recognition Create Page                       | Fill out form with content, submit form                            | Redirected to detail page with success message; new recognition appears in feed and profile page; required fields trigger error messages if empty                            | ✅     | 1a, 1b         |
-| Must Have    | Edit Recognition        | Feed / Detail Page > Dropdown > Edit   | Click edit from dropdown, update content | Form is prefilled; after submit success message shown; changes reflected in detail page, feed and profile; required fields trigger error messages if empty                                                                                              | ✅     | 2a, 2b, 2c     |
-| Must Have    | Delete Recognition      | Feed / Detail Page > Dropdown > Delete | Click delete from dropdown, confirm deletion in modal       | Confirmation modal appears; after confirm, success message shown; post removed from feed and profile with success message   | ✅     | 3a, 3b         |
-| Must Have    | View Recognition Detail | Feed / Profile                | Click "View full content" button on card                              | Full post loads with correct title, content, author, date, and comments; if logged in → comment form is visible; if logged out → prompt to log in to leave a comment (with direct link) | ✅     | 4a, 4b         |
-| Must Have    | View Recognition Feed   | Homepage > Toggle       | Visit homepage and click on Recognitions button  | Feed shows latest recognitions in reverse chronological order                                                                                                        | ✅     | 5              |
+| **Priority** | **User Story**          | **Page(s)**                            | **Test Scenario / Action**                            | **Expected Result**                                                                                                                                                                     | Actual | **Screenshot** |
+| ------------ | ----------------------- | -------------------------------------- | ----------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------------- |
+| Must Have    | Create Recognition      | Recognition Create Page                | Fill out form with content, submit form               | Redirected to detail page with success message; new recognition appears in feed and profile page; required fields trigger error messages if empty                                       | ✅     | 1a, 1b         |
+| Must Have    | Edit Recognition        | Feed / Detail Page > Dropdown > Edit   | Click edit from dropdown, update content              | Form is prefilled; after submit success message shown; changes reflected in detail page, feed and profile; required fields trigger error messages if empty                              | ✅     | 2a, 2b, 2c     |
+| Must Have    | Delete Recognition      | Feed / Detail Page > Dropdown > Delete | Click delete from dropdown, confirm deletion in modal | Confirmation modal appears; after confirm, success message shown; post removed from feed and profile with success message                                                               | ✅     | 3a, 3b         |
+| Must Have    | View Recognition Detail | Feed / Profile                         | Click "View full recognition" button on card          | Full post loads with correct title, content, author, date, and comments; if logged in → comment form is visible; if logged out → prompt to log in to leave a comment (with direct link) | ✅     | 4a, 4b         |
+| Must Have    | View Recognition Feed   | Homepage > Toggle                      | Visit homepage and click on Recognitions button       | Feed shows latest recognitions in reverse chronological order                                                                                                                           | ✅     | 5              |
 
 <details>
   <summary>1a. Create Recognition – Successful message</summary>
@@ -1098,13 +1098,13 @@ Testing included:
 
 #### **Nomination CRUD**
 
-| **Priority** | **User Story**         | **Page(s)**                            | **Test Scenario / Action**                       | **Expected Result**                                                                                                                         | Actual | **Screenshot** |
-| ------------ | ---------------------- | -------------------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------------- |
-| Must Have    | Create Nomination      | Nomination Create Page                 | Fill form with nominee, tag, and message; submit | Redirected to detail page with success message; nomination appears in feed; required fields trigger “This field may not be blank.” if empty | ✅     | 1a, 1b, 1c, 1d |
-| Must Have    | Edit Nomination        | Feed / Detail Page > Dropdown > Edit   | Click edit from dropdown, update content | Form is prefilled; after submit success message shown; changes reflected in detail page, feed and profile; required fields trigger error messages if empty   | ✅     | 2a, 2b         |
-| Must Have    | Delete Nomination      | Feed / Detail Page > Dropdown > Delete | Click delete from dropdown, confirm deletion in modal       | Confirmation modal appears; after confirm, success message shown; post removed from feed and profile with success message                                                        | ✅     | 3a, 3b         |
-| Must Have    | View Nomination Detail | Feed / Profile                | Click "View full content" button on card  | Full post loads with correct title, content, nominee, tag, and date                                                                          | ✅     | 4              |
-| Must Have    | View Nomination Feed   | Homepage > Toggle                      | Visit homepage and click on Nominations button  | Feed shows latest recognitions in reverse chronological order  | ✅     | 5              |
+| **Priority** | **User Story**         | **Page(s)**                            | **Test Scenario / Action**                            | **Expected Result**                                                                                                                                        | Actual | **Screenshot** |
+| ------------ | ---------------------- | -------------------------------------- | ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------------- |
+| Must Have    | Create Nomination      | Nomination Create Page                 | Fill form with nominee, tag, and message; submit      | Redirected to detail page with success message; nomination appears in feed; required fields trigger “This field may not be blank.” if empty                | ✅     | 1a, 1b, 1c, 1d |
+| Must Have    | Edit Nomination        | Feed / Detail Page > Dropdown > Edit   | Click edit from dropdown, update content              | Form is prefilled; after submit success message shown; changes reflected in detail page, feed and profile; required fields trigger error messages if empty | ✅     | 2a, 2b         |
+| Must Have    | Delete Nomination      | Feed / Detail Page > Dropdown > Delete | Click delete from dropdown, confirm deletion in modal | Confirmation modal appears; after confirm, success message shown; post removed from feed and profile with success message                                  | ✅     | 3a, 3b         |
+| Must Have    | View Nomination Detail | Feed / Profile                         | Click "View full nomination" button on card           | Full post loads with correct title, content, nominee, tag, and date                                                                                        | ✅     | 4              |
+| Must Have    | View Nomination Feed   | Homepage > Toggle                      | Visit homepage and click on Nominations button        | Feed shows latest recognitions in reverse chronological order                                                                                              | ✅     | 5              |
 
 <details>
   <summary>1a. Create Nomination – Successful message</summary>
@@ -1188,15 +1188,15 @@ Testing included:
 
 #### **Engaging with People & Posts**
 
-| **Priority** | **User Story**                | **Page(s)**        | **Test Scenario / Action**                       | **Expected Result**                                                                                                                                                 | Actual | **Screenshot** |
-| ------------ | ----------------------------- | ------------------ | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------------- |
-| Must Have    | Comment on Recognition        | Detail Page        | Submit valid comment while logged in             | Comment form is visible; post button is disabled when input is empty and enabled once content is entered; submitted comment appears below post with success message | ✅     | 1a, 1b, 1c     |
-| Must Have    | Guest View of Comment Section | Detail Page        | Visit post detail page while logged out          | Comment form is hidden; message appears prompting user to log in to leave a comment                                                                                 | ✅     | 2              |
-| Should Have  | Edit/Delete My Comment        | Detail Page        | Click edit or delete on comment authored by user | Dropdown is visible; editing opens prefilled form; delete prompts confirmation; success message shown after either action                                           | ✅     | 3a, 3b, 3c, 3d |
-| Should Have  | Like someone else Recognition | Feed / Detail Page | Click like/unlike while logged                   | Like count updates and icon toggles when liking someone else's post while logged in; own posts show disabled icon with tooltip                                      | ✅     | 4a, 4b         |
-| Should Have  | Guest View of Like Button     | Feed / Detail Page | Hover over like icon while logged out            | Like icon is inactive with “Log in to like” tooltip; cursor shows not-allowed style                                                                                 | ✅     | 5              |
-| Must Have    | Search for Colleagues         | Feed Sidebar       | Type full or partial name into search input      | Matching users appear in real time with avatar and full name                                                                                                        | ✅     | 6              |
-| Should Have  | Filter Colleagues by Dept     | Feed Sidebar       | Select department from dropdown                  | List updates to show only users from selected department; works in combination with name search                                                                     | ✅     | 7              |
+| **Priority** | **User Story**                           | **Page(s)**                             | **Test Scenario / Action**                                     | **Expected Result**                                                                                                                                                         | Actual | **Screenshot** |
+| ------------ | ---------------------------------------- | --------------------------------------- | -------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------------- |
+| Must Have    | Comment on Recognition                   | Detail Page                             | Submit valid comment while logged in                           | Comment form is visible; post button is disabled when input is empty and enabled once content is entered; after submit success message shown and comment appears below post | ✅     | 1a, 1b, 1c     |
+| Must Have    | Guest View of Comment Section            | Detail Page                             | Visit post detail page while logged out                        | Comment form is hidden; message appears prompting user to log in to leave a comment (with direct link)                                                                      | ✅     | 2              |
+| Should Have  | Edit/Delete My Comment                   | Detail Page > Dropdown > Edit or Delete | Click edit or delete from dropdown on comment authored by user | Dropdown is visible; editing opens prefilled form; delete prompts confirmation in modal; success message shown after either action                                          | ✅     | 3a, 3b, 3c, 3d |
+| Should Have  | Like / Unlike someone else Recognition   | Feed / Detail Page / Profile Page       | Click like/unlike while logged in                              | Like count updates and icon toggles when liking someone else's post while logged in; own posts show disabled icon with tooltip and not-allowed style                        | ✅     | 4a, 4b         |
+| Should Have  | Guest View of Like Button                | Feed / Detail Page / Profile Page       | Hover over like icon while logged out                          | Like icon is inactive with “Log in to like” tooltip; cursor shows not-allowed style                                                                                         | ✅     | 5              |
+| Must Have    | Search for Colleagues                    | Home Page Sidebar                       | Type full or partial name into search input                    | Matching users appear in real time with avatar and full name                                                                                                                | ✅     | 6              |
+| Should Have  | Filter List of colleagues by Departement | Home Page Sidebar                       | Select department from dropdown                                | List updates to show only users from selected department; works in combination with name search                                                                             | ✅     | 7              |
 
 <details>
   <summary>1a. Comment on Recognition - Post Button Disabled</summary>
@@ -1304,13 +1304,13 @@ Testing included:
 
 #### **Managing My Profile & Network**
 
-| **Priority** | **User Story**                  | **Page(s)**                  | **Test Scenario / Action**                        | **Expected Result**                                                                                                                                                                     | Actual | **Screenshot** |
-| ------------ | ------------------------------- | ---------------------------- | ------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------------- |
-| Should Have  | Edit My Profile                 | Profile Edit Page            | Change avatar or bio and save                     | Form is prefilled with current values; first name and last name fields are disabled with note to contact HR; after submit, success message is shown and updated info appears in profile | ✅     | 1a, 1b         |
-| Should Have  | Conditional Profile Actions     | Public / My Profile Page     | View any profile page while logged in             | If viewing own profile → edit icon appears; if viewing another user → “Nominate” button is visible                                                                                      | ✅     | 2a, 2b         |
-| Must Have    | View Public Profiles            | Feed > Sidebar > Search List | Click username/avatar from search results         | Public profile page loads with user avatar, bio, and their recognitions and nominations                                                                                                 | ✅     |                |
-| Must Have    | View Draft Profile After Signup | Profile Page                 | Login after registration → visit own profile page | If profile details are incomplete, user sees fallback avatar and helpful messages suggesting how and where to update name, department, bio, or profile picture.                         | ✅     | 3              |
-| Could Have   | View My Own Posts               | My Profile Page              | Visit profile while logged in                     | User sees recognitions and nominations they created, grouped by type                                                                                                                    | ✅     | 4              |
+| **Priority** | **User Story**                  | **Page(s)**                   | **Test Scenario / Action**                                  | **Expected Result**                                                                                                                                                                     | Actual | **Screenshot** |
+| ------------ | ------------------------------- | ----------------------------- | ----------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------------- |
+| Should Have  | Edit My Profile                 | Profile > Edit Profile        | Change avatar or bio and save                               | Form is prefilled with current values; first name and last name fields are disabled with note to contact HR; after submit, success message is shown and updated info appears in profile | ✅     | 1a, 1b         |
+| Should Have  | Conditional Profile Actions     | Public / My Profile Page      | View any profile page while logged in                       | If viewing own profile → edit icon appears; if viewing another user → “Nominate” button is visible                                                                                      | ✅     | 2a, 2b         |
+| Must Have    | View Public Profiles            | Home Page Sidebar / Any posts | Click username or full name from search results or on posts | Public profile page loads with user avatar, bio, and full list of their recognitions and nominations                                                                                    | ✅     |                |
+| Must Have    | View Draft Profile After Signup | Profile Page                  | Login after registration → visit own profile page           | If profile details are incomplete, user sees fallback avatar and helpful messages suggesting how and where to update name, department, bio, or profile picture.                         | ✅     | 3              |
+| Could Have   | View My Own Posts               | My Profile Page               | Visit profile while logged in                               | User sees recognitions and nominations they created, grouped by type                                                                                                                    | ✅     | 4              |
 
 <details>
   <summary>1a. Edit My Profile - Form prefilled with read only fields</summary>
@@ -1376,8 +1376,7 @@ Most info-level messages related to trailing slashes on void elements come from 
 
 This project’s styles were checked using [The W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/) and the document passed with **no errors** and validates as **CSS level 3 + SVG**.
 
-Note: This validation applies to compiled global styles and linked stylesheets.  
-Since the app is built with React and uses modular CSS (`*.module.css`), some scoped or dynamically applied styles (via JSX or Bootstrap classes) are not evaluated by the validator. These styles were reviewed manually for responsiveness, accessibility, and cross-browser compatibility.
+> Note: Since the app is built with React and uses modular CSS (`*.module.css`), some scoped or dynamically applied styles (via JSX or Bootstrap classes) are not evaluated by the validator. These styles were reviewed manually for responsiveness, accessibility, and cross-browser compatibility.
 
 <details>
   <summary>CSS Validator Results</summary>
@@ -1446,11 +1445,10 @@ Once set up, run the following command from the project root to lint the entire 
 flake8
 ```
 
-This will check all Python files in the project (excluding the listed folders/files) and highlight any issues that need to be addressed.
+This will check all Python files in the project (excluding the listed folders/files) and highlight any issues that need to be addressed.  
+All identified issues—mostly trailing whitespace and formatting inconsistencies—were fixed to ensure full compliance with PEP 8.
 
-> All identified issues—mostly trailing whitespace and formatting inconsistencies—were fixed to ensure full compliance with PEP 8.
-
-Some warnings were intentionally ignored:
+> Note: Some warnings were intentionally ignored:
 
 - Warnings from installed packages (e.g. `node_modules` or installed dependencies like `flatted.py`) were left untouched, as they are not part of the core codebase.
 - Unused imports in test files (e.g. `TestCase` in `tests.py`) were kept in place as placeholders to maintain Django's testing structure and support future test development.
@@ -1474,9 +1472,8 @@ To assess web performance, accessibility, best practices and SEO, I used **Googl
 - **Best Practices:** 74% (see note below)
 - **SEO:** 100%
 
-**Cloudinary Cookie Warning:**  
-Pages received a **Best Practices score of 74%** due mostly to a third-party cookie warning.  
-Since this warning originates from Cloudinary's image delivery system, it cannot be fully resolved without self-hosting or proxying images. As this would negatively impact performance and development scalability, it was left in place. Functionality and user privacy are not affected.
+> Note: Pages received a **Best Practices score of 74%** due mostly to a third-party cookie warning.  
+> Since this warning originates from Cloudinary's image delivery system, it cannot be fully resolved without self-hosting or proxying images. As this would negatively impact performance and development scalability, it was left in place. Functionality and user privacy are not affected.
 
 <details>
   <summary>Lighthouse Home Page</summary>
@@ -1565,7 +1562,6 @@ Since this warning originates from Cloudinary's image delivery system, it cannot
 
 - **Generic Messaging**: Some system messages currently use generic terms like "post" instead of context-specific ones like recognition or nomination.
 - **Planned Improvement**: Tailor both success and error messages to reflect the content type and action performed, making feedback clearer and more meaningful for users.
-
 - **Visibility on Scroll**: Success or error messages appear at the top of the page — but users don’t always see them, especially when interacting with content at the bottom (e.g. editing a comment).
 - **Planned Improvement**: Look into simpler ways to show messages (like using toast popups) that stay visible on screen, even if the user is scrolling down the page.
 
