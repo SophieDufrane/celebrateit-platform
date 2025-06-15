@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY SETTINGS
 SECRET_KEY = os.getenv('SECRET_KEY')
-DEBUG = 'DEBUG' in os.environ
+DEBUG = True  # or False in production
 ALLOWED_HOSTS = json.loads(
     os.environ.get("ALLOWED_HOSTS", '["localhost", "127.0.0.1"]')
 )
@@ -80,17 +80,16 @@ TEMPLATES = [
 WSGI_APPLICATION = 'celebrateit_api.wsgi.application'
 
 # DATABASES
-if 'DEV' in os.environ:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
-else:
-    DATABASES = {
-        'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
-    }
+DATABASES = {
+    'default': dj_database_url.config(
+        default=os.environ.get("DATABASE_URL"),
+        conn_max_age=600,
+        ssl_require=False  # Only for local PostgreSQL; change to True when switching back to Supabase!
+    )
+}
+
+print("DATABASE_URL used by Django:", os.environ.get("DATABASE_URL"))
+
 
 # PASSWORD VALIDATION
 AUTH_PASSWORD_VALIDATORS = [
